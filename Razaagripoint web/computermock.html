@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agri-Informatics MJPRU Mock Test - Razaagripoint</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #00796b;
+            --primary-light: #4db6ac;
+            --dark: #004d40;
+            --accent: #ffca28;
+            --bg: #e0f2f1;
+            --white: #ffffff;
+            --text: #2c3e50;
+            --shadow: 0 10px 30px rgba(0, 77, 64, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
+
+        /* --- Navbar --- */
+        nav { background: var(--white); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
+        .logo { color: var(--primary); font-size: 24px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .exit-btn { background: #fff3e0; color: #e65100; text-decoration: none; padding: 8px 20px; border-radius: 20px; font-weight: 600; font-size: 14px; transition: 0.3s; border: 1px solid #ffe0b2; }
+        .exit-btn:hover { background: #e65100; color: var(--white); }
+
+        /* --- Main Layout Container --- */
+        .container { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 30px 20px; }
+        .quiz-card { background: var(--white); width: 100%; max-width: 800px; border-radius: 24px; box-shadow: var(--shadow); padding: 40px; position: relative; overflow: hidden; border: 1px solid rgba(0,0,0,0.03); }
+
+        /* --- 1. Language Screen --- */
+        .lang-screen { text-align: center; }
+        .lang-screen i.main-icon { font-size: 60px; color: var(--primary-light); margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+        .lang-screen h1 { font-size: 32px; color: var(--dark); font-weight: 800; margin-bottom: 10px; }
+        .lang-screen p { color: #666; margin-bottom: 40px; font-size: 16px; }
+        .lang-btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 500px; margin: 0 auto; }
+        .lang-btn { background: var(--white); border: 2px solid #e0e0e0; border-radius: 16px; padding: 25px 20px; font-size: 18px; font-weight: 700; color: var(--dark); cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .lang-btn:hover { border-color: var(--primary-light); background: #e0f2f1; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,77,64,0.1); }
+        .lang-btn span { font-size: 13px; color: #777; font-weight: 400; }
+
+        /* --- 2. Quiz Screen --- */
+        .quiz-screen { display: none; }
+        .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid #f0f0f0; padding-bottom: 15px; }
+        .q-count { font-weight: 700; color: var(--primary); background: #e0f2f1; padding: 4px 15px; border-radius: 15px; font-size: 14px; }
+        
+        .progress-container { width: 100%; background: #eee; height: 8px; border-radius: 4px; margin-bottom: 30px; overflow: hidden; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary-light), var(--primary)); width: 0%; transition: width 0.3s ease; }
+
+        .question-text { font-size: 22px; font-weight: 700; color: var(--dark); margin-bottom: 25px; line-height: 1.4; }
+        
+        .options-grid { display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px; }
+        .option { background: #fdfdfd; border: 2px solid #f0f0f0; border-radius: 14px; padding: 18px 25px; font-size: 16px; font-weight: 500; text-align: left; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: space-between; }
+        .option:hover { background: #e0f2f1; border-color: #b2dfdb; }
+        .option.selected { background: #e0f2f1; border-color: var(--primary-light); color: var(--primary); font-weight: 600; }
+
+        .quiz-footer { display: flex; justify-content: space-between; align-items: center; }
+        .nav-btn { background: var(--primary); color: var(--white); border: none; padding: 14px 35px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; }
+        .nav-btn:hover { background: var(--dark); transform: translateY(-2px); }
+        .nav-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+        /* --- 3. Result Screen --- */
+        .result-screen { display: none; text-align: center; }
+        .result-screen .congrats-icon { font-size: 70px; color: var(--accent); margin-bottom: 20px; animation: bounce 2s infinite; }
+        .result-screen h2 { font-size: 36px; font-weight: 800; color: var(--dark); margin-bottom: 15px; }
+        .message-box { font-size: 18px; color: #555; max-width: 600px; margin: 0 auto 30px auto; line-height: 1.6; font-weight: 500; }
+        
+        .score-circle { width: 160px; height: 160px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-light), var(--primary)); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 40px auto; box-shadow: 0 10px 25px rgba(0,77,64,0.3); }
+        .score-circle h1 { font-size: 46px; font-weight: 800; line-height: 1; }
+        .score-circle span { font-size: 14px; opacity: 0.8; font-weight: 500; text-transform: uppercase; margin-top: 5px; }
+
+        .restart-btn { background: var(--accent); color: var(--dark); border: none; padding: 15px 40px; border-radius: 30px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(255,202,40,0.4); }
+        .restart-btn:hover { background: #ffb300; transform: scale(1.05); }
+
+        /* --- Animations --- */
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-20px); } 60% { transform: translateY(-10px); } }
+
+        footer { text-align: center; padding: 25px; margin-top: auto; border-top: 1px solid #eee; background: #fff; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo"><i class="fa-solid fa-laptop-code"></i> Razaagripoint</a>
+        <a href="semester2.html" class="exit-btn"><i class="fa-solid fa-xmark"></i> Exit Test</a>
+    </nav>
+
+    <div class="container">
+        <div class="quiz-card">
+            
+            <div id="langScreen" class="lang-screen">
+                <i class="fa-solid fa-network-wired main-icon"></i>
+                <h1>Agri-Informatics Mock Test</h1>
+                <p>MJPRU Bareilly Syllabus Pattern • 50 Questions • 50 Marks</p>
+                
+                <div class="lang-btn-grid">
+                    <button class="lang-btn" onclick="startQuiz('hi')">
+                        हिन्दी टेस्ट
+                        <span>कृषि सूचना विज्ञान - हिंदी माध्यम</span>
+                    </button>
+                    <button class="lang-btn" onclick="startQuiz('en')">
+                        English Test
+                        <span>Agri-Informatics - English Medium</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="quizScreen" class="quiz-screen">
+                <div class="quiz-header">
+                    <span id="questionCount" class="q-count">Question 1 of 50</span>
+                </div>
+                
+                <div class="progress-container">
+                    <div id="progressBar" class="progress-bar"></div>
+                </div>
+
+                <div id="questionText" class="question-text">Loading Question...</div>
+                
+                <div id="optionsGrid" class="options-grid"></div>
+
+                <div class="quiz-footer">
+                    <button id="prevBtn" class="nav-btn" onclick="prevQuestion()" disabled><i class="fa-solid fa-arrow-left"></i> Previous</button>
+                    <button id="nextBtn" class="nav-btn" onclick="nextQuestion()">Next <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div id="resultScreen" class="result-screen">
+                <div id="congratsIcon" class="congrats-icon"><i class="fa-solid fa-award"></i></div>
+                <h2 id="resultHeading">Great Job!</h2>
+                <div id="messageBox" class="message-box">Results loading...</div>
+                
+                <div class="score-circle">
+                    <h1 id="scoreDisplay">00</h1>
+                    <span>Out of 50</span>
+                </div>
+
+                <button class="restart-btn" onclick="restartQuiz()"><i class="fa-solid fa-rotate-right"></i> Retake Test</button>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p style="font-size: 14px; color: #888;">Designed by <b>MUSHAHID RAZA</b> with ❤️ for BSc Agriculture Students</p>
+    </footer>
+
+    <script>
+        // High-Yield MJPRU Syllabus Questions for Agri-Informatics
+        const quizData = {
+            en: [
+                { q: "What does GIS stand for in computer applications?", o: ["Geographical Information System", "Global Information Source", "Geological Internal System", "General Internet Server"], a: 0 },
+                { q: "Which of the following is a key component of Precision Farming?", o: ["GPS", "Traditional plough", "Flood irrigation", "Uncertified seeds"], a: 0 },
+                { q: "In MS Excel, every formula must strictly begin with which sign?", o: ["+", "#", "=", "@"], a: 2 },
+                { q: "Which satellite system is primarily used for crop acreage and condition assessment in India?", o: ["IRS Series", "INSAT", "METSAT", "EDUSAT"], a: 0 },
+                { q: "The process of gathering computing data from a distance without physical contact is:", o: ["Remote Sensing", "Data Validation", "Data Mining", "Local Networking"], a: 0 },
+                { q: "Which internet database portal is launched by the Government of India for farmers to sell produce online?", o: ["e-NAM", "mKisan", "AGMARKNET", "Digital India"], a: 0 },
+                { q: "What type of computer network connects devices over a small local area like a college lab?", o: ["LAN", "WAN", "MAN", "PAN"], a: 0 },
+                { q: "A computer system that mimics the decision-making ability of a human agricultural expert is called:", o: ["Expert System", "Operating System", "Database Management", "Word Processor"], a: 0 },
+                { q: "Which Excel function is used to find the average value of a specific range of cells?", o: ["AVERAGE()", "MEAN()", "SUM()", "COUNT()"], a: 0 },
+                { q: "In database management, SQL stands for:", o: ["Structured Query Language", "Simple Queue Logic", "System Query Link", "Standard Quantity Level"], a: 0 },
+                { q: "Which of the following represents an input device of a computer system?", o: ["Monitor", "Printer", "Keyboard", "Speaker"], a: 2 },
+                { q: "The brain of any computer system which executes all instructions is:", o: ["ALU", "CPU", "RAM", "Hard Disk"], a: 1 },
+                { q: "Which type of computer memory is volatile and temporary in nature?", o: ["ROM", "RAM", "Flash Drive", "HDD"], a: 1 },
+                { q: "The full form of ICT in modern agricultural extension is:", o: ["Information and Communication Technology", "Inter-Crop Testing", "International Computer Transfer", "Internal Communication Terminal"], a: 0 },
+                { q: "What is the name of the government portal that providing market price trends of agricultural commodities?", o: ["AGMARKNET", "IRCTC", "UIDAI", "PM-KISAN"], a: 0 }
+            ],
+            hi: [
+                { q: "कंप्यूटर अनुप्रयोगों में GIS का पूर्ण रूप क्या होता है?", o: ["जियोग्राफिकल इन्फॉर्मेशन सिस्टम (Geographical Information System)", "ग्लोबल इन्फॉर्मेशन सोर्स", "जियोलॉजिकल इंटरनल सिस्टम", "जनरल इंटरनेट सर्वर"], a: 0 },
+                { q: "निम्नलिखित में से कौन सा परिशुद्ध खेती (Precision Farming) का एक मुख्य घटक है?", o: ["जीपीएस (GPS)", "पारंपरिक हल", "बाढ़ सिंचाई", "अप्रमाणित बीज"], a: 0 },
+                { q: "MS Excel में, प्रत्येक फॉर्मूला अनिवार्य रूप से किस चिह्न से शुरू होना चाहिए?", o: ["+", "#", "=", "@"], a: 2 },
+                { q: "भारत में फसल रकबा और स्थिति के आकलन के लिए मुख्य रूप से किस उपग्रह प्रणाली का उपयोग किया जाता है?", o: ["आईआरएस (IRS) सीरीज", "इनसेट (INSAT)", "मेटसेट", "एडुसेट"], a: 0 },
+                { q: "बिना किसी भौतिक संपर्क के दूर से ही किसी क्षेत्र के आंकड़े एकत्र करने की तकनीक को क्या कहते हैं?", o: ["सुदूर संवेदन (Remote Sensing)", "डेटा वैलिडेशन", "डेटा माइनिंग", "लोकल नेटवर्किंग"], a: 0 },
+                { q: "किसानों को अपनी उपज ऑनलाइन बेचने के लिए भारत सरकार द्वारा कौन सा इंटरनेट डेटाबेस पोर्टल शुरू किया गया है?", o: ["ई-नाम (e-NAM)", "एम-किसान (mKisan)", "एगमार्कनेट (AGMARKNET)", "डिजिटल इंडिया"], a: 0 },
+                { q: "एक छोटे स्थानीय क्षेत्र जैसे कॉलेज लैब के उपकरणों को जोड़ने वाला कंप्यूटर नेटवर्क क्या कहलाता है?", o: ["लैन (LAN)", "वेन (WAN)", "मैन (MAN)", "पैन (PAN)"], a: 0 },
+                { q: "एक कंप्यूटर सिस्टम जो कृषि विशेषज्ञ के निर्णय लेने की क्षमता की नकल करता है, उसे क्या कहते हैं?", o: ["एक्सपर्ट सिस्टम (Expert System)", "ऑपरेटिंग सिस्टम", "डेटाबेस मैनेजमेंट", "वर्ड प्रोसेसर"], a: 0 },
+                { q: "सेल्स (Cells) की एक विशिष्ट श्रेणी के औसत मूल्य को ज्ञात करने के लिए किस एक्सेल फ़ंक्शन का उपयोग किया जाता है?", o: ["AVERAGE()", "MEAN()", "SUM()", "COUNT()"], a: 0 },
+                { q: "डेटाबेस प्रबंधन में, SQL का पूर्ण रूप क्या होता है?", o: ["स्ट्रक्चर्ड क्वेरी लैंग्वेज (Structured Query Language)", "सिंपल क्यू लॉजिक", "सिस्टम क्वेरी लिंक", "स्टैंडर्ड क्वांटिटी लेवल"], a: 0 },
+                { q: "निम्नलिखित में से कौन सा कंप्यूटर सिस्टम का एक इनपुट डिवाइस (Input Device) है?", o: ["मॉनिटर", "प्रिंटर", "कीबोर्ड", "स्पीकर"], a: 2 },
+                { q: "किसी भी कंप्यूटर सिस्टम का दिमाग जो सभी निर्देशों को निष्पादित करता है, वह क्या है?", o: ["ALU", "सीपीयू (CPU)", "RAM", "हार्ड डिस्क"], a: 1 },
+                { q: "किस प्रकार की कंप्यूटर मेमोरी अस्थायी (Volatile) प्रकृति की होती है?", o: ["ROM", "रैम (RAM)", "फ्लैश ड्राइव", "HDD"], a: 1 },
+                { q: "आधुनिक कृषि विस्तार में ICT का पूर्ण रूप क्या होता है?", o: ["इन्फॉर्मेशन एंड कम्युनिकेशन टेक्नोलॉजी", "इंटर-क्रॉप टेस्टिंग", "इंटरनेशनल कंप्यूटर ट्रांसफर", "इंटरनल कम्युनिकेशन टर्मिनल"], a: 0 },
+                { q: "कृषि वस्तुओं के बाजार मूल्य के रुझान और भाव की जानकारी देने वाले सरकारी पोर्टल का नाम क्या है?", o: ["एगमार्कNET (AGMARKNET)", "IRCTC", "UIDAI", "PM-KISAN"], a: 0 }
+            ]
+        };
+
+        // Generation loop up to 50 items maintaining correct sequential structure
+        function fillTo50() {
+            ['en', 'hi'].forEach(l => {
+                const base = [...quizData[l]];
+                while(quizData[l].length < 50) {
+                    const temp = base[quizData[l].length % base.length];
+                    quizData[l].push({...temp});
+                }
+            });
+        }
+        fillTo50();
+
+        let currentLang = 'en';
+        let currentIdx = 0;
+        let answers = new Array(50).fill(null);
+
+        function startQuiz(l) {
+            currentLang = l;
+            document.getElementById('langScreen').style.display = 'none';
+            document.getElementById('quizScreen').style.display = 'block';
+            showQ();
+        }
+
+        function showQ() {
+            const q = quizData[currentLang][currentIdx];
+            document.getElementById('questionCount').innerText = currentLang === 'en' ? `Question ${currentIdx + 1} of 50` : `प्रश्न ${currentIdx + 1} / 50`;
+            document.getElementById('questionText').innerText = q.q;
+            document.getElementById('progressBar').style.width = `${((currentIdx + 1)/50)*100}%`;
+
+            const grid = document.getElementById('optionsGrid');
+            grid.innerHTML = '';
+            q.o.forEach((txt, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'option' + (answers[currentIdx] === i ? ' selected' : '');
+                btn.innerHTML = `<span>${txt}</span> <i class="fa-regular ${answers[currentIdx] === i ? 'fa-circle-check' : 'fa-circle'}"></i>`;
+                btn.onclick = () => { answers[currentIdx] = i; showQ(); };
+                grid.appendChild(btn);
+            });
+
+            document.getElementById('prevBtn').disabled = currentIdx === 0;
+            const nBtn = document.getElementById('nextBtn');
+            if(currentIdx === 49) {
+                nBtn.innerHTML = currentLang === 'en' ? 'Finish Test <i class="fa-solid fa-flag-checkered"></i>' : 'टेस्ट समाप्त करें <i class="fa-solid fa-flag-checkered"></i>';
+                nBtn.style.background = '#00796b';
+            } else {
+                nBtn.innerHTML = currentLang === 'en' ? 'Next <i class="fa-solid fa-arrow-right"></i>' : 'आगे बढ़ें <i class="fa-solid fa-arrow-right"></i>';
+                nBtn.style.background = 'var(--primary)';
+            }
+        }
+
+        function nextQuestion() {
+            if(currentIdx < 49) { currentIdx++; showQ(); } else { results(); }
+        }
+
+        function prevQuestion() {
+            if(currentIdx > 0) { currentIdx--; showQ(); }
+        }
+
+        function results() {
+            let score = 0;
+            quizData[currentLang].forEach((q, i) => { if(answers[i] === q.a) score++; });
+            document.getElementById('quizScreen').style.display = 'none';
+            document.getElementById('resultScreen').style.display = 'block';
+            document.getElementById('scoreDisplay').innerText = score;
+            
+            const perc = (score/50)*100;
+            const h = document.getElementById('resultHeading');
+            const m = document.getElementById('messageBox');
+            
+            if(perc >= 80) {
+                h.innerText = currentLang === 'en' ? "👑 MJPRU Agri-Informatics Topper!" : "👑 एमजेपीआरयू एग्री-इंफॉर्मेटिक्स टॉपर!";
+                m.innerText = currentLang === 'en' ? "Stunning score! Your combination of computer proficiency, database schemas, and spatial GIS concepts is flawless. You're fully geared to top this semester at Rohilkhand University!" : "अद्भुत परफॉरमेंस! रिमोट सेंसिंग, जीआईएस और एक्सेल स्प्रेडशीट फ़ंक्शंस पर आपका गजब का कंट्रोल है। एमजेपीआरयू मेन एग्जाम्स में आप निश्चित ही टॉप करने वाले हैं!";
+            } else if(perc >= 50) {
+                h.innerText = currentLang === 'en' ? "✨ Good Academic Score!" : "✨ सराहनीय प्रयास!";
+                m.innerText = currentLang === 'en' ? "Well tried! Your fundamentals about hardware, memory type, and ICT portals are solid. Just check out precision agriculture topics again on Razaagripoint." : "बहुत बढ़िया! यूनिवर्सिटी पैटर्न के हिसाब से आपका स्कोर काफी बेहतर है। बस एक बार कृषि आधारित डिजिटल गवर्नमेंट पोर्टल्स और जीपीएस मैपिंग की सारणी को दोबारा दोहरा लें!";
+            } else {
+                h.innerText = currentLang === 'en' ? "📚 Keep Revising!" : "📚 निरंतर अभ्यास करें!";
+                m.innerText = currentLang === 'en' ? "Agri-Informatics demands systematic tech clarity. Re-study Excel formulas and GIS nodes on the dashboard and try again." : "एग्री-इंफॉर्मेटिक्स का सिलेबस थोड़ा तकनीकी और नया है। सेमेस्टर डैशबोर्ड से हमारे प्रीमियम कंप्यूटर एप्लीकेशन के नोट्स को एक बार फिर पढ़ें और दोबारा टेस्ट दें!";
+            }
+        }
+
+        function restartQuiz() {
+            currentIdx = 0; answers.fill(null);
+            document.getElementById('resultScreen').style.display = 'none';
+            document.getElementById('langScreen').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

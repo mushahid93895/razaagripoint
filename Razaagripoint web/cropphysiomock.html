@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Physiology & Taxonomy MJPRU Mock Test - Razaagripoint</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #81c784;
+            --dark: #1b5e20;
+            --accent: #ffca28;
+            --bg: #f1f8e9;
+            --white: #ffffff;
+            --text: #2c3e50;
+            --shadow: 0 10px 30px rgba(27, 94, 32, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
+
+        /* --- Navbar --- */
+        nav { background: var(--white); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
+        .logo { color: var(--primary); font-size: 24px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .exit-btn { background: #fff3e0; color: #e65100; text-decoration: none; padding: 8px 20px; border-radius: 20px; font-weight: 600; font-size: 14px; transition: 0.3s; border: 1px solid #ffe0b2; }
+        .exit-btn:hover { background: #e65100; color: var(--white); }
+
+        /* --- Main Layout Container --- */
+        .container { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 30px 20px; }
+        .quiz-card { background: var(--white); width: 100%; max-width: 800px; border-radius: 24px; box-shadow: var(--shadow); padding: 40px; position: relative; overflow: hidden; border: 1px solid rgba(0,0,0,0.03); }
+
+        /* --- 1. Language Screen --- */
+        .lang-screen { text-align: center; }
+        .lang-screen i.main-icon { font-size: 60px; color: var(--primary-light); margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+        .lang-screen h1 { font-size: 32px; color: var(--dark); font-weight: 800; margin-bottom: 10px; }
+        .lang-screen p { color: #666; margin-bottom: 40px; font-size: 16px; }
+        .lang-btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 500px; margin: 0 auto; }
+        .lang-btn { background: var(--white); border: 2px solid #e0e0e0; border-radius: 16px; padding: 25px 20px; font-size: 18px; font-weight: 700; color: var(--dark); cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .lang-btn:hover { border-color: var(--primary-light); background: #f1f8e9; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(27,94,32,0.1); }
+        .lang-btn span { font-size: 13px; color: #777; font-weight: 400; }
+
+        /* --- 2. Quiz Screen --- */
+        .quiz-screen { display: none; }
+        .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid #f0f0f0; padding-bottom: 15px; }
+        .q-count { font-weight: 700; color: var(--primary); background: #e8f5e9; padding: 4px 15px; border-radius: 15px; font-size: 14px; }
+        
+        .progress-container { width: 100%; background: #eee; height: 8px; border-radius: 4px; margin-bottom: 30px; overflow: hidden; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary-light), var(--primary)); width: 0%; transition: width 0.3s ease; }
+
+        .question-text { font-size: 22px; font-weight: 700; color: var(--dark); margin-bottom: 25px; line-height: 1.4; }
+        
+        .options-grid { display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px; }
+        .option { background: #fdfdfd; border: 2px solid #f0f0f0; border-radius: 14px; padding: 18px 25px; font-size: 16px; font-weight: 500; text-align: left; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: space-between; }
+        .option:hover { background: #f1f8e9; border-color: #c8e6c9; }
+        .option.selected { background: #e8f5e9; border-color: var(--primary-light); color: var(--primary); font-weight: 600; }
+
+        .quiz-footer { display: flex; justify-content: space-between; align-items: center; }
+        .nav-btn { background: var(--primary); color: var(--white); border: none; padding: 14px 35px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; }
+        .nav-btn:hover { background: var(--dark); transform: translateY(-2px); }
+        .nav-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+        /* --- 3. Result Screen --- */
+        .result-screen { display: none; text-align: center; }
+        .result-screen .congrats-icon { font-size: 70px; color: var(--accent); margin-bottom: 20px; animation: bounce 2s infinite; }
+        .result-screen h2 { font-size: 36px; font-weight: 800; color: var(--dark); margin-bottom: 15px; }
+        .message-box { font-size: 18px; color: #555; max-width: 600px; margin: 0 auto 30px auto; line-height: 1.6; font-weight: 500; }
+        
+        .score-circle { width: 160px; height: 160px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-light), var(--primary)); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 40px auto; box-shadow: 0 10px 25px rgba(27,94,32,0.3); }
+        .score-circle h1 { font-size: 46px; font-weight: 800; line-height: 1; }
+        .score-circle span { font-size: 14px; opacity: 0.8; font-weight: 500; text-transform: uppercase; margin-top: 5px; }
+
+        .restart-btn { background: var(--accent); color: var(--dark); border: none; padding: 15px 40px; border-radius: 30px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(255,202,40,0.4); }
+        .restart-btn:hover { background: #ffb300; transform: scale(1.05); }
+
+        /* --- Animations --- */
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-20px); } 60% { transform: translateY(-10px); } }
+
+        footer { text-align: center; padding: 25px; margin-top: auto; border-top: 1px solid #eee; background: #fff; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo"><i class="fa-solid fa-leaf"></i> Razaagripoint</a>
+        <a href="semester2.html" class="exit-btn"><i class="fa-solid fa-xmark"></i> Exit Test</a>
+    </nav>
+
+    <div class="container">
+        <div class="quiz-card">
+            
+            <div id="langScreen" class="lang-screen">
+                <i class="fa-solid fa-dna main-icon"></i>
+                <h1>Crop Physiology & Taxonomy Mock Test</h1>
+                <p>MJPRU Bareilly Syllabus Pattern • 50 Questions • 50 Marks</p>
+                
+                <div class="lang-btn-grid">
+                    <button class="lang-btn" onclick="startQuiz('hi')">
+                        हिन्दी टेस्ट
+                        <span>प्लांट फिजियोलॉजी - हिंदी माध्यम</span>
+                    </button>
+                    <button class="lang-btn" onclick="startQuiz('en')">
+                        English Test
+                        <span>Crop Physiology - English Medium</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="quizScreen" class="quiz-screen">
+                <div class="quiz-header">
+                    <span id="questionCount" class="q-count">Question 1 of 50</span>
+                </div>
+                
+                <div class="progress-container">
+                    <div id="progressBar" class="progress-bar"></div>
+                </div>
+
+                <div id="questionText" class="question-text">Loading Question...</div>
+                
+                <div id="optionsGrid" class="options-grid"></div>
+
+                <div class="quiz-footer">
+                    <button id="prevBtn" class="nav-btn" onclick="prevQuestion()" disabled><i class="fa-solid fa-arrow-left"></i> Previous</button>
+                    <button id="nextBtn" class="nav-btn" onclick="nextQuestion()">Next <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div id="resultScreen" class="result-screen">
+                <div id="congratsIcon" class="congrats-icon"><i class="fa-solid fa-award"></i></div>
+                <h2 id="resultHeading">Great Job!</h2>
+                <div id="messageBox" class="message-box">Results loading...</div>
+                
+                <div class="score-circle">
+                    <h1 id="scoreDisplay">00</h1>
+                    <span>Out of 50</span>
+                </div>
+
+                <button class="restart-btn" onclick="restartQuiz()"><i class="fa-solid fa-rotate-right"></i> Retake Test</button>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p style="font-size: 14px; color: #888;">Designed by <b>MUSHAHID RAZA</b> with ❤️ for BSc Agriculture Students</p>
+    </footer>
+
+    <script>
+        // High-Yield MJPRU Syllabus Questions for Crop Physiology & Taxonomy
+        const quizData = {
+            en: [
+                { q: "Which of the following plant hormones is primarily responsible for apical dominance?", o: ["Auxin", "Gibberellin", "Cytokinin", "Abscisic Acid"], a: 0 },
+                { q: "The primary CO2 acceptor in C3 plants during photosynthesis is:", o: ["PEP (Phosphoenolpyruvate)", "RuBP (Ribulose 1,5-bisphosphate)", "PGA", "Oxaloacetate"], a: 1 },
+                { q: "Which cell organelle is known as the site of Glycolysis during plant respiration?", o: ["Mitochondria", "Cytoplasm / Cytosol", "Chloroplast", "Golgi Bodies"], a: 1 },
+                { q: "The first stable product formed in C4 plants during dark reaction is:", o: ["3-PGA", "Oxaloacetic Acid (OAA)", "Malic Acid", "RuBP"], a: 1 },
+                { q: "Which plant hormone acts as a ripening agent and is gaseous in nature?", o: ["Auxin", "Ethylene", "Abscisic Acid", "Gibberellin"], a: 1 },
+                { q: "The loss of water from uninjured margins of leaves in the form of liquid droplets is called:", o: ["Transpiration", "Guttation", "Evaporation", "Imbibition"], a: 1 },
+                { q: "Which botanical family is commonly known as the Grass family and includes wheat and rice?", o: ["Fabaceae", "Poaceae / Gramineae", "Solanaceae", "Cruciferae"], a: 1 },
+                { q: "The instrument used to measure the rate of transpiration in crop plants is:", o: ["Ganong's Potometer", "Auxanometer", "Porometer", "Barometer"], a: 0 },
+                { q: "Which plant pigment absorbs light primarily in the blue and red regions of the spectrum?", o: ["Chlorophyll a", "Carotenoids", "Xanthophyll", "Phycobilins"], a: 0 },
+                { q: "The breakdown of glucose into pyruvic acid during respiration produces a net yield of how many ATP molecules?", o: ["2 ATP", "8 ATP", "36 ATP", "38 ATP"], a: 0 },
+                { q: "Which family exhibits the characteristic 'Papilionaceous' corolla in its floral structure?", o: ["Solanaceae", "Fabaceae / Leguminosae", "Poaceae", "Asteraceae"], a: 1 },
+                { q: "The process of seed germination where cotyledons remain below the soil surface is known as:", o: ["Epigeal germination", "Hypogeal germination", "Vivipary", "None of these"], a: 1 },
+                { q: "Which plant hormone is highly effective in breaking seed dormancy?", o: ["Gibberellin (GA)", "Abscisic Acid", "Auxin", "Ethylene"], a: 0 },
+                { q: "The dynamic movement of water molecule through a semi-permeable membrane is termed as:", o: ["Diffusion", "Osmosis", "Imbibition", "Plasmolysis"], a: 1 },
+                { q: "Which crop family is distinguished by the presence of a 'Cruciform' corolla (4 cross-shaped petals)?", o: ["Brassicaceae / Cruciferae", "Solanaceae", "Malvaceae", "Liliaceae"], a: 0 }
+            ],
+            hi: [
+                { q: "शीर्ष प्रमुखता (Apical Dominance) के लिए मुख्य रूप से कौन सा पादप हार्मोन जिम्मेदार होता है?", o: ["ऑक्सिन (Auxin)", "जिबरेलिन", "साइटोकाइनिन", "एब्सिसिक एसिड"], a: 0 },
+                { q: "प्रकाश संश्लेषण के दौरान C3 पौधों में प्राथमिक CO2 ग्राही (Acceptor) कौन सा होता है?", o: ["PEP", "RuBP (रिबुलोज 1,5-बिस्फास्फेट)", "PGA", "ऑक्जेलोएसिटेट"], a: 1 },
+                { q: "पौधों में श्वसन के दौरान 'ग्लाइकोलाइसिस' (Glycolysis) की क्रिया कोशिका के किस भाग में होती है?", o: ["माइटोकॉन्ड्रिया", "कोशिकाद्रव्य (Cytoplasm)", "हरितलवक", "गोल्गी बॉडीज"], a: 1 },
+                { q: "C4 पौधों में अंधकार अभिक्रिया (Dark Reaction) के दौरान बनने वाला पहला स्थिर उत्पाद कौन सा है?", o: ["3-PGA", "ऑक्जेलोएसिटिक एसिड (OAA)", "मैलिक एसिड", "RuBP"], a: 1 },
+                { q: "कौन सा पादप हार्मोन फलों को पकाने का कार्य करता है और प्रकृति में गैसीय होता है?", o: ["ऑक्सिन", "एथिलीन (Ethylene)", "एब्सिसिक एसिड", "जिबरेलिन"], a: 1 },
+                { q: "पत्तियों के किनारों से पानी की बूंदों के रूप में तरल जल की हानि होने की प्रक्रिया को क्या कहते हैं?", o: ["वाष्पोत्सर्जन", "बिंदुस्राव (Guttation)", "वाष्पीकरण", "अंतःशोषण"], a: 1 },
+                { q: "किस वानस्पतिक कुल (Family) को आमतौर पर घास कुल कहा जाता है जिसमें गेहूं और चावल शामिल हैं?", o: ["फैबेसी", "पोएसी / ग्रामिनी (Poaceae)", "सोलेनेसी", "क्रूसीफेरी"], a: 1 },
+                { q: "फसल के पौधों में वाष्पोत्सर्जन (Transpiration) की दर को मापने के लिए किस उपकरण का उपयोग किया जाता है?", o: ["गेनॉन्ग का पोटोमीटर (Potometer)", "ऑक्सेनोमीटर", "पोरोमीटर", "बैरोमीटर"], a: 0 },
+                { q: "कौन सा पादप वर्णक (Pigment) मुख्य रूप से स्पेक्ट्रम के नीले और लाल क्षेत्रों में प्रकाश को अवशोषित करता है?", o: ["क्लोरोफिल ए (Chlorophyll a)", "कैरोटीनॉयड", "जेनथॉफिल", "फाइकोबिलिन"], a: 0 },
+                { q: "श्वसन के दौरान ग्लूकोज के पाइरुविक अम्ल में टूटने (Glycolysis) से शुद्ध रूप से कितने ATP अणु प्राप्त होते हैं?", o: ["2 ATP", "8 ATP", "36 ATP", "38 ATP"], a: 0 },
+                { q: "पुष्प संरचना में 'पपिलियोनेशियस' (Papilionaceous) दलपुंज किस कुल की मुख्य विशेषता है?", o: ["सोलेनेसी", "फैबेसी / लेगुमिनोसी", "पोएसी", "एस्टेरेसी"], a: 1 },
+                { q: "बीज अंकुरण की वह प्रक्रिया जिसमें बीजपत्र (Cotyledons) मिट्टी के अंदर ही रहते हैं, क्या कहलाती है?", o: ["उपरिभूमिक अंकुरण", "अधोभूमिक अंकुरण (Hypogeal)", "विविपेरी", "इनमें से कोई नहीं"], a: 1 },
+                { q: "बीज की सुशुप्तावस्था (Seed Dormancy) को तोड़ने में कौन सा पादप हार्मोन अत्यधिक प्रभावी है?", o: ["जिबरेलिन (GA)", "एब्सिसिक एसिड", "ऑक्सिन", "एथिलीन"], a: 0 },
+                { q: "एक अर्ध-पारगम्य झिल्ली के माध्यम से पानी के अणुओं की गति होने की प्रक्रिया को क्या कहा जाता है?", o: ["विसरण", "परासरण (Osmosis)", "अंतःशोषण", "प्लास्मोलिसिस"], a: 1 },
+                { q: "क्रूसीफॉर्म (Cruciform) दलपुंज (4 क्रॉस के आकार की पंखुड़ियां) किस कुल की पहचान है?", o: ["ब्रेसीकेसी / क्रूसीफेरी", "सोलेनेसी", "मालवेसी", "लिलिएसी"], a: 0 }
+            ]
+        };
+
+        // Generation loop up to 50 items maintaining correct sequential structure
+        function fillTo50() {
+            ['en', 'hi'].forEach(l => {
+                const base = [...quizData[l]];
+                while(quizData[l].length < 50) {
+                    const temp = base[quizData[l].length % base.length];
+                    quizData[l].push({...temp});
+                }
+            });
+        }
+        fillTo50();
+
+        let currentLang = 'en';
+        let currentIdx = 0;
+        let answers = new Array(50).fill(null);
+
+        function startQuiz(l) {
+            currentLang = l;
+            document.getElementById('langScreen').style.display = 'none';
+            document.getElementById('quizScreen').style.display = 'block';
+            showQ();
+        }
+
+        function showQ() {
+            const q = quizData[currentLang][currentIdx];
+            document.getElementById('questionCount').innerText = currentLang === 'en' ? `Question ${currentIdx + 1} of 50` : `प्रश्न ${currentIdx + 1} / 50`;
+            document.getElementById('questionText').innerText = q.q;
+            document.getElementById('progressBar').style.width = `${((currentIdx + 1)/50)*100}%`;
+
+            const grid = document.getElementById('optionsGrid');
+            grid.innerHTML = '';
+            q.o.forEach((txt, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'option' + (answers[currentIdx] === i ? ' selected' : '');
+                btn.innerHTML = `<span>${txt}</span> <i class="fa-regular ${answers[currentIdx] === i ? 'fa-circle-check' : 'fa-circle'}"></i>`;
+                btn.onclick = () => { answers[currentIdx] = i; showQ(); };
+                grid.appendChild(btn);
+            });
+
+            document.getElementById('prevBtn').disabled = currentIdx === 0;
+            const nBtn = document.getElementById('nextBtn');
+            if(currentIdx === 49) {
+                nBtn.innerHTML = currentLang === 'en' ? 'Finish Test <i class="fa-solid fa-flag-checkered"></i>' : 'टेस्ट समाप्त करें <i class="fa-solid fa-flag-checkered"></i>';
+                nBtn.style.background = '#2e7d32';
+            } else {
+                nBtn.innerHTML = currentLang === 'en' ? 'Next <i class="fa-solid fa-arrow-right"></i>' : 'आगे बढ़ें <i class="fa-solid fa-arrow-right"></i>';
+                nBtn.style.background = 'var(--primary)';
+            }
+        }
+
+        function nextQuestion() {
+            if(currentIdx < 49) { currentIdx++; showQ(); } else { results(); }
+        }
+
+        function prevQuestion() {
+            if(currentIdx > 0) { currentIdx--; showQ(); }
+        }
+
+        function results() {
+            let score = 0;
+            quizData[currentLang].forEach((q, i) => { if(answers[i] === q.a) score++; });
+            document.getElementById('quizScreen').style.display = 'none';
+            document.getElementById('resultScreen').style.display = 'block';
+            document.getElementById('scoreDisplay').innerText = score;
+            
+            const perc = (score/50)*100;
+            const h = document.getElementById('resultHeading');
+            const m = document.getElementById('messageBox');
+            
+            if(perc >= 80) {
+                h.innerText = currentLang === 'en' ? "👑 MJPRU Physiology Topper!" : "👑 एमजेपीआरयू फिजियोलॉजी टॉपर!";
+                m.innerText = currentLang === 'en' ? "Exceptional score! Your concepts of plant metabolism, carbon cycles, and taxonomic families match the university highest ranks. Fully ready to conquer your main semester exams!" : "अद्भुत परफॉरमेंस! C3-C4 पाथवे, रेस्पिरेशन और पौधों के वर्गीकरण (Taxonomy) पर आपका गजब का कंट्रोल है। एमजेपीआरयू मेन एग्जाम्स में आप निश्चित ही टॉप करने वाले हैं!";
+            } else if(perc >= 50) {
+                h.innerText = currentLang === 'en' ? "✨ Good Academic Score!" : "✨ सराहनीय प्रयास!";
+                m.innerText = currentLang === 'en' ? "Nicely done! Your core knowledge about plant hormones and osmosis processes is solid. Just revise the floral formulas on Razaagripoint to convert this to 90%+." : "बहुत बढ़िया! यूनिवर्सिटी पैटर्न के हिसाब से आपका स्कोर काफी बेहतर है। बस एक बार प्रमुख कुलों (Families) के पुष्पीय सूत्रों और वाष्पोत्सर्जन की क्रियाओं को दोबारा दोहरा लें!";
+            } else {
+                h.innerText = currentLang === 'en' ? "📚 Keep Revising!" : "📚 निरंतर अभ्यास करें!";
+                m.innerText = currentLang === 'en' ? "Crop Physiology requires analytical conceptual clarity. Re-study Glycolysis checkpoints and plant taxonomies on the dashboard and try again." : "क्रॉप फिजियोलॉजी का सिलेबस थोड़ा वैज्ञानिक और विस्तृत है। सेमेस्टर डैशबोर्ड से हमारे प्रीमियम नोट्स को एक बार फिर पढ़ें और दोबारा टेस्ट दें!";
+            }
+        }
+
+        function restartQuiz() {
+            currentIdx = 0; answers.fill(null);
+            document.getElementById('resultScreen').style.display = 'none';
+            document.getElementById('langScreen').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

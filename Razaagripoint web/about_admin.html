@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Admin - Mushahid Raza</title>
+    
+    <!-- Modern Google Font: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- Color Scheme & Reset --- */
+        :root {
+            --primary-green: #1b5e20;
+            --light-green: #4caf50;
+            --accent-gold: #fbc02d;
+            --bg-color: #f4f7f6;
+            --text-dark: #2c3e50;
+            --text-gray: #555555;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg-color); color: var(--text-dark); overflow-x: hidden; }
+
+        /* --- Animations --- */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Navigation --- */
+        nav { background-color: var(--white); padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .logo { color: var(--primary-green); font-size: 24px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .back-btn { background: var(--light-green); color: var(--white); text-decoration: none; font-size: 14px; padding: 10px 20px; border-radius: 25px; transition: 0.3s; font-weight: 600; box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); }
+        .back-btn:hover { background: var(--primary-green); transform: translateY(-2px); }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(135deg, #0d3b15 0%, #1b5e20 100%);
+            padding: 100px 20px 150px 20px;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+        }
+
+        .hero::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px; opacity: 0.5; z-index: 1;
+        }
+
+        .profile-wrapper { position: relative; z-index: 2; animation: fadeUp 1s ease forwards; }
+        
+        .profile-img {
+            width: 180px; height: 180px; border-radius: 50%; border: 5px solid var(--accent-gold);
+            object-fit: cover; box-shadow: 0 0 30px rgba(251, 192, 45, 0.4);
+            background-color: #ddd; 
+        }
+
+        .hero h1 { font-size: 48px; font-weight: 800; margin-top: 20px; letter-spacing: 1px; }
+        .hero p.tagline { font-size: 18px; color: #a5d6a7; font-weight: 300; margin-bottom: 20px; letter-spacing: 2px; text-transform: uppercase; }
+
+        /* --- Floating Stats Bar --- */
+        .floating-stats {
+            display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;
+            max-width: 1000px; margin: -60px auto 40px auto; padding: 0 20px;
+            position: relative; z-index: 10;
+        }
+
+        .stat-card {
+            background: var(--white); padding: 25px 30px; border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); flex: 1; min-width: 250px;
+            text-align: center; animation: fadeUp 1s ease forwards; animation-delay: 0.3s; opacity: 0;
+            border-bottom: 4px solid var(--primary-green); transition: transform 0.3s;
+        }
+
+        .stat-card:hover { transform: translateY(-10px); }
+        .stat-card i { font-size: 30px; color: var(--accent-gold); margin-bottom: 15px; }
+        .stat-card h3 { font-size: 15px; color: var(--text-gray); font-weight: 600; text-transform: uppercase; }
+        .stat-card p { font-size: 18px; color: var(--text-dark); font-weight: 800; margin-top: 5px; }
+
+        /* --- Main Content Layout --- */
+        .main-container { max-width: 1200px; margin: 0 auto 60px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        @media(max-width: 900px) { .main-container { grid-template-columns: 1fr; } }
+
+        /* --- About Section (Left) --- */
+        .about-section { background: var(--white); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); animation: fadeUp 1s ease forwards; animation-delay: 0.5s; opacity: 0; }
+        .section-title { font-size: 28px; color: var(--primary-green); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .section-title i { color: var(--accent-gold); }
+        
+        .about-text { font-size: 16px; color: var(--text-gray); line-height: 1.8; margin-bottom: 20px; text-align: justify; }
+        
+        .quote-box { background: #fff8e1; border-left: 5px solid var(--accent-gold); padding: 20px; margin: 25px 0; border-radius: 0 10px 10px 0; font-style: italic; color: #d35400; font-weight: 600; }
+
+        /* --- Skills with Progress Bars --- */
+        .skills-wrapper { margin-top: 30px; }
+        .skill-item { margin-bottom: 15px; }
+        .skill-info { display: flex; justify-content: space-between; font-size: 14px; font-weight: 600; margin-bottom: 5px; color: var(--text-dark); }
+        .progress-bg { background: #e0e0e0; height: 8px; border-radius: 10px; overflow: hidden; }
+        .progress-bar { background: linear-gradient(90deg, var(--light-green), var(--primary-green)); height: 100%; border-radius: 10px; }
+
+        /* --- Journey Timeline (Right) --- */
+        .timeline-section { background: var(--white); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); animation: fadeUp 1s ease forwards; animation-delay: 0.7s; opacity: 0; }
+        .timeline { border-left: 3px dashed #ccc; margin-left: 15px; padding-left: 30px; position: relative; margin-top: 30px; }
+        
+        .timeline-item { position: relative; margin-bottom: 40px; }
+        .timeline-item:last-child { margin-bottom: 0; }
+        
+        .timeline-icon { position: absolute; left: -48px; background: var(--white); border: 3px solid var(--primary-green); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary-green); font-size: 14px; }
+        .timeline-item.active .timeline-icon { background: var(--primary-green); color: var(--accent-gold); border-color: var(--accent-gold); box-shadow: 0 0 15px rgba(251, 192, 45, 0.5); }
+        
+        .timeline-content h4 { font-size: 18px; color: var(--text-dark); margin-bottom: 5px; }
+        .timeline-content span.date { font-size: 13px; color: var(--primary-green); font-weight: 600; display: inline-block; margin-bottom: 10px; background: #e8f5e9; padding: 2px 10px; border-radius: 15px; }
+        .timeline-content p { font-size: 14px; color: var(--text-gray); line-height: 1.6; }
+
+        /* --- Connect Section --- */
+        .connect-cta { text-align: center; margin: 40px auto; padding: 40px; background: var(--white); border-radius: 20px; max-width: 800px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); animation: fadeUp 1s ease forwards; animation-delay: 0.9s; opacity: 0; }
+        .connect-cta h2 { color: var(--primary-green); margin-bottom: 15px; }
+        .insta-btn { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; padding: 15px 40px; border-radius: 30px; font-size: 18px; font-weight: bold; text-decoration: none; transition: 0.3s; box-shadow: 0 10px 20px rgba(220, 39, 67, 0.3); margin-top: 15px; }
+        .insta-btn:hover { transform: scale(1.05); box-shadow: 0 15px 25px rgba(220, 39, 67, 0.5); }
+
+        footer { background-color: var(--text-dark); color: #ccc; text-align: center; padding: 30px 20px; font-size: 14px; }
+        footer span { color: var(--accent-gold); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <a href="index.html" class="logo"><i class="fa-solid fa-leaf"></i> Razaagripoint</a>
+        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="profile-wrapper">
+            <!-- YAHAN APNI PHOTO KA NAAM DAALEIN -->
+           <img src="mushahid.jpeg" alt="Mushahid Raza" class="profile-img">
+            <h1>Mushahid Raza</h1>
+            <p class="tagline">Agri-Student | Programmer | Visionary</p>
+        </div>
+    </div>
+
+    <!-- Floating Stats Bar -->
+    <div class="floating-stats">
+        <div class="stat-card">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <h3>Current Status</h3>
+            <p>BSc Agri (2nd Sem)</p>
+            <p style="font-size: 13px; font-weight: normal; color: #777;">Chaudhary Nihal Singh Krishi PG College</p>
+        </div>
+        <div class="stat-card">
+            <i class="fa-solid fa-laptop-code"></i>
+            <h3>Tech Qualification</h3>
+            <p>ADCP Diploma</p>
+            <p style="font-size: 13px; font-weight: normal; color: #777;">Advanced Computer Programming</p>
+        </div>
+        <div class="stat-card">
+            <i class="fa-solid fa-trophy"></i>
+            <h3>Past Achievement</h3>
+            <p>State Level Cricketer</p>
+            <p style="font-size: 13px; font-weight: normal; color: #777;">A Dream That Built Character</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        
+        <!-- Left Column: About & Skills -->
+        <div class="about-section">
+            <h2 class="section-title"><i class="fa-solid fa-user-tie"></i> The Man Behind It All</h2>
+            
+            <p class="about-text">Hello! Main <strong>Mushahid Raza</strong> hoon. Ek middle-class parivar se aane ke bawajood, mere ghar walon ne hamesha mere har sapne ko poora support kiya hai. Unka yahi support meri sabse badi taqat hai.</p>
+            
+            <p class="about-text">Bachpan se mera ek hi khwab tha—ek Cricketer banna. 12th class mein maine apne trials diye aur State Level tak khela bhi, lekin zindagi ne kuch aisi karwat li ki mujhe cricket ko alvida kehna pada. Padhai mein main shuru se hi acha tha; 10th mein maine 81% score kiya jisme Maths mein mere 91 marks the. Halanki, aage chalkar maine apna rasta badla aur 11th se Agriculture ko chun liya. 12th mein 84% marks laane ke baad, aaj main BSc Agriculture (Hons.) ke 2nd semester ka student hoon.</p>
+            
+            <p class="about-text">Kheti aur padhai ke sath-sath, mujhe computers ki bahut deep knowledge hai. Maine <strong>ADCP (Advanced Diploma In Computer Programming)</strong> kiya hua hai. Yahi wajah hai ki jab maine agri-students ko notes ke liye pareshan hote dekha, toh maine apne is tech knowledge ka use karke Razaagripoint bana diya!</p>
+            
+            <div class="quote-box">
+                <i class="fa-solid fa-quote-left"></i> "Ghar ki aarthik sthiti chahe jaisi bhi ho, agar jazba aur parivar ka support ho toh insaan naye raaste khud bana leta hai."
+            </div>
+
+            <h2 class="section-title" style="margin-top: 40px; font-size: 24px;"><i class="fa-solid fa-code"></i> Core Expertise</h2>
+            
+            <div class="skills-wrapper">
+                <div class="skill-item">
+                    <div class="skill-info"><span>Computer Programming (ADCP)</span> <span>95%</span></div>
+                    <div class="progress-bg"><div class="progress-bar" style="width: 95%;"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>Agronomy & Plant Sciences</span> <span>90%</span></div>
+                    <div class="progress-bg"><div class="progress-bar" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>Web Development (HTML/CSS)</span> <span>88%</span></div>
+                    <div class="progress-bg"><div class="progress-bar" style="width: 88%;"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: The Journey Timeline -->
+        <div class="timeline-section">
+            <h2 class="section-title"><i class="fa-solid fa-route"></i> The Journey</h2>
+            
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-baseball-bat-ball"></i></div>
+                    <div class="timeline-content">
+                        <h4>The Pitch & The Books</h4>
+                        <span class="date">Early Schooling & Dreams</span>
+                        <p>10th class mein 81% aur Maths mein 91 marks laye. Is dauran sabse bada sapna tha cricketer banna, jiske liye din-raat ground par mehnat chal rahi thi.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-leaf"></i></div>
+                    <div class="timeline-content">
+                        <h4>A New Path (Agriculture)</h4>
+                        <span class="date">Class 11th & 12th</span>
+                        <p>Maths chhod kar Agriculture ko apna field chuna. Cricket mein State Level tak khelne ke baad, use alvida kehna pada. 12th mein 84% score kiya, jisme family ka bohot support raha.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-microchip"></i></div>
+                    <div class="timeline-content">
+                        <h4>Mastering Technology</h4>
+                        <span class="date">ADCP Diploma</span>
+                        <p>Agriculture ke sath apni doosri ruchi—Computers ko aage badhaya. Advanced Diploma In Computer Programming (ADCP) complete kiya aur deep tech knowledge haasil ki.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item active">
+                    <div class="timeline-icon"><i class="fa-solid fa-rocket"></i></div>
+                    <div class="timeline-content">
+                        <h4>Birth of Razaagripoint</h4>
+                        <span class="date">Present Day (2nd Sem)</span>
+                        <p>BSc Agriculture (Hons.) ke 2nd semester mein padhte hue, apne ADCP programming skills ka use karke 'Razaagripoint' banaya taaki har Agri-student ki madad ho sake.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Connect / Call to Action -->
+    <div class="connect-cta">
+        <h2>Let's Connect!</h2>
+        <p style="color: var(--text-gray); margin-bottom: 10px;">Agar aapko meri journey inspiring lagi ya aapko kisi study material ki zarurat hai, toh mujhse Instagram par message karen!</p>
+        <a href="https://instagram.com/mushahid___07__" target="_blank" class="insta-btn">
+            <i class="fa-brands fa-instagram"></i> Follow @mushahid___07__
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+       <p style="font-size: 14px; color: #888;">Designed by <b>MUSHAHID RAZA</b> with ❤️ for BSc Agriculture Students</p>
+    </footer>
+
+</body>
+</html>

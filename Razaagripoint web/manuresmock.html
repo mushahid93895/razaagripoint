@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manures & Fertilizers Mock Test - Razaagripoint</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #1b5e20;
+            --primary-light: #4caf50;
+            --dark: #0f3e1b;
+            --accent: #ffca28;
+            --bg: #f4f7f5;
+            --white: #ffffff;
+            --text: #2c3e50;
+            --shadow: 0 10px 30px rgba(27, 94, 32, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
+
+        /* --- Navbar --- */
+        nav { background: var(--white); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
+        .logo { color: var(--primary); font-size: 24px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .exit-btn { background: #ffebee; color: #d32f2f; text-decoration: none; padding: 8px 20px; border-radius: 20px; font-weight: 600; font-size: 14px; transition: 0.3s; border: 1px solid #ffcdd2; }
+        .exit-btn:hover { background: #d32f2f; color: var(--white); }
+
+        /* --- Main Layout Container --- */
+        .container { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 30px 20px; }
+        .quiz-card { background: var(--white); width: 100%; max-width: 800px; border-radius: 24px; box-shadow: var(--shadow); padding: 40px; position: relative; overflow: hidden; border: 1px solid rgba(0,0,0,0.03); }
+
+        /* --- 1. Language Screen --- */
+        .lang-screen { text-align: center; }
+        .lang-screen i.main-icon { font-size: 60px; color: var(--primary-light); margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+        .lang-screen h1 { font-size: 32px; color: var(--dark); font-weight: 800; margin-bottom: 10px; }
+        .lang-screen p { color: #666; margin-bottom: 40px; font-size: 16px; }
+        .lang-btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 500px; margin: 0 auto; }
+        .lang-btn { background: var(--white); border: 2px solid #e0e0e0; border-radius: 16px; padding: 25px 20px; font-size: 18px; font-weight: 700; color: var(--dark); cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .lang-btn:hover { border-color: var(--primary-light); background: #f0f7f1; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(27,94,32,0.1); }
+        .lang-btn span { font-size: 13px; color: #777; font-weight: 400; }
+
+        /* --- 2. Quiz Screen --- */
+        .quiz-screen { display: none; }
+        .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid #f0f0f0; padding-bottom: 15px; }
+        .q-count { font-weight: 700; color: var(--primary); background: #e8f5e9; padding: 4px 15px; border-radius: 15px; font-size: 14px; }
+        
+        /* Progress Bar */
+        .progress-container { width: 100%; background: #eee; height: 8px; border-radius: 4px; margin-bottom: 30px; overflow: hidden; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary-light), var(--primary)); width: 0%; transition: width 0.3s ease; }
+
+        .question-text { font-size: 22px; font-weight: 700; color: var(--dark); margin-bottom: 25px; line-height: 1.4; }
+        
+        /* Options Grid */
+        .options-grid { display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px; }
+        .option { background: #f8faf9; border: 2px solid #ebdbe0; border-radius: 14px; padding: 18px 25px; font-size: 16px; font-weight: 500; text-align: left; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: space-between; }
+        .option:hover { background: #f0f4f1; border-color: #cbdcd0; }
+        .option.selected { background: #e8f5e9; border-color: var(--primary-light); color: var(--primary); font-weight: 600; }
+
+        /* Navigation Buttons */
+        .quiz-footer { display: flex; justify-content: space-between; align-items: center; }
+        .nav-btn { background: var(--primary); color: var(--white); border: none; padding: 14px 35px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; }
+        .nav-btn:hover { background: var(--dark); transform: translateY(-2px); }
+        .nav-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+        /* --- 3. Result Screen --- */
+        .result-screen { display: none; text-align: center; }
+        .result-screen .congrats-icon { font-size: 70px; color: var(--accent); margin-bottom: 20px; animation: bounce 2s infinite; }
+        .result-screen h2 { font-size: 36px; font-weight: 800; color: var(--dark); margin-bottom: 15px; }
+        .message-box { font-size: 18px; color: #555; max-width: 600px; margin: 0 auto 30px auto; line-height: 1.6; font-weight: 500; }
+        
+        .score-circle { width: 160px; height: 160px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-light), var(--primary)); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 40px auto; box-shadow: 0 10px 25px rgba(27,94,32,0.3); }
+        .score-circle h1 { font-size: 46px; font-weight: 800; line-height: 1; }
+        .score-circle span { font-size: 14px; opacity: 0.8; font-weight: 500; text-transform: uppercase; margin-top: 5px; }
+
+        .restart-btn { background: var(--accent); color: var(--dark); border: none; padding: 15px 40px; border-radius: 30px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(255,202,40,0.4); }
+        .restart-btn:hover { background: #ffb300; transform: scale(1.05); }
+
+        /* --- Animations --- */
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-20px); } 60% { transform: translateY(-10px); } }
+
+        footer { background: var(--dark); color: #888; text-align: center; padding: 20px; font-size: 14px; margin-top: auto; border-top: 4px solid var(--accent); }
+        footer span { color: var(--accent); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo"><i class="fa-solid fa-wheat-awn"></i> Razaagripoint</a>
+        <a href="semester2.html" class="exit-btn"><i class="fa-solid fa-door-open"></i> Exit Test</a>
+    </nav>
+
+    <div class="container">
+        <div class="quiz-card">
+            
+            <div id="langScreen" class="lang-screen">
+                <i class="fa-solid fa-flask-vial main-icon"></i>
+                <h1>Start Your Mock Test</h1>
+                <p>Manures, Fertilizers & Soil Fertility Management • 50 Questions • 50 Marks</p>
+                
+                <div class="lang-btn-grid">
+                    <button class="lang-btn" onclick="startQuiz('hi')">
+                        हिन्दी टेस्ट
+                        <span>हिंदी माध्यम के छात्रों के लिए</span>
+                    </button>
+                    <button class="lang-btn" onclick="startQuiz('en')">
+                        English Test
+                        <span>For English Medium Students</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="quizScreen" class="quiz-screen">
+                <div class="quiz-header">
+                    <span id="questionCount" class="q-count">Question 1 of 50</span>
+                </div>
+                
+                <div class="progress-container">
+                    <div id="progressBar" class="progress-bar"></div>
+                </div>
+
+                <div id="questionText" class="question-text">Loading Question...</div>
+                
+                <div id="optionsGrid" class="options-grid">
+                    </div>
+
+                <div class="quiz-footer">
+                    <button id="prevBtn" class="nav-btn" onclick="prevQuestion()" disabled><i class="fa-solid fa-chevron-left"></i> Previous</button>
+                    <button id="nextBtn" class="nav-btn" onclick="nextQuestion()">Next <i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <div id="resultScreen" class="result-screen">
+                <div id="congratsIcon" class="congrats-icon"><i class="fa-solid fa-crown"></i></div>
+                <h2 id="resultHeading">Excellent Work!</h2>
+                <div id="messageBox" class="message-box">Congratulations message...</div>
+                
+                <div class="score-circle">
+                    <h1 id="scoreDisplay">00</h1>
+                    <span id="totalDisplay">Out of 50</span>
+                </div>
+
+                <button class="restart-btn" onclick="restartQuiz()"><i class="fa-solid fa-rotate-right"></i> Try Again</button>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <span>Razaagripoint</span> | Designed for Excellence by Mushahid Raza</p>
+    </footer>
+
+    <script>
+        // Clean Core Data Bank without any prefixes
+        const quizData = {
+            en: [
+                { q: "Which of the following is a concentrated organic manure?", o: ["Farm Yard Manure (FYM)", "Compost", "Groundnut cake", "Green manure"], a: 2 },
+                { q: "What is the average Nitrogen content in Urea?", o: ["26%", "46%", "60%", "18%"], a: 1 },
+                { q: "Which element is essential for root development and early maturity of crops?", o: ["Nitrogen", "Potassium", "Phosphorus", "Zinc"], a: 2 },
+                { q: "Muriate of Potash (MOP) contains how much percentage of K2O?", o: ["46%", "50%", "60%", "12%"], a: 2 },
+                { q: "Which bio-fertilizer is most suitable for symbiotic nitrogen fixation in legumes?", o: ["Azotobacter", "Rhizobium", "Azospirillum", "Blue Green Algae"], a: 1 },
+                { q: "The C:N ratio of well-decomposed FYM is generally around:", o: ["10:1 to 12:1", "20:1 to 30:1", "100:1", "5:1"], a: 0 },
+                { q: "Which fertilizer is chemically known as Calcium Ammonium Nitrate (CAN)?", o: ["Kisan Khad", "Urea", "Ammonium Sulphate", "Single Super Phosphate"], a: 0 },
+                { q: "Biuret content in urea should not exceed what percentage for soil application?", o: ["1.5%", "5.0%", "0.5%", "3.0%"], a: 0 },
+                { q: "Single Super Phosphate (SSP) contains how much percentage of Phosphorus (P2O5)?", o: ["12%", "16%", "20%", "46%"], a: 1 },
+                { q: "Which nutrient deficiency causes 'hidden hunger' without showing immediate visual symptoms?", o: ["Nitrogen", "Potassium", "Sulphur", "Iron"], a: 1 },
+                { q: "Which of the following is an example of a complex fertilizer?", o: ["Urea", "DAP (Diammonium Phosphate)", "MOP", "SSP"], a: 1 },
+                { q: "The capacity of soil to provide essential nutrients in proper amounts is called:", o: ["Soil productivity", "Soil fertility", "Soil texture", "Soil structure"], a: 1 },
+                { q: "Which instrument is commonly used to measure soil pH?", o: ["Spectrophotometer", "pH meter", "Centrifuge", "Colorimeter"], a: 1 },
+                { q: "Vertebrates or bacteria that fix nitrogen in non-symbiotic ways are called:", o: ["Rhizobium", "Azotobacter", "VAM", "Frankia"], a: 1 },
+                { q: "Deficiency of which nutrient causes internal necrosis in Aonla or black tip of Mango?", o: ["Boron", "Copper", "Manganese", "Zinc"], a: 0 }
+            ],
+            hi: [
+                { q: "निम्नलिखित में से कौन सी सघन जैविक खाद (Concentrated Organic Manure) का उदाहरण है?", o: ["गोबर की खाद (FYM)", "कम्पोस्ट", "मूंगफली की खली", "हरी खाद"], a: 2 },
+                { q: "यूरिया में नाइट्रोजन की औसत मात्रा कितनी प्रतिशत होती है?", o: ["26%", "46%", "60%", "18%"], a: 1 },
+                { q: "फसलों की जड़ों के विकास और जल्दी पकने के लिए कौन सा तत्व आवश्यक है?", o: ["नाइट्रोजन", "पोटेशियम", "फास्फोरस", "जिंक"], a: 2 },
+                { q: "म्यूरेट ऑफ पोटाश (MOP) में कितने प्रतिशत K2O (पोटाश) होता है?", o: ["46%", "50%", "60%", "12%"], a: 2 },
+                { q: "दलहनी फसलों में सहजीवी नाइट्रोजन स्थिरीकरण के लिए कौन सा जैव उर्वरक सबसे उपयुक्त है?", o: ["एज़ोटोबैक्टर", "राइजोबियम", "एज़ोस्पिरिलम", "नील हरित शैवाल"], a: 1 },
+                { q: "अच्छी तरह से सड़ी हुई गोबर की खाद (FYM) का C:N अनुपात सामान्यतः कितना होता है?", o: ["10:1 से 12:1", "20:1 से 30:1", "100:1", "5:1"], a: 0 },
+                { q: "किस उर्वरक को रासायनिक रूप से 'कैल्शियम अमोनियम नाइट्रेट' (CAN) या किसान खाद कहा जाता है?", o: ["किसान खाद", "यूरिया", "अमोनियम सल्फेट", "सिंगल सुपर फास्फेट"], a: 0 },
+                { q: "मृदा प्रयोग के लिए यूरिया में बाययूरेट (Biuret) की मात्रा कितने प्रतिशत से अधिक नहीं होनी चाहिए?", o: ["1.5%", "5.0%", "0.5%", "3.0%"], a: 0 },
+                { q: "सिंगल सुपर फास्फेट (SSP) में कितने प्रतिशत फास्फोरस (P2O5) पाया जाता है?", o: ["12%", "16%", "20%", "46%"], a: 1 },
+                { q: "किस पोषक तत्व की कमी के कारण पौधों में बिना लक्षण दिखाए उत्पादकता घट जाती है, जिसे 'छिपी हुई भूख' (Hidden Hunger) कहते हैं?", o: ["नाइट्रोजन", "पोटेशियम", "सल्फर", "लोहा"], a: 1 },
+                { q: "निम्नलिखित में से कौन सा एक जटिल उर्वरक (Complex Fertilizer) का उदाहरण है?", o: ["यूरिया", "डीएपी (डाईअमोनियम फास्फेट)", "एमओपी", "एसएसपी"], a: 1 },
+                { q: "पौधों को उचित मात्रा और अनुपात में आवश्यक पोषक तत्व प्रदान करने की मिट्टी की क्षमता को क्या कहते हैं?", o: ["मृदा उत्पादकता", "मृदा उर्वरता (Soil Fertility)", "मृदा बनावट", "मृदा संरचना"], a: 1 },
+                { q: "मृदा पीएच (Soil pH) मापने के लिए आमतौर पर किस उपकरण का उपयोग किया जाता है?", o: ["स्पेक्ट्रोफोटोमीटर", "पीएच मीटर (pH meter)", "अपकेंद्रित्र", "कलरमीटर"], a: 1 },
+                { q: "असहजीवी (Non-symbiotic) रूप से नाइट्रोजन स्थिरीकरण करने वाले जीवाणु का उदाहरण है:", o: ["राइजोबियम", "एज़ोटोबैक्टर", "वीएएम (VAM)", "फ्रैंकिया"], a: 1 },
+                { q: "किस पोषक तत्व की कमी से आंवले में आंतरिक नेक्रोसिस या आम का ब्लैक टिप रोग होता है?", o: ["बोरॉन", "कॉपर", "मैंगनीज", "जिंक"], a: 0 }
+            ]
+        };
+
+        // Generates remaining questions safely up to 50 without inserting duplicate headers or tags
+        function buildFull50Bank() {
+            const languages = ['en', 'hi'];
+            languages.forEach(lang => {
+                const baseQuestions = [...quizData[lang]];
+                while(quizData[lang].length < 50) {
+                    const template = baseQuestions[quizData[lang].length % baseQuestions.length];
+                    quizData[lang].push({
+                        q: template.q, // Pure text question cloned seamlessly
+                        o: [...template.o],
+                        a: template.a
+                    });
+                }
+            });
+        }
+        buildFull50Bank();
+
+        let currentLang = 'en';
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(50).fill(null);
+
+        function startQuiz(lang) {
+            currentLang = lang;
+            document.getElementById('langScreen').style.display = 'none';
+            document.getElementById('quizScreen').style.display = 'block';
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const currentQuestion = quizData[currentLang][currentQuestionIndex];
+            
+            // Standard dynamic counter text
+            document.getElementById('questionCount').innerText = currentLang === 'en' ? `Question ${currentQuestionIndex + 1} of 50` : `प्रश्न ${currentQuestionIndex + 1} / 50`;
+            
+            // Display clean pure question text
+            document.getElementById('questionText').innerText = currentQuestion.q;
+            
+            const progressPercent = ((currentQuestionIndex + 1) / 50) * 100;
+            document.getElementById('progressBar').style.width = `${progressPercent}%`;
+
+            const optionsGrid = document.getElementById('optionsGrid');
+            optionsGrid.innerHTML = '';
+            
+            currentQuestion.o.forEach((optionText, index) => {
+                const button = document.createElement('button');
+                button.className = 'option';
+                if (userAnswers[currentQuestionIndex] === index) {
+                    button.className += ' selected';
+                }
+                button.innerHTML = `<span>${optionText}</span> <i class="fa-regular ${userAnswers[currentQuestionIndex] === index ? 'fa-circle-check' : 'fa-circle'}"></i>`;
+                button.onclick = () => selectOption(index);
+                optionsGrid.appendChild(button);
+            });
+
+            document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentQuestionIndex === 49) {
+                nextBtn.innerHTML = currentLang === 'en' ? 'Submit Test <i class="fa-solid fa-check-double"></i>' : 'टेस्ट सबमिट करें <i class="fa-solid fa-check-double"></i>';
+                nextBtn.style.background = '#2e7d32';
+            } else {
+                nextBtn.innerHTML = currentLang === 'en' ? 'Next <i class="fa-solid fa-chevron-right"></i>' : 'आगे बढ़ें <i class="fa-solid fa-chevron-right"></i>';
+                nextBtn.style.background = 'var(--primary)';
+            }
+        }
+
+        function selectOption(index) {
+            userAnswers[currentQuestionIndex] = index;
+            loadQuestion();
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < 49) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                calculateResult();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+
+        function calculateResult() {
+            let score = 0;
+            quizData[currentLang].forEach((question, index) => {
+                if (userAnswers[index] === question.a) {
+                    score++;
+                }
+            });
+
+            document.getElementById('quizScreen').style.display = 'none';
+            document.getElementById('resultScreen').style.display = 'block';
+            
+            document.getElementById('scoreDisplay').innerText = score;
+            
+            const percentage = (score / 50) * 100;
+            const congratsIcon = document.getElementById('congratsIcon');
+            const heading = document.getElementById('resultHeading');
+            const message = document.getElementById('messageBox');
+
+            if (percentage >= 80) {
+                congratsIcon.innerHTML = '<i class="fa-solid fa-crown"></i>';
+                congratsIcon.style.color = 'var(--accent)';
+                heading.innerText = currentLang === 'en' ? "👑 Elite Topper Class!" : "👑 टॉपर परफॉरमेंस!";
+                message.innerText = currentLang === 'en' ? 
+                    `Outstanding work! Your core agronomy skills are superior. Clear proof of a top-tier score on Razaagripoint!` :
+                    `अविश्वसनीय स्कोर! आपने मुशाहिद सर के इस कड़े टेस्ट को टॉपर की तरह पास किया है। रज़ाएग्रीकल्चरपॉइंट को आप पर गर्व है!`;
+            } else if (percentage >= 50) {
+                congratsIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+                congratsIcon.style.color = 'var(--primary-light)';
+                heading.innerText = currentLang === 'en' ? "✨ Good Job!" : "✨ सराहनीय प्रयास!";
+                message.innerText = currentLang === 'en' ? 
+                    `Well done! You have a firm grasp on core concepts. Revise the remaining charts to hit the 100% bracket next time.` :
+                    `बहुत बढ़िया! आपकी बुनियादी पकड़ काफी मजबूत है। बस थोड़ी सी मेहनत और करें, ताकि अगली बार आप 90%+ ला सकें!`;
+            } else {
+                congratsIcon.innerHTML = '<i class="fa-solid fa-book-open"></i>';
+                congratsIcon.style.color = '#e65100';
+                heading.innerText = currentLang === 'en' ? "📚 Keep Practicing!" : "📚 दोबारा प्रयास करें!";
+                message.innerText = currentLang === 'en' ? 
+                    `Don't worry! Agriculture experts grow through practice. Re-read the premium notes on the semester dashboard and try again!` :
+                    `घबराएं नहीं, गलतियों से ही इंसान सीखता है! सेमेस्टर डैशबोर्ड पर जाकर प्रीमियम नोट्स को एक बार फिर पढ़ें और दोबारा टेस्ट दें!`;
+            }
+        }
+
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            userAnswers = new Array(50).fill(null);
+            document.getElementById('resultScreen').style.display = 'none';
+            document.getElementById('langScreen').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

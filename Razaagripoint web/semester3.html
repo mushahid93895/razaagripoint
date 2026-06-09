@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3rd Semester - Razaagripoint</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; scroll-behavior: smooth; }
+        body { background-color: #f9fbf9; color: #333; }
+        
+        /* Navigation */
+        nav { background-color: #2e7d32; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100;}
+        .logo { color: white; font-size: 24px; font-weight: bold; text-decoration: none; }
+        .back-btn { color: white; text-decoration: none; font-size: 16px; border: 1px solid white; padding: 5px 15px; border-radius: 5px; transition: 0.3s;}
+        .back-btn:hover { background: white; color: #2e7d32; }
+
+        /* Hero Section */
+        .hero { text-align: center; padding: 50px 20px; background-color: #e8f5e9; color: #1b5e20; }
+        
+        /* Main Container */
+        .container { padding: 40px 50px; max-width: 1200px; margin: auto; }
+        h2.section-title { text-align: center; color: #2e7d32; margin-bottom: 30px; border-bottom: 2px solid #2e7d32; display: inline-block; padding-bottom: 5px; }
+        .text-center { text-align: center; margin-bottom: 40px; }
+
+        /* Subject Cards */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 50px; }
+        .card { background: white; padding: 25px; border-radius: 8px; border: 1px solid #c8e6c9; color: #1b5e20; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .card h3 { font-size: 18px; margin-bottom: 15px; height: 45px; }
+        .card-actions { display: flex; gap: 10px; }
+        .btn-small { flex: 1; background: #e8f5e9; color: #2e7d32; border: 1px solid #2e7d32; padding: 10px; text-decoration: none; border-radius: 5px; text-align: center; font-size: 14px; font-weight: bold; transition: 0.3s; }
+        .btn-small.video { background: #ffebee; color: #c62828; border-color: #ef5350; }
+        .btn-small:hover { background: #2e7d32; color: white; }
+        .btn-small.video:hover { background: #c62828; color: white; }
+
+        /* Mock Test Section */
+        .quiz-container { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 800px; margin: auto; border: 1px solid #c8e6c9; }
+        .question-block { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
+        .question-block h4 { color: #333; margin-bottom: 12px; font-size: 16px; line-height: 1.4; }
+        .options label { display: block; background: #f1f8f1; padding: 10px 15px; margin-bottom: 8px; border-radius: 5px; cursor: pointer; transition: 0.2s; border: 1px solid transparent; }
+        .options label:hover { background: #e8f5e9; border-color: #2e7d32; }
+        .options input { margin-right: 10px; }
+        
+        .submit-btn { width: 100%; background: #2e7d32; color: white; padding: 15px; border: none; font-size: 18px; font-weight: bold; border-radius: 8px; cursor: pointer; transition: 0.3s; margin-top: 20px; }
+        .submit-btn:hover { background: #1b5e20; }
+        
+        /* Result Box */
+        .result-box { display: none; margin-top: 20px; padding: 20px; background: #e8f5e9; border: 2px solid #2e7d32; color: #1b5e20; font-weight: bold; font-size: 22px; text-align: center; border-radius: 8px; }
+        .feedback { font-size: 16px; margin-top: 10px; color: #333; font-weight: normal; }
+
+        footer { background-color: #333; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">Razaagripoint</a>
+        <a href="index.html" class="back-btn">⬅ Back to Home</a>
+    </nav>
+
+    <div class="hero">
+        <h1>3rd Semester Syllabus & Material</h1>
+        <p>BSc Agriculture Honors</p>
+    </div>
+
+    <div class="container">
+        
+        <div class="text-center">
+            <h2 class="section-title">Course Subjects</h2>
+        </div>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>Crop Production Tech - I (Kharif Crops)</h3>
+                <div class="card-actions">
+                    <a href="#" class="btn-small">📄 PDF Syllabus</a>
+                    <a href="#" class="btn-small video">▶ Watch Video</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Fundamentals of Plant Breeding</h3>
+                <div class="card-actions">
+                    <a href="#" class="btn-small">📄 PDF Syllabus</a>
+                    <a href="#" class="btn-small video">▶ Watch Video</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Agricultural Finance & Co-operation</h3>
+                <div class="card-actions">
+                    <a href="#" class="btn-small">📄 PDF Syllabus</a>
+                    <a href="#" class="btn-small video">▶ Watch Video</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Agricultural Microbiology</h3>
+                <div class="card-actions">
+                    <a href="#" class="btn-small">📄 PDF Syllabus</a>
+                    <a href="#" class="btn-small video">▶ Watch Video</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Prod. Tech for Vegetables & Spices</h3>
+                <div class="card-actions">
+                    <a href="#" class="btn-small">📄 PDF Syllabus</a>
+                    <a href="#" class="btn-small video">▶ Watch Video</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Environmental Studies & Disaster Mgt.</h3>
+                <div class="card-actions">
+                    <a href="#" class="btn-small">📄 PDF Syllabus</a>
+                    <a href="#" class="btn-small video">▶ Watch Video</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Statistical Methods</h3>
+                <div class="card-actions">
+                    <a href="#" class="btn-small">📄 PDF Syllabus</a>
+                    <a href="#" class="btn-small video">▶ Watch Video</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Diseases of Field & Horticultural Crops</h3>
+                <div class="card-actions">
+                    <a href="#" class="btn-small">📄 PDF Syllabus</a>
+                    <a href="#" class="btn-small video">▶ Watch Video</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Principles of Integrated Pest Mgt. (IPM)</h3>
+                <div class="card-actions">
+                    <a href="#" class="btn-small">📄 PDF Syllabus</a>
+                    <a href="#" class="btn-small video">▶ Watch Video</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Renewable Energy & Green Technology</h3>
+                <div class="card-actions">
+                    <a href="#" class="btn-small">📄 PDF Syllabus</a>
+                    <a href="#" class="btn-small video">▶ Watch Video</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center" id="test-section">
+            <h2 class="section-title">Mock Test (Top 20 Questions)</h2>
+        </div>
+
+        <div class="quiz-container">
+            <form id="quizForm">
+                <div id="questions-container"></div>
+                
+                <button type="button" class="submit-btn" onclick="calculateScore()">Submit Test & Get Result</button>
+            </form>
+            
+            <div class="result-box" id="result-box">
+                <div id="score-text"></div>
+                <div class="feedback" id="feedback-text"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Razaagripoint | Designed for Agriculture Students</p>
+    </footer>
+
+    <script>
+        const quizData = [
+            { q: "1. (Kharif Crops) Dhaan (Rice) ka botanical naam kya hai?", options: ["Triticum aestivum", "Zea mays", "Oryza sativa", "Sorghum bicolor"], answer: 2 },
+            { q: "2. (Plant Breeding) Emasculation ka main purpose kya hota hai?", options: ["Seed size badhana", "Self-pollination ko rokna", "Fruit ka color change karna", "Plant ki height badhana"], answer: 1 },
+            { q: "3. (Microbiology) Doodh (milk) se dahi (curd) banane mein kaun sa bacteria help karta hai?", options: ["Rhizobium", "Azotobacter", "Lactobacillus", "Bacillus"], answer: 2 },
+            { q: "4. (Agri Finance) NABARD (National Bank for Agriculture and Rural Development) kis saal establish hua tha?", options: ["1982", "1990", "1975", "1995"], answer: 0 },
+            { q: "5. (Vegetables & Spices) 'Pusa Ruby' inmein se kis sabzi ki famous variety hai?", options: ["Pyaz (Onion)", "Tamatar (Tomato)", "Aloo (Potato)", "Baingan (Brinjal)"], answer: 1 },
+            { q: "6. (Environment) World Environment Day (Vishwa Paryavaran Diwas) kab manaya jata hai?", options: ["22 April", "5 June", "21 March", "10 December"], answer: 1 },
+            { q: "7. (Statistics) Mean, Median, aur Mode kis cheez ko measure karte hain?", options: ["Probability", "Central Tendency", "Standard Deviation", "Correlation"], answer: 1 },
+            { q: "8. (Plant Pathology) 'Tikka disease' kis fasal ki ek major beemari hai?", options: ["Ganna (Sugarcane)", "Kapas (Cotton)", "Mungfali (Groundnut)", "Dhaan (Rice)"], answer: 2 },
+            { q: "9. (IPM) IPM ka full form agriculture ke context mein kya hota hai?", options: ["Indian Pest Management", "Integrated Pest Management", "Internal Plant Medicine", "International Pesticide Market"], answer: 1 },
+            { q: "10. (Renewable Energy) Biogas mein sabse zyada percentage kis gas ki hoti hai?", options: ["Carbon Dioxide", "Hydrogen", "Nitrogen", "Methane"], answer: 3 },
+            { q: "11. (Kharif Crops) Soyabean (Soybean) mein lagbhag kitne percent protein paya jata hai?", options: ["20-22%", "40-42%", "10-15%", "60-65%"], answer: 1 },
+            { q: "12. (Plant Breeding) Mutation breeding mein commonly kaun si rays ka use kiya jata hai?", options: ["X-rays", "UV rays", "Gamma rays", "Infrared rays"], answer: 2 },
+            { q: "13. (Microbiology) Pulses (dalon) ki root nodules mein kaun sa nitrogen-fixing bacteria hota hai?", options: ["Rhizobium", "Nitrobacter", "Nitrosomonas", "Azospirillum"], answer: 0 },
+            { q: "14. (Agri Finance) KCC (Kisan Credit Card) scheme Bharat mein kis saal shuru hui thi?", options: ["1998", "2005", "2014", "1991"], answer: 0 },
+            { q: "15. (Vegetables & Spices) Aloo (Potato) scientific terms mein kya hai?", options: ["Modified Root", "Modified Leaf", "Modified Stem (Tuber)", "Fruit"], answer: 2 },
+            { q: "16. (Environment) Acid rain (Amliya varsha) main kin gases ki wajah se hoti hai?", options: ["CO2 & CO", "SO2 & NO2", "Methane & Ozone", "CFCs"], answer: 1 },
+            { q: "17. (Statistics) Correlation coefficient ki range hamesha kahan se kahan tak hoti hai?", options: ["0 se 100", "-1 se +1", "1 se 10", "-100 se +100"], answer: 1 },
+            { q: "18. (Plant Pathology) Bordeaux mixture (Bordo mixture) kis category mein aata hai?", options: ["Herbicide", "Insecticide", "Nematicide", "Fungicide"], answer: 3 },
+            { q: "19. (IPM) Pheromone traps kisko attract karke fasal bachane ke liye use hote hain?", options: ["Female insects", "Male insects", "Birds", "Rats (Choohe)"], answer: 1 },
+            { q: "20. (Renewable Energy) Solar panels sunlight ko kis energy mein convert karte hain?", options: ["Mechanical energy", "Heat energy", "Electrical energy", "Chemical energy"], answer: 2 }
+        ];
+
+        const container = document.getElementById('questions-container');
+
+        // Dynamically load questions into the HTML
+        quizData.forEach((item, index) => {
+            let optionsHtml = '';
+            item.options.forEach((opt, optIndex) => {
+                optionsHtml += `
+                    <label>
+                        <input type="radio" name="q${index}" value="${optIndex}">
+                        ${opt}
+                    </label>
+                `;
+            });
+
+            container.innerHTML += `
+                <div class="question-block" id="block-q${index}">
+                    <h4>${item.q}</h4>
+                    <div class="options">
+                        ${optionsHtml}
+                    </div>
+                </div>
+            `;
+        });
+
+        // Calculate Score Logic
+        function calculateScore() {
+            let score = 0;
+            let total = quizData.length;
+
+            quizData.forEach((item, index) => {
+                let selected = document.querySelector(`input[name="q${index}"]:checked`);
+                let block = document.getElementById(`block-q${index}`);
+                
+                // Remove previous colors
+                block.style.backgroundColor = "transparent";
+
+                if (selected) {
+                    if (parseInt(selected.value) === item.answer) {
+                        score++;
+                        block.style.backgroundColor = "#e8f5e9"; // Light green for correct
+                    } else {
+                        block.style.backgroundColor = "#ffebee"; // Light red for incorrect
+                    }
+                } else {
+                    block.style.backgroundColor = "#fff9c4"; // Light yellow if not attempted
+                }
+            });
+
+            // Show Result
+            let resultBox = document.getElementById('result-box');
+            let scoreText = document.getElementById('score-text');
+            let feedbackText = document.getElementById('feedback-text');
+
+            resultBox.style.display = "block";
+            scoreText.innerHTML = `🏆 Aapka Score: ${score} / ${total}`;
+
+            // Custom feedback messages
+            if(score === 20) {
+                feedbackText.innerHTML = "Zabardast! Aapki taiyari ekdam perfect hai.";
+                resultBox.style.borderColor = "#2e7d32";
+                resultBox.style.color = "#1b5e20";
+            } else if(score >= 15) {
+                feedbackText.innerHTML = "Bahut Achha! Thodi aur practice se aap top karenge.";
+                resultBox.style.borderColor = "#4caf50";
+            } else if(score >= 10) {
+                feedbackText.innerHTML = "Aap pass ho gaye hain, lekin PDFs se revision ki zaroorat hai.";
+                resultBox.style.borderColor = "#ff9800";
+                resultBox.style.color = "#e65100";
+            } else {
+                feedbackText.innerHTML = "Score thoda kam hai. Videos dekhein aur study par focus karein!";
+                resultBox.style.borderColor = "#f44336";
+                resultBox.style.color = "#c62828";
+            }
+
+            // Scroll to result
+            resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+
+</body>
+</html>

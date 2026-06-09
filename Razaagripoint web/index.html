@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Razaagripoint - The Ultimate Agriculture Study Hub</title>
+    <style>
+        /* --- Color Scheme & Typography --- */
+        :root {
+            --primary-green: #2e7d32;
+            --light-green: #e8f5e9;
+            --dark-green: #1b5e20;
+            --accent-yellow: #fbc02d;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f9fbf9;
+            color: var(--text-dark);
+        }
+
+        /* --- Navigation Bar --- */
+        nav {
+            background-color: var(--primary-green);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            color: var(--white);
+            font-size: 26px;
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: var(--accent-yellow);
+        }
+
+        /* --- Live Notice Board (NEW) --- */
+        .notice-ticker {
+            background-color: #fff3e0;
+            color: #e65100;
+            padding: 10px 20px;
+            font-size: 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ffe0b2;
+            display: flex;
+            align-items: center;
+        }
+        
+        .notice-ticker span {
+            background: #e65100;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-right: 15px;
+            white-space: nowrap;
+        }
+
+        /* --- Advanced Hero Section --- */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 120px 20px;
+            background: linear-gradient(135deg, rgba(46, 125, 50, 0.9), rgba(27, 94, 32, 0.9)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover;
+            color: var(--white);
+            position: relative;
+        }
+
+        .hero h1 { font-size: 52px; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .hero h1 span { color: var(--accent-yellow); }
+        .hero p { font-size: 20px; margin-bottom: 30px; font-weight: 400; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+
+        .hero-badges { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
+        .badge { background: rgba(255, 255, 255, 0.2); padding: 8px 15px; border-radius: 20px; font-size: 14px; font-weight: bold; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.3); }
+
+        .btn-main { background-color: var(--accent-yellow); color: var(--dark-green); padding: 15px 35px; text-decoration: none; border-radius: 30px; font-size: 18px; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: inline-block; }
+        .btn-main:hover { transform: translateY(-3px); background-color: #fbc02d; box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+
+        /* --- Key Features Section --- */
+        .features-section { padding: 40px 50px; background: var(--white); max-width: 1200px; margin: -60px auto 40px auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); position: relative; z-index: 10; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: center; }
+        .feature-box { padding: 20px; }
+        .feature-icon { font-size: 40px; margin-bottom: 15px; }
+        .feature-box h3 { color: var(--dark-green); margin-bottom: 10px; font-size: 20px; }
+        .feature-box p { color: var(--text-light); font-size: 15px; line-height: 1.5; }
+
+        /* --- Stats Section (NEW) --- */
+        .stats-container { background: var(--light-green); padding: 40px 20px; text-align: center; margin-bottom: 40px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1000px; margin: auto; }
+        .stat-box h2 { font-size: 40px; color: var(--primary-green); margin-bottom: 5px; }
+        .stat-box p { font-size: 16px; color: var(--dark-green); font-weight: bold; }
+
+        /* --- Generic Section Style --- */
+        .section-container { padding: 60px 50px; max-width: 1200px; margin: auto; }
+        .section-title { text-align: center; font-size: 36px; color: var(--primary-green); margin-bottom: 10px; font-weight: 800; }
+        .section-subtitle { text-align: center; color: var(--text-light); margin-bottom: 40px; font-size: 18px; }
+
+        /* --- Semester Buttons Grid --- */
+        .semester-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .semester-card { background: var(--white); padding: 40px 20px; border-radius: 12px; text-align: center; border: 2px solid #c8e6c9; text-decoration: none; color: var(--dark-green); transition: all 0.3s ease; display: block; position: relative; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .semester-card::before { content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--primary-green); transition: 0.3s; }
+        .semester-card:hover { background: var(--primary-green); color: var(--white); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(46, 125, 50, 0.2); }
+        .semester-card:hover::before { width: 100%; z-index: -1; }
+        .semester-card h3 { font-size: 28px; margin-bottom: 10px; position: relative; z-index: 2; }
+        .semester-card p { font-size: 16px; font-weight: 600; position: relative; z-index: 2; }
+
+        /* --- About & Community Section (NEW) --- */
+        .about-community { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; max-width: 1200px; margin: 20px auto 60px auto; padding: 0 50px; }
+        
+        .about-box { background: white; padding: 30px; border-radius: 15px; border: 1px solid #c8e6c9; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .about-box h3 { color: var(--primary-green); margin-bottom: 15px; font-size: 24px; }
+        .about-box p { color: var(--text-light); line-height: 1.6; margin-bottom: 15px; }
+        
+        .community-box { background: linear-gradient(135deg, #1b5e20, #2e7d32); color: white; padding: 40px 30px; border-radius: 15px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 10px 20px rgba(46, 125, 50, 0.3); }
+        .community-box h3 { font-size: 28px; margin-bottom: 15px; color: var(--accent-yellow); }
+        .community-box p { font-size: 16px; margin-bottom: 25px; line-height: 1.5; }
+        .btn-telegram { background: #0088cc; color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; font-weight: bold; font-size: 18px; transition: 0.3s; display: flex; align-items: center; gap: 10px; }
+        .btn-telegram:hover { background: #006699; transform: scale(1.05); }
+
+        /* --- Study Tips Section --- */
+        .tips-section { background-color: var(--dark-green); color: var(--white); padding: 60px 20px; }
+        .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; max-width: 1200px; margin: auto; }
+        .tip-card { background: rgba(255, 255, 255, 0.1); padding: 25px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2); }
+        .tip-card h4 { color: var(--accent-yellow); font-size: 20px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .tip-card p { font-size: 15px; line-height: 1.6; color: #e8f5e9; }
+
+        /* --- Footer --- */
+        footer { background-color: #1a1a1a; color: #ccc; text-align: center; padding: 30px 20px; }
+        footer p { margin-bottom: 10px; }
+        footer span { color: var(--accent-yellow); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">🌾 Razaagripoint</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#semesters">Syllabus</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Live Notice Board Ticker -->
+    <div class="notice-ticker">
+        <span>NEW UPDATE</span>
+        <marquee behavior="scroll" direction="left" scrollamount="6">
+            Welcome to Razaagripoint! | 11 June 2026 Exam Fundamental of Plant Pathology | BSc Agriculture 2nd Semester Top 50 MCQs Uploaded | Plant Pathology Video Lectures Available Now | Join our Telegram Group for daily updates.
+        </marquee>
+    </div>
+
+    <!-- Advanced Hero Section -->
+    <div class="hero">
+        <div class="hero-badges">
+            <div class="badge">🎓 BSc Agriculture (Hons.)</div>
+            <div class="badge">📚 ICAR Guidelines Based</div>
+        </div>
+        <h1>Welcome to <span>Razaagripoint</span></h1>
+        <p>Your one-stop destination for high-quality study materials, video lectures, and live mock tests designed specifically for Agriculture students.</p>
+        <a href="#semesters" class="btn-main">Get Started Now ➔</a>
+    </div>
+
+    <!-- Key Features / Highlights -->
+    <div class="features-section">
+        <div class="feature-grid">
+            <div class="feature-box">
+                <div class="feature-icon">📑</div>
+                <h3>Complete PDF Notes</h3>
+                <p>Download subject-wise, highly optimized PDF notes tailored for your exam preparation.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">▶️</div>
+                <h3>Video Lectures</h3>
+                <p>Understand complex agricultural concepts easily with our dedicated YouTube lectures.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">📝</div>
+                <h3>Live Mock Tests</h3>
+                <p>Test your knowledge with chapter-wise interactive quizzes and get instant results.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats-container">
+        <div class="stats-grid">
+            <div class="stat-box">
+                <h2>6+</h2>
+                <p>Semesters Covered</p>
+            </div>
+            <div class="stat-box">
+                <h2>100+</h2>
+                <p>Video Lectures</p>
+            </div>
+            <div class="stat-box">
+                <h2>50+</h2>
+                <p>Free PDF Notes</p>
+            </div>
+            <div class="stat-box">
+                <h2>5000+</h2>
+                <p>Happy Students</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEMESTERS SECTION (Links Untouched) -->
+    <div id="semesters" class="section-container">
+        <h2 class="section-title">B.Sc. Agriculture (Honors)</h2>
+        <h2 style="text-align: center;">Mahatma Jyotibha Phoole Rohelkhand University and All affiliated Colleges</h2>
+        <p class="section-subtitle">Click on your current semester to access syllabus, notes, and tests.</p>
+        
+        <div class="semester-grid">
+            <a href="semester1.html" class="semester-card"><h3>1st Semester</h3><p>Explore Syllabus ➔</p></a>
+            <a href="semester2.html" class="semester-card"><h3>2nd Semester</h3><p>Explore Syllabus ➔</p></a>
+            <a href="semester3.html" class="semester-card"><h3>3rd Semester</h3><p>Explore Syllabus ➔</p></a>
+            <a href="semester4.html" class="semester-card"><h3>4th Semester</h3><p>Explore Syllabus ➔</p></a>
+            <a href="semester5.html" class="semester-card"><h3>5th Semester</h3><p>Explore Syllabus ➔</p></a>
+            <a href="semester6.html" class="semester-card"><h3>6th Semester</h3><p>Explore Syllabus ➔</p></a>
+        </div>
+    </div>
+
+    <!-- About & Community Section -->
+    <div id="about" class="about-community">
+       <!-- About the Creator -->
+        <div class="about-box">
+            <h3>👨‍🏫 About Razaagripoint</h3>
+            <p>Hello future Agri-Professionals! Welcome to Razaagripoint, a platform built specifically for BSc Agriculture students. My aim is to simplify tough agricultural concepts into easy-to-understand lectures and notes.</p>
+            <p>Created and managed by <strong>Mushahid</strong>, this platform provides everything you need—from Agronomy to Genetics—all strictly based on ICAR guidelines, absolutely free of cost.</p>
+            
+            <!-- Naya 'Know more about Admin' Button -->
+            <a href="about_admin.html" style="background-color: var(--primary-green); color: white; padding: 10px 25px; text-decoration: none; border-radius: 25px; font-weight: bold; display: inline-block; margin-top: 15px; box-shadow: 0 4px 10px rgba(46, 125, 50, 0.2); transition: 0.3s;" onmouseover="this.style.backgroundColor='var(--dark-green)'; this.style.transform='scale(1.05)'" onmouseout="this.style.backgroundColor='var(--primary-green)'; this.style.transform='scale(1)'">
+                Know more about Admin ➔
+            </a>
+        </div>
+
+        <!-- Join Community -->
+        <div class="community-box">
+            <h3>Join Our Community</h3>
+            <p>Never miss an update! Join our Telegram channel to get instant notifications about new PDF uploads, exam tips, and video lectures.</p>
+            <!-- Replace # with your actual Telegram link -->
+            <a href="https://t.me/razaagripoint" target="_blank" class="btn-telegram">📱 Join Telegram Group</a>
+        </div>
+    </div>
+
+    <!-- Topper's Study Tips Section -->
+    <div class="tips-section">
+        <div style="text-align: center;">
+            <h2 class="section-title" style="color: var(--accent-yellow);">Topper's Study Tips</h2>
+            <p class="section-subtitle" style="color: #e8f5e9;">Smart strategies to score higher in your Agriculture exams.</p>
+        </div>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <h4>🎯 Focus on Fundamentals</h4>
+                <p>Agriculture subjects like Agronomy and Soil Science require a strong grip on basic concepts. Always clear your doubts before moving to advanced topics.</p>
+            </div>
+            <div class="tip-card">
+                <h4>📝 Solve Previous Papers</h4>
+                <p>We provide previous year question papers in the PDF sections. Solving them gives you a clear idea of the exam pattern and frequently asked questions.</p>
+            </div>
+            <div class="tip-card">
+                <h4>⏱️ Use Mock Tests</h4>
+                <p>Don't just read! Use our built-in interactive Mock Tests at the bottom of every semester page to evaluate your memory and preparation level.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 <span>Razaagripoint</span> | Elevating Agriculture Education</p>
+         <p style="font-size: 14px; color: #88;">Designed by <b>MUSHAHID RAZA</b> with ❤️ for BSc Agriculture Students</p>
+    </footer>
+
+</body>
+</html>
