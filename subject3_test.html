@@ -29,11 +29,10 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background: var(--bg-gradient); color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
 
-        /* Background Animated Blobs for Premium Feel */
+        /* Background Blobs */
         .blob { position: fixed; border-radius: 50%; filter: blur(60px); z-index: -1; animation: floatBlob 10s infinite alternate; }
         .blob-1 { width: 300px; height: 300px; background: rgba(0, 176, 155, 0.3); top: -100px; left: -100px; }
         .blob-2 { width: 400px; height: 400px; background: rgba(255, 179, 0, 0.2); bottom: -150px; right: -100px; animation-delay: 2s; }
-
         @keyframes floatBlob { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(50px, 50px) scale(1.1); } }
 
         /* Navbar */
@@ -44,47 +43,82 @@
 
         /* Layout Container */
         .container { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px; z-index: 1; }
-        
-        /* Advanced Glassmorphism Card */
-        .quiz-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); width: 100%; max-width: 850px; border-radius: 30px; box-shadow: var(--shadow); padding: 50px; position: relative; border: 1px solid rgba(255,255,255,0.8); }
+        .quiz-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); width: 100%; max-width: 900px; border-radius: 30px; box-shadow: var(--shadow); padding: 50px; position: relative; border: 1px solid rgba(255,255,255,0.8); }
 
-        /* --- 1. Welcome Screen --- */
+        /* --- 1. Multi-Test Welcome Screen --- */
         .lang-screen { text-align: center; }
-        .welcome-badge { background: linear-gradient(90deg, #ff9800, #ffb300); color: #fff; padding: 8px 25px; border-radius: 30px; font-weight: 800; font-size: 14px; display: inline-block; margin-bottom: 20px; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.3); }
-        .lang-screen i.main-icon { font-size: 80px; background: -webkit-linear-gradient(var(--primary-dark), var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; filter: drop-shadow(0 10px 10px rgba(0, 131, 143, 0.2)); animation: bounceIcon 3s ease-in-out infinite; }
-        .lang-screen h1 { font-size: 40px; color: var(--primary-dark); font-weight: 800; margin-bottom: 15px; }
-        .lang-screen p { color: var(--text-gray); margin-bottom: 40px; font-size: 17px; line-height: 1.6; max-width: 650px; margin-left: auto; margin-right: auto; }
-        
-        .start-btn { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border: none; border-radius: 20px; padding: 20px 40px; font-size: 22px; font-weight: 800; color: var(--white); cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 25px rgba(0, 131, 143, 0.4); display: inline-flex; align-items: center; gap: 15px; }
-        .start-btn:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 35px rgba(0, 131, 143, 0.5); }
-        
+        .welcome-badge { background: linear-gradient(90deg, #ff9800, #ffb300); color: #fff; padding: 8px 25px; border-radius: 30px; font-weight: 800; font-size: 14px; display: inline-block; margin-bottom: 15px; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.3); }
+        .lang-screen i.main-icon { font-size: 70px; background: -webkit-linear-gradient(var(--primary-dark), var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; filter: drop-shadow(0 10px 10px rgba(0, 131, 143, 0.2)); animation: bounceIcon 3s ease-in-out infinite; }
+        .lang-screen h1 { font-size: 38px; color: var(--primary-dark); font-weight: 800; margin-bottom: 10px; }
+        .lang-screen p { color: var(--text-gray); margin-bottom: 35px; font-size: 16px; line-height: 1.6; max-width: 650px; margin-left: auto; margin-right: auto; }
         @keyframes bounceIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        /* THE NEW PREMIUM TEST SELECTION CARDS */
+        .test-options-container { display: flex; flex-direction: column; gap: 20px; max-width: 750px; margin: 0 auto; }
+        
+        .test-selection-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 20px 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .test-selection-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+        
+        .t-card-1 { border-color: #ffb300; background: linear-gradient(to right, #ffffff, #fffdf2); }
+        .t-card-2 { border-color: #00b09b; background: linear-gradient(to right, #ffffff, #e0f2f1); }
+        .t-card-3 { border-color: #ab47bc; background: linear-gradient(to right, #ffffff, #f3e5f5); }
+        
+        /* 'RECOMMENDED' Badge for Test 1 */
+        .t-card-1::before { content: 'RECOMMENDED'; position: absolute; top: 12px; right: -35px; background: #ffb300; color: #fff; font-size: 11px; font-weight: 900; padding: 5px 40px; transform: rotate(45deg); letter-spacing: 1px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+
+        .t-icon-box { width: 75px; height: 75px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 32px; color: #fff; flex-shrink: 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .t-icon-1 { background: linear-gradient(135deg, #ffb300, #ff8f00); }
+        .t-icon-2 { background: linear-gradient(135deg, #00b09b, #00838f); }
+        .t-icon-3 { background: linear-gradient(135deg, #ab47bc, #6a1b9a); }
+
+        .t-details { flex-grow: 1; text-align: left; padding: 0 25px; }
+        .t-details h3 { font-size: 22px; color: var(--text-dark); margin-bottom: 5px; font-weight: 800; }
+        .t-details p { font-size: 15px; color: var(--text-gray); font-weight: 500; margin: 0; }
+
+        .t-start-btn { padding: 14px 30px; border-radius: 15px; font-size: 16px; font-weight: 800; color: #fff; border: none; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.2); white-space: nowrap; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+        .t-start-btn:hover { transform: scale(1.05); }
+        .t-btn-1 { background: linear-gradient(135deg, #ffb300, #ff8f00); }
+        .t-btn-2 { background: linear-gradient(135deg, #00b09b, #00838f); }
+        .t-btn-3 { background: linear-gradient(135deg, #ab47bc, #6a1b9a); }
+
+        /* Responsive behavior for test cards */
+        @media (max-width: 700px) {
+            .test-selection-card { flex-direction: column; text-align: center; gap: 15px; padding: 25px 20px; }
+            .t-details { padding: 0; text-align: center; }
+            .t-card-1::before { display: none; /* hide ribbon on small mobile */ }
+        }
 
         /* --- 2. Quiz Screen --- */
         .quiz-screen { display: none; }
         .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid #edf2f7; padding-bottom: 15px; }
         .q-count { font-weight: 800; color: var(--white); background: var(--primary-dark); padding: 6px 20px; border-radius: 20px; font-size: 15px; box-shadow: 0 4px 10px rgba(0, 131, 143, 0.2); }
+        .test-title-indicator { font-weight: 800; color: #ff8f00; font-size: 18px; text-transform: uppercase; background: #fff8e1; padding: 5px 15px; border-radius: 10px; border: 1px solid #ffe082;}
         
         .progress-container { width: 100%; background: #e2e8f0; height: 10px; border-radius: 5px; margin-bottom: 30px; overflow: hidden; }
         .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-dark)); width: 0%; transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
 
         .question-text { font-size: 24px; font-weight: 700; color: var(--text-dark); margin-bottom: 30px; line-height: 1.5; }
-        
         .options-grid { display: flex; flex-direction: column; gap: 15px; margin-bottom: 35px; }
         
-        /* Advanced Option Styling */
         .option { background: var(--white); border: 2px solid #e2e8f0; border-radius: 16px; padding: 20px 25px; font-size: 17px; font-weight: 600; text-align: left; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: space-between; color: var(--text-gray); box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
-        
         .option:not(.locked):hover { background: #f7fafc; border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0, 131, 143, 0.1); color: var(--primary-dark); }
-        
-        /* Correct and Wrong States */
         .option.correct { background: var(--correct-bg) !important; border-color: var(--correct-border) !important; color: var(--correct-text) !important; box-shadow: 0 0 15px rgba(56, 161, 105, 0.4) !important; }
         .option.wrong { background: var(--wrong-bg) !important; border-color: var(--wrong-border) !important; color: var(--wrong-text) !important; box-shadow: 0 0 15px rgba(229, 62, 62, 0.4) !important; }
         
-        /* Animations for options */
         .anim-pop { animation: popGlow 0.5s ease-out forwards; }
         .anim-shake { animation: shake 0.4s ease-in-out forwards; }
-
         @keyframes popGlow { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 50% { transform: translateX(8px); } 75% { transform: translateX(-8px); } }
 
@@ -99,12 +133,20 @@
         .result-screen h2 { font-size: 40px; font-weight: 800; color: var(--primary-dark); margin-bottom: 15px; }
         .message-box { font-size: 18px; color: var(--text-gray); max-width: 600px; margin: 0 auto 30px auto; line-height: 1.6; font-weight: 500; }
         
-        .score-circle { width: 180px; height: 180px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 40px auto; box-shadow: 0 15px 30px rgba(0, 131, 143, 0.4); border: 5px solid #e0f2f1; }
+        .score-circle { width: 180px; height: 180px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 30px auto; box-shadow: 0 15px 30px rgba(0, 131, 143, 0.4); border: 5px solid #e0f2f1; }
         .score-circle h1 { font-size: 56px; font-weight: 800; line-height: 1; margin-bottom: 0; }
         .score-circle span { font-size: 16px; opacity: 0.9; font-weight: 600; text-transform: uppercase; margin-top: 5px; }
 
-        .restart-btn { background: var(--accent); color: var(--text-dark); border: none; padding: 18px 50px; border-radius: 30px; font-size: 18px; font-weight: 800; cursor: pointer; transition: 0.3s; box-shadow: 0 8px 20px rgba(255,179,0,0.4); }
-        .restart-btn:hover { background: #ff8f00; transform: scale(1.05); }
+        /* Certificate Box */
+        .cert-container { background: rgba(0, 131, 143, 0.04); border: 2px dashed var(--primary); padding: 30px; border-radius: 20px; margin-bottom: 35px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02); }
+        .cert-container h3 { color: var(--primary-dark); font-size: 20px; margin-bottom: 10px; font-weight: 700; }
+        .cert-input { width: 100%; max-width: 400px; padding: 14px 20px; border: 2px solid #b2dfdb; border-radius: 12px; font-size: 16px; font-weight: 600; text-align: center; margin-bottom: 15px; outline: none; transition: 0.3s; }
+        .cert-input:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(0,176,155,0.2); }
+        .cert-btn { background: linear-gradient(135deg, #ff9800, #ff5722); color: white; border: none; padding: 14px 35px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(255,87,34,0.3); display: inline-flex; align-items: center; gap: 10px; }
+        .cert-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255,87,34,0.4); }
+
+        .restart-btn { background: #e2e8f0; color: var(--text-dark); border: none; padding: 15px 40px; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .restart-btn:hover { background: #cbd5e0; }
 
         footer { text-align: center; padding: 25px; margin-top: auto; border-top: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.7); backdrop-filter: blur(5px); z-index: 1; }
     </style>
@@ -116,27 +158,59 @@
 
     <nav>
         <a href="index.html" class="logo"><i class="fa-solid fa-leaf"></i> Razaagripoint</a>
-        <a href="index.html" class="exit-btn"><i class="fa-solid fa-xmark"></i> Exit Test</a>
+        <a href="index.html" class="exit-btn"><i class="fa-solid fa-xmark"></i> Exit</a>
     </nav>
 
     <div class="container">
         <div class="quiz-card">
             
             <div id="langScreen" class="lang-screen">
-                <div class="welcome-badge">⭐ 50 MOST IMPORTANT MCQs</div>
+                <div class="welcome-badge">⭐ THE ULTIMATE TEST PORTAL</div>
                 <br>
                 <i class="fa-solid fa-seedling main-icon"></i>
                 <h1>Fundamentals of Horticulture</h1>
-                <p>Jaisa ki video mein bataya gaya hai, ye horticulture ke <b>50 sabse mahatvapurna (Most Expected)</b> prashn hain. Is test mein option ek hi baar click hoga aur sahi/galat turant green/red ho jayega. Apna 100% dijiye!</p>
+                <p>Welcome! Yahan aapko Horticulture ke <b>150 Unique Questions</b> ke 3 alag-alag premium test milenge. Apni taiyari ke hisaab se koi bhi test select karen aur shuru karen!</p>
                 
-                <button class="start-btn" onclick="startQuiz()">
-                    Start Live Test <i class="fa-solid fa-play"></i>
-                </button>
+                <div class="test-options-container">
+                    <div class="test-selection-card t-card-1">
+                        <div class="t-icon-box t-icon-1"><i class="fa-solid fa-star"></i></div>
+                        <div class="t-details">
+                            <h3>YouTube Video Test</h3>
+                            <p>50 Most Expected Horticulture MCQs</p>
+                        </div>
+                        <button class="t-start-btn t-btn-1" onclick="startQuiz(1)">
+                            Start Test <i class="fa-solid fa-play"></i>
+                        </button>
+                    </div>
+
+                    <div class="test-selection-card t-card-2">
+                        <div class="t-icon-box t-icon-2"><i class="fa-solid fa-flask"></i></div>
+                        <div class="t-details">
+                            <h3>2nd Test (Advanced)</h3>
+                            <p>50 Fresh & Unique Practice MCQs</p>
+                        </div>
+                        <button class="t-start-btn t-btn-2" onclick="startQuiz(2)">
+                            Start Test <i class="fa-solid fa-play"></i>
+                        </button>
+                    </div>
+
+                    <div class="test-selection-card t-card-3">
+                        <div class="t-icon-box t-icon-3"><i class="fa-solid fa-award"></i></div>
+                        <div class="t-details">
+                            <h3>Mega Practice Test</h3>
+                            <p>50 Extra Hard University Level MCQs</p>
+                        </div>
+                        <button class="t-start-btn t-btn-3" onclick="startQuiz(3)">
+                            Start Test <i class="fa-solid fa-play"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <div id="quizScreen" class="quiz-screen">
                 <div class="quiz-header">
                     <span id="questionCount" class="q-count">Question 1 of 50</span>
+                    <span id="testTitleIndicator" class="test-title-indicator">YouTube Video Test</span>
                 </div>
                 
                 <div class="progress-container">
@@ -162,7 +236,15 @@
                     <span>Out of 50</span>
                 </div>
 
-                <button class="restart-btn" onclick="restartQuiz()"><i class="fa-solid fa-rotate-right"></i> Retake Test</button>
+                <div class="cert-container">
+                    <h3>🏆 Download Your Topper Certificate</h3>
+                    <p style="font-size: 14px; color: var(--text-gray); margin-bottom: 15px;">Apna poora naam niche box mein likhein aur ek <b>Professional High-Quality Certificate</b> turant download karen:</p>
+                    <input type="text" id="studentName" class="cert-input" placeholder="Yahan Apna Naam Likhein">
+                    <br>
+                    <button class="cert-btn" onclick="generateCertificate()"><i class="fa-solid fa-file-arrow-down"></i> Get My Premium Certificate</button>
+                </div>
+
+                <button class="restart-btn" onclick="restartQuiz()"><i class="fa-solid fa-rotate-right"></i> Choose Another Test</button>
             </div>
 
         </div>
@@ -173,8 +255,8 @@
     </footer>
 
     <script>
-        // Exactly User Provided 50 Questions with Correct Answers Programmed
-        const quizData = [
+        // TEST 1: The Exact 50 User Provided Questions (Main Video Test)
+        const test1Data = [
             { q: "Horticulture शब्द किस भाषा से लिया गया है?", o: ["A) Greek", "B) Latin", "C) French", "D) German"], a: 1 },
             { q: "Horticulture शब्द किन दो शब्दों से मिलकर बना है?", o: ["A) Agro + Culture", "B) Horti + Plant", "C) Hortus + Cultura", "D) Garden + Culture"], a: 2 },
             { q: "Pomology किससे संबंधित है?", o: ["A) फूल", "B) सब्जियाँ", "C) फल", "D) मसाले"], a: 2 },
@@ -227,97 +309,215 @@
             { q: "Horticulture की वह शाखा जो फूलों की खेती एवं सजावटी पौधों से संबंधित है, कहलाती है—", o: ["A) Pomology", "B) Olericulture", "C) Arboriculture", "D) Floriculture"], a: 3 }
         ];
 
+        // TEST 2: 50 Fresh Completely Unique Questions
+        const test2Data = [
+            {q: "भारत में सबसे अधिक फल उत्पादन किस राज्य में होता है?", o: ["A) उत्तर प्रदेश", "B) आंध्र प्रदेश", "C) महाराष्ट्र", "D) गुजरात"], a: 1},
+            {q: "विटामिन ए (Vitamin A) का सबसे अच्छा स्रोत कौन सा फल है?", o: ["A) आम", "B) पपीता", "C) गाजर", "D) उपरोक्त सभी"], a: 0},
+            {q: "आंवला (Aonla) में सबसे अधिक कौन सा विटामिन पाया जाता है?", o: ["A) Vitamin A", "B) Vitamin B", "C) Vitamin C", "D) Vitamin D"], a: 2},
+            {q: "आम की बीजरहित (Seedless) किस्म कौन सी है?", o: ["A) नीलम", "B) सिंधु", "C) मल्लिका", "D) आम्रपाली"], a: 1},
+            {q: "पपीते का पीला रंग किस वर्णक (Pigment) के कारण होता है?", o: ["A) लाइकोपीन", "B) कैरिकाजैंथिन", "C) एंथोसायनिन", "D) कैरोटीन"], a: 1},
+            {q: "टमाटर का लाल रंग किसके कारण होता है?", o: ["A) एंथोसायनिन", "B) लाइकोपीन", "C) कैरोटीन", "D) सोलेनिन"], a: 1},
+            {q: "गाजर का नारंगी रंग किस कारण से होता है?", o: ["A) कैरोटीन", "B) लाइकोपीन", "C) एंथोसायनिन", "D) कुरकुमिन"], a: 0},
+            {q: "सेब (Apple) का उद्गम स्थान (Origin) क्या है?", o: ["A) भारत", "B) दक्षिण-पश्चिम एशिया", "C) चीन", "D) ब्राज़ील"], a: 1},
+            {q: "आलू (Potato) किस कुल (Family) का पौधा है?", o: ["A) क्रूसीफेरी", "B) सोलेनेसी", "C) कुकरबिटेसी", "D) मालवेसी"], a: 1},
+            {q: "फूलगोभी (Cauliflower) का खाने योग्य भाग कौन सा है?", o: ["A) फल", "B) पत्ती", "C) कर्ड (Curd)", "D) तना"], a: 2},
+            {q: "लहसुन (Garlic) में तीखापन किसके कारण होता है?", o: ["A) कैप्सैसिन", "B) एलाइल प्रोपाइल डाईसल्फाइड", "C) डाईएलाइल डाईसल्फाइड", "D) कुरकुमिन"], a: 2},
+            {q: "प्याज (Onion) में तीखापन किसके कारण होता है?", o: ["A) एलाइल प्रोपाइल डाईसल्फाइड", "B) डाईएलाइल डाईसल्फाइड", "C) सोलेनिन", "D) लाइकोपीन"], a: 0},
+            {q: "आम्रपाली (Amrapali) आम की किस्म को किस दूरी पर लगाया जाता है?", o: ["A) 5 x 5 मी", "B) 10 x 10 मी", "C) 2.5 x 2.5 मी", "D) 3 x 3 मी"], a: 2},
+            {q: "नींबू वर्गीय (Citrus) फलों में 'डाईबैक' (Dieback) रोग किसकी कमी से होता है?", o: ["A) जिंक", "B) कॉपर (तांबा)", "C) बोरॉन", "D) लोहा"], a: 1},
+            {q: "फूलगोभी में 'व्हिपटेल' (Whiptail) रोग किसकी कमी से होता है?", o: ["A) मॉलिब्डेनम", "B) जिंक", "C) बोरॉन", "D) नाइट्रोजन"], a: 0},
+            {q: "आम में 'लिटिल लीफ' (Little leaf) रोग किसकी कमी से होता है?", o: ["A) जिंक", "B) कॉपर", "C) बोरॉन", "D) आयरन"], a: 0},
+            {q: "जेली (Jelly) बनाने के लिए फलों में सबसे आवश्यक तत्व क्या है?", o: ["A) चीनी", "B) पेक्टिन", "C) विटामिन सी", "D) प्रोटीन"], a: 1},
+            {q: "जेली का उपयुक्त TSS (Total Soluble Solids) कितना होना चाहिए?", o: ["A) 50%", "B) 60%", "C) 65%", "D) 68%"], a: 2},
+            {q: "जैम (Jam) का उपयुक्त TSS कितना होना चाहिए?", o: ["A) 65%", "B) 68%", "C) 70%", "D) 75%"], a: 1},
+            {q: "केला किस प्रकार का पौधा है?", o: ["A) मोनोकार्पिक", "B) पॉलीकार्पिक", "C) द्विवर्षीय", "D) काष्ठीय"], a: 0},
+            {q: "गुलाब (Rose) का प्रवर्धन मुख्य रूप से किस विधि से किया जाता है?", o: ["A) बीज द्वारा", "B) टी-बडिंग (T-Budding)", "C) एयर लेयरिंग", "D) रनर्स"], a: 1},
+            {q: "भारत का राष्ट्रीय फूल कौन सा है?", o: ["A) गुलाब", "B) कमल (Lotus)", "C) गेंदा", "D) चमेली"], a: 1},
+            {q: "फलों को पकाने के लिए किस गैस का उपयोग किया जाता है?", o: ["A) ऑक्सीजन", "B) एथिलीन", "C) मीथेन", "D) नाइट्रोजन"], a: 1},
+            {q: "भिंडी (Okra) किस कुल का पौधा है?", o: ["A) सोलेनेसी", "B) मालवेसी", "C) कुकरबिटेसी", "D) क्रूसीफेरी"], a: 1},
+            {q: "पत्तागोभी (Cabbage) का खाने योग्य भाग कौन सा है?", o: ["A) कर्ड", "B) हेड (Head)", "C) जड़", "D) तना"], a: 1},
+            {q: "मूली (Radish) का तीखापन किसके कारण होता है?", o: ["A) आइसोथियोसाइनेट", "B) कैप्सैसिन", "C) सोलेनिन", "D) लाइकोपीन"], a: 0},
+            {q: "मिर्च (Chilli) का तीखापन किसके कारण होता है?", o: ["A) कैप्सैसिन", "B) कैप्सेंथिन", "C) कैरोटीन", "D) एंथोसायनिन"], a: 0},
+            {q: "आलू में कंद (Tuber) बनने के लिए इष्टतम तापमान कितना होता है?", o: ["A) 10-15°C", "B) 18-20°C", "C) 25-30°C", "D) 30-35°C"], a: 1},
+            {q: "पपीते में प्रवर्धन (Propagation) मुख्य रूप से कैसे होता है?", o: ["A) बीज द्वारा", "B) कटिंग द्वारा", "C) ग्राफ्टिंग", "D) बडिंग"], a: 0},
+            {q: "आम की 'मल्लिका' किस्म किन दो किस्मों का क्रॉस है?", o: ["A) नीलम × दशहरी", "B) दशहरी × नीलम", "C) रत्ना × अल्फांसो", "D) नीलम × अल्फांसो"], a: 0},
+            {q: "अंगूर (Grape) में कांट-छांट (Pruning) का उपयुक्त समय क्या है?", o: ["A) जनवरी", "B) मार्च", "C) जून", "D) अक्टूबर"], a: 0},
+            {q: "लीची (Litchi) का खाने योग्य भाग क्या कहलाता है?", o: ["A) पेरीकार्प", "B) फ्लेशी एरिल (Aril)", "C) थैलेमस", "D) एंडोकार्प"], a: 1},
+            {q: "सबसे अधिक लौह तत्व (Iron) किस फल में पाया जाता है?", o: ["A) करौंदा", "B) खजूर", "C) सेब", "D) अनार"], a: 0},
+            {q: "निम्नलिखित में से कौन सी सब्जी 'कुकरबिटेसी' कुल की नहीं है?", o: ["A) लौकी", "B) कद्दू", "C) तरबूज", "D) बैंगन"], a: 3},
+            {q: "कद्दू वर्गीय सब्जियों में फूल अधिकतर किस लिंग के होते हैं?", o: ["A) द्विलिंगी", "B) एकलिंगी (Monoecious)", "C) त्रिलिंगी", "D) कोई नहीं"], a: 1},
+            {q: "मसालों की रानी (Queen of Spices) किसे कहा जाता है?", o: ["A) इलायची (Cardamom)", "B) काली मिर्च", "C) लौंग", "D) हल्दी"], a: 0},
+            {q: "मसालों का राजा (King of Spices) किसे कहा जाता है?", o: ["A) इलायची", "B) काली मिर्च (Black Pepper)", "C) लौंग", "D) हल्दी"], a: 1},
+            {q: "भारत में सबसे अधिक क्षेत्रफल पर कौन सा फल उगाया जाता है?", o: ["A) केला", "B) आम", "C) नींबू", "D) सेब"], a: 1},
+            {q: "सबसे अधिक उत्पादन (Production) देने वाला फल कौन सा है?", o: ["A) आम", "B) केला", "C) पपीता", "D) अमरूद"], a: 1},
+            {q: "आलू के हरेपन (Greening) में कौन सा विषैला तत्व बनता है?", o: ["A) सोलेनिन", "B) सपोनीन", "C) लाइकोपीन", "D) एंथोसायनिन"], a: 0},
+            {q: "काजू (Date Palm) का उद्गम स्थान कौन सा है?", o: ["A) भारत", "B) मध्य पूर्व (Middle East)", "C) चीन", "D) ब्राजील"], a: 1},
+            {q: "कौन सा फल 'क्लाइमेक्टेरिक' (Climacteric) श्रेणी का है?", o: ["A) नींबू", "B) अंगूर", "C) आम", "D) लीची"], a: 2},
+            {q: "कौन सा फल 'नॉन-क्लाइमेक्टेरिक' (Non-climacteric) श्रेणी का है?", o: ["A) केला", "B) अंगूर", "C) पपीता", "D) सेब"], a: 1},
+            {q: "सेब में 'बिटर पिट' (Bitter pit) रोग किसकी कमी से होता है?", o: ["A) कैल्शियम", "B) बोरॉन", "C) जिंक", "D) आयरन"], a: 0},
+            {q: "केले में 'बंची टॉप' (Bunchy top) रोग किसके द्वारा फैलता है?", o: ["A) फफूंद", "B) वायरस (माहू द्वारा)", "C) बैक्टीरिया", "D) नेमाटोड"], a: 1},
+            {q: "अमरूद में प्रवर्धन की व्यावसायिक विधि कौन सी है?", o: ["A) स्टूलिंग / माउंट लेयरिंग", "B) बीज", "C) टी-बडिंग", "D) रनर्स"], a: 0},
+            {q: "चाय (Tea) का वैज्ञानिक नाम क्या है?", o: ["A) Camellia sinensis", "B) Coffea arabica", "C) Theobroma cacao", "D) Piper nigrum"], a: 0},
+            {q: "कॉफी का सबसे बड़ा उत्पादक राज्य कौन सा है?", o: ["A) केरल", "B) तमिलनाडु", "C) कर्नाटक", "D) असम"], a: 2},
+            {q: "मटर (Pea) किस कुल का पौधा है?", o: ["A) सोलेनेसी", "B) फैबेसी / लेगुमिनोसी", "C) मालवेसी", "D) क्रूसीफेरी"], a: 1},
+            {q: "टमाटर का 'लीफ कर्ल' (Leaf curl) वायरस किसके द्वारा फैलता है?", o: ["A) सफेद मक्खी (Whitefly)", "B) माहू", "C) थ्रिप्स", "D) नेमाटोड"], a: 0}
+        ];
+
+        // TEST 3: 50 More Unique Advanced Questions
+        const test3Data = [
+            {q: "बागवानी फसलों में सर्वाधिक हानि किस अवस्था में होती है?", o: ["A) बुवाई के समय", "B) तुड़ाई के बाद (Post-harvest)", "C) फूल आते समय", "D) सिंचाई के समय"], a: 1},
+            {q: "ब्लांचिंग (Blanching) प्रक्रिया मुख्य रूप से किसमें की जाती है?", o: ["A) फलों में", "B) सब्जियों में (संरक्षण से पहले)", "C) फूलों में", "D) बीजों में"], a: 1},
+            {q: "पपीते से प्राप्त होने वाले एंजाइम को क्या कहते हैं?", o: ["A) पेक्टिन", "B) पपेन (Papain)", "C) रेनिन", "D) एमाइलेज"], a: 1},
+            {q: "तरबूज (Watermelon) की बीज रहित किस्म कौन सी है?", o: ["A) शुगर बेबी", "B) पूसा रसाल", "C) पूसा बेदाना", "D) अर्का मानिक"], a: 2},
+            {q: "प्याज के लाल रंग का कारण क्या है?", o: ["A) एंथोसायनिन", "B) कैरोटीन", "C) लाइकोपीन", "D) सोलेनिन"], a: 0},
+            {q: "ग्लैडियोलस (Gladiolus) का प्रवर्धन किसके द्वारा होता है?", o: ["A) कटिंग", "B) कॉर्म (Corm)", "C) रनर्स", "D) बीज"], a: 1},
+            {q: "रजनीगंधा (Tuberose) का प्रवर्धन किसके द्वारा होता है?", o: ["A) कॉर्म", "B) बल्ब (Bulb)", "C) बीज", "D) जड़"], a: 1},
+            {q: "कौन सी सब्जी सबसे अधिक लवण सहनशील (Salt-tolerant) है?", o: ["A) टमाटर", "B) मटर", "C) चुकंदर / पालक", "D) आलू"], a: 2},
+            {q: "अमरूद में 'ब्रोंजिंग' (Bronzing) रोग किसकी कमी से होता है?", o: ["A) जिंक", "B) आयरन", "C) बोरोन", "D) नाइट्रोजन"], a: 0},
+            {q: "अंगूर में 'हेन एंड चिकन' (Hen and Chicken) रोग किसकी कमी से होता है?", o: ["A) बोरोन", "B) कैल्शियम", "C) कॉपर", "D) जिंक"], a: 0},
+            {q: "सेब के बागों में 'परागणकर्ता' (Pollinizer) की कितनी आवश्यकता होती है?", o: ["A) 5%", "B) 11-33%", "C) 50%", "D) 70%"], a: 1},
+            {q: "आम में 'ब्लैक टिप' (Black tip) रोग का मुख्य कारण क्या है?", o: ["A) फफूंद", "B) वायरस", "C) ईंट भट्ठे का धुआं (CO, SO2)", "D) बोरोन की अधिकता"], a: 2},
+            {q: "नींबू में 'गुमोसिस' (Gummosis) रोग का कारक कौन सा फफूंद है?", o: ["A) Phytophthora", "B) Alternaria", "C) Fusarium", "D) Rhizoctonia"], a: 0},
+            {q: "टमाटर की वह किस्म जो प्रसंस्करण (Processing) के लिए सबसे उपयुक्त है?", o: ["A) पूसा रूबी", "B) रोमा (Roma)", "C) अर्का विकास", "D) पूसा अर्ली ड्वार्फ"], a: 1},
+            {q: "मिर्च में 'लीफ कर्ल' रोग किसके द्वारा संचारित होता है?", o: ["A) थ्रिप्स", "B) सफेद मक्खी", "C) माहू", "D) माइट्स"], a: 1},
+            {q: "आलू की 'कुफरी सिंदूरी' किस्म की मुख्य विशेषता क्या है?", o: ["A) हरा रंग", "B) लाल छिलका", "C) अधिक मीठा", "D) बहुत जल्दी पकना"], a: 1},
+            {q: "बैंगन (Brinjal) में 'फोमोप्सिस ब्लाइट' रोग का कारक क्या है?", o: ["A) फफूंद", "B) वायरस", "C) बैक्टीरिया", "D) नेमाटोड"], a: 0},
+            {q: "भिंडी की 'पूसा सावनी' किस्म किस ऋतु के लिए उपयुक्त है?", o: ["A) सर्दी", "B) गर्मी और बरसात", "C) केवल सर्दी", "D) बसंत"], a: 1},
+            {q: "गाजर की एशियाई (Tropical) किस्मों में कौन सा तत्व अधिक होता है?", o: ["A) कैरोटीन", "B) एंथोसायनिन", "C) लाइकोपीन", "D) आयरन"], a: 1},
+            {q: "प्याज के भंडारण के लिए उपयुक्त तापमान कितना होता है?", o: ["A) 0-2°C", "B) 10-15°C", "C) 20-25°C", "D) 30-35°C"], a: 0},
+            {q: "मटर (Pea) में प्रोटीन का प्रतिशत लगभग कितना होता है?", o: ["A) 5.2%", "B) 7.2%", "C) 22-25%", "D) 40%"], a: 1},
+            {q: "खरबूजा (Muskmelon) की खेती के लिए सबसे उपयुक्त मिट्टी कौन सी है?", o: ["A) चिकनी मिट्टी", "B) बलुई दोमट (Sandy Loam)", "C) काली मिट्टी", "D) लाल मिट्टी"], a: 1},
+            {q: "लौकी (Bottle Gourd) की प्रति हेक्टेयर बीज दर कितनी है?", o: ["A) 1-2 किग्रा", "B) 4-5 किग्रा", "C) 8-10 किग्रा", "D) 12-15 किग्रा"], a: 1},
+            {q: "फूलगोभी में 'बटनिंग' (Buttoning) विकार किसकी कमी से होता है?", o: ["A) मॉलिब्डेनम", "B) बोरॉन", "C) नाइट्रोजन (Nitrogen deficiency)", "D) पोटाश"], a: 2},
+            {q: "टमाटर में फलों के फटने (Fruit Cracking) का मुख्य कारण क्या है?", o: ["A) बोरोन की कमी व अनियमित सिंचाई", "B) कॉपर की अधिकता", "C) वायरस", "D) अधिक तापमान"], a: 0},
+            {q: "आम की वह कौन सी किस्म है जो साल में दो बार फल देती है?", o: ["A) नीलम", "B) निरंजन", "C) बारहमासी", "D) अल्फांसो"], a: 2},
+            {q: "केले का पुष्पक्रम (Inflorescence) क्या कहलाता है?", o: ["A) स्पेडिक्स (Spadix)", "B) पैनिकल", "C) साइमोस", "D) अम्बेल"], a: 0},
+            {q: "अमरूद में 'बहार नियंत्रण' (Bahar Treatment) क्यों किया जाता है?", o: ["A) फल गिराने के लिए", "B) अच्छी गुणवत्ता की फसल एक समय लेने के लिए", "C) जड़ बढ़ाने के लिए", "D) रोग से बचाने के लिए"], a: 1},
+            {q: "लीची का प्रमुख कीट कौन सा है?", o: ["A) फल मक्खी", "B) लीची माइट (Erinose mite)", "C) स्टेम बोरर", "D) सफेद मक्खी"], a: 1},
+            {q: "पपीते में नर और मादा पौधों का अनुपात क्या रखा जाता है?", o: ["A) 1:10", "B) 1:5", "C) 1:15", "D) 1:2"], a: 0},
+            {q: "नारियल (Coconut) का खाने योग्य भाग क्या है?", o: ["A) मेसोकार्प", "B) एंडोस्पर्म", "C) थैलेमस", "D) पेरीकार्प"], a: 1},
+            {q: "काजू (Cashew nut) किस प्रकार का फल है?", o: ["A) नट (Nut)", "B) बेरी", "C) ड्रूप", "D) कैप्सूल"], a: 0},
+            {q: "सेब के लिए सबसे अच्छी छंटाई (Training) की विधि कौन सी है?", o: ["A) ओपन सेंटर", "B) सेंट्रल लीडर", "C) मॉडिफाइड लीडर", "D) निफिन सिस्टम"], a: 2},
+            {q: "अंगूर में 'पिंक बेरी' (Pink berry) विकार का कारण क्या है?", o: ["A) उच्च तापमान", "B) अधिक सिंचाई", "C) वायरस", "D) फफूंद"], a: 0},
+            {q: "नींबू वर्गीय फलों का उत्पत्ति स्थान क्या है?", o: ["A) दक्षिण पूर्व एशिया (South East Asia)", "B) यूरोप", "C) अमेरिका", "D) अफ्रीका"], a: 0},
+            {q: "भारत में सबसे अधिक कट फ्लावर (Cut flower) कौन सा उगाया जाता है?", o: ["A) गेंदा", "B) गुलाब", "C) ग्लेडियोलस", "D) चमेली"], a: 1},
+            {q: "गेंदा (Marigold) का वानस्पतिक नाम क्या है?", o: ["A) Tagetes spp.", "B) Rosa indica", "C) Jasmine spp.", "D) Hibiscus spp."], a: 0},
+            {q: "बोगनवेलिया (Bougainvillea) किस कुल का पौधा है?", o: ["A) रोज़ेसी", "B) निक्टागिनेसी (Nyctaginaceae)", "C) एस्टेरेसी", "D) मालवेसी"], a: 1},
+            {q: "हल्दी (Turmeric) का पीला रंग किसके कारण होता है?", o: ["A) कैप्सैसिन", "B) कुर्कुमिन (Curcumin)", "C) एंथोसायनिन", "D) लाइकोपीन"], a: 1},
+            {q: "धनिया (Coriander) किस कुल का पौधा है?", o: ["A) सोलेनेसी", "B) अंबेलीफेरी / एपिएसी", "C) मालवेसी", "D) क्रूसीफेरी"], a: 1},
+            {q: "लौंग (Clove) पौधे का कौन सा भाग है?", o: ["A) सूखी हुई कली (Dried flower bud)", "B) जड़", "C) पत्ती", "D) तना"], a: 0},
+            {q: "काली मिर्च (Black Pepper) का प्रवर्धन कैसे होता है?", o: ["A) बीज", "B) कलम (Cutting)", "C) ग्राफ्टिंग", "D) बडिंग"], a: 1},
+            {q: "सुपारी (Arecanut) का सबसे बड़ा उत्पादक राज्य कौन सा है?", o: ["A) केरल", "B) कर्नाटक", "C) असम", "D) तमिलनाडु"], a: 1},
+            {q: "रबर (Rubber) का वानस्पतिक नाम क्या है?", o: ["A) Hevea brasiliensis", "B) Ficus elastica", "C) Coffea arabica", "D) Thea sinensis"], a: 0},
+            {q: "चाय में तीखापन/कड़वाहट किसके कारण होता है?", o: ["A) कैफीन", "B) टैनिन (Tannin)", "C) निकोटीन", "D) थीन"], a: 1},
+            {q: "कैनिंग (Canning) के पिता कौन कहलाते हैं?", o: ["A) लुई पाश्चर", "B) निकोलस एपर्ट (Nicolas Appert)", "C) मैरीगौड़ा", "D) थॉमस"], a: 1},
+            {q: "मुरब्बा (Preserve) में चीनी की मात्रा कितनी होती है?", o: ["A) 50%", "B) 60%", "C) 68-70%", "D) 80%"], a: 2},
+            {q: "सिरका (Vinegar) में कौन सा अम्ल होता है?", o: ["A) साइट्रिक एसिड", "B) एसिटिक एसिड (Acetic acid)", "C) लैक्टिक एसिड", "D) टार्टरिक एसिड"], a: 1},
+            {q: "फलों को सुखाने (Drying) की प्रक्रिया में कौन सी गैस उपचारित की जाती है?", o: ["A) ऑक्सीजन", "B) सल्फर डाइऑक्साइड (SO2)", "C) नाइट्रोजन", "D) कार्बन डाइऑक्साइड"], a: 1},
+            {q: "शून्य ऊर्जा कूल चैंबर (Zero Energy Cool Chamber) का विकास कहाँ हुआ?", o: ["A) IARI, नई दिल्ली", "B) IIHR, बैंगलोर", "C) CISH, लखनऊ", "D) CITH, लखनऊ"], a: 0}
+        ];
+
+        const allTests = [test1Data, test2Data, test3Data];
+        const testTitles = ["YouTube Video Test", "2nd Test (Advanced)", "Mega Practice Test"];
+        let currentQuizData = [];
         let currentIdx = 0;
         let score = 0;
         let questionLocked = false;
 
-        function startQuiz() {
+        // Upgraded Zero-Dependency Audio Engine
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        let audioCtx;
+
+        function playSound(type) {
+            if (!audioCtx) audioCtx = new AudioContext();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            if (type === 'correct') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); 
+                osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.1); 
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.3);
+            } else if (type === 'wrong') {
+                osc.type = 'sawtooth'; 
+                osc.frequency.setValueAtTime(150, audioCtx.currentTime); 
+                osc.frequency.linearRampToValueAtTime(80, audioCtx.currentTime + 0.6); 
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.6);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.6); 
+            }
+        }
+
+        // Starts the specific selected test
+        function startQuiz(testNumber) {
+            currentQuizData = allTests[testNumber - 1];
+            document.getElementById('testTitleIndicator').innerText = testTitles[testNumber - 1];
+            
             document.getElementById('langScreen').style.display = 'none';
             document.getElementById('quizScreen').style.display = 'block';
             showQ();
         }
 
         function showQ() {
-            // Reset for new question
             questionLocked = false;
             document.getElementById('nextBtn').disabled = true;
-            
-            const q = quizData[currentIdx];
-            // Format question number text dynamically
+            const q = currentQuizData[currentIdx];
             document.getElementById('questionCount').innerText = `Question ${currentIdx + 1} of 50`;
             document.getElementById('questionText').innerText = `Q${currentIdx + 1}. ${q.q}`;
-            
-            // Progress Bar
             document.getElementById('progressBar').style.width = `${((currentIdx + 1) / 50) * 100}%`;
 
             const grid = document.getElementById('optionsGrid');
             grid.innerHTML = '';
-            
             q.o.forEach((txt, i) => {
                 const btn = document.createElement('div');
                 btn.className = 'option';
-                
-                // Icon placeholder
                 btn.innerHTML = `<span>${txt}</span> <i class="fa-regular fa-circle" id="icon-${i}"></i>`;
-                
                 btn.onclick = () => selectOption(btn, i, q.a);
                 grid.appendChild(btn);
             });
         }
 
         function selectOption(selectedBtn, selectedIndex, correctIndex) {
-            // 1. One Click Strict Lock Logic
             if (questionLocked) return;
             questionLocked = true;
 
             const allOptions = document.querySelectorAll('.option');
-            
-            // 2. Lock all options visually
             allOptions.forEach(opt => opt.classList.add('locked'));
 
-            // 3. Right & Wrong Logic
             if (selectedIndex === correctIndex) {
-                // User is Correct -> Green + Pop Animation
                 selectedBtn.classList.add('correct', 'anim-pop');
                 document.getElementById(`icon-${selectedIndex}`).className = "fa-solid fa-circle-check";
+                playSound('correct');
                 score++;
             } else {
-                // User is Wrong -> Red + Shake Animation
                 selectedBtn.classList.add('wrong', 'anim-shake');
                 document.getElementById(`icon-${selectedIndex}`).className = "fa-solid fa-circle-xmark";
-                
-                // Show Correct Answer Automatically in Green
+                playSound('wrong');
                 allOptions[correctIndex].classList.add('correct', 'anim-pop');
                 document.getElementById(`icon-${correctIndex}`).className = "fa-solid fa-circle-check";
             }
-
-            // 4. Enable Next Button
             document.getElementById('nextBtn').disabled = false;
-            
-            // Note: We removed the "Previous" button entirely for a strict locked test flow to prevent cheating.
         }
 
         function nextQuestion() {
-            if (currentIdx < 49) { 
-                currentIdx++; 
-                showQ(); 
-            } else { 
-                results(); 
-            }
+            if (currentIdx < 49) { currentIdx++; showQ(); } else { results(); }
         }
 
         function results() {
             document.getElementById('quizScreen').style.display = 'none';
             document.getElementById('resultScreen').style.display = 'block';
             document.getElementById('scoreDisplay').innerText = score;
-            
             const perc = (score / 50) * 100;
             const h = document.getElementById('resultHeading');
             const m = document.getElementById('messageBox');
             
             if(perc >= 80) {
                 h.innerText = "👑 Ultimate Horticulture Topper!";
-                m.innerText = "Kya baat hai! Aapne in 50 most expected questions mein kamaal kar diya. Aap kal ke exam mein pakka top karne wale hain!";
+                m.innerText = "Kya baat hai! Aapne is test mein kamaal kar diya. Aap kal ke exam mein pakka top karne wale hain!";
             } else if(perc >= 50) {
                 h.innerText = "✨ Superb Effort!";
                 m.innerText = "Bahut badiya! Aapke maximum concepts clear hain. Jo questions red huye, unhe ek baar dhyan mein rakhiye, aapka selection tay hai!";
@@ -327,10 +527,128 @@
             }
         }
 
+        function generateCertificate() {
+            const nameInput = document.getElementById('studentName').value.trim();
+            if (!nameInput) {
+                alert("Please enter your name to generate the certificate!");
+                return;
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = 1200;
+            canvas.height = 850;
+            const ctx = canvas.getContext('2d');
+
+            ctx.fillStyle = '#FAFAFA';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.strokeStyle = '#004d40';
+            ctx.lineWidth = 20;
+            ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+
+            ctx.strokeStyle = '#D4AF37';
+            ctx.lineWidth = 6;
+            ctx.strokeRect(48, 48, canvas.width - 96, canvas.height - 96);
+
+            ctx.fillStyle = '#004d40';
+            ctx.fillRect(35, 35, 30, 30);
+            ctx.fillRect(canvas.width - 65, 35, 30, 30);
+            ctx.fillRect(35, canvas.height - 65, 30, 30);
+            ctx.fillRect(canvas.width - 65, canvas.height - 65, 30, 30);
+
+            ctx.save();
+            ctx.globalAlpha = 0.04;
+            ctx.fillStyle = '#004d40';
+            ctx.font = 'bold 130px Arial';
+            ctx.textAlign = 'center';
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(-Math.PI / 6); 
+            ctx.fillText('RAZAAGRIPOINT', 0, 0);
+            ctx.restore(); 
+
+            ctx.fillStyle = '#004d40';
+            ctx.font = 'bold 50px Georgia, serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('CERTIFICATE OF EXCELLENCE', 600, 160);
+            
+            ctx.fillStyle = '#D4AF37';
+            ctx.font = 'bold 22px Arial, sans-serif';
+            ctx.fillText('THIS IS PROUDLY PRESENTED TO', 600, 230);
+
+            ctx.fillStyle = '#b71c1c';
+            ctx.font = 'bold 65px "Times New Roman", Times, serif';
+            ctx.fillText(nameInput.toUpperCase(), 600, 325);
+
+            ctx.strokeStyle = '#D4AF37';
+            ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(300, 355); ctx.lineTo(900, 355); ctx.stroke();
+
+            ctx.fillStyle = '#333333';
+            ctx.font = '22px Arial, sans-serif';
+            ctx.fillText('For demonstrating outstanding academic performance by scoring', 600, 420);
+            
+            ctx.fillStyle = '#004d40';
+            ctx.fillRect(430, 450, 340, 60);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = 'bold 30px Arial';
+            ctx.fillText(`${score} MARKS OUT OF 50`, 600, 492);
+
+            ctx.fillStyle = '#333333';
+            ctx.font = '22px Arial, sans-serif';
+            const currentTestName = document.getElementById('testTitleIndicator').innerText;
+            ctx.fillText(`in the online Mock Examination (${currentTestName}) for Fundamentals of Horticulture.`, 600, 560);
+            
+            ctx.fillStyle = '#555555';
+            ctx.font = 'italic 20px Arial, sans-serif';
+            ctx.fillText('Syllabus Based on Mahatma Jyotibha Phoole Rohelkhand University (MJPRU).', 600, 600);
+
+            const dateStr = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+            ctx.strokeStyle = '#333333';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(150, 720); ctx.lineTo(350, 720); ctx.stroke();
+            
+            ctx.fillStyle = '#333333';
+            ctx.font = 'bold 20px Arial';
+            ctx.fillText(dateStr, 250, 705);
+            
+            ctx.font = '18px Arial';
+            ctx.fillText('Date of Completion', 250, 745);
+
+            ctx.beginPath(); ctx.moveTo(850, 720); ctx.lineTo(1050, 720); ctx.stroke();
+            
+            ctx.fillStyle = '#004d40';
+            ctx.font = 'bold 24px cursive, "Brush Script MT", serif'; 
+            ctx.fillText('Mushahid Raza', 950, 705);
+            
+            ctx.fillStyle = '#333333';
+            ctx.font = '18px Arial';
+            ctx.fillText('Admin / Founder', 950, 745);
+
+            ctx.beginPath();
+            ctx.arc(600, 715, 60, 0, Math.PI * 2);
+            ctx.fillStyle = '#D4AF37'; 
+            ctx.fill();
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = '#b71c1c'; 
+            ctx.stroke();
+            
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 15px Arial';
+            ctx.fillText('RAZAAGRIPOINT', 600, 710);
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('VERIFIED', 600, 735);
+
+            const downloadLink = document.createElement('a');
+            downloadLink.download = `${nameInput.replace(/\s+/g, '_')}_Horticulture_Certificate.png`;
+            downloadLink.href = canvas.toDataURL('image/png');
+            downloadLink.click();
+        }
+
         function restartQuiz() {
-            currentIdx = 0; 
-            score = 0;
+            currentIdx = 0; score = 0; currentQuizData = [];
+            document.getElementById('studentName').value = '';
             document.getElementById('resultScreen').style.display = 'none';
+            document.getElementById('quizScreen').style.display = 'none';
             document.getElementById('langScreen').style.display = 'block';
         }
     </script>
