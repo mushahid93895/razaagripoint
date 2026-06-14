@@ -248,6 +248,53 @@
         </div>
     </div>
 
+    <!-- 🔥 EXAM BOOSTER QUICK FACTS SECTION 🔥 -->
+    <style>
+        .quick-facts-wrapper { max-width: 900px; margin: 40px auto; background: rgba(255, 255, 255, 0.95); border-radius: 20px; padding: 40px; box-shadow: 0 15px 35px rgba(0, 131, 143, 0.1); border: 2px solid #e0f2f1; z-index: 1; position: relative; }
+        .qf-header { text-align: center; margin-bottom: 30px; }
+        .qf-header h2 { font-size: 32px; color: #00838f; font-weight: 800; display: inline-flex; align-items: center; gap: 10px; }
+        .qf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 15px; }
+        .qf-item { background: #ffffff; border-left: 5px solid #00b09b; padding: 15px 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
+        .qf-item:hover { transform: translateX(5px); box-shadow: 0 6px 15px rgba(0,176,155,0.15); }
+        
+        /* Custom Border Colors */
+        .border-gold { border-left-color: #ffb300; }
+        .border-blue { border-left-color: #2196f3; }
+        .border-red { border-left-color: #e53935; }
+
+        .qf-question { font-size: 15px; font-weight: 600; color: #4a5568; max-width: 65%; line-height: 1.4; }
+        
+        .qf-answer { padding: 6px 12px; border-radius: 8px; font-size: 14px; font-weight: 800; text-align: right; border: 1px solid transparent; }
+        .ans-green { background: #e0f2f1; color: #00838f; border-color: #b2dfdb; }
+        .ans-gold { background: #fff8e1; color: #f57f17; border-color: #ffe082; }
+        .ans-blue { background: #e3f2fd; color: #1976d2; border-color: #bbdefb; }
+        .ans-red { background: #ffebee; color: #c62828; border-color: #ffcdd2; }
+        
+        @media (max-width: 600px) { .qf-item { flex-direction: column; text-align: center; gap: 10px; } .qf-question { max-width: 100%; } }
+    </style>
+
+    <div class="quick-facts-wrapper">
+        <div class="qf-header">
+            <h2><i class="fa-solid fa-bolt" style="color: #ffb300;"></i> Exam Booster: Top 15 One-Liners</h2>
+            <p style="color: #718096; font-size: 16px; font-weight: 500;">एग्ज़ाम से 10 मिनट पहले बस इसे पढ़ लेना, सीधे सवाल फसेंगे!</p>
+        </div>
+        <div class="qf-grid">
+            <div class="qf-item"><div class="qf-question">बीज अधिनियम (Seed Act) कब पारित हुआ?</div><div class="qf-answer ans-green">1966</div></div>
+            <div class="qf-item border-gold"><div class="qf-question">प्रजनक बीज (Breeder Seed) का टैग</div><div class="qf-answer ans-gold">सुनहरा पीला</div></div>
+            <div class="qf-item"><div class="qf-question">आधार बीज (Foundation Seed) का टैग</div><div class="qf-answer ans-green">सफ़ेद (White)</div></div>
+            <div class="qf-item border-blue"><div class="qf-question">प्रमाणित बीज (Certified Seed) का टैग</div><div class="qf-answer ans-blue">नीला (Blue)</div></div>
+            <div class="qf-item border-red"><div class="qf-question">TZ टेस्ट (TZ Test) से क्या जांचते हैं?</div><div class="qf-answer ans-red">जीवनक्षमता (Viability)</div></div>
+            <div class="qf-item border-red"><div class="qf-question">TZ टेस्ट में जीवित बीज का रंग</div><div class="qf-answer ans-red">लाल / गुलाबी</div></div>
+            <div class="qf-item"><div class="qf-question">ग्रो आउट टेस्ट (GOT) से क्या जांचते हैं?</div><div class="qf-answer ans-green">आनुवंशिक शुद्धता</div></div>
+            <div class="qf-item border-gold"><div class="qf-question">1000 बीजों का वजन क्या कहलाता है?</div><div class="qf-answer ans-gold">टेस्ट वेट (Test Weight)</div></div>
+            <div class="qf-item border-blue"><div class="qf-question">ठंडे तापमान से सुषुप्तावस्था (Dormancy) तोड़ना</div><div class="qf-answer ans-blue">स्ट्रैटिफिकेशन</div></div>
+            <div class="qf-item border-gold"><div class="qf-question">कठोर बीजावरण (Hard seed coat) तोड़ना</div><div class="qf-answer ans-gold">स्कैरिफिकेशन</div></div>
+            <div class="qf-item border-red"><div class="qf-question">गेहूं का आपत्तिजनक खरपतवार</div><div class="qf-answer ans-red">गेहूंसा (Phalaris minor)</div></div>
+            <div class="qf-item"><div class="qf-question">बीज उपचार (Seed Treatment) का सही क्रम</div><div class="qf-answer ans-green">F ➔ I ➔ R</div></div>
+        </div>
+    </div>
+    <!-- END QUICK FACTS SECTION -->
+
     <footer>
         <p style="font-size: 14px; color: #888;">Designed by <b>MUSHAHID RAZA</b> with ❤️ for BSc Agriculture Students</p>
     </footer>
@@ -255,164 +302,164 @@
     <script>
         // TEST 1: Seed Technology - Basics, Seed Act, Classes of Seed, Genetic Purity (50 Questions)
         const test1Data = [
-            { q: "National Seeds Corporation (NSC) ki sthapana kis varsh hui thi?", o: ["A) 1963", "B) 1966", "C) 1969", "D) 1971"], a: 0 },
-            { q: "Bharat mein Seed Act (Beej Adhiniyam) kab parit hua tha?", o: ["A) 1963", "B) 1966", "C) 1968", "D) 1971"], a: 1 },
-            { q: "Seed Rules kis varsh banaye gaye the?", o: ["A) 1966", "B) 1968", "C) 1972", "D) 1983"], a: 1 },
-            { q: "Breeder seed (Prajnak beej) ka tag color kaisa hota hai?", o: ["A) White (Safed)", "B) Golden Yellow (Sunhara peela)", "C) Azure Blue (Neela)", "D) Purple (Baingani)"], a: 1 },
-            { q: "Foundation seed (Aadhariya beej) par kis rang ka tag lagaya jata hai?", o: ["A) White", "B) Blue", "C) Golden Yellow", "D) Green"], a: 0 },
-            { q: "Certified seed (Pramanit beej) ke bag par kaun sa tag hota hai?", o: ["A) White", "B) Golden Yellow", "C) Azure Blue", "D) Opal Green"], a: 2 },
-            { q: "Registered seed par kis rang ka tag hota hai?", o: ["A) Purple", "B) White", "C) Blue", "D) Green"], a: 0 },
-            { q: "Nucleus seed (Kendra beej) par kaun sa tag hota hai?", o: ["A) White tag", "B) Golden Yellow tag", "C) No tag is required", "D) Green tag"], a: 2 },
-            { q: "Breeder seed ki anuwanshik shuddhata (Genetic Purity) kitni honi chahiye?", o: ["A) 98%", "B) 99%", "C) 99.9%", "D) 100%"], a: 3 },
-            { q: "Foundation seed kis beej ki santati (progeny) hai?", o: ["A) Nucleus seed", "B) Breeder seed", "C) Certified seed", "D) Registered seed"], a: 1 },
-            { q: "Certified seed kis beej ki progeny hai?", o: ["A) Nucleus seed", "B) Breeder seed", "C) Foundation seed", "D) Truthful seed"], a: 2 },
-            { q: "Beej ki jeevantata (Viability) parikshan ke liye sabse prachalit test kaun sa hai?", o: ["A) Grow Out Test", "B) Tetrazolium (TZ) test", "C) Moisture test", "D) Purity test"], a: 1 },
-            { q: "TZ test mein kis chemical ka upyog hota hai?", o: ["A) 2,3,5-triphenyl tetrazolium chloride", "B) Potassium nitrate", "C) Sodium hypochlorite", "D) Mercuric chloride"], a: 0 },
-            { q: "Real Value (RV) of seed nikalne ka sahi sutra (formula) kya hai?", o: ["A) Purity % + Germination % / 100", "B) (Purity % x Germination %) / 100", "C) Germination % / Purity %", "D) Purity % - Germination %"], a: 1 },
-            { q: "Grow Out Test (GOT) kiske nirdharan ke liye kiya jata hai?", o: ["A) Seed viability", "B) Seed moisture", "C) Genetic purity", "D) Physical purity"], a: 2 },
-            { q: "Kharpatwar ya anya faslon ke beej ko fasal se nikalne ki kriya ko kya kehte hain?", o: ["A) Roguing", "B) Harvesting", "C) Threshing", "D) Processing"], a: 0 },
-            { q: "Gehu (Wheat) ka nyuntam ankurann (Minimum Germination) percentage kitna tay hai?", o: ["A) 70%", "B) 80%", "C) 85%", "D) 90%"], a: 2 },
-            { q: "Kapas (Cotton) ka minimum germination percentage kitna hota hai?", o: ["A) 60%", "B) 65%", "C) 75%", "D) 85%"], a: 1 },
-            { q: "Beej parikshan (Seed Testing) ke doran working sample kahan se liya jata hai?", o: ["A) Primary sample", "B) Composite sample", "C) Submitted sample", "D) Lot sample"], a: 2 },
-            { q: "International Seed Testing Association (ISTA) ki sthapana kis varsh hui thi?", o: ["A) 1920", "B) 1924", "C) 1950", "D) 1966"], a: 1 },
-            { q: "ISTA ka mukhyalaya (Headquarters) kahan sthit hai?", o: ["A) Geneva (Switzerland)", "B) Rome (Italy)", "C) New York (Italy)", "D) Washington (USA)"], a: 0 },
-            { q: "Bharat ki Central Seed Testing Laboratory (CSTL) kahan sthit hai?", o: ["A) New Delhi", "B) Varanasi", "C) Bangalore", "D) Hyderabad"], a: 1 },
-            { q: "Seed Act ke kis section ke tahat Central Seed Committee ka gathan hota hai?", o: ["A) Section 3", "B) Section 5", "C) Section 8", "D) Section 12"], a: 0 },
-            { q: "Seed Act ke kis section ke tahat seed inspectors ki niyukti hoti hai?", o: ["A) Section 10", "B) Section 13", "C) Section 14", "D) Section 15"], a: 1 },
-            { q: "Foundation seed ke utpadan ke liye Gehu ki isolation distance kitni hoti hai?", o: ["A) 3 meters", "B) 5 meters", "C) 10 meters", "D) 50 meters"], a: 0 },
-            { q: "Certified seed ke utpadan ke liye Gehu ki isolation distance kitni hoti hai?", o: ["A) 3 meters", "B) 5 meters", "C) 10 meters", "D) 20 meters"], a: 0 },
-            { q: "Shuddh seed sample mein aanya faslon, kharpatwar aur kachre ko alag karne ki prathmikta kya kehlati hai?", o: ["A) Physical purity", "B) Genetic purity", "C) Seed viability", "D) Seed vigor"], a: 0 },
-            { q: "Swaroop, rang, aakar mein ek saman dikhne wale beejon ko kya kehte hain?", o: ["A) Viable seed", "B) Pure seed", "C) Hard seed", "D) Dormant seed"], a: 1 },
-            { q: "Ek gram Gehu mein lagbhag kitne beej hote hain?", o: ["A) 10-12", "B) 25-30", "C) 50-60", "D) 100-120"], a: 1 },
-            { q: "Seed Index kya darshata hai?", o: ["A) 10 beejon ka wajan", "B) 100 beejon ka wajan", "C) 1000 beejon ka wajan", "D) 1 kg beejon ki sankhya"], a: 1 },
-            { q: "Test Weight kya darshata hai?", o: ["A) 100 beejon ka wajan", "B) 1000 beejon ka wajan", "C) 1 kg beejon ki sankhya", "D) Beej ka aakar"], a: 1 },
-            { q: "Bhartiya Beej Adhiniyam kab se lagu (enforced) hua tha?", o: ["A) 2nd Oct 1969", "B) 15th Aug 1968", "C) 26th Jan 1970", "D) 1st Jan 1966"], a: 0 },
-            { q: "TZ test ka avishkar kisne kiya tha?", o: ["A) Barton", "B) Lakon", "C) Jethro Tull", "D) Vavilov"], a: 1 },
-            { q: "TZ test mein jeevit (viable) beej kis rang mein badal jate hain?", o: ["A) Neela (Blue)", "B) Hara (Green)", "C) Lal/Gulabi (Red/Pink)", "D) Kala (Black)"], a: 2 },
-            { q: "TZ test mein laal rang kis compound ke banne se aata hai?", o: ["A) Formazan", "B) Formic acid", "C) Tetrazolium", "D) Cytochrome"], a: 0 },
-            { q: "Beej ki susuptavastha (Dormancy) ko todne ke liye thande tapman ka upchar kya kehlata hai?", o: ["A) Scarification", "B) Stratification", "C) Vernalization", "D) Pasteurization"], a: 1 },
-            { q: "Kathor beej aavaran (Hard seed coat) ko todne ki kriya ko kya kehte hain?", o: ["A) Stratification", "B) Scarification", "C) Emasculation", "D) Threshing"], a: 1 },
-            { q: "Beej upchar (Seed treatment) ka sahi kram kya hai?", o: ["A) FIR (Fungicide, Insecticide, Rhizobium)", "B) RIF", "C) IFR", "D) FRI"], a: 0 },
-            { q: "Seed viability ka pata lagane ke liye sabse tez test kaun sa hai?", o: ["A) Germination test", "B) Field test", "C) TZ test", "D) Grow out test"], a: 2 },
-            { q: "Orthodox seeds kis prakar ke hote hain?", o: ["A) Jinhe kam nami par sukhaya ja sake", "B) Jinhe sukhaya nahi ja sakta", "C) Jo kabhi nahi ugate", "D) Jo turant mar jate hain"], a: 0 },
-            { q: "Recalcitrant seeds ka udaharan kaun sa hai?", o: ["A) Gehu", "B) Chawal", "C) Aam (Mango)", "D) Sarso"], a: 2 },
-            { q: "Anaj wali faslon ke liye surakshit bhandaran (safe storage) beej nami lagbhag kitni honi chahiye?", o: ["A) 4-5%", "B) 10-12%", "C) 16-18%", "D) 20-22%"], a: 1 },
-            { q: "Tilhan (Oilseeds) ke liye surakshit bhandaran beej nami kitni hoti hai?", o: ["A) 4-5%", "B) 8-9%", "C) 12-14%", "D) 15-18%"], a: 1 },
-            { q: "Kapas ke beej (Cotton seed) ko lint-free karne ke liye kis acid ka upyog kiya jata hai?", o: ["A) Nitric acid", "B) Sulphuric acid (H2SO4)", "C) Hydrochloric acid", "D) Acetic acid"], a: 1 },
-            { q: "Beej ki utpadakta aur shuddhata banaye rakhne ke liye kaun sa certification kiya jata hai?", o: ["A) ISI mark", "B) Agmark", "C) Seed Certification", "D) ISO mark"], a: 2 },
-            { q: "Kharpatwar jiske beej fasal ke beej jaise dikhte hain, unhe kya kehte hain?", o: ["A) Objectionable weed", "B) Parasitic weed", "C) Satellite weed", "D) None of the above"], a: 0 },
-            { q: "Gehu (Wheat) ka aapattijanak kharpatwar (objectionable weed) kaun sa hai?", o: ["A) Phalaris minor", "B) Convolvulus arvensis", "C) Cynodon dactylon", "D) Parthenium"], a: 1 },
-            { q: "Beej bhandaran (Seed Storage) ke dauran kitto se bachav ke liye kaun si gas use hoti hai?", o: ["A) Oxygen", "B) Aluminum phosphide", "C) Carbon dioxide", "D) Ethylene"], a: 1 },
-            { q: "Kisan dwara agle varsh ki fasal ke liye rakha gaya beej kiske antargat aata hai?", o: ["A) Certified seed", "B) Truthful labelled seed", "C) Farmer saved seed", "D) Foundation seed"], a: 2 },
-            { q: "Hybrid seeds ka utpadan har saal kyu karna padta hai?", o: ["A) Yield badhane ke liye", "B) Vigor loss aur segregation se bachne ke liye", "C) Price kam karne ke liye", "D) Naye tag lagane ke liye"], a: 1 }
+            { q: "राष्ट्रीय बीज निगम (NSC) की स्थापना किस वर्ष हुई थी?", o: ["A) 1963", "B) 1966", "C) 1969", "D) 1971"], a: 0 },
+            { q: "भारत में बीज अधिनियम (Seed Act) कब पारित हुआ था?", o: ["A) 1963", "B) 1966", "C) 1968", "D) 1971"], a: 1 },
+            { q: "बीज नियम (Seed Rules) किस वर्ष बनाए गए थे?", o: ["A) 1966", "B) 1968", "C) 1972", "D) 1983"], a: 1 },
+            { q: "प्रजनक बीज (Breeder seed) के टैग का रंग कैसा होता है?", o: ["A) सफेद (White)", "B) सुनहरा पीला (Golden Yellow)", "C) नीला (Azure Blue)", "D) बैंगनी (Purple)"], a: 1 },
+            { q: "आधार बीज (Foundation seed) पर किस रंग का टैग लगाया जाता है?", o: ["A) सफेद (White)", "B) नीला (Blue)", "C) सुनहरा पीला (Golden Yellow)", "D) हरा (Green)"], a: 0 },
+            { q: "प्रमाणित बीज (Certified seed) के बैग पर कौन सा टैग होता है?", o: ["A) सफेद", "B) सुनहरा पीला", "C) नीला (Azure Blue)", "D) हल्का हरा (Opal Green)"], a: 2 },
+            { q: "पंजीकृत बीज (Registered seed) पर किस रंग का टैग होता है?", o: ["A) बैंगनी (Purple)", "B) सफेद", "C) नीला", "D) हरा"], a: 0 },
+            { q: "केंद्रक बीज (Nucleus seed) पर कौन सा टैग होता है?", o: ["A) सफेद टैग", "B) सुनहरा पीला टैग", "C) कोई टैग नहीं होता", "D) हरा टैग"], a: 2 },
+            { q: "प्रजनक बीज (Breeder seed) की आनुवंशिक शुद्धता (Genetic Purity) कितनी होनी चाहिए?", o: ["A) 98%", "B) 99%", "C) 99.9%", "D) 100%"], a: 3 },
+            { q: "आधार बीज (Foundation seed) किस बीज की संतति (progeny) है?", o: ["A) केंद्रक बीज", "B) प्रजनक बीज", "C) प्रमाणित बीज", "D) पंजीकृत बीज"], a: 1 },
+            { q: "प्रमाणित बीज किस बीज से तैयार किया जाता है?", o: ["A) केंद्रक बीज", "B) प्रजनक बीज", "C) आधार बीज", "D) किसान का बीज (Truthful seed)"], a: 2 },
+            { q: "बीज की जीवनक्षमता (Viability) परीक्षण के लिए सबसे प्रचलित टेस्ट कौन सा है?", o: ["A) ग्रो आउट टेस्ट (GOT)", "B) टेट्राजोलियम (TZ) टेस्ट", "C) नमी परीक्षण (Moisture test)", "D) शुद्धता परीक्षण"], a: 1 },
+            { q: "TZ टेस्ट में किस रसायन (Chemical) का उपयोग होता है?", o: ["A) 2,3,5-ट्राइफिनाइल टेट्राजोलियम क्लोराइड", "B) पोटेशियम नाइट्रेट", "C) सोडियम हाइपोक्लोराइट", "D) मर्क्यूरिक क्लोराइड"], a: 0 },
+            { q: "बीज का वास्तविक मूल्य (Real Value) निकालने का सही सूत्र क्या है?", o: ["A) Purity % + Germination % / 100", "B) (Purity % x Germination %) / 100", "C) Germination % / Purity %", "D) Purity % - Germination %"], a: 1 },
+            { q: "ग्रो आउट टेस्ट (GOT) किसके निर्धारण के लिए किया जाता है?", o: ["A) बीज की जीवनक्षमता", "B) बीज की नमी", "C) आनुवंशिक शुद्धता (Genetic purity)", "D) भौतिक शुद्धता"], a: 2 },
+            { q: "खरपतवार या अन्य फसलों के बीज/पौधों को मुख्य फसल से निकालने की क्रिया क्या कहलाती है?", o: ["A) रोगिंग (Roguing)", "B) हार्वेस्टिंग", "C) थ्रेशिंग", "D) प्रोसेसिंग"], a: 0 },
+            { q: "गेहूं (Wheat) का न्यूनतम अंकुरण (Minimum Germination) प्रतिशत कितना तय है?", o: ["A) 70%", "B) 80%", "C) 85%", "D) 90%"], a: 2 },
+            { q: "कपास (Cotton) का न्यूनतम अंकुरण प्रतिशत कितना होता है?", o: ["A) 60%", "B) 65%", "C) 75%", "D) 85%"], a: 1 },
+            { q: "बीज परीक्षण (Seed Testing) के दौरान वर्किंग सैंपल (Working sample) कहाँ से लिया जाता है?", o: ["A) प्राइमरी सैंपल से", "B) कम्पोजिट सैंपल से", "C) सबमिटेड सैंपल (Submitted sample) से", "D) लॉट सैंपल से"], a: 2 },
+            { q: "अंतर्राष्ट्रीय बीज परीक्षण संघ (ISTA) की स्थापना किस वर्ष हुई थी?", o: ["A) 1920", "B) 1924", "C) 1950", "D) 1966"], a: 1 },
+            { q: "ISTA का मुख्यालय (Headquarters) कहाँ स्थित है?", o: ["A) जिनेवा (स्विट्जरलैंड)", "B) रोम (इटली)", "C) न्यूयॉर्क (यूएसए)", "D) वाशिंगटन (यूएसए)"], a: 0 },
+            { q: "भारत की केंद्रीय बीज परीक्षण प्रयोगशाला (CSTL) कहाँ स्थित है?", o: ["A) नई दिल्ली", "B) वाराणसी", "C) बैंगलोर", "D) हैदराबाद"], a: 1 },
+            { q: "बीज अधिनियम की किस धारा (Section) के तहत केंद्रीय बीज समिति का गठन होता है?", o: ["A) धारा 3", "B) धारा 5", "C) धारा 8", "D) धारा 12"], a: 0 },
+            { q: "बीज अधिनियम की किस धारा के तहत बीज निरीक्षकों (Seed Inspectors) की नियुक्ति होती है?", o: ["A) धारा 10", "B) धारा 13", "C) धारा 14", "D) धारा 15"], a: 1 },
+            { q: "आधार बीज (Foundation seed) के उत्पादन के लिए गेहूं की पृथक्करण दूरी (Isolation distance) कितनी होती है?", o: ["A) 3 मीटर", "B) 5 मीटर", "C) 10 मीटर", "D) 50 मीटर"], a: 0 },
+            { q: "प्रमाणित बीज के उत्पादन के लिए गेहूं की पृथक्करण दूरी कितनी होती है?", o: ["A) 3 मीटर", "B) 5 मीटर", "C) 10 मीटर", "D) 20 मीटर"], a: 0 },
+            { q: "शुद्ध बीज नमूने में से अन्य फसलों, खरपतवार और कचरे को अलग करने की प्रक्रिया क्या कहलाती है?", o: ["A) भौतिक शुद्धता (Physical purity)", "B) आनुवंशिक शुद्धता", "C) बीज जीवनक्षमता", "D) बीज ओज (Seed vigor)"], a: 0 },
+            { q: "स्वरूप, रंग और आकार में एक समान दिखने वाले बीजों को क्या कहते हैं?", o: ["A) जीवित बीज", "B) शुद्ध बीज (Pure seed)", "C) कठोर बीज", "D) सुसुप्त बीज"], a: 1 },
+            { q: "एक ग्राम गेहूं में लगभग कितने बीज होते हैं?", o: ["A) 10-12", "B) 25-30", "C) 50-60", "D) 100-120"], a: 1 },
+            { q: "सीड इंडेक्स (Seed Index) क्या दर्शाता है?", o: ["A) 10 बीजों का वजन", "B) 100 बीजों का वजन", "C) 1000 बीजों का वजन", "D) 1 किलो बीजों की संख्या"], a: 1 },
+            { q: "टेस्ट वेट (Test Weight) क्या दर्शाता है?", o: ["A) 100 बीजों का वजन", "B) 1000 बीजों का वजन", "C) 1 किलो बीजों की संख्या", "D) बीज का आकार"], a: 1 },
+            { q: "भारतीय बीज अधिनियम पूरे देश में कब से लागू (Enforced) हुआ था?", o: ["A) 2 अक्टूबर 1969", "B) 15 अगस्त 1968", "C) 26 जनवरी 1970", "D) 1 जनवरी 1966"], a: 0 },
+            { q: "TZ टेस्ट का आविष्कार किसने किया था?", o: ["A) बार्टन", "B) लकोन (Lakon)", "C) जेथ्रो टुल", "D) वाविलोव"], a: 1 },
+            { q: "TZ टेस्ट में जीवित (viable) बीज किस रंग में बदल जाते हैं?", o: ["A) नीला (Blue)", "B) हरा (Green)", "C) लाल/गुलाबी (Red/Pink)", "D) काला (Black)"], a: 2 },
+            { q: "TZ टेस्ट में लाल रंग किस यौगिक (Compound) के बनने से आता है?", o: ["A) फॉर्माज़ान (Formazan)", "B) फॉर्मिक एसिड", "C) टेट्राजोलियम", "D) साइटोक्रोम"], a: 0 },
+            { q: "बीज की सुषुप्तावस्था (Dormancy) को तोड़ने के लिए ठंडे तापमान का उपचार क्या कहलाता है?", o: ["A) स्कैरिफिकेशन", "B) स्ट्रैटिफिकेशन (Stratification)", "C) वर्नेलाइजेशन", "D) पाश्चुरीकरण"], a: 1 },
+            { q: "कठोर बीज आवरण (Hard seed coat) को तोड़ने या खुरचने की क्रिया को क्या कहते हैं?", o: ["A) स्ट्रैटिफिकेशन", "B) स्कैरिफिकेशन (Scarification)", "C) इमैस्कुलेशन", "D) थ्रेशिंग"], a: 1 },
+            { q: "बीज उपचार (Seed treatment) का सही क्रम क्या है?", o: ["A) FIR (कवकनाशी, कीटनाशक, राइजोबियम)", "B) RIF", "C) IFR", "D) FRI"], a: 0 },
+            { q: "बीज की जीवनक्षमता (Viability) का पता लगाने के लिए सबसे तेज़ परीक्षण कौन सा है?", o: ["A) अंकुरण परीक्षण", "B) फील्ड टेस्ट", "C) TZ टेस्ट", "D) ग्रो आउट टेस्ट"], a: 2 },
+            { q: "ऑर्थोडॉक्स बीज (Orthodox seeds) किस प्रकार के होते हैं?", o: ["A) जिन्हें कम नमी पर सुरक्षित सुखाया जा सके", "B) जिन्हें सुखाया नहीं जा सकता", "C) जो कभी नहीं उगते", "D) जो तुरंत मर जाते हैं"], a: 0 },
+            { q: "रिकैल्सीट्रेंट बीज (जिन्हें सुखाया नहीं जा सकता) का उदाहरण कौन सा है?", o: ["A) गेहूं", "B) चावल", "C) आम (Mango)", "D) सरसों"], a: 2 },
+            { q: "अनाज वाली फसलों के सुरक्षित भंडारण के लिए बीज में नमी लगभग कितनी होनी चाहिए?", o: ["A) 4-5%", "B) 10-12%", "C) 16-18%", "D) 20-22%"], a: 1 },
+            { q: "तिलहन (Oilseeds) के सुरक्षित भंडारण के लिए बीज नमी कितनी होनी चाहिए?", o: ["A) 4-5%", "B) 8-9%", "C) 12-14%", "D) 15-18%"], a: 1 },
+            { q: "कपास के बीज (Cotton seed) से रेशे (lint) हटाने के लिए किस अम्ल (Acid) का उपयोग किया जाता है?", o: ["A) नाइट्रिक एसिड", "B) सल्फ्यूरिक एसिड (H2SO4)", "C) हाइड्रोक्लोरिक एसिड", "D) एसिटिक एसिड"], a: 1 },
+            { q: "बीज की उत्पादकता और शुद्धता बनाए रखने के लिए कौन सा प्रमाणीकरण (Certification) किया जाता है?", o: ["A) ISI मार्क", "B) एगमार्क (Agmark)", "C) बीज प्रमाणीकरण (Seed Certification)", "D) ISO मार्क"], a: 2 },
+            { q: "ऐसे खरपतवार जिनके बीज मुख्य फसल के बीज जैसे ही दिखते हैं, उन्हें क्या कहते हैं?", o: ["A) आपत्तिजनक (Objectionable weed)", "B) परजीवी खरपतवार", "C) सैटेलाइट खरपतवार", "D) इनमें से कोई नहीं"], a: 0 },
+            { q: "गेहूं (Wheat) का आपत्तिजनक खरपतवार कौन सा है?", o: ["A) फैलेरिस माइनर (गेहूंसा)", "B) कॉनवोल्वुलस अर्वेन्सिस", "C) सायनोडोन डैक्टाइलोन", "D) पार्थेनियम"], a: 1 },
+            { q: "बीज भंडारण के दौरान कीटों से बचाव के लिए कौन सी गैस/रसायन उपयोग होती है?", o: ["A) ऑक्सीजन", "B) एल्युमिनियम फॉस्फाइड (सेल्फोस)", "C) कार्बन डाइऑक्साइड", "D) एथिलीन"], a: 1 },
+            { q: "किसान द्वारा अगले वर्ष की फसल के लिए रखा गया अपना बीज किसके अंतर्गत आता है?", o: ["A) प्रमाणित बीज", "B) ट्रुथफुल लेबल्ड बीज", "C) किसान का बचाया हुआ बीज (Farmer saved seed)", "D) आधार बीज"], a: 2 },
+            { q: "संकर (Hybrid) बीजों का उत्पादन हर साल क्यों करना पड़ता है?", o: ["A) उपज बढ़ाने के लिए", "B) ओज (Vigor) में कमी और अलगाव (Segregation) से बचने के लिए", "C) कीमत कम करने के लिए", "D) नए टैग लगाने के लिए"], a: 1 }
         ];
 
         // TEST 2: Advanced Processing, Dormancy, Testing, Equipment (50 Unique Questions)
         const test2Data = [
-            { q: "Seed processing mein 'Scalper' ka kya mukhya kaam hota hai?", o: ["A) Chote kachre ko hatana", "B) Bade kachre aur dhelon ko alag karna", "C) Beej par tag lagana", "D) Beej ki nami mapna"], a: 1 },
-            { q: "Air-Screen Cleaner kis siddhant par kaam karta hai?", o: ["A) Hawa ka pravah aur chalni ka aakar", "B) Gurutvakarshan", "C) Chumbakiya bal", "D) Rang (Color)"], a: 0 },
-            { q: "Specific gravity separator kis aadhar par beejon ko alag karta hai?", o: ["A) Beej ka aakar", "B) Beej ka wajan / density", "C) Beej ka rang", "D) Beej ki lambaayi"], a: 1 },
-            { q: "Spiral separator mukhya roop se kis aadhar par grading karta hai?", o: ["A) Golai (Roundness)", "B) Wajan", "C) Nami", "D) Lambaayi"], a: 0 },
-            { q: "Magnetic separator ka upyog kin beejon ko alag karne ke liye kiya jata hai?", o: ["A) Jinki satah khurduri (rough) ho", "B) Jo bhari hon", "C) Jo gol hon", "D) Jo hare rang ke hon"], a: 0 },
-            { q: "Beejon se ruye (lint) hatane wali masheen ko kya kehte hain?", o: ["A) Scalper", "B) Delinter", "C) Treater", "D) Dryer"], a: 1 },
-            { q: "Gibeberellic acid (GA3) ka upyog seed technology mein kisliye hota hai?", o: ["A) Nami badhane", "B) Dormancy todne", "C) Tagging ke liye", "D) Fungi rokne"], a: 1 },
-            { q: "Seed pelleting ka mukhya uddeshya kya hai?", o: ["A) Beej ko chamkadar banana", "B) Beej ka aakar badhana aur boyai mein aasaani", "C) Beej ka wajan kam karna", "D) Beej ki dormacy badhana"], a: 1 },
-            { q: "Beejon par chemical ka aavaran (coating) kya kehlata hai?", o: ["A) Seed dressing / treatment", "B) Stratification", "C) Vernalization", "D) Scalping"], a: 0 },
-            { q: "Seed certification process kitne charno (stages) mein hota hai?", o: ["A) 2", "B) 4", "C) 6", "D) 8"], a: 2 },
-            { q: "Certification standard ke hisaab se, Bajra ka minimum germination % kitna hai?", o: ["A) 60%", "B) 70%", "C) 75%", "D) 85%"], a: 2 },
-            { q: "Chawal (Paddy) ka minimum physical purity percentage kitna tay hai?", o: ["A) 90%", "B) 95%", "C) 98%", "D) 99%"], a: 2 },
-            { q: "Seed plot technique kis fasal ke rog-mukt beej utpadan ke liye hai?", o: ["A) Aloo (Potato)", "B) Gehu (Wheat)", "C) Mungfali (Groundnut)", "D) Sarso (Mustard)"], a: 0 },
-            { q: "Seed Plot Technique kisne viksit ki thi?", o: ["A) M.S. Swaminathan", "B) Pushkarnath", "C) K.C. Mehta", "D) N.E. Borlaug"], a: 1 },
-            { q: "Aloo mein Seed Plot Technique kis samasya se bachne ke liye apnayi jati hai?", o: ["A) Fungal rogo se", "B) Virus (Aphid vector) se", "C) Nematode se", "D) Bacterial wilt se"], a: 1 },
-            { q: "Tetrazolium test mein beej ka kaun sa hissa laal hota hai agar woh zinda ho?", o: ["A) Endosperm", "B) Seed coat", "C) Embryo (Bhrun)", "D) Cotyledon"], a: 2 },
-            { q: "Electrical conductivity test kya mapta hai?", o: ["A) Beej ki nami", "B) Beej ka wajan", "C) Beej ki vigor (Oaj)", "D) Beej ka aakar"], a: 2 },
-            { q: "Seed vigor test ka udhaharan kaun sa hai?", o: ["A) TZ test", "B) Accelerated ageing test", "C) Moisture test", "D) Purity test"], a: 1 },
-            { q: "Beejon mein nami mapne ki standard oven method ka tapman kitna hota hai?", o: ["A) 100°C for 2 hours", "B) 130°C for 1-2 hours", "C) 150°C for 10 hours", "D) 80°C for 1 hour"], a: 1 },
-            { q: "Moisture meter kis siddhant par kaam karta hai?", o: ["A) Electrical resistance / capacitance", "B) Heat transfer", "C) Magnetic field", "D) Optical reflection"], a: 0 },
-            { q: "Truthful Labelled Seed (TLS) par kaun sa tag lagta hai?", o: ["A) Yellow", "B) Opal Green", "C) Blue", "D) No tag"], a: 1 },
-            { q: "Truthful Labelled Seed ke liye certification agency ka certification: ", o: ["A) Anivarya (Compulsory) hai", "B) Aichhik (Voluntary) hai", "C) Gair-kanooni hai", "D) Sirf export ke liye hai"], a: 1 },
-            { q: "Foundation seed tag ka aakar (Size) kya hota hai?", o: ["A) 15 x 7.5 cm", "B) 10 x 5 cm", "C) 15 x 10 cm", "D) 20 x 10 cm"], a: 0 },
-            { q: "Certified seed tag ka aakar (Size) kya hota hai?", o: ["A) 10 x 5 cm", "B) 15 x 7.5 cm", "C) 20 x 15 cm", "D) 12 x 6 cm"], a: 1 },
-            { q: "Gehu (Wheat) ka objectionable weed (Aapattijanak kharpatwar) kaun sa hai?", o: ["A) Phalaris minor", "B) Convolvulus arvensis", "C) Cuscuta", "D) Argemone"], a: 1 },
-            { q: "Sarso (Mustard) ka objectionable weed kaun sa hai?", o: ["A) Phalaris minor", "B) Argemone mexicana", "C) Cuscuta", "D) Avena fatua"], a: 1 },
-            { q: "Lucerne ka objectionable weed kaun sa hai?", o: ["A) Cuscuta (Dodder)", "B) Orobanche", "C) Striga", "D) Loranthus"], a: 0 },
-            { q: "Hybrid Maize (Makka) ke foundation seed ke liye isolation distance kya hai?", o: ["A) 100 meter", "B) 200 meter", "C) 400 meter", "D) 800 meter"], a: 2 },
-            { q: "Hybrid Maize ke certified seed ke liye isolation distance kya hai?", o: ["A) 100 meter", "B) 200 meter", "C) 400 meter", "D) 800 meter"], a: 1 },
-            { q: "Bajra (Pearl millet) foundation seed ke liye isolation distance kya hai?", o: ["A) 200 meter", "B) 400 meter", "C) 1000 meter", "D) 2000 meter"], a: 2 },
-            { q: "Jowar (Sorghum) foundation seed ke liye isolation distance kya hai?", o: ["A) 200 meter", "B) 400 meter", "C) 1000 meter", "D) 2000 meter"], a: 1 },
-            { q: "Bhendi (Okra) foundation seed ke liye isolation distance kya hai?", o: ["A) 50 meter", "B) 200 meter", "C) 400 meter", "D) 1000 meter"], a: 2 },
-            { q: "Tomato foundation seed ke liye isolation distance kya hai?", o: ["A) 10 meter", "B) 50 meter", "C) 100 meter", "D) 200 meter"], a: 1 },
-            { q: "Hybrid seed production mein 'A' line kya hoti hai?", o: ["A) Male sterile line", "B) Maintainer line", "C) Restorer line", "D) Inbred line"], a: 0 },
-            { q: "Hybrid seed production mein 'B' line kya hoti hai?", o: ["A) Male sterile line", "B) Maintainer line", "C) Restorer line", "D) Terminator line"], a: 1 },
-            { q: "Hybrid seed production mein 'R' line kya hoti hai?", o: ["A) Restorer line", "B) Maintainer line", "C) Sterile line", "D) Basic line"], a: 0 },
-            { q: "Beejon ki ayu (Longevity) ke aadhar par 'Microbiotic' beej kitne saal zinda rehte hain?", o: ["A) 100 saal", "B) 15-100 saal", "C) 3 saal se kam", "D) 3-15 saal"], a: 2 },
-            { q: "Jo beej 3 se 15 saal tak zinda reh sakte hain unhe kya kehte hain?", o: ["A) Microbiotic", "B) Mesobiotic", "C) Macrobiotic", "D) Endobiotic"], a: 1 },
-            { q: "Harrington ke anusar beej nami mein 1% ki kami se beej ki aayu par kya asar padta hai?", o: ["A) Aayu aadhi ho jati hai", "B) Aayu dugni ho jati hai", "C) Koi asar nahi padta", "D) Aayu 10 guna ho jati hai"], a: 1 },
-            { q: "Harrington ke anusar bhandaran tapman mein har 5°C ki kami se beej ki aayu?", o: ["A) Aadhi ho jati hai", "B) Dugni ho jati hai", "C) Chauguni ho jati hai", "D) Zero ho jati hai"], a: 1 },
-            { q: "Vavilov ke anusar faslon ke utpatti kendra (Centers of Origin) kitne hain?", o: ["A) 4", "B) 8", "C) 12", "D) 20"], a: 1 },
-            { q: "Beej niyam (Seed Rules) ke kis prapatra (Form) mein beejo ka vishleshan parinam (result) diya jata hai?", o: ["A) Form 1", "B) Form 2", "C) Form 3", "D) Form 4"], a: 1 },
-            { q: "Physical purity board par kis prakar ka shisha (glass) laga hota hai?", o: ["A) Magnifying glass", "B) Diaphanoscope", "C) Microscopic glass", "D) Telescope glass"], a: 1 },
-            { q: "Beej germinator mein humidity kitni honi chahiye?", o: ["A) 50-60%", "B) 70-80%", "C) 90-95%", "D) 100%"], a: 2 },
-            { q: "Chana (Gram) ka minimum germination % kitna hota hai?", o: ["A) 75%", "B) 85%", "C) 90%", "D) 95%"], a: 1 },
-            { q: "Mungfali (Groundnut) ka minimum germination % kitna hota hai?", o: ["A) 60%", "B) 70%", "C) 80%", "D) 90%"], a: 1 },
-            { q: "Soya bean ka minimum germination % kitna hota hai?", o: ["A) 60%", "B) 70%", "C) 80%", "D) 90%"], a: 1 },
-            { q: "Pyaz (Onion) ka minimum germination % kitna hota hai?", o: ["A) 60%", "B) 70%", "C) 80%", "D) 90%"], a: 1 },
-            { q: "Phizikal purity test ke liye sample ko kinte hisso mein baanta jata hai?", o: ["A) 2", "B) 3", "C) 4", "D) 5"], a: 2 },
-            { q: "Jo beej soti avastha mein rahte hain aur anukul paristitiyo mein bhi nahi ugate unhe kya kehte hain?", o: ["A) Hard seeds", "B) Dormant seeds", "C) Dead seeds", "D) Viable seeds"], a: 1 }
+            { q: "बीज प्रसंस्करण (Seed processing) में 'स्कैल्पर' (Scalper) का मुख्य काम क्या होता है?", o: ["A) छोटे कचरे को हटाना", "B) बड़े कचरे और ढेलों को अलग करना", "C) बीज पर टैग लगाना", "D) बीज की नमी मापना"], a: 1 },
+            { q: "एयर-स्क्रीन क्लीनर (Air-Screen Cleaner) किस सिद्धांत पर काम करता है?", o: ["A) हवा का प्रवाह और छलनी का आकार", "B) गुरुत्वाकर्षण", "C) चुंबकीय बल", "D) रंग (Color)"], a: 0 },
+            { q: "स्पेसिफिक ग्रेविटी सेपरेटर बीजों को किस आधार पर अलग करता है?", o: ["A) बीज का आकार", "B) बीज का वजन / घनत्व (Density)", "C) बीज का रंग", "D) बीज की लम्बाई"], a: 1 },
+            { q: "स्पाइरल सेपरेटर (Spiral separator) मुख्य रूप से किस आधार पर ग्रेडिंग करता है?", o: ["A) गोलाई (Roundness)", "B) वजन", "C) नमी", "D) लम्बाई"], a: 0 },
+            { q: "मैग्नेटिक सेपरेटर का उपयोग किन बीजों को अलग करने के लिए किया जाता है?", o: ["A) जिनकी सतह खुरदुरी (rough) हो", "B) जो भारी हों", "C) जो गोल हों", "D) जो हरे रंग के हों"], a: 0 },
+            { q: "बीजों से रेशे (lint) हटाने वाली मशीन को क्या कहते हैं?", o: ["A) स्कैल्पर", "B) डेलिन्टर (Delinter)", "C) ट्रीटर", "D) ड्रायर"], a: 1 },
+            { q: "जिब्बेरेलिक एसिड (GA3) का उपयोग सीड टेक्नोलॉजी में किसलिए होता है?", o: ["A) नमी बढ़ाने", "B) सुषुप्तावस्था (Dormancy) तोड़ने", "C) टैगिंग के लिए", "D) फफूंद रोकने"], a: 1 },
+            { q: "सीड पेलेटिंग (Seed pelleting) का मुख्य उद्देश्य क्या है?", o: ["A) बीज को चमकदार बनाना", "B) छोटे बीज का आकार बढ़ाना ताकि बुवाई में आसानी हो", "C) बीज का वजन कम करना", "D) बीज की सुषुप्तावस्था बढ़ाना"], a: 1 },
+            { q: "बीजों पर रसायन (Chemical) का आवरण चढ़ाना क्या कहलाता है?", o: ["A) बीज उपचार (Seed dressing)", "B) स्ट्रैटिफिकेशन", "C) वर्नेलाइजेशन", "D) स्कैल्पिंग"], a: 0 },
+            { q: "बीज प्रमाणीकरण (Seed certification) प्रक्रिया कितने चरणों में पूरी होती है?", o: ["A) 2", "B) 4", "C) 6", "D) 8"], a: 2 },
+            { q: "प्रमाणीकरण मानकों के अनुसार, बाजरा का न्यूनतम अंकुरण % कितना है?", o: ["A) 60%", "B) 70%", "C) 75%", "D) 85%"], a: 2 },
+            { q: "चावल (Paddy) का न्यूनतम भौतिक शुद्धता प्रतिशत कितना तय है?", o: ["A) 90%", "B) 95%", "C) 98%", "D) 99%"], a: 2 },
+            { q: "सीड प्लॉट तकनीक (Seed plot technique) किस फसल के रोग-मुक्त बीज उत्पादन के लिए है?", o: ["A) आलू (Potato)", "B) गेहूं", "C) मूंगफली", "D) सरसों"], a: 0 },
+            { q: "सीड प्लॉट तकनीक (Seed Plot Technique) किसने विकसित की थी?", o: ["A) एम. एस. स्वामीनाथन", "B) पुष्करनाथ", "C) के. सी. मेहता", "D) एन. ई. बोरलॉग"], a: 1 },
+            { q: "आलू में सीड प्लॉट तकनीक किस समस्या से बचने के लिए अपनाई जाती है?", o: ["A) फफूंद जनित रोगों से", "B) वायरस (माहू/Aphid द्वारा) से", "C) नेमाटोड से", "D) बैक्टीरियल विल्ट से"], a: 1 },
+            { q: "टेट्राजोलियम टेस्ट में बीज का कौन सा हिस्सा लाल होता है यदि वह जीवित हो?", o: ["A) भ्रूणपोष (Endosperm)", "B) बीजावरण", "C) भ्रूण (Embryo)", "D) बीजपत्र"], a: 2 },
+            { q: "विद्युत चालकता परीक्षण (Electrical conductivity test) क्या मापता है?", o: ["A) बीज की नमी", "B) बीज का वजन", "C) बीज की ओज (Vigor)", "D) बीज का आकार"], a: 2 },
+            { q: "सीड विगोर टेस्ट (Seed vigor test) का उदाहरण कौन सा है?", o: ["A) TZ टेस्ट", "B) त्वरित उम्र बढ़ने का परीक्षण (Accelerated ageing test)", "C) नमी परीक्षण", "D) शुद्धता परीक्षण"], a: 1 },
+            { q: "बीजों में नमी मापने की मानक ओवन विधि (Oven method) का तापमान कितना होता है?", o: ["A) 100°C (2 घंटे)", "B) 130°C (1-2 घंटे)", "C) 150°C (10 घंटे)", "D) 80°C (1 घंटे)"], a: 1 },
+            { q: "नमी मापक यंत्र (Moisture meter) किस सिद्धांत पर काम करता है?", o: ["A) विद्युत प्रतिरोध (Electrical resistance / capacitance)", "B) ऊष्मा हस्तांतरण", "C) चुंबकीय क्षेत्र", "D) प्रकाश परावर्तन"], a: 0 },
+            { q: "ट्रुथफुल लेबल्ड सीड (TLS) पर कौन सा टैग लगता है?", o: ["A) पीला", "B) हल्का हरा (Opal Green)", "C) नीला", "D) कोई टैग नहीं"], a: 1 },
+            { q: "ट्रुथफुल लेबल्ड सीड के लिए प्रमाणीकरण एजेंसी का सर्टिफिकेशन: ", o: ["A) अनिवार्य (Compulsory) है", "B) स्वैच्छिक (Voluntary / ऐच्छिक) है", "C) गैर-कानूनी है", "D) सिर्फ निर्यात के लिए है"], a: 1 },
+            { q: "आधार बीज (Foundation seed) टैग का आकार (Size) क्या होता है?", o: ["A) 15 x 7.5 सेमी", "B) 10 x 5 सेमी", "C) 15 x 10 सेमी", "D) 20 x 10 सेमी"], a: 0 },
+            { q: "प्रमाणित बीज (Certified seed) टैग का आकार (Size) क्या होता है?", o: ["A) 10 x 5 सेमी", "B) 15 x 7.5 सेमी", "C) 20 x 15 सेमी", "D) 12 x 6 सेमी"], a: 1 },
+            { q: "गेहूं का आपत्तिजनक खरपतवार (Objectionable weed) कौन सा है?", o: ["A) फैलेरिस माइनर", "B) कॉनवोल्वुलस अर्वेन्सिस (हिरनखुरी)", "C) कस्कुटा", "D) आर्जीमोन"], a: 1 },
+            { q: "सरसों (Mustard) का आपत्तिजनक खरपतवार कौन सा है?", o: ["A) फैलेरिस माइनर", "B) आर्जीमोन मैक्सिकाना (सत्यानाशी)", "C) कस्कुटा", "D) एवेना फतवा"], a: 1 },
+            { q: "रिजका (Lucerne) का आपत्तिजनक खरपतवार कौन सा है?", o: ["A) कस्कुटा (अमरबेल)", "B) ओरोबैंकी", "C) स्ट्राइगा", "D) लोरेन्थस"], a: 0 },
+            { q: "संकर मक्का (Hybrid Maize) के आधार बीज के लिए पृथक्करण दूरी क्या है?", o: ["A) 100 मीटर", "B) 200 मीटर", "C) 400 मीटर", "D) 800 मीटर"], a: 2 },
+            { q: "संकर मक्का के प्रमाणित बीज के लिए पृथक्करण दूरी क्या है?", o: ["A) 100 मीटर", "B) 200 मीटर", "C) 400 मीटर", "D) 800 मीटर"], a: 1 },
+            { q: "बाजरा (Pearl millet) आधार बीज के लिए पृथक्करण दूरी क्या है?", o: ["A) 200 मीटर", "B) 400 मीटर", "C) 1000 मीटर", "D) 2000 मीटर"], a: 2 },
+            { q: "ज्वार (Sorghum) आधार बीज के लिए पृथक्करण दूरी क्या है?", o: ["A) 200 मीटर", "B) 400 मीटर", "C) 1000 मीटर", "D) 2000 मीटर"], a: 1 },
+            { q: "भिंडी (Okra) आधार बीज के लिए पृथक्करण दूरी क्या है?", o: ["A) 50 मीटर", "B) 200 मीटर", "C) 400 मीटर", "D) 1000 मीटर"], a: 2 },
+            { q: "टमाटर (Tomato) आधार बीज के लिए पृथक्करण दूरी क्या है?", o: ["A) 10 मीटर", "B) 50 मीटर", "C) 100 मीटर", "D) 200 मीटर"], a: 1 },
+            { q: "संकर बीज उत्पादन में 'A' लाइन क्या होती है?", o: ["A) नर बंध्य लाइन (Male sterile line)", "B) मेंटेनर लाइन", "C) रिस्टोरर लाइन", "D) इनब्रेड लाइन"], a: 0 },
+            { q: "संकर बीज उत्पादन में 'B' लाइन क्या होती है?", o: ["A) नर बंध्य लाइन", "B) मेंटेनर लाइन (Maintainer line)", "C) रिस्टोरर लाइन", "D) टर्मिनेटर लाइन"], a: 1 },
+            { q: "संकर बीज उत्पादन में 'R' लाइन क्या होती है?", o: ["A) रिस्टोरर लाइन (Restorer line)", "B) मेंटेनर लाइन", "C) बंध्य लाइन", "D) बेसिक लाइन"], a: 0 },
+            { q: "बीजों की आयु (Longevity) के आधार पर 'Microbiotic' बीज कितने साल जीवित रहते हैं?", o: ["A) 100 साल", "B) 15-100 साल", "C) 3 साल से कम", "D) 3-15 साल"], a: 2 },
+            { q: "जो बीज 3 से 15 साल तक जीवित रह सकते हैं, उन्हें क्या कहते हैं?", o: ["A) माइक्रोबायोटिक", "B) मेसोबायोटिक (Mesobiotic)", "C) मैक्रोबायोटिक", "D) एंडोबायोटिक"], a: 1 },
+            { q: "हैरिंगटन के अनुसार बीज नमी में 1% की कमी से बीज की आयु पर क्या असर पड़ता है?", o: ["A) आयु आधी हो जाती है", "B) आयु दोगुनी हो जाती है", "C) कोई असर नहीं पड़ता", "D) आयु 10 गुना हो जाती है"], a: 1 },
+            { q: "हैरिंगटन के अनुसार भंडारण तापमान में हर 5°C की कमी से बीज की आयु?", o: ["A) आधी हो जाती है", "B) दोगुनी हो जाती है", "C) चौगुनी हो जाती है", "D) शून्य हो जाती है"], a: 1 },
+            { q: "वाविलोव (Vavilov) के अनुसार फसलों के उत्पत्ति केंद्र (Centers of Origin) कितने हैं?", o: ["A) 4", "B) 8", "C) 12", "D) 20"], a: 1 },
+            { q: "बीज नियम (Seed Rules) के किस प्रपत्र (Form) में बीजों का विश्लेषण परिणाम दिया जाता है?", o: ["A) Form 1", "B) Form 2", "C) Form 3", "D) Form 4"], a: 1 },
+            { q: "भौतिक शुद्धता (Physical purity) बोर्ड पर किस प्रकार का शीशा (Glass) लगा होता है?", o: ["A) मैग्नीफाइंग ग्लास", "B) डायफेनोस्कोप (Diaphanoscope)", "C) माइक्रोस्कोपिक ग्लास", "D) टेलीस्कोप ग्लास"], a: 1 },
+            { q: "बीज जर्मिनेटर (Germinator) में आर्द्रता (Humidity) कितनी होनी चाहिए?", o: ["A) 50-60%", "B) 70-80%", "C) 90-95%", "D) 100%"], a: 2 },
+            { q: "चना (Gram) का न्यूनतम अंकुरण % कितना होता है?", o: ["A) 75%", "B) 85%", "C) 90%", "D) 95%"], a: 1 },
+            { q: "मूंगफली (Groundnut) का न्यूनतम अंकुरण % कितना होता है?", o: ["A) 60%", "B) 70%", "C) 80%", "D) 90%"], a: 1 },
+            { q: "सोयाबीन का न्यूनतम अंकुरण % कितना होता है?", o: ["A) 60%", "B) 70%", "C) 80%", "D) 90%"], a: 1 },
+            { q: "प्याज (Onion) का न्यूनतम अंकुरण % कितना होता है?", o: ["A) 60%", "B) 70%", "C) 80%", "D) 90%"], a: 1 },
+            { q: "भौतिक शुद्धता परीक्षण के लिए सैंपल को कितने हिस्सों में बांटा जाता है?", o: ["A) 2", "B) 3", "C) 4", "D) 5"], a: 2 },
+            { q: "जो बीज सुप्त अवस्था में रहते हैं और अनुकूल परिस्थितियों में भी नहीं उगते उन्हें क्या कहते हैं?", o: ["A) कठोर बीज (Hard seeds)", "B) सुसुप्त बीज (Dormant seeds)", "C) मृत बीज", "D) जीवित बीज"], a: 1 }
         ];
 
         // TEST 3: Mega Practice - Advanced Genetics, SRR, Economics, Specific Cases (50 Unique Questions)
         const test3Data = [
-            { q: "Seed Replacement Rate (SRR) kya darshata hai?", o: ["A) Total boya gaya beej / Certified seed", "B) Kitne pratishat kshetra mein naya certified seed use hua hai", "C) Beej ke phatne ki dar", "D) Nami nikalne ki dar"], a: 1 },
-            { q: "Swaparagit (Self-pollinated) faslon mein SRR samanyatah kitni varsh mein badalni chahiye?", o: ["A) Har saal", "B) 3-4 saal mein", "C) 10 saal mein", "D) Kabhi nahi"], a: 1 },
-            { q: "Parparagit (Cross-pollinated) faslon mein SRR samanyatah kitni varsh mein badalni chahiye?", o: ["A) Har saal", "B) 3 saal mein", "C) 8 saal mein", "D) 12 saal mein"], a: 0 },
-            { q: "Hybrid faslon ka Seed Replacement Rate (SRR) kitna hona chahiye?", o: ["A) 33%", "B) 50%", "C) 75%", "D) 100%"], a: 3 },
-            { q: "Beej utpadan mein 'Rouging' kab karni chahiye?", o: ["A) Sirf phool aane se pehle", "B) Phool aane par", "C) Fasal pakne par", "D) Fasalon ki sabhi avasthaon par aavashyakta anusar"], a: 3 },
-            { q: "Roguing karte samay kin paudhon ko nikalna chahiye?", o: ["A) Off-types (Anya prakar)", "B) Diseased plants (Rogi paudhe)", "C) Weed plants (Kharpatwar)", "D) Uprokt sabhi"], a: 3 },
-            { q: "National Seed Project (NSP) kis varsh shuru kiya gaya tha?", o: ["A) 1969", "B) 1976", "C) 1983", "D) 1990"], a: 1 },
-            { q: "New Seed Policy kab aayi thi?", o: ["A) 1988", "B) 1999", "C) 2002", "D) 2010"], a: 0 },
-            { q: "Seed Control Order kis varsh jari kiya gaya tha?", o: ["A) 1966", "B) 1968", "C) 1983", "D) 1989"], a: 2 },
-            { q: "PPV & FRA (Protection of Plant Varieties & Farmers' Rights Act) kab parit hua tha?", o: ["A) 1999", "B) 2001", "C) 2005", "D) 2010"], a: 1 },
-            { q: "PPV & FRA ka mukhyalaya kahan sthit hai?", o: ["A) New Delhi", "B) Hyderabad", "C) Pune", "D) Chennai"], a: 0 },
-            { q: "Beej pramanikaran (Seed Certification) sanstha kiske antargat aati hai?", o: ["A) Central Government", "B) State Government", "C) Private Companies", "D) NGOs"], a: 1 },
-            { q: "SSC ka purn roop kya hai?", o: ["A) State Seed Corporation", "B) State Seed Committee", "C) State Seed Certification", "D) Standard Seed Company"], a: 0 },
-            { q: "Beej ki suptavastha (Dormancy) mapne ke liye kaun sa parikshan kiya jata hai?", o: ["A) Germination test", "B) Tetrazolium test (TZ test)", "C) Moisture test", "D) Grow out test"], a: 1 },
-            { q: "Beej praudhyogiki (Seed Technology) ke anusar, beej kya hai?", o: ["A) Ripened ovule (Paripakva bijand)", "B) Ripened ovary (Paripakva andashay)", "C) Leaf bud", "D) Stem cutting"], a: 0 },
-            { q: "Dicot (Dweebeejpatri) beej mein bhrun (embryo) ko poshan kahan se milta hai?", o: ["A) Endosperm", "B) Cotyledons", "C) Seed coat", "D) Radicle"], a: 1 },
-            { q: "Monocot (Ekbeejpatri) beej mein bhrun ko poshan kahan se milta hai?", o: ["A) Cotyledons", "B) Endosperm", "C) Testa", "D) Plumule"], a: 1 },
-            { q: "Beej ke bahari aavaran (Outer coat) ko kya kehte hain?", o: ["A) Tegmen", "B) Testa", "C) Hilum", "D) Micropyle"], a: 1 },
-            { q: "Beej ke bhitari aavaran (Inner coat) ko kya kehte hain?", o: ["A) Testa", "B) Tegmen", "C) Coleoptile", "D) Radicle"], a: 1 },
-            { q: "Bhrun (Embryo) ka kaun sa bhag jad (root) banata hai?", o: ["A) Plumule", "B) Radicle", "C) Cotyledon", "D) Endosperm"], a: 1 },
-            { q: "Bhrun ka kaun sa bhag tana (shoot) banata hai?", o: ["A) Radicle", "B) Plumule", "C) Testa", "D) Hilum"], a: 1 },
-            { q: "Aloo (Potato) ke TPR (True Potato Seed) ka beej dar kitna hai?", o: ["A) 50-100 gram/ha", "B) 100-150 gram/ha", "C) 500 gram/ha", "D) 1 kg/ha"], a: 1 },
-            { q: "Toria (Mustard) ke certified seed plot ke aapas (border) mein kitni duri (isolation) honi chahiye?", o: ["A) 50m", "B) 100m", "C) 200m", "D) 400m"], a: 1 },
-            { q: "Til (Sesame) ke foundation seed ke liye isolation distance kitni hoti hai?", o: ["A) 50m", "B) 100m", "C) 200m", "D) 400m"], a: 1 },
-            { q: "Arhar (Pigeon pea) ke foundation seed ke liye isolation distance kitni hoti hai?", o: ["A) 100m", "B) 200m", "C) 400m", "D) 500m"], a: 1 },
-            { q: "Beej sushuptavasta (Dormancy) ka mukhya karan kya ho sakta hai?", o: ["A) Hard seed coat", "B) Immature embryo", "C) Presence of inhibitors", "D) Uprokt sabhi"], a: 3 },
-            { q: "Gibeberellin ke alawa kaun sa chemical beej ki dormancy todne mein madad karta hai?", o: ["A) Potassium nitrate (KNO3)", "B) Sodium chloride", "C) Copper sulphate", "D) Zinc sulphate"], a: 0 },
-            { q: "Thiourea ka upyog beej me kisliye kiya jata hai?", o: ["A) Dormancy todne ke liye", "B) Nami kam karne", "C) Fungi marne", "D) Wajan badhane"], a: 0 },
-            { q: "Beej praudhyogiki me 'Desiccant' ka kya karya hai?", o: ["A) Beej mein nami badhana", "B) Beej se nami sokhna (absorb moisture)", "C) Beej ko rangna", "D) Beej ki dormancy badhana"], a: 1 },
-            { q: "Silica gel ka upyog seed storage mein kis roop mein hota hai?", o: ["A) Fertilizer", "B) Fungicide", "C) Desiccant", "D) Hormone"], a: 2 },
-            { q: "Purity analysis me bacha hua ansh jo beej nahi hota, use kya kehte hain?", o: ["A) Pure seed", "B) Other crop seed", "C) Inert matter (Nishkriya padarth)", "D) Weed seed"], a: 2 },
-            { q: "Kharpatwar ka beej purity analysis me kis category me aata hai?", o: ["A) Pure seed", "B) Inert matter", "C) Weed seed", "D) Other crop seed"], a: 2 },
-            { q: "Grow Out Test (GOT) mein kitne paudhe check kiye jate hain (samanyatah minimum)?", o: ["A) 100", "B) 400", "C) 1000", "D) 5000"], a: 1 },
-            { q: "Certified seed par jo Azure Blue tag lagta hai, uski lambaai aur chaudai kitni hoti hai?", o: ["A) 10 x 5 cm", "B) 15 x 7.5 cm", "C) 20 x 10 cm", "D) 12 x 6 cm"], a: 1 },
-            { q: "Beej pramanikaran (Certification) ka prathmik uddeshya kya hai?", o: ["A) Beej ka wajan badhana", "B) Kisano ko ucch gunwatta ka beej uplabdh karana", "C) Beej ki kimat badhana", "D) Beej ki nami badhana"], a: 1 },
-            { q: "Certification agency fasal ki khet mein inspection kitni baar karti hai?", o: ["A) Fasal ki avashyakta anusar (2 se 4 baar)", "B) Sirf ek baar", "C) Sirf katayi ke samay", "D) Kabhi nahi"], a: 0 },
-            { q: "Seed Multiplication Ratio (SMR) Gehu ke liye lagbhag kitna hai?", o: ["A) 1:20", "B) 1:50", "C) 1:100", "D) 1:200"], a: 0 },
-            { q: "Seed Multiplication Ratio Bajra (Pearl millet) ke liye lagbhag kitna hai?", o: ["A) 1:20", "B) 1:50", "C) 1:100", "D) 1:200"], a: 3 },
-            { q: "National Seed Research and Training Centre (NSRTC) kahan sthit hai?", o: ["A) New Delhi", "B) Varanasi", "C) Bangalore", "D) Hyderabad"], a: 1 },
-            { q: "ICAR-Indian Institute of Seed Science (IISS) kahan sthit hai?", o: ["A) Mau (UP)", "B) Kanpur", "C) Lucknow", "D) Meerut"], a: 0 },
-            { q: "Beejon ko thande aur nam (moist) tapman par rakhkar dormancy todne ko kya kehte hain?", o: ["A) Stratification", "B) Scarification", "C) Vernalization", "D) Priming"], a: 0 },
-            { q: "Beej ki avastha sudharne ke liye paani/rasayan mein bhigokar sikhane ki kriya kya kehlati hai?", o: ["A) Seed dressing", "B) Seed Priming", "C) Seed coating", "D) Seed pelleting"], a: 1 },
-            { q: "Paddy (Dhan) mein dormancy samanyata kitne din ki hoti hai?", o: ["A) 0 din", "B) 15-30 din", "C) 6 mahine", "D) 2 saal"], a: 1 },
-            { q: "Kapas mein seed rate (American/Desi) lagbhag kitni hoti hai?", o: ["A) 5-6 kg/ha", "B) 15-20 kg/ha", "C) 40-50 kg/ha", "D) 80-100 kg/ha"], a: 1 },
-            { q: "Beej bhandaran me tapman badhne par beej ki shvasan (respiration) dar par kya asar padta hai?", o: ["A) Ghat jati hai", "B) Badh jati hai", "C) Samaan rehti hai", "D) Ruk jati hai"], a: 1 },
-            { q: "Beej utpadan khet me pollination ke liye madhumakhiyo (Honey bees) ka upyog kin faslon me zaroori hai?", o: ["A) Gehu, Dhan", "B) Surajmukhi, Sarso", "C) Jowar, Bajra", "D) Makka"], a: 1 },
-            { q: "Cotton (Kapas) ke seed me upsthit zahreela tatva (toxic compound) kaun sa hai?", o: ["A) Gossypol", "B) Saponin", "C) Erucic acid", "D) Ricin"], a: 0 },
-            { q: "Khesari dal (Lathyrus) ke beej me kaun sa neurotoxin paya jata hai?", o: ["A) BOAA (Beta-N-Oxalylamino-L-alanine)", "B) HCN", "C) Gossypol", "D) Glucosinolate"], a: 0 },
-            { q: "Foundation seed utpadan hetu kitne percent genetic purity zaroori hai?", o: ["A) 98.0%", "B) 99.0%", "C) 99.5%", "D) 100%"], a: 2 },
-            { q: "Certified seed utpadan hetu minimum genetic purity kitni honi chahiye?", o: ["A) 95.0%", "B) 98.0%", "C) 99.0%", "D) 100%"], a: 2 }
+            { q: "बीज प्रतिस्थापन दर (Seed Replacement Rate - SRR) क्या दर्शाता है?", o: ["A) कुल बोया गया बीज / प्रमाणित बीज", "B) कितने प्रतिशत क्षेत्र में नया प्रमाणित बीज इस्तेमाल हुआ है", "C) बीज के फटने की दर", "D) नमी निकलने की दर"], a: 1 },
+            { q: "स्व-परागित (Self-pollinated) फसलों में SRR सामान्यतः कितने वर्ष में बदलनी चाहिए?", o: ["A) हर साल", "B) 3-4 साल में", "C) 10 साल में", "D) कभी नहीं"], a: 1 },
+            { q: "पर-परागित (Cross-pollinated) फसलों में SRR सामान्यतः कितने वर्ष में बदलनी चाहिए?", o: ["A) हर साल", "B) 3 साल में", "C) 8 साल में", "D) 12 साल में"], a: 0 },
+            { q: "संकर (Hybrid) फसलों का बीज प्रतिस्थापन दर (SRR) कितना होना चाहिए?", o: ["A) 33%", "B) 50%", "C) 75%", "D) 100%"], a: 3 },
+            { q: "बीज उत्पादन में 'रोगिंग' (Rouging) कब करनी चाहिए?", o: ["A) सिर्फ फूल आने से पहले", "B) फूल आने पर", "C) फसल पकने पर", "D) फसलों की सभी अवस्थाओं पर आवश्यकतानुसार"], a: 3 },
+            { q: "रोगिंग करते समय किन पौधों को निकालना चाहिए?", o: ["A) अवांछित प्रकार (Off-types)", "B) रोगग्रस्त पौधे (Diseased plants)", "C) खरपतवार (Weed plants)", "D) उपरोक्त सभी"], a: 3 },
+            { q: "राष्ट्रीय बीज परियोजना (NSP) किस वर्ष शुरू की गई थी?", o: ["A) 1969", "B) 1976", "C) 1983", "D) 1990"], a: 1 },
+            { q: "नई बीज नीति (New Seed Policy) कब आई थी?", o: ["A) 1988", "B) 1999", "C) 2002", "D) 2010"], a: 0 },
+            { q: "बीज नियंत्रण आदेश (Seed Control Order) किस वर्ष जारी किया गया था?", o: ["A) 1966", "B) 1968", "C) 1983", "D) 1989"], a: 2 },
+            { q: "PPV & FRA (पौध किस्म और कृषक अधिकार संरक्षण अधिनियम) कब पारित हुआ था?", o: ["A) 1999", "B) 2001", "C) 2005", "D) 2010"], a: 1 },
+            { q: "PPV & FRA का मुख्यालय कहाँ स्थित है?", o: ["A) नई दिल्ली", "B) हैदराबाद", "C) पुणे", "D) चेन्नई"], a: 0 },
+            { q: "बीज प्रमाणीकरण (Seed Certification) संस्था किसके अंतर्गत आती है?", o: ["A) केंद्र सरकार", "B) राज्य सरकार (State Government)", "C) प्राइवेट कंपनियां", "D) एनजीओ"], a: 1 },
+            { q: "SSC का पूर्ण रूप (Full form) क्या है?", o: ["A) State Seed Corporation (राज्य बीज निगम)", "B) State Seed Committee", "C) State Seed Certification", "D) Standard Seed Company"], a: 0 },
+            { q: "बीज की सुप्तावस्था (Dormancy) मापने के लिए कौन सा परीक्षण किया जाता है?", o: ["A) अंकुरण परीक्षण", "B) टेट्राजोलियम टेस्ट (TZ test)", "C) नमी परीक्षण", "D) ग्रो आउट टेस्ट"], a: 1 },
+            { q: "बीज प्रौद्योगिकी (Seed Technology) के अनुसार, बीज क्या है?", o: ["A) परिपक्व बीजांड (Ripened ovule)", "B) परिपक्व अंडाशय (Ripened ovary)", "C) पत्ती की कली", "D) तने की कटिंग"], a: 0 },
+            { q: "द्विबीजपत्री (Dicot) बीज में भ्रूण (Embryo) को पोषण कहाँ से मिलता है?", o: ["A) भ्रूणपोष (Endosperm)", "B) बीजपत्र (Cotyledons)", "C) बीजावरण", "D) मूलांकुर"], a: 1 },
+            { q: "एकबीजपत्री (Monocot) बीज में भ्रूण को पोषण कहाँ से मिलता है?", o: ["A) बीजपत्र", "B) भ्रूणपोष (Endosperm)", "C) बीजावरण", "D) प्रांकुर"], a: 1 },
+            { q: "बीज के बाहरी आवरण (Outer coat) को क्या कहते हैं?", o: ["A) टेगमेन (Tegmen)", "B) टेस्टा (Testa)", "C) हाइलम", "D) माइक्रोपाइल"], a: 1 },
+            { q: "बीज के भीतरी आवरण (Inner coat) को क्या कहते हैं?", o: ["A) टेस्टा", "B) टेगमेन (Tegmen)", "C) कोलियोप्टाइल", "D) मूलांकुर"], a: 1 },
+            { q: "भ्रूण (Embryo) का कौन सा भाग जड़ (root) बनाता है?", o: ["A) प्रांकुर", "B) मूलांकुर (Radicle)", "C) बीजपत्र", "D) भ्रूणपोष"], a: 1 },
+            { q: "भ्रूण का कौन सा भाग तना (shoot) बनाता है?", o: ["A) मूलांकुर", "B) प्रांकुर (Plumule)", "C) टेस्टा", "D) हाइलम"], a: 1 },
+            { q: "आलू के TPS (True Potato Seed) की बीज दर कितनी है?", o: ["A) 50-100 ग्राम/हेक्टेयर", "B) 100-150 ग्राम/हेक्टेयर", "C) 500 ग्राम/हेक्टेयर", "D) 1 किलो/हेक्टेयर"], a: 1 },
+            { q: "तोरिया (Mustard) के प्रमाणित बीज प्लॉट के लिए कितनी पृथक्करण दूरी (isolation) होनी चाहिए?", o: ["A) 50m", "B) 100m", "C) 200m", "D) 400m"], a: 1 },
+            { q: "तिल (Sesame) के आधार बीज के लिए पृथक्करण दूरी कितनी होती है?", o: ["A) 50m", "B) 100m", "C) 200m", "D) 400m"], a: 1 },
+            { q: "अरहर (Pigeon pea) के आधार बीज के लिए पृथक्करण दूरी कितनी होती है?", o: ["A) 100m", "B) 200m", "C) 400m", "D) 500m"], a: 1 },
+            { q: "बीज सुषुप्तावस्था (Dormancy) का मुख्य कारण क्या हो सकता है?", o: ["A) कठोर बीजावरण (Hard seed coat)", "B) अपरिपक्व भ्रूण", "C) अवरोधकों की उपस्थिति (Inhibitors)", "D) उपरोक्त सभी"], a: 3 },
+            { q: "जिब्बेरेलिन के अलावा कौन सा रसायन बीज की सुषुप्तावस्था तोड़ने में मदद करता है?", o: ["A) पोटेशियम नाइट्रेट (KNO3)", "B) सोडियम क्लोराइड", "C) कॉपर सल्फेट", "D) जिंक सल्फेट"], a: 0 },
+            { q: "थायोयूरिया (Thiourea) का उपयोग बीज में किसलिए किया जाता है?", o: ["A) सुषुप्तावस्था (Dormancy) तोड़ने के लिए", "B) नमी कम करने के लिए", "C) फफूंद मारने के लिए", "D) वजन बढ़ाने के लिए"], a: 0 },
+            { q: "बीज प्रौद्योगिकी में 'डेसीकेंट' (Desiccant) का क्या कार्य है?", o: ["A) बीज में नमी बढ़ाना", "B) बीज से नमी सोखना (Absorb moisture)", "C) बीज को रंगना", "D) बीज की सुषुप्तावस्था बढ़ाना"], a: 1 },
+            { q: "सिलिका जेल (Silica gel) का उपयोग बीज भंडारण में किस रूप में होता है?", o: ["A) उर्वरक", "B) फफूंदनाशी", "C) डेसीकेंट (नमी सोखने वाला)", "D) हार्मोन"], a: 2 },
+            { q: "शुद्धता विश्लेषण में बचा हुआ अंश जो बीज नहीं होता, उसे क्या कहते हैं?", o: ["A) शुद्ध बीज", "B) अन्य फसल का बीज", "C) अक्रिय पदार्थ (Inert matter)", "D) खरपतवार बीज"], a: 2 },
+            { q: "खरपतवार का बीज शुद्धता विश्लेषण में किस श्रेणी में आता है?", o: ["A) शुद्ध बीज", "B) अक्रिय पदार्थ", "C) खरपतवार बीज (Weed seed)", "D) अन्य फसल का बीज"], a: 2 },
+            { q: "ग्रो आउट टेस्ट (GOT) में कितने पौधे चेक किए जाते हैं (सामान्यतः न्यूनतम)?", o: ["A) 100", "B) 400", "C) 1000", "D) 5000"], a: 1 },
+            { q: "प्रमाणित बीज पर जो नीला (Azure Blue) टैग लगता है, उसकी लंबाई और चौड़ाई कितनी होती है?", o: ["A) 10 x 5 सेमी", "B) 15 x 7.5 सेमी", "C) 20 x 10 सेमी", "D) 12 x 6 सेमी"], a: 1 },
+            { q: "बीज प्रमाणीकरण (Certification) का प्राथमिक उद्देश्य क्या है?", o: ["A) बीज का वजन बढ़ाना", "B) किसानों को उच्च गुणवत्ता का बीज उपलब्ध कराना", "C) बीज की कीमत बढ़ाना", "D) बीज की नमी बढ़ाना"], a: 1 },
+            { q: "प्रमाणीकरण एजेंसी फसल की खेत में जाँच (Inspection) कितनी बार करती है?", o: ["A) फसल की आवश्यकता अनुसार (2 से 4 बार)", "B) सिर्फ एक बार", "C) सिर्फ कटाई के समय", "D) कभी नहीं"], a: 0 },
+            { q: "बीज गुणन अनुपात (Seed Multiplication Ratio) गेहूं के लिए लगभग कितना है?", o: ["A) 1:20", "B) 1:50", "C) 1:100", "D) 1:200"], a: 0 },
+            { q: "बीज गुणन अनुपात बाजरा (Pearl millet) के लिए लगभग कितना है?", o: ["A) 1:20", "B) 1:50", "C) 1:100", "D) 1:200"], a: 3 },
+            { q: "राष्ट्रीय बीज अनुसंधान एवं प्रशिक्षण केंद्र (NSRTC) कहाँ स्थित है?", o: ["A) नई दिल्ली", "B) वाराणसी", "C) बैंगलोर", "D) हैदराबाद"], a: 1 },
+            { q: "ICAR-भारतीय बीज विज्ञान संस्थान (IISS) कहाँ स्थित है?", o: ["A) मऊ (UP)", "B) कानपुर", "C) लखनऊ", "D) मेरठ"], a: 0 },
+            { q: "बीजों को ठंडे और नम (moist) तापमान पर रखकर सुषुप्तावस्था तोड़ने को क्या कहते हैं?", o: ["A) स्ट्रैटिफिकेशन (Stratification)", "B) स्कैरिफिकेशन", "C) वर्नेलाइजेशन", "D) प्राइमिंग"], a: 0 },
+            { q: "बीज की अवस्था सुधारने के लिए पानी/रसायन में भिगोकर सुखाने की क्रिया क्या कहलाती है?", o: ["A) सीड ड्रेसिंग", "B) सीड प्राइमिंग (Seed Priming)", "C) सीड कोटिंग", "D) सीड पेलेटिंग"], a: 1 },
+            { q: "धान (Paddy) में सुषुप्तावस्था (Dormancy) सामान्यतः कितने दिन की होती है?", o: ["A) 0 दिन", "B) 15-30 दिन", "C) 6 महीने", "D) 2 साल"], a: 1 },
+            { q: "कपास (देसी/अमेरिकन) में बीज दर (Seed rate) लगभग कितनी होती है?", o: ["A) 5-6 किलो/हेक्टेयर", "B) 15-20 किलो/हेक्टेयर", "C) 40-50 किलो/हेक्टेयर", "D) 80-100 किलो/हेक्टेयर"], a: 1 },
+            { q: "बीज भंडारण में तापमान बढ़ने पर बीज की श्वसन (Respiration) दर पर क्या असर पड़ता है?", o: ["A) घट जाती है", "B) बढ़ जाती है", "C) समान रहती है", "D) रुक जाती है"], a: 1 },
+            { q: "बीज उत्पादन खेत में परागण (Pollination) के लिए मधुमक्खियों का उपयोग किन फसलों में ज़रूरी है?", o: ["A) गेहूं, धान", "B) सूरजमुखी, सरसों", "C) ज्वार, बाजरा", "D) मक्का"], a: 1 },
+            { q: "कपास (Cotton) के बीज में उपस्थित ज़हरीला तत्व (toxic compound) कौन सा है?", o: ["A) गॉसीपोल (Gossypol)", "B) सैपोनिन", "C) इरुसिक एसिड", "D) राइसिन"], a: 0 },
+            { q: "खेसारी दाल (Lathyrus) के बीज में कौन सा न्यूरोटॉक्सिन पाया जाता है?", o: ["A) BOAA (Beta-N-Oxalylamino-L-alanine)", "B) HCN", "C) गॉसीपोल", "D) ग्लूकोसिनोलेट"], a: 0 },
+            { q: "आधार बीज (Foundation seed) उत्पादन हेतु कितने प्रतिशत आनुवंशिक शुद्धता ज़रूरी है?", o: ["A) 98.0%", "B) 99.0%", "C) 99.5%", "D) 100%"], a: 2 },
+            { q: "प्रमाणित बीज उत्पादन हेतु न्यूनतम आनुवंशिक शुद्धता कितनी होनी चाहिए?", o: ["A) 95.0%", "B) 98.0%", "C) 99.0%", "D) 100%"], a: 2 }
         ];
 
         const allTests = [test1Data, test2Data, test3Data];
@@ -515,13 +562,13 @@
             
             if(perc >= 80) {
                 h.innerText = "👑 Ultimate Seed Tech Topper!";
-                m.innerText = "Kya baat hai! Aapne is test mein kamaal kar diya. Aap kal ke exam mein pakka top karne wale hain!";
+                m.innerText = "क्या बात है! आपने इस टेस्ट में कमाल कर दिया। आप कल के एग्जाम में पक्का टॉप करने वाले हैं!";
             } else if(perc >= 50) {
                 h.innerText = "✨ Superb Effort!";
-                m.innerText = "Bahut badiya! Aapke maximum concepts clear hain. Jo questions red huye, unhe ek baar dhyan mein rakhiye, aapka selection tay hai!";
+                m.innerText = "बहुत बढ़िया! आपके मैक्सिमम कांसेप्ट क्लियर हैं। जो सवाल गलत हुए हैं, उन्हें एक बार ध्यान में रखें, आपका सिलेक्शन तय है!";
             } else {
                 h.innerText = "📚 Keep Learning!";
-                m.innerText = "Koi baat nahi! Galtiyon se hi seekhte hain. Ab aapko saare sahi green answers pata chal gaye hain. Inhe yaad rakhiye aur exam mein fod dijiye!";
+                m.innerText = "कोई बात नहीं! गलतियों से ही सीखते हैं। अब आपको सारे सही ग्रीन आंसर पता चल गए हैं। इन्हें याद रखिए और एग्जाम में फोड़ दीजिए!";
             }
         }
 

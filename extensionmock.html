@@ -3,116 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ag. Extension Education MJPRU Mock Test - Razaagripoint</title>
+    <title>Extension Education Mock Test - Premium Edition</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary: #1e88e5;
-            --primary-light: #64b5f6;
-            --dark: #0d47a1;
+            --primary: #00b09b;
+            --primary-dark: #00838f;
             --accent: #ffb300;
-            --bg: #e3f2fd;
+            --bg-gradient: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%);
             --white: #ffffff;
-            --text: #2c3e50;
-            --shadow: 0 10px 30px rgba(13, 71, 161, 0.1);
+            --text-dark: #1a202c;
+            --text-gray: #4a5568;
+            --correct-bg: #c6f6d5;
+            --correct-border: #38a169;
+            --correct-text: #22543d;
+            --wrong-bg: #fed7d7;
+            --wrong-border: #e53e3e;
+            --wrong-text: #742a2a;
+            --shadow: 0 20px 40px rgba(0, 131, 143, 0.15);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
+        body { background: var(--bg-gradient); color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
 
-        /* --- Navbar --- */
-        nav { background: var(--white); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
-        .logo { color: var(--primary); font-size: 24px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .exit-btn { background: #fff3e0; color: #e65100; text-decoration: none; padding: 8px 20px; border-radius: 20px; font-weight: 600; font-size: 14px; transition: 0.3s; border: 1px solid #ffe0b2; }
-        .exit-btn:hover { background: #e65100; color: var(--white); }
+        /* Background Blobs */
+        .blob { position: fixed; border-radius: 50%; filter: blur(60px); z-index: -1; animation: floatBlob 10s infinite alternate; }
+        .blob-1 { width: 300px; height: 300px; background: rgba(0, 176, 155, 0.3); top: -100px; left: -100px; }
+        .blob-2 { width: 400px; height: 400px; background: rgba(255, 179, 0, 0.2); bottom: -150px; right: -100px; animation-delay: 2s; }
+        @keyframes floatBlob { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(50px, 50px) scale(1.1); } }
 
-        /* --- Main Layout Container --- */
-        .container { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 30px 20px; }
-        .quiz-card { background: var(--white); width: 100%; max-width: 800px; border-radius: 24px; box-shadow: var(--shadow); padding: 40px; position: relative; overflow: hidden; border: 1px solid rgba(0,0,0,0.03); }
+        /* Navbar */
+        nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-bottom: 1px solid rgba(255,255,255,0.5); }
+        .logo { color: var(--primary-dark); font-size: 24px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .exit-btn { background: #ffebee; color: #d32f2f; text-decoration: none; padding: 8px 20px; border-radius: 20px; font-weight: 600; font-size: 14px; transition: 0.3s; border: 1px solid #ffcdd2; }
+        .exit-btn:hover { background: #d32f2f; color: var(--white); }
 
-        /* --- 1. Language Screen --- */
+        /* Layout Container */
+        .container { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px; z-index: 1; }
+        .quiz-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); width: 100%; max-width: 900px; border-radius: 30px; box-shadow: var(--shadow); padding: 50px; position: relative; border: 1px solid rgba(255,255,255,0.8); }
+
+        /* --- 1. Multi-Test Welcome Screen --- */
         .lang-screen { text-align: center; }
-        .lang-screen i.main-icon { font-size: 60px; color: var(--primary-light); margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
-        .lang-screen h1 { font-size: 32px; color: var(--dark); font-weight: 800; margin-bottom: 10px; }
-        .lang-screen p { color: #666; margin-bottom: 40px; font-size: 16px; }
-        .lang-btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 500px; margin: 0 auto; }
-        .lang-btn { background: var(--white); border: 2px solid #e0e0e0; border-radius: 16px; padding: 25px 20px; font-size: 18px; font-weight: 700; color: var(--dark); cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .lang-btn:hover { border-color: var(--primary-light); background: #e3f2fd; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(13,71,161,0.1); }
-        .lang-btn span { font-size: 13px; color: #777; font-weight: 400; }
+        .welcome-badge { background: linear-gradient(90deg, #ff9800, #ffb300); color: #fff; padding: 8px 25px; border-radius: 30px; font-weight: 800; font-size: 14px; display: inline-block; margin-bottom: 15px; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.3); }
+        .lang-screen i.main-icon { font-size: 70px; background: -webkit-linear-gradient(var(--primary-dark), var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; filter: drop-shadow(0 10px 10px rgba(0, 131, 143, 0.2)); animation: bounceIcon 3s ease-in-out infinite; }
+        .lang-screen h1 { font-size: 38px; color: var(--primary-dark); font-weight: 800; margin-bottom: 10px; }
+        .lang-screen p { color: var(--text-gray); margin-bottom: 35px; font-size: 16px; line-height: 1.6; max-width: 650px; margin-left: auto; margin-right: auto; }
+        @keyframes bounceIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        /* THE PREMIUM TEST SELECTION CARDS */
+        .test-options-container { display: flex; flex-direction: column; gap: 20px; max-width: 750px; margin: 0 auto; }
+        
+        .test-selection-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 20px 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .test-selection-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+        
+        .t-card-1 { border-color: #ffb300; background: linear-gradient(to right, #ffffff, #fffdf2); }
+        .t-card-2 { border-color: #00b09b; background: linear-gradient(to right, #ffffff, #e0f2f1); }
+        .t-card-3 { border-color: #ab47bc; background: linear-gradient(to right, #ffffff, #f3e5f5); }
+        
+        .t-card-1::before { content: 'RECOMMENDED'; position: absolute; top: 12px; right: -35px; background: #ffb300; color: #fff; font-size: 11px; font-weight: 900; padding: 5px 40px; transform: rotate(45deg); letter-spacing: 1px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+
+        .t-icon-box { width: 75px; height: 75px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 32px; color: #fff; flex-shrink: 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .t-icon-1 { background: linear-gradient(135deg, #ffb300, #ff8f00); }
+        .t-icon-2 { background: linear-gradient(135deg, #00b09b, #00838f); }
+        .t-icon-3 { background: linear-gradient(135deg, #ab47bc, #6a1b9a); }
+
+        .t-details { flex-grow: 1; text-align: left; padding: 0 25px; }
+        .t-details h3 { font-size: 22px; color: var(--text-dark); margin-bottom: 5px; font-weight: 800; }
+        .t-details p { font-size: 15px; color: var(--text-gray); font-weight: 500; margin: 0; }
+
+        .t-start-btn { padding: 14px 30px; border-radius: 15px; font-size: 16px; font-weight: 800; color: #fff; border: none; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.2); white-space: nowrap; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+        .t-start-btn:hover { transform: scale(1.05); }
+        .t-btn-1 { background: linear-gradient(135deg, #ffb300, #ff8f00); }
+        .t-btn-2 { background: linear-gradient(135deg, #00b09b, #00838f); }
+        .t-btn-3 { background: linear-gradient(135deg, #ab47bc, #6a1b9a); }
+
+        @media (max-width: 700px) {
+            .test-selection-card { flex-direction: column; text-align: center; gap: 15px; padding: 25px 20px; }
+            .t-details { padding: 0; text-align: center; }
+            .t-card-1::before { display: none; }
+        }
 
         /* --- 2. Quiz Screen --- */
         .quiz-screen { display: none; }
-        .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid #f0f0f0; padding-bottom: 15px; }
-        .q-count { font-weight: 700; color: var(--primary); background: #e3f2fd; padding: 4px 15px; border-radius: 15px; font-size: 14px; }
+        .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid #edf2f7; padding-bottom: 15px; }
+        .q-count { font-weight: 800; color: var(--white); background: var(--primary-dark); padding: 6px 20px; border-radius: 20px; font-size: 15px; box-shadow: 0 4px 10px rgba(0, 131, 143, 0.2); }
+        .test-title-indicator { font-weight: 800; color: #ff8f00; font-size: 18px; text-transform: uppercase; background: #fff8e1; padding: 5px 15px; border-radius: 10px; border: 1px solid #ffe082;}
         
-        .progress-container { width: 100%; background: #eee; height: 8px; border-radius: 4px; margin-bottom: 30px; overflow: hidden; }
-        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary-light), var(--primary)); width: 0%; transition: width 0.3s ease; }
+        .progress-container { width: 100%; background: #e2e8f0; height: 10px; border-radius: 5px; margin-bottom: 30px; overflow: hidden; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-dark)); width: 0%; transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
 
-        .question-text { font-size: 22px; font-weight: 700; color: var(--dark); margin-bottom: 25px; line-height: 1.4; }
+        .question-text { font-size: 24px; font-weight: 700; color: var(--text-dark); margin-bottom: 30px; line-height: 1.5; }
+        .options-grid { display: flex; flex-direction: column; gap: 15px; margin-bottom: 35px; }
         
-        .options-grid { display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px; }
-        .option { background: #fdfdfd; border: 2px solid #f0f0f0; border-radius: 14px; padding: 18px 25px; font-size: 16px; font-weight: 500; text-align: left; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: space-between; }
-        .option:hover { background: #e3f2fd; border-color: #bbdefb; }
-        .option.selected { background: #e3f2fd; border-color: var(--primary-light); color: var(--dark); font-weight: 600; }
+        .option { background: var(--white); border: 2px solid #e2e8f0; border-radius: 16px; padding: 20px 25px; font-size: 17px; font-weight: 600; text-align: left; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: space-between; color: var(--text-gray); box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .option:not(.locked):hover { background: #f7fafc; border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0, 131, 143, 0.1); color: var(--primary-dark); }
+        .option.correct { background: var(--correct-bg) !important; border-color: var(--correct-border) !important; color: var(--correct-text) !important; box-shadow: 0 0 15px rgba(56, 161, 105, 0.4) !important; }
+        .option.wrong { background: var(--wrong-bg) !important; border-color: var(--wrong-border) !important; color: var(--wrong-text) !important; box-shadow: 0 0 15px rgba(229, 62, 62, 0.4) !important; }
+        
+        .anim-pop { animation: popGlow 0.5s ease-out forwards; }
+        .anim-shake { animation: shake 0.4s ease-in-out forwards; }
+        @keyframes popGlow { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 50% { transform: translateX(8px); } 75% { transform: translateX(-8px); } }
 
-        .quiz-footer { display: flex; justify-content: space-between; align-items: center; }
-        .nav-btn { background: var(--primary); color: var(--white); border: none; padding: 14px 35px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; }
-        .nav-btn:hover { background: var(--dark); transform: translateY(-2px); }
-        .nav-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+        .quiz-footer { display: flex; justify-content: flex-end; align-items: center; }
+        .nav-btn { background: var(--primary-dark); color: var(--white); border: none; padding: 15px 40px; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; box-shadow: 0 5px 15px rgba(0, 131, 143, 0.2); }
+        .nav-btn:hover { background: #006064; transform: translateY(-2px); }
+        .nav-btn:disabled { background: #cbd5e0; color: #a0aec0; cursor: not-allowed; transform: none; box-shadow: none; }
 
         /* --- 3. Result Screen --- */
         .result-screen { display: none; text-align: center; }
-        .result-screen .congrats-icon { font-size: 70px; color: var(--accent); margin-bottom: 20px; animation: bounce 2s infinite; }
-        .result-screen h2 { font-size: 36px; font-weight: 800; color: var(--dark); margin-bottom: 15px; }
-        .message-box { font-size: 18px; color: #555; max-width: 600px; margin: 0 auto 30px auto; line-height: 1.6; font-weight: 500; }
+        .result-screen .congrats-icon { font-size: 80px; color: var(--accent); margin-bottom: 20px; animation: bounceIcon 2s infinite; filter: drop-shadow(0 10px 10px rgba(255,179,0,0.3)); }
+        .result-screen h2 { font-size: 40px; font-weight: 800; color: var(--primary-dark); margin-bottom: 15px; }
+        .message-box { font-size: 18px; color: var(--text-gray); max-width: 600px; margin: 0 auto 30px auto; line-height: 1.6; font-weight: 500; }
         
-        .score-circle { width: 160px; height: 160px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-light), var(--primary)); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 40px auto; box-shadow: 0 10px 25px rgba(13,71,161,0.3); }
-        .score-circle h1 { font-size: 46px; font-weight: 800; line-height: 1; }
-        .score-circle span { font-size: 14px; opacity: 0.8; font-weight: 500; text-transform: uppercase; margin-top: 5px; }
+        .score-circle { width: 180px; height: 180px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 30px auto; box-shadow: 0 15px 30px rgba(0, 131, 143, 0.4); border: 5px solid #e0f2f1; }
+        .score-circle h1 { font-size: 56px; font-weight: 800; line-height: 1; margin-bottom: 0; }
+        .score-circle span { font-size: 16px; opacity: 0.9; font-weight: 600; text-transform: uppercase; margin-top: 5px; }
 
-        .restart-btn { background: var(--accent); color: var(--dark); border: none; padding: 15px 40px; border-radius: 30px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(255,179,0,0.4); }
-        .restart-btn:hover { background: #ffa000; transform: scale(1.05); }
+        /* Certificate Box */
+        .cert-container { background: rgba(0, 131, 143, 0.04); border: 2px dashed var(--primary); padding: 30px; border-radius: 20px; margin-bottom: 35px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02); }
+        .cert-container h3 { color: var(--primary-dark); font-size: 20px; margin-bottom: 10px; font-weight: 700; }
+        .cert-input { width: 100%; max-width: 400px; padding: 14px 20px; border: 2px solid #b2dfdb; border-radius: 12px; font-size: 16px; font-weight: 600; text-align: center; margin-bottom: 15px; outline: none; transition: 0.3s; }
+        .cert-input:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(0,176,155,0.2); }
+        .cert-btn { background: linear-gradient(135deg, #ff9800, #ff5722); color: white; border: none; padding: 14px 35px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(255,87,34,0.3); display: inline-flex; align-items: center; gap: 10px; }
+        .cert-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255,87,34,0.4); }
 
-        /* --- Animations --- */
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-20px); } 60% { transform: translateY(-10px); } }
+        .restart-btn { background: #e2e8f0; color: var(--text-dark); border: none; padding: 15px 40px; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .restart-btn:hover { background: #cbd5e0; }
 
-        footer { text-align: center; padding: 25px; margin-top: auto; border-top: 1px solid #eee; background: #fff; }
+        footer { text-align: center; padding: 25px; margin-top: auto; border-top: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.7); backdrop-filter: blur(5px); z-index: 1; }
     </style>
 </head>
 <body>
 
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
     <nav>
         <a href="index.html" class="logo"><i class="fa-solid fa-users"></i> Razaagripoint</a>
-        <a href="semester2.html" class="exit-btn"><i class="fa-solid fa-xmark"></i> Exit Test</a>
+        <a href="index.html" class="exit-btn"><i class="fa-solid fa-xmark"></i> Exit</a>
     </nav>
 
     <div class="container">
         <div class="quiz-card">
             
             <div id="langScreen" class="lang-screen">
-                <i class="fa-solid fa-comments main-icon"></i>
-                <h1>Agricultural Extension Mock Test</h1>
-                <p>MJPRU Bareilly Syllabus Pattern • 50 Questions • 50 Marks</p>
+                <div class="welcome-badge">⭐ THE ULTIMATE TEST PORTAL</div>
+                <br>
+                <i class="fa-solid fa-bullhorn main-icon"></i>
+                <h1>Fundamentals of Agricultural Extension Education</h1>
+                <p>Welcome! Yahan aapko Extension Education aur Rural Sociology ke <b>150 Unique Questions</b> ke 3 alag-alag premium test milenge. Apni taiyari ke hisaab se test select karen!</p>
                 
-                <div class="lang-btn-grid">
-                    <button class="lang-btn" onclick="startQuiz('hi')">
-                        हिन्दी टेस्ट
-                        <span>कृषि प्रसार शिक्षा - हिंदी माध्यम</span>
-                    </button>
-                    <button class="lang-btn" onclick="startQuiz('en')">
-                        English Test
-                        <span>Ag. Extension - English Medium</span>
-                    </button>
+                <div class="test-options-container">
+                    <div class="test-selection-card t-card-1">
+                        <div class="t-icon-box t-icon-1"><i class="fa-solid fa-star"></i></div>
+                        <div class="t-details">
+                            <h3>YouTube Video Test</h3>
+                            <p>50 Most Expected Extension MCQs</p>
+                        </div>
+                        <button class="t-start-btn t-btn-1" onclick="startQuiz(1)">
+                            Start Test <i class="fa-solid fa-play"></i>
+                        </button>
+                    </div>
+
+                    <div class="test-selection-card t-card-2">
+                        <div class="t-icon-box t-icon-2"><i class="fa-solid fa-flask"></i></div>
+                        <div class="t-details">
+                            <h3>2nd Test (Advanced)</h3>
+                            <p>50 Fresh Teaching Methods MCQs</p>
+                        </div>
+                        <button class="t-start-btn t-btn-2" onclick="startQuiz(2)">
+                            Start Test <i class="fa-solid fa-play"></i>
+                        </button>
+                    </div>
+
+                    <div class="test-selection-card t-card-3">
+                        <div class="t-icon-box t-icon-3"><i class="fa-solid fa-award"></i></div>
+                        <div class="t-details">
+                            <h3>Mega Practice Test</h3>
+                            <p>50 Hard Communication & Sociology MCQs</p>
+                        </div>
+                        <button class="t-start-btn t-btn-3" onclick="startQuiz(3)">
+                            Start Test <i class="fa-solid fa-play"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
 
             <div id="quizScreen" class="quiz-screen">
                 <div class="quiz-header">
                     <span id="questionCount" class="q-count">Question 1 of 50</span>
+                    <span id="testTitleIndicator" class="test-title-indicator">YouTube Video Test</span>
                 </div>
                 
                 <div class="progress-container">
@@ -124,13 +220,12 @@
                 <div id="optionsGrid" class="options-grid"></div>
 
                 <div class="quiz-footer">
-                    <button id="prevBtn" class="nav-btn" onclick="prevQuestion()" disabled><i class="fa-solid fa-arrow-left"></i> Previous</button>
-                    <button id="nextBtn" class="nav-btn" onclick="nextQuestion()">Next <i class="fa-solid fa-arrow-right"></i></button>
+                    <button id="nextBtn" class="nav-btn" onclick="nextQuestion()" disabled>Next Question <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
 
             <div id="resultScreen" class="result-screen">
-                <div id="congratsIcon" class="congrats-icon"><i class="fa-solid fa-award"></i></div>
+                <div id="congratsIcon" class="congrats-icon"><i class="fa-solid fa-trophy"></i></div>
                 <h2 id="resultHeading">Great Job!</h2>
                 <div id="messageBox" class="message-box">Results loading...</div>
                 
@@ -139,139 +234,466 @@
                     <span>Out of 50</span>
                 </div>
 
-                <button class="restart-btn" onclick="restartQuiz()"><i class="fa-solid fa-rotate-right"></i> Retake Test</button>
+                <div class="cert-container">
+                    <h3>🏆 Download Your Topper Certificate</h3>
+                    <p style="font-size: 14px; color: var(--text-gray); margin-bottom: 15px;">Apna poora naam niche box mein likhein aur ek <b>Professional High-Quality Certificate</b> turant download karen:</p>
+                    <input type="text" id="studentName" class="cert-input" placeholder="Yahan Apna Naam Likhein">
+                    <br>
+                    <button class="cert-btn" onclick="generateCertificate()"><i class="fa-solid fa-file-arrow-down"></i> Get My Premium Certificate</button>
+                </div>
+
+                <button class="restart-btn" onclick="restartQuiz()"><i class="fa-solid fa-rotate-right"></i> Choose Another Test</button>
             </div>
 
         </div>
     </div>
 
+    <style>
+        .quick-facts-wrapper { max-width: 900px; margin: 40px auto; background: rgba(255, 255, 255, 0.95); border-radius: 20px; padding: 40px; box-shadow: 0 15px 35px rgba(0, 131, 143, 0.1); border: 2px solid #e0f2f1; z-index: 1; position: relative; }
+        .qf-header { text-align: center; margin-bottom: 30px; }
+        .qf-header h2 { font-size: 32px; color: #00838f; font-weight: 800; display: inline-flex; align-items: center; gap: 10px; }
+        .qf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 15px; }
+        .qf-item { background: #ffffff; border-left: 5px solid #00b09b; padding: 15px 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
+        .qf-item:hover { transform: translateX(5px); box-shadow: 0 6px 15px rgba(0,176,155,0.15); }
+        
+        /* Custom Border Colors */
+        .border-gold { border-left-color: #ffb300; }
+        .border-blue { border-left-color: #2196f3; }
+        .border-red { border-left-color: #e53935; }
+
+        .qf-question { font-size: 15px; font-weight: 600; color: #4a5568; max-width: 65%; line-height: 1.4; }
+        
+        .qf-answer { padding: 6px 12px; border-radius: 8px; font-size: 14px; font-weight: 800; text-align: right; border: 1px solid transparent; }
+        .ans-green { background: #e0f2f1; color: #00838f; border-color: #b2dfdb; }
+        .ans-gold { background: #fff8e1; color: #f57f17; border-color: #ffe082; }
+        .ans-blue { background: #e3f2fd; color: #1976d2; border-color: #bbdefb; }
+        .ans-red { background: #ffebee; color: #c62828; border-color: #ffcdd2; }
+        
+        @media (max-width: 600px) { .qf-item { flex-direction: column; text-align: center; gap: 10px; } .qf-question { max-width: 100%; } }
+    </style>
+
+    <div class="quick-facts-wrapper">
+        <div class="qf-header">
+            <h2><i class="fa-solid fa-bolt" style="color: #ffb300;"></i> Exam Booster: Top 15 One-Liners</h2>
+            <p style="color: #718096; font-size: 16px; font-weight: 500;">एग्ज़ाम से 10 मिनट पहले बस इसे पढ़ लेना, सीधे सवाल फसेंगे!</p>
+        </div>
+        <div class="qf-grid">
+            <div class="qf-item"><div class="qf-question">Extension शब्द किस भाषा से लिया गया है?</div><div class="qf-answer ans-green">लैटिन (Latin)</div></div>
+            <div class="qf-item border-gold"><div class="qf-question">प्रसार शिक्षा के जनक (भारत में)</div><div class="qf-answer ans-gold">डॉ. के. एन. सिंह</div></div>
+            <div class="qf-item"><div class="qf-question">प्रसार शिक्षा के जनक (विश्व में)</div><div class="qf-answer ans-green">जे. पी. लीगेन्स</div></div>
+            <div class="qf-item border-blue"><div class="qf-question">CDP (सामुदायिक विकास परियोजना) की शुरुआत</div><div class="qf-answer ans-blue">2 अक्टूबर 1952</div></div>
+            <div class="qf-item border-red"><div class="qf-question">इटावा पायलट प्रोजेक्ट (Etawah Pilot Project)</div><div class="qf-answer ans-red">अल्बर्ट मेयर (1948)</div></div>
+            <div class="qf-item border-red"><div class="qf-question">पहला KVK कहाँ स्थापित हुआ?</div><div class="qf-answer ans-red">पांडिचेरी (1974)</div></div>
+            <div class="qf-item"><div class="qf-question">KVK किस समिति की सिफारिश पर बना?</div><div class="qf-answer ans-green">मोहन सिंह मेहता समिति</div></div>
+            <div class="qf-item border-gold"><div class="qf-question">T & V (ट्रेनिंग एंड विजिट) प्रणाली के जनक</div><div class="qf-answer ans-gold">डेनियल बेनोर (Daniel Benor)</div></div>
+            <div class="qf-item border-blue"><div class="qf-question">परिणाम प्रदर्शन (Result Demonstration) के जनक</div><div class="qf-answer ans-blue">सीमैन ए. नैप (S. A. Knapp)</div></div>
+            <div class="qf-item border-gold"><div class="qf-question">नवाचार को सबसे पहले अपनाने वाले (Innovators)</div><div class="qf-answer ans-gold">2.5%</div></div>
+            <div class="qf-item border-red"><div class="qf-question">नवाचार को सबसे अंत में अपनाने वाले (Laggards)</div><div class="qf-answer ans-red">16%</div></div>
+            <div class="qf-item"><div class="qf-question">अनुभव का शंकु (Cone of Experience) किसने दिया?</div><div class="qf-answer ans-green">एडगर डेल (Edgar Dale)</div></div>
+            <div class="qf-item border-blue"><div class="qf-question">ATMA (आत्मा) किस स्तर पर कार्य करता है?</div><div class="qf-answer ans-blue">जिला स्तर (District Level)</div></div>
+            <div class="qf-item border-red"><div class="qf-question">ग्रामीण समाज की सबसे छोटी (मूल) इकाई</div><div class="qf-answer ans-red">परिवार (Family)</div></div>
+            <div class="qf-item border-gold"><div class="qf-question">पंचायती राज का शुभारम्भ कब हुआ?</div><div class="qf-answer ans-gold">2 अक्टूबर 1959 (नागौर)</div></div>
+        </div>
+    </div>
     <footer>
         <p style="font-size: 14px; color: #888;">Designed by <b>MUSHAHID RAZA</b> with ❤️ for BSc Agriculture Students</p>
     </footer>
 
     <script>
-        // High-Yield MJPRU Syllabus Questions for Ag. Extension Education
-        const quizData = {
-            en: [
-                { q: "The word 'Extension' is derived from which language?", o: ["Greek", "Latin", "French", "German"], a: 1 },
-                { q: "Who is considered as the Father of University Extension?", o: ["James Stuart", "J.P. Leagans", "Albert Mayer", "Seaman A. Knapp"], a: 0 },
-                { q: "Who is known as the Father of Agricultural Extension in India?", o: ["M.S. Swaminathan", "Dr. K.N. Singh", "S.K. Dey", "Albert Mayer"], a: 1 },
-                { q: "Etawah Pilot Project was started in 1948 under the leadership of:", o: ["Mahatma Gandhi", "Albert Mayer", "Spencer Hatch", "F.L. Brayne"], a: 1 },
-                { q: "Which project is associated with Spencer Hatch at Marthandam?", o: ["Marthandam Project", "Gurgaon Experiment", "Sriniketan Project", "Nilokheri Project"], a: 0 },
-                { q: "Sriniketan Project was initiated in 1920 by which famous personality?", o: ["Rabindranath Tagore", "Mahatma Gandhi", "Acharya Vinoba Bhave", "Jawaharlal Nehru"], a: 0 },
-                { q: "The famous 'Gurgaon Experiment' (1920) was started by:", o: ["F.L. Brayne", "Albert Mayer", "S.K. Dey", "James Stuart"], a: 0 },
-                { q: "The 'Nilokheri Experiment' was started primarily for the rehabilitation of displaced persons by:", o: ["S.K. Dey", "Albert Mayer", "Spencer Hatch", "F.L. Brayne"], a: 0 },
-                { q: "Which of the following is an individual contact method in extension?", o: ["Result Demonstration", "Farm and Home Visit", "Method Demonstration", "General Meeting"], a: 1 },
-                { q: "Which extension teaching method is classified as a Mass Contact Method?", o: ["Personal Letter", "Group Discussion", "Radio / Television", "Result Demonstration"], a: 2 },
-                { q: "The basic unit of development under the Community Development Programme (CDP) is:", o: ["Village", "Block", "District", "State"], a: 1 },
-                { q: "Community Development Programme (CDP) was launched in India on:", o: ["2nd October 1952", "15th August 1947", "26th January 1950", "2nd October 1953"], a: 0 },
-                { q: "The Training and Visit (T&V) system of extension was introduced in India by:", o: ["Daniel Benor", "J.P. Leagans", "Dr. M.H. Marigowda", "K.L. Chadha"], a: 0 },
-                { q: "According to Berlo's communication model, the dynamic sequence is represented as:", o: ["S-M-C-R", "S-R-M-C", "C-M-S-R", "M-S-C-R"], a: 0 },
-                { q: "Which type of evaluation is conducted at the end of a completed program?", o: ["Formative evaluation", "Summative evaluation", "Concurrent evaluation", "Ex-ante evaluation"], a: 1 }
-            ],
-            hi: [
-                { q: "एक्सटेंशन (Extension) शब्द की उत्पत्ति किस भाषा से हुई है?", o: ["ग्रीक", "लैटिन", "फ्रेंच", "जर्मन"], a: 1 },
-                { q: "यूनिवर्सिटी एक्सटेंशन (University Extension) का जनक किसे माना जाता है?", o: ["जेम्स स्टुअर्ट", "जे.पी. लीगन्स", "अल्बर्ट मेयर", "सीमैन ए. नैप"], a: 0 },
-                { q: "भारत में कृषि प्रसार (Agricultural Extension) का जनक किसे कहा जाता है?", o: ["एम.एस. स्वामीनाथन", "डॉ. के.एन. सिंह", "एस.के. डे", "अल्बर्ट मेयर"], a: 1 },
-                { q: "इटावा पायलट प्रोजेक्ट वर्ष 1948 में किसके नेतृत्व में शुरू किया गया था?", o: ["महात्मा गांधी", "अल्बर्ट मेयर", "स्पेंसर हैच", "एफ.एल. ब्रायने"], a: 1 },
-                { q: "मार्तण्डम (Marthandam) में ग्रामीण विकास कार्य से कौन जुड़े हुए थे?", o: ["स्पेंसर हैच", "अल्बर्ट मेयर", "रवींद्रनाथ टैगोर", "एफ.एल. ब्रायने"], a: 0 },
-                { q: "श्रीनिकेतन परियोजना (Sriniketan Project) वर्ष 1920 में किसके द्वारा शुरू की गई थी?", o: ["रवींद्रनाथ टैगोर", "महात्मा गांधी", "आचार्य विनोबा भावे", "जवाहरलाल नेहरू"], a: 0 },
-                { q: "प्रसिद्ध 'गुड़गांव प्रयोग' (1920) की शुरुआत किसके द्वारा की गई थी?", o: ["एफ.एल. ब्रायने", "अल्बर्ट मेयर", "एस.के. डे", "जेम्स स्टुअर्ट"], a: 0 },
-                { q: "विस्थापित व्यक्तियों के पुनर्वास के लिए 'नीलोखेड़ी प्रयोग' किसके द्वारा शुरू किया गया था?", o: ["एस.के. डे", "अल्बर्ट मेयर", "स्पेंसर हैच", "एफ.एल. ब्रायने"], a: 0 },
-                { q: "निम्नलिखित में से कौन सी प्रसार शिक्षण की व्यक्तिगत संपर्क (Individual Contact) विधि है?", o: ["परिणाम प्रदर्शन", "फार्म एवं गृह भ्रमण (Farm & Home Visit)", "विधि प्रदर्शन", "सामान्य सभा"], a: 1 },
-                { q: "किस प्रसार शिक्षण विधि को जन संपर्क (Mass Contact) विधि के रूप में वर्गीकृत किया गया है?", o: ["व्यक्तिगत पत्र", "सामूहिक चर्चा", "रेडियो / टेलीविजन", "परिणाम प्रदर्शन"], a: 2 },
-                { q: "सामुदायिक विकास कार्यक्रम (CDP) के तहत विकास की बुनियादी इकाई क्या होती है?", o: ["गांव", "ब्लॉक (विकास खंड)", "जिला", "राज्य"], a: 1 },
-                { q: "भारत में सामुदायिक विकास कार्यक्रम (CDP) की शुरुआत कब हुई थी?", o: ["2 अक्टूबर 1952", "15 अगस्त 1947", "26 जनवरी 1950", "2 अक्टूबर 1953"], a: 0 },
-                { q: "प्रसार की ट्रेनिंग एंड विजिट (T&V) प्रणाली भारत में किसके द्वारा लाई गई थी?", o: ["डेनियल बेनोर", "जे.पी. लीगन्स", "डॉ. एम.एच. मारीगौड़ा", "के.एल. चड्ढा"], a: 0 },
-                { q: "बर्लो (Berlo) के संचार मॉडल के अनुसार, सही क्रम क्या है?", o: ["S-M-C-R", "S-R-M-C", "C-M-S-R", "M-S-C-R"], a: 0 },
-                { q: "किसी कार्यक्रम की पूर्ण समाप्ति पर किया जाने वाला मूल्यांकन क्या कहलाता है?", o: ["रचनात्मक मूल्यांकन", "योगात्मक मूल्यांकन (Summative)", "समवर्ती मूल्यांकन", "पूर्व-मूल्यांकन"], a: 1 }
-            ]
-        };
+        // TEST 1: Extension Education Basics, History, Projects, Pre/Post Independence (50 Questions)
+        const test1Data = [
+            { q: "Extension (प्रसार) शब्द की उत्पत्ति किस भाषा से हुई है?", o: ["A) ग्रीक (Greek)", "B) लैटिन (Latin)", "C) फ्रेंच (French)", "D) अरबी (Arabic)"], a: 1 },
+            { q: "Extension शब्द किन दो लैटिन शब्दों से मिलकर बना है?", o: ["A) Ex + Tensio", "B) Extra + Tension", "C) Ex + Tendo", "D) Exo + Tense"], a: 0 },
+            { q: "विश्व में प्रसार शिक्षा (Extension Education) का जनक किसे कहा जाता है?", o: ["A) डॉ. के. एन. सिंह", "B) जे. पी. लीगेन्स (J. P. Leagans)", "C) सीमैन ए. नैप", "D) ओ. पी. दामा"], a: 1 },
+            { q: "भारत में प्रसार शिक्षा (Extension Education) का जनक किसे माना जाता है?", o: ["A) जे. पी. लीगेन्स", "B) डॉ. के. एन. सिंह", "C) एम. एस. स्वामीनाथन", "D) बी. पी. पाल"], a: 1 },
+            { q: "'Extension' शब्द का प्रयोग सबसे पहले कहाँ हुआ था?", o: ["A) अमेरिका में", "B) यूके (इंग्लैंड) में", "C) भारत में", "D) फ्रांस में"], a: 1 },
+            { q: "कैम्ब्रिज विश्वविद्यालय द्वारा 'Extension' शब्द का प्रयोग किस वर्ष में किया गया?", o: ["A) 1866", "B) 1873", "C) 1914", "D) 1952"], a: 1 },
+            { q: "सामुदायिक विकास परियोजना (Community Development Project - CDP) भारत में कब शुरू हुई?", o: ["A) 1947", "B) 1950", "C) 2 अक्टूबर 1952", "D) 1953"], a: 2 },
+            { q: "राष्ट्रीय विस्तार सेवा (National Extension Service - NES) की शुरुआत कब हुई?", o: ["A) 1950", "B) 1952", "C) 2 अक्टूबर 1953", "D) 1957"], a: 2 },
+            { q: "इटावा पायलट प्रोजेक्ट (Etawah Pilot Project) किसने शुरू किया था?", o: ["A) अल्बर्ट मेयर (Albert Mayer)", "B) एफ. एल. ब्रायन", "C) महात्मा गांधी", "D) स्पेंसर हैच"], a: 0 },
+            { q: "इटावा पायलट प्रोजेक्ट की शुरुआत किस वर्ष हुई थी?", o: ["A) 1942", "B) 1948", "C) 1952", "D) 1960"], a: 1 },
+            { q: "गुड़गाँव प्रोजेक्ट (Gurgaon Project) की शुरुआत 1920 में किसने की थी?", o: ["A) एफ. एल. ब्रायन (F. L. Brayne)", "B) रवींद्रनाथ टैगोर", "C) महात्मा गांधी", "D) अल्बर्ट मेयर"], a: 0 },
+            { q: "मार्तण्डम प्रोजेक्ट (Marthandam Project) 1921 में किसके द्वारा शुरू किया गया?", o: ["A) स्पेंसर हैच (Spencer Hatch)", "B) अल्बर्ट मेयर", "C) विनोबा भावे", "D) एस. के. डे"], a: 0 },
+            { q: "श्री निकेतन योजना (Sriniketan Project) 1920 में किसने शुरू की थी?", o: ["A) महात्मा गांधी", "B) रवींद्रनाथ टैगोर", "C) टी. प्रकाशम", "D) डेनियल बेनोर"], a: 1 },
+            { q: "सेवाग्राम प्रोजेक्ट (Sevagram Project) 1920 में किसने शुरू किया था?", o: ["A) एफ. एल. ब्रायन", "B) स्पेंसर हैच", "C) महात्मा गांधी", "D) अल्बर्ट मेयर"], a: 2 },
+            { q: "नीलोखेड़ी प्रोजेक्ट (Nilokheri Project) 1948 में किसके द्वारा शुरू किया गया था?", o: ["A) एस. के. डे (S. K. Dey)", "B) टी. प्रकाशम", "C) विनोबा भावे", "D) डॉ. वर्गीज कुरियन"], a: 0 },
+            { q: "नीलोखेड़ी प्रोजेक्ट को और किस नाम से जाना जाता है?", o: ["A) मज़दूर मंज़िल (Mazdoor Manzil)", "B) ग्राम उदय", "C) सर्वोदय", "D) आदर्श ग्राम"], a: 0 },
+            { q: "फिरका विकास योजना (Firka Development Scheme) 1946 में किसने शुरू की थी?", o: ["A) टी. प्रकाशम (T. Prakasam)", "B) महात्मा गांधी", "C) जवाहरलाल नेहरू", "D) एस. के. डे"], a: 0 },
+            { q: "भूदान आंदोलन (Bhoodan Movement) 1951 में किसने शुरू किया था?", o: ["A) महात्मा गांधी", "B) विनोबा भावे (Vinoba Bhave)", "C) जयप्रकाश नारायण", "D) एस. के. डे"], a: 1 },
+            { q: "भारत में पहला KVK (Krishi Vigyan Kendra) कहाँ स्थापित किया गया?", o: ["A) कानपुर", "B) नई दिल्ली", "C) पांडिचेरी (Pondicherry)", "D) नागपुर"], a: 2 },
+            { q: "भारत में पहला KVK किस वर्ष स्थापित किया गया?", o: ["A) 1965", "B) 1974", "C) 1980", "D) 1985"], a: 1 },
+            { q: "KVK (कृषि विज्ञान केंद्र) की स्थापना किस समिति की सिफारिश पर की गई थी?", o: ["A) बलवंत राय मेहता समिति", "B) मोहन सिंह मेहता समिति", "C) अशोक मेहता समिति", "D) जे. वी. के. राव समिति"], a: 1 },
+            { q: "पंचायती राज व्यवस्था भारत में सबसे पहले कहाँ लागू की गई थी?", o: ["A) नागौर (राजस्थान)", "B) आनंद (गुजरात)", "C) इटावा (यूपी)", "D) करनाल (हरियाणा)"], a: 0 },
+            { q: "पंचायती राज व्यवस्था का शुभारम्भ किस तिथि को हुआ था?", o: ["A) 15 अगस्त 1947", "B) 2 अक्टूबर 1959", "C) 26 जनवरी 1950", "D) 2 अक्टूबर 1952"], a: 1 },
+            { q: "भारत में त्रिस्तरीय (3-Tier) पंचायती राज प्रणाली की सिफारिश किसने की थी?", o: ["A) अशोक मेहता समिति", "B) बलवंत राय मेहता समिति", "C) स्वर्ण सिंह समिति", "D) सरकारीया आयोग"], a: 1 },
+            { q: "प्रसार शिक्षा (Extension Education) किस प्रकार की शिक्षा है?", o: ["A) औपचारिक (Formal)", "B) अनौपचारिक (Non-formal)", "C) नियमित (Regular)", "D) स्कूल आधारित"], a: 1 },
+            { q: "प्रसार शिक्षा का मुख्य उद्देश्य (Primary Objective) क्या है?", o: ["A) किसानों की आय बढ़ाना", "B) कृषि उत्पादन बढ़ाना", "C) लोगों का विकास (Development of people)", "D) तकनीक बेचना"], a: 2 },
+            { q: "T & V (Training and Visit) प्रणाली भारत में कब शुरू हुई?", o: ["A) 1965", "B) 1974", "C) 1980", "D) 1990"], a: 1 },
+            { q: "T & V प्रणाली (Training and Visit System) के जनक कौन हैं?", o: ["A) डेनियल बेनोर (Daniel Benor)", "B) जे. पी. लीगेन्स", "C) अल्बर्ट मेयर", "D) डॉ. वर्गीज कुरियन"], a: 0 },
+            { q: "Lab to Land Programme (प्रयोगशाला से खेत तक कार्यक्रम) किस वर्ष शुरू हुआ?", o: ["A) 1974", "B) 1979", "C) 1985", "D) 1999"], a: 1 },
+            { q: "Lab to Land Programme किसने शुरू किया था?", o: ["A) ICAR", "B) IARI", "C) NABARD", "D) Ministry of Agriculture"], a: 0 },
+            { q: "National Demonstration (राष्ट्रीय प्रदर्शन) कार्यक्रम कब शुरू किया गया?", o: ["A) 1964-65", "B) 1974-75", "C) 1980", "D) 1990"], a: 0 },
+            { q: "Grow More Food Campaign (अधिक अन्न उपजाओ अभियान) कब शुरू हुआ?", o: ["A) 1942", "B) 1947", "C) 1952", "D) 1965"], a: 0 },
+            { q: "हाई यील्डिंग वेराइटी प्रोग्राम (HYVP) भारत में कब शुरू हुआ?", o: ["A) 1952", "B) 1960", "C) 1966", "D) 1974"], a: 2 },
+            { q: "IRDP (Integrated Rural Development Programme) की शुरुआत कब हुई?", o: ["A) 1978-79", "B) 1980-81", "C) 1990", "D) 1999"], a: 0 },
+            { q: "TRYSEM (Training of Rural Youth for Self Employment) कब शुरू हुआ?", o: ["A) 1974", "B) 1979", "C) 1985", "D) 1990"], a: 1 },
+            { q: "TRYSEM योजना के अंतर्गत किस आयु वर्ग के युवाओं को ट्रेनिंग दी जाती थी?", o: ["A) 10-18 वर्ष", "B) 18-35 वर्ष", "C) 35-50 वर्ष", "D) 15-25 वर्ष"], a: 1 },
+            { q: "DWCRA (Development of Women and Children in Rural Areas) कब शुरू हुआ?", o: ["A) 1979", "B) 1982", "C) 1990", "D) 1995"], a: 1 },
+            { q: "NREGA (नरेगा) अधिनियम किस वर्ष पारित हुआ?", o: ["A) 2001", "B) 2005", "C) 2008", "D) 2010"], a: 1 },
+            { q: "SGSY (Swarnjayanti Gram Swarozgar Yojana) किस वर्ष शुरू की गई?", o: ["A) 1990", "B) 1995", "C) 1999", "D) 2005"], a: 2 },
+            { q: "ATMA (Agriculture Technology Management Agency) की शुरुआत कब हुई?", o: ["A) 1998", "B) 2005", "C) 2010", "D) 2015"], a: 1 },
+            { q: "ATMA (आत्मा) किस स्तर पर कार्य करने वाली संस्था है?", o: ["A) ग्राम स्तर", "B) ब्लॉक स्तर", "C) जिला स्तर (District level)", "D) राज्य स्तर"], a: 2 },
+            { q: "प्रसार शिक्षा का सिद्धांत (Principle of Extension) किस पर आधारित है?", o: ["A) करके सीखना (Learning by doing)", "B) देखकर विश्वास करना (Seeing is believing)", "C) दोनों A और B", "D) केवल रटना"], a: 2 },
+            { q: "Operational Research Project (ORP) ICAR द्वारा कब शुरू किया गया?", o: ["A) 1965", "B) 1974-75", "C) 1980", "D) 1990"], a: 1 },
+            { q: "Kisan Call Center (KCC) योजना किस वर्ष शुरू की गई थी?", o: ["A) 2000", "B) 2004", "C) 2010", "D) 2014"], a: 1 },
+            { q: "किसान कॉल सेंटर (KCC) का टोल फ्री नंबर (Toll-Free Number) क्या है?", o: ["A) 1800-180-1551", "B) 1800-111-1551", "C) 1800-120-1551", "D) 1800-180-1515"], a: 0 },
+            { q: "NDRI (National Dairy Research Institute) कहाँ स्थित है?", o: ["A) नई दिल्ली", "B) करनाल (हरियाणा)", "C) आनंद (गुजरात)", "D) इज्जतनगर (यूपी)"], a: 1 },
+            { q: "Operation Flood (ऑपरेशन फ्लड) किससे संबंधित है?", o: ["A) बाढ़ नियंत्रण", "B) दुग्ध उत्पादन (Milk Production)", "C) मछली पालन", "D) गेहूं उत्पादन"], a: 1 },
+            { q: "प्रसार का 'ग्रास-रूट' (Grass-root) स्तर का कार्यकर्ता कौन होता है?", o: ["A) BDO", "B) VLW (Village Level Worker)", "C) DDO", "D) CEO"], a: 1 },
+            { q: "सामुदायिक विकास (Community Development) का मुख्य तत्व क्या है?", o: ["A) सरकार की भागीदारी", "B) जन भागीदारी (People's participation)", "C) धन का निवेश", "D) विदेशी सहायता"], a: 1 },
+            { q: "भारत में प्रसार कार्य मुख्य रूप से किस मंत्रालय के अधीन आता है?", o: ["A) शिक्षा मंत्रालय", "B) कृषि एवं किसान कल्याण मंत्रालय", "C) ग्रामीण विकास मंत्रालय", "D) पंचायत मंत्रालय"], a: 1 }
+        ];
 
-        // Standard 50-questions array generation loop preserving clean structure
-        function fillTo50() {
-            ['en', 'hi'].forEach(l => {
-                const base = [...quizData[l]];
-                while(quizData[l].length < 50) {
-                    const temp = base[quizData[l].length % base.length];
-                    quizData[l].push({...temp});
-                }
-            });
-        }
-        fillTo50();
+        // TEST 2: Extension Teaching Methods, Audio-Visual Aids, Program Planning (50 Questions)
+        const test2Data = [
+            { q: "Extension Teaching Methods (प्रसार शिक्षण विधियां) मुख्य रूप से कितने प्रकार की होती हैं?", o: ["A) 2", "B) 3 (Individual, Group, Mass)", "C) 4", "D) 5"], a: 1 },
+            { q: "खेत और घर पर जाकर मिलना (Farm and Home Visit) किस संपर्क विधि का उदाहरण है?", o: ["A) व्यक्तिगत संपर्क (Individual Contact)", "B) समूह संपर्क (Group Contact)", "C) जन संपर्क (Mass Contact)", "D) कोई नहीं"], a: 0 },
+            { q: "टेलीफोन कॉल (Telephone Call) किस विधि के अंतर्गत आता है?", o: ["A) Group Contact", "B) Mass Contact", "C) Individual Contact", "D) Audio-Visual"], a: 2 },
+            { q: "प्रदर्शन (Demonstration) मुख्य रूप से कितने प्रकार का होता है?", o: ["A) 2 (Method & Result)", "B) 3", "C) 4", "D) 5"], a: 0 },
+            { q: "विधि प्रदर्शन (Method Demonstration) का जनक किसे कहा जाता है?", o: ["A) जे. पी. लीगेन्स", "B) सीमैन ए. नैप", "C) डॉ. के. एन. सिंह", "D) उपर्युक्त कोई नहीं"], a: 1 },
+            { q: "परिणाम प्रदर्शन (Result Demonstration) के जनक कौन हैं?", o: ["A) जे. पी. लीगेन्स", "B) सीमैन ए. नैप (S. A. Knapp)", "C) डेनियल बेनोर", "D) अल्बर्ट मेयर"], a: 1 },
+            { q: "'करके दिखाना' (Showing how to do) किस प्रदर्शन का उद्देश्य है?", o: ["A) परिणाम प्रदर्शन", "B) विधि प्रदर्शन (Method Demonstration)", "C) जन प्रदर्शन", "D) प्रदर्शनी"], a: 1 },
+            { q: "नई तकनीक पुरानी तकनीक से बेहतर है, यह साबित करना किस प्रदर्शन का उद्देश्य है?", o: ["A) विधि प्रदर्शन", "B) परिणाम प्रदर्शन (Result Demonstration)", "C) अभियान", "D) संगोष्ठी"], a: 1 },
+            { q: "समूह संपर्क (Group Contact) विधि में आमतौर पर कितने लोग शामिल होते हैं?", o: ["A) 1-5", "B) 15-25", "C) 100-500", "D) लाखों लोग"], a: 1 },
+            { q: "फील्ड डे (Field Day) किस संपर्क विधि का उदाहरण है?", o: ["A) Individual Contact", "B) Group Contact", "C) Mass Contact", "D) Print Media"], a: 1 },
+            { q: "सिम्पोजियम (Symposium) और पैनल चर्चा (Panel discussion) किसके उदाहरण हैं?", o: ["A) Mass Contact", "B) Individual Contact", "C) Group Contact", "D) Visual Aid"], a: 2 },
+            { q: "रेडियो (Radio) और टेलीविज़न (TV) किस संपर्क विधि के अंतर्गत आते हैं?", o: ["A) Individual", "B) Group", "C) Mass Contact (जन संपर्क)", "D) Print"], a: 2 },
+            { q: "प्रदर्शनी (Exhibition) और अभियान (Campaign) किसके उदाहरण हैं?", o: ["A) Individual", "B) Group", "C) Mass Contact", "D) Written"], a: 2 },
+            { q: "सर्कुलर लेटर (Circular Letter) किस संपर्क विधि का हिस्सा है?", o: ["A) Individual Contact", "B) Group Contact", "C) Mass Contact", "D) Audio Aid"], a: 2 },
+            { q: "ऑडियो-विज़ुअल एड्स (Audio-Visual Aids) को किसने 'अनुभव का शंकु' (Cone of Experience) के रूप में दर्शाया था?", o: ["A) जे. पी. लीगेन्स", "B) अरस्तू", "C) एडगर डेल (Edgar Dale)", "D) शैनन और वीवर"], a: 2 },
+            { q: "फ्लैश कार्ड्स (Flash Cards) की एक सेट में आदर्श रूप से कितने कार्ड होने चाहिए?", o: ["A) 2-5", "B) 10-12", "C) 20-30", "D) 50-60"], a: 1 },
+            { q: "फ्लैश कार्ड्स का सबसे उपयुक्त आकार (Size) क्या होता है?", o: ["A) 10 x 12 इंच", "B) 20 x 24 इंच", "C) 5 x 7 इंच", "D) 30 x 40 इंच"], a: 0 },
+            { q: "पोस्टर (Poster) का मुख्य उद्देश्य क्या होता है?", o: ["A) पूरी जानकारी देना", "B) केवल ध्यान आकर्षित करना (To catch attention)", "C) करके दिखाना", "D) चर्चा करना"], a: 1 },
+            { q: "कठपुतली का खेल (Puppet Show) किस प्रकार की सामग्री (Aid) है?", o: ["A) Audio aid", "B) Visual aid", "C) Audio-Visual aid (श्रव्य-दृश्य सामग्री)", "D) Print media"], a: 2 },
+            { q: "टेप रिकॉर्डर (Tape Recorder) और पब्लिक एड्रेस सिस्टम (PA System) किसके उदाहरण हैं?", o: ["A) Audio aids (श्रव्य सामग्री)", "B) Visual aids", "C) Audio-Visual aids", "D) Print aids"], a: 0 },
+            { q: "ओवरहेड प्रोजेक्टर (OHP) किस प्रकार की सामग्री है?", o: ["A) Audio", "B) Projected Visual aid (प्रक्षेपित दृश्य सामग्री)", "C) Non-projected", "D) Audio-Visual"], a: 1 },
+            { q: "चार्ट्स (Charts), ग्राफ (Graphs) और बुलेटिन बोर्ड (Bulletin Board) किसके उदाहरण हैं?", o: ["A) Projected Visual", "B) Non-projected Visual aid", "C) Audio aid", "D) Mass media"], a: 1 },
+            { q: "कैंपेन (Campaign) का मुख्य उद्देश्य क्या होता है?", o: ["A) धीरे-धीरे जानकारी देना", "B) किसी विशेष समस्या पर कम समय में अधिक लोगों को जागरूक करना", "C) मनोरंजन करना", "D) शोध करना"], a: 1 },
+            { q: "किसान मेला (Kisan Mela) किस संपर्क विधि का हिस्सा है?", o: ["A) Individual", "B) Group", "C) Mass Contact", "D) None"], a: 2 },
+            { q: "लीफ्लेट (Leaflet) में आम तौर पर कितने पन्ने (Pages) होते हैं?", o: ["A) 1 पन्ना (Single folded sheet)", "B) 10-12 पन्ने", "C) 20-50 पन्ने", "D) 100 पन्ने"], a: 0 },
+            { q: "पैम्फलेट (Pamphlet) में कितने पन्ने होते हैं?", o: ["A) 1", "B) 2-12 पन्ने", "C) 50+", "D) 100+"], a: 1 },
+            { q: "बुलेटिन (Bulletin) में आम तौर पर कितने पन्ने होते हैं?", o: ["A) 1", "B) 2-12", "C) 12-50 पन्ने", "D) 100+"], a: 2 },
+            { q: "कार्यक्रम नियोजन (Program Planning) का पहला कदम (First Step) क्या है?", o: ["A) योजना बनाना", "B) तथ्यों को इकट्ठा करना (Collection of Facts)", "C) मूल्यांकन करना", "D) काम शुरू करना"], a: 1 },
+            { q: "प्रसार कार्यक्रम की सफलता जांचने के लिए अंतिम चरण (Last Step) क्या होता है?", o: ["A) उद्देश्य तय करना", "B) कार्ययोजना बनाना", "C) मूल्यांकन (Evaluation)", "D) पुनर्विचार"], a: 2 },
+            { q: "प्रसार कार्यक्रम नियोजन (Program Planning) की प्रक्रिया कैसी होनी चाहिए?", o: ["A) एकतरफा", "B) कठोर", "C) लचीली और निरंतर (Continuous & Flexible)", "D) केवल सरकार द्वारा निर्मित"], a: 2 },
+            { q: "किसानों को उनकी आवश्यकता के अनुसार शिक्षा देना कहलाता है?", o: ["A) Need-based approach (आवश्यकता आधारित दृष्टिकोण)", "B) Top-down approach", "C) Forceful approach", "D) None of these"], a: 0 },
+            { q: "PRA (Participatory Rural Appraisal) तकनीक का जनक किसे माना जाता है?", o: ["A) रॉबर्ट चैंबर्स (Robert Chambers)", "B) जे. पी. लीगेन्स", "C) ए. डब्ल्यू. वैन डेन बान", "D) डेनियल बेनोर"], a: 0 },
+            { q: "PRA (सहभागी ग्रामीण मूल्यांकन) का मुख्य उद्देश्य क्या है?", o: ["A) बाहरी लोगों द्वारा निर्णय लेना", "B) ग्रामीणों द्वारा खुद अपनी समस्याओं और संसाधनों का विश्लेषण करना", "C) सरकार द्वारा योजना थोपना", "D) केवल डेटा इकट्ठा करना"], a: 1 },
+            { q: "RRA (Rapid Rural Appraisal) में जानकारी कैसे इकट्ठा की जाती है?", o: ["A) बहुत धीमे", "B) बाहरी विशेषज्ञों द्वारा तेज़ी से (Quickly by outsiders)", "C) केवल किसानों द्वारा", "D) केवल सरपंच द्वारा"], a: 1 },
+            { q: "'Transect Walk' (खेतों/गाँव में घूमकर निरीक्षण) किस तकनीक का हिस्सा है?", o: ["A) T & V System", "B) PRA (Participatory Rural Appraisal)", "C) KVK", "D) ATMA"], a: 1 },
+            { q: "किसी भी प्रसार शिक्षा कार्यक्रम की धुरी (Central Point) कौन होता है?", o: ["A) प्रसार कार्यकर्ता", "B) किसान (Farmer/Learner)", "C) सरकार", "D) वैज्ञानिक"], a: 1 },
+            { q: "प्रसार कार्यकर्ता (Extension Worker) की भूमिका कैसी होती है?", o: ["A) तानाशाह", "B) शिक्षक और मार्गदर्शक (Facilitator/Guide)", "C) शासक", "D) मुनीम"], a: 1 },
+            { q: "कठपुतली शो (Puppetry) में मुख्य रूप से क्या प्रस्तुत किया जाता है?", o: ["A) वैज्ञानिक डेटा", "B) स्थानीय लोककथाओं के माध्यम से संदेश", "C) गणितीय समीकरण", "D) रासायनिक सूत्र"], a: 1 },
+            { q: "चॉक बोर्ड (Chalk Board) किस प्रकार का शिक्षण साधन है?", o: ["A) Audio", "B) Visual (दृश्य)", "C) Audio-Visual", "D) Projected"], a: 1 },
+            { q: "फिल्म प्रोजेक्टर किस प्रकार का साधन है?", o: ["A) Non-projected visual", "B) Projected Audio-Visual (प्रक्षेपित श्रव्य-दृश्य)", "C) Only Audio", "D) Only Print"], a: 1 },
+            { q: "कृषि विज्ञान केंद्र (KVK) का मुख्य कार्य क्या है?", o: ["A) बीज बेचना", "B) व्यावसायिक प्रशिक्षण (Vocational Training) देना", "C) ऋण (Loan) देना", "D) पंचायत चलाना"], a: 1 },
+            { q: "KVK 100% किसके द्वारा वित्तपोषित (Funded) संस्था है?", o: ["A) राज्य सरकार", "B) ICAR (भारतीय कृषि अनुसंधान परिषद)", "C) विश्व बैंक", "D) नाबार्ड"], a: 1 },
+            { q: "प्रसार शिक्षा में 'Motivation' (प्रेरणा) का क्या महत्व है?", o: ["A) यह सीखने की गति को बढ़ाता है", "B) यह किसानों को नई तकनीक अपनाने के लिए प्रेरित करता है", "C) दोनों A और B", "D) इसका कोई महत्व नहीं है"], a: 2 },
+            { q: "जब कोई किसान अपने पड़ोसी के खेत में अच्छी फसल देखकर नई तकनीक अपनाता है, तो यह किस सिद्धांत पर आधारित है?", o: ["A) Learning by doing", "B) Seeing is believing (देखकर विश्वास करना)", "C) Mass contact", "D) Coercion"], a: 1 },
+            { q: "भारत में 'National Extension Network' की रीढ़ की हड्डी किसे माना जाता है?", o: ["A) BDO", "B) VLW (Gram Sevak)", "C) DPO", "D) KVK Scientist"], a: 1 },
+            { q: "'Front Line Demonstration' (FLD) किसके द्वारा आयोजित किए जाते हैं?", o: ["A) ग्राम पंचायत", "B) KVK और अनुसंधान संस्थान", "C) किसान खुद", "D) NGO"], a: 1 },
+            { q: "FLD (अग्रिम पंक्ति प्रदर्शन) का मुख्य उद्देश्य क्या है?", o: ["A) पुरानी तकनीक दिखाना", "B) किसानों के खेत पर सीधे नई तकनीक की क्षमता (Potential) दिखाना", "C) बीज बेचना", "D) ऋण बाँटना"], a: 1 },
+            { q: "कृषि साहित्य (Literature) जैसे पत्र-पत्रिकाएं किस प्रकार के किसानों के लिए उपयोगी हैं?", o: ["A) अनपढ़ किसान", "B) साक्षर (Literate) किसान", "C) बच्चे", "D) विदेशी"], a: 1 },
+            { q: "टेलीविजन कृषि दर्शन कार्यक्रम (Krishi Darshan) पहली बार कब शुरू हुआ था?", o: ["A) 1959", "B) 1967", "C) 1976", "D) 1980"], a: 1 },
+            { q: "किसानों की समस्याओं को वैज्ञानिकों तक और वैज्ञानिकों की तकनीक को किसानों तक पहुँचाना किसका काम है?", o: ["A) कृषि विपणन बोर्ड", "B) प्रसार कार्यकर्ता (Extension Worker)", "C) बैंक", "D) न्यायपालिका"], a: 1 }
+        ];
 
-        let currentLang = 'en';
+        // TEST 3: Communication, Diffusion & Adoption, Rural Sociology, Cyber Extension (50 Questions)
+        const test3Data = [
+            { q: "Communication (संचार) शब्द किस लैटिन शब्द से बना है?", o: ["A) Communis", "B) Computare", "C) Commute", "D) Combine"], a: 0 },
+            { q: "'Communis' शब्द का अर्थ क्या होता है?", o: ["A) अलग करना", "B) सामान्य बनाना (To make common)", "C) जानकारी छिपाना", "D) बात करना"], a: 1 },
+            { q: "संचार प्रक्रिया (Communication Process) के मूल तत्व (SMCRE) में 'S' का क्या अर्थ है?", o: ["A) System", "B) Source (स्रोत / प्रेषक)", "C) Sound", "D) Signal"], a: 1 },
+            { q: "SMCRE मॉडल किसने दिया था?", o: ["A) जे. पी. लीगेन्स", "B) डेविड के. बर्लो (David K. Berlo)", "C) अरस्तू", "D) शैनन"], a: 1 },
+            { q: "बर्लो (Berlo) के मॉडल (SMCR) में कौन-कौन से तत्व हैं?", o: ["A) Source, Message, Channel, Receiver", "B) Source, Media, Code, Receiver", "C) Sender, Machine, Channel, Response", "D) None of these"], a: 0 },
+            { q: "संचार का सबसे पुराना मॉडल (Speaker ➔ Speech ➔ Audience) किसने दिया था?", o: ["A) सुकरात", "B) अरस्तू (Aristotle)", "C) प्लेटो", "D) लीगेन्स"], a: 1 },
+            { q: "लीगेन्स (Leagans) के संचार मॉडल में कितने तत्व (Elements) होते हैं?", o: ["A) 4", "B) 5", "C) 6", "D) 7"], a: 2 },
+            { q: "लीगेन्स के मॉडल का सही क्रम क्या है?", o: ["A) Communicator ➔ Message ➔ Channel ➔ Treatment ➔ Audience ➔ Response", "B) Source ➔ Channel ➔ Message ➔ Receiver ➔ Treatment ➔ Response", "C) Speaker ➔ Speech ➔ Audience", "D) Sender ➔ Message ➔ Receiver"], a: 0 },
+            { q: "संदेश (Message) को इस प्रकार प्रस्तुत करना कि वह आकर्षक लगे, क्या कहलाता है?", o: ["A) Encoding", "B) Treatment (उपचार)", "C) Decoding", "D) Feedback"], a: 1 },
+            { q: "संचार प्रक्रिया में प्राप्तकर्ता (Receiver) द्वारा दी गई प्रतिक्रिया क्या कहलाती है?", o: ["A) शोर (Noise)", "B) फीडबैक (Feedback)", "C) डिकोडिंग", "D) चैनल"], a: 1 },
+            { q: "संचार में आने वाली रुकावट या बाधा को क्या कहते हैं?", o: ["A) फीडबैक", "B) शोर (Noise)", "C) माध्यम", "D) सन्देश"], a: 1 },
+            { q: "नवाचार (Innovation) के प्रसार (Diffusion) का सिद्धांत किसने दिया था?", o: ["A) एवरेट एम. रोजर्स (Everett M. Rogers)", "B) जे. पी. लीगेन्स", "C) बर्लो", "D) एडगर डेल"], a: 0 },
+            { q: "एडॉप्शन (Adoption - अंगीकरण) एक कैसी प्रक्रिया है?", o: ["A) शारीरिक", "B) मानसिक (Mental Process)", "C) सामाजिक", "D) रासायनिक"], a: 1 },
+            { q: "एडॉप्शन प्रक्रिया (Adoption Process) में मुख्य रूप से कितने चरण (Stages) होते हैं?", o: ["A) 3", "B) 4", "C) 5 (AIETA)", "D) 6"], a: 2 },
+            { q: "AIETA मॉडल का सही क्रम क्या है?", o: ["A) Awareness ➔ Interest ➔ Evaluation ➔ Trial ➔ Adoption", "B) Adoption ➔ Interest ➔ Trial ➔ Evaluation ➔ Awareness", "C) Awareness ➔ Trial ➔ Interest ➔ Evaluation ➔ Adoption", "D) None of these"], a: 0 },
+            { q: "एडॉप्शन प्रक्रिया का पहला चरण क्या है?", o: ["A) ट्रायल (Trial)", "B) मूल्यांकन (Evaluation)", "C) जागरूकता (Awareness)", "D) रुचि (Interest)"], a: 2 },
+            { q: "जब किसान नई तकनीक को छोटे स्तर (small scale) पर करके देखता है, तो उसे क्या कहते हैं?", o: ["A) मूल्यांकन", "B) परीक्षण (Trial)", "C) जागरूकता", "D) अपनाना (Adoption)"], a: 1 },
+            { q: "नवाचार-निर्णय प्रक्रिया (Innovation-Decision Process) के 5 चरण (रोजर्स के अनुसार) कौन से हैं?", o: ["A) Knowledge ➔ Persuasion ➔ Decision ➔ Implementation ➔ Confirmation", "B) Awareness ➔ Interest ➔ Trial ➔ Adoption ➔ Rejection", "C) Source ➔ Message ➔ Channel ➔ Receiver ➔ Effect", "D) None of these"], a: 0 },
+            { q: "रोजर्स (Rogers) के अनुसार एडॉप्टर (अपनाने वाले) कितने प्रकार (Categories) के होते हैं?", o: ["A) 3", "B) 4", "C) 5", "D) 6"], a: 2 },
+            { q: "समाज में नई तकनीक को सबसे पहले अपनाने वाले (Innovators) कितने प्रतिशत होते हैं?", o: ["A) 2.5%", "B) 13.5%", "C) 34%", "D) 16%"], a: 0 },
+            { q: "समाज में 'Early Adopters' (प्रारंभिक अंगीकारक) कितने प्रतिशत होते हैं?", o: ["A) 2.5%", "B) 13.5%", "C) 34%", "D) 16%"], a: 1 },
+            { q: "समाज में 'Early Majority' और 'Late Majority' का प्रतिशत कितना-कितना होता है?", o: ["A) 16% और 16%", "B) 34% और 34%", "C) 13.5% और 34%", "D) 2.5% और 16%"], a: 1 },
+            { q: "समाज में सबसे अंत में नई तकनीक अपनाने वाले (Laggards) कितने प्रतिशत होते हैं?", o: ["A) 2.5%", "B) 13.5%", "C) 34%", "D) 16%"], a: 3 },
+            { q: "Laggards (पिछड़े हुए) लोग मुख्य रूप से किस पर निर्भर करते हैं?", o: ["A) वैज्ञानिक सलाह", "B) इंटरनेट", "C) पारंपरिक मूल्य (Traditional values)", "D) विदेशी तकनीक"], a: 2 },
+            { q: "वह व्यक्ति जो समाज में दूसरों को नई तकनीक अपनाने के लिए प्रभावित करता है, क्या कहलाता है?", o: ["A) Laggard", "B) Opinion Leader (मतदाता / नेता)", "C) Innovator", "D) Scientist"], a: 1 },
+            { q: "ग्रामीण समाजशास्त्र (Rural Sociology) का जनक किसे माना जाता है?", o: ["A) ऑगस्ट कॉम्टे (Auguste Comte)", "B) ए. डब्ल्यू. ग्रीन", "C) जे. पी. लीगेन्स", "D) रोजर्स"], a: 0 },
+            { q: "समाज (Society) की सबसे छोटी और मूलभूत इकाई (Basic unit) क्या है?", o: ["A) गाँव", "B) परिवार (Family)", "C) राज्य", "D) स्कूल"], a: 1 },
+            { q: "भारतीय ग्रामीण समाज की मुख्य विशेषता क्या है?", o: ["A) शहरीकरण", "B) संयुक्त परिवार प्रणाली (Joint Family System)", "C) औद्योगिकरण", "D) एकाकीपन"], a: 1 },
+            { q: "समाजशास्त्र (Sociology) शब्द किन दो शब्दों से मिलकर बना है?", o: ["A) Socius (लैटिन) + Logos (ग्रीक)", "B) Social + Logic", "C) Society + Logus", "D) None of these"], a: 0 },
+            { q: "संस्कृति (Culture) क्या है?", o: ["A) जैविक विरासत", "B) समाज द्वारा सीखा गया व्यवहार (Learned behavior)", "C) केवल धार्मिक किताबें", "D) केवल कला"], a: 1 },
+            { q: "'Cyber Extension' शब्द का प्रयोग सबसे पहले किसने किया था?", o: ["A) विंकलमैन (Winkelmann)", "B) जे. पी. लीगेन्स", "C) रोजर्स", "D) बेनोर"], a: 0 },
+            { q: "साइबर प्रसार (Cyber Extension) का मुख्य माध्यम क्या है?", o: ["A) चौपाल", "B) इंटरनेट और कंप्यूटर", "C) रेडियो", "D) कठपुतली"], a: 1 },
+            { q: "ई-चौपाल (e-Choupal) पहल भारत में किस कंपनी द्वारा शुरू की गई थी?", o: ["A) Tata", "B) Reliance", "C) ITC (Indian Tobacco Company)", "D) Mahindra"], a: 2 },
+            { q: "ग्राम पंचायत का मुखिया कौन होता है?", o: ["A) BDO", "B) सरपंच (Sarpanch)", "C) जिला कलेक्टर", "D) विधायक"], a: 1 },
+            { q: "पंचायती राज की 'मध्य स्तर' (Middle Tier) की संस्था कौन सी है?", o: ["A) ग्राम पंचायत", "B) पंचायत समिति (Panchayat Samiti)", "C) जिला परिषद", "D) ग्राम सभा"], a: 1 },
+            { q: "पंचायती राज की सर्वोच्च (Top) संस्था कौन सी है?", o: ["A) ग्राम पंचायत", "B) पंचायत समिति", "C) जिला परिषद (Zila Parishad)", "D) नगर निगम"], a: 2 },
+            { q: "लीडरशिप (नेतृत्व) के 'Autocratic' (तानाशाह) प्रकार में निर्णय कौन लेता है?", o: ["A) समूह मिलकर", "B) केवल नेता (Leader alone)", "C) कोई नहीं", "D) भगवान"], a: 1 },
+            { q: "लीडरशिप के 'Democratic' (लोकतांत्रिक) प्रकार में निर्णय कैसे लिया जाता है?", o: ["A) केवल नेता द्वारा", "B) समूह की सहमति से (By group consensus)", "C) बिना सोचे", "D) लॉटरी द्वारा"], a: 1 },
+            { q: "Laissez-faire (स्वतंत्र) नेतृत्व में नेता का हस्तक्षेप कैसा होता है?", o: ["A) बहुत अधिक", "B) शून्य या न्यूनतम (Minimal/Zero)", "C) केवल दंड देना", "D) हर बात में दखल"], a: 1 },
+            { q: "AGMARK (एगमार्क) किससे संबंधित है?", o: ["A) कृषि उत्पादों की गुणवत्ता (Quality of Agri products)", "B) बीज का वजन", "C) कीटनाशक की मात्रा", "D) उर्वरक"], a: 0 },
+            { q: "प्रसार शिक्षा का दर्शन (Philosophy of Extension) किस पर जोर देता है?", o: ["A) स्वयं की मदद करने में लोगों की मदद करना (Helping people to help themselves)", "B) मुफ्त में सब कुछ देना", "C) हुक्म चलाना", "D) केवल ऋण बांटना"], a: 0 },
+            { q: "ICT (Information and Communication Technology) का कृषि में क्या उपयोग है?", o: ["A) मौसम की जानकारी देना", "B) बाजार के भाव बताना", "C) नई तकनीक सिखाना", "D) उपर्युक्त सभी"], a: 3 },
+            { q: "'Kisan Mobile Advisory' सेवा के माध्यम से किसानों को जानकारी कैसे भेजी जाती है?", o: ["A) चिट्ठी द्वारा", "B) SMS/Voice Message द्वारा", "C) तार (Telegram) द्वारा", "D) अखबार द्वारा"], a: 1 },
+            { q: "संचार प्रक्रिया में 'Encoding' कौन करता है?", o: ["A) प्राप्तकर्ता (Receiver)", "B) प्रेषक (Sender/Source)", "C) चैनल", "D) शोर"], a: 1 },
+            { q: "संचार प्रक्रिया में 'Decoding' कौन करता है?", o: ["A) प्राप्तकर्ता (Receiver)", "B) प्रेषक (Sender)", "C) चैनल", "D) माध्यम"], a: 0 },
+            { q: "जब सूचना ऊपर से नीचे (Top to Bottom) की ओर जाती है, तो उसे क्या कहते हैं?", o: ["A) Upward communication", "B) Downward communication", "C) Horizontal communication", "D) Diagonal communication"], a: 1 },
+            { q: "किसान से वैज्ञानिक तक फीडबैक पहुंचना किस संचार का उदाहरण है?", o: ["A) Upward communication (ऊर्ध्वगामी संचार)", "B) Downward communication", "C) Horizontal communication", "D) None"], a: 0 },
+            { q: "एक ही स्तर के दो अधिकारियों के बीच बातचीत क्या कहलाती है?", o: ["A) Upward", "B) Downward", "C) Horizontal (क्षैतिज संचार)", "D) Vertical"], a: 2 },
+            { q: "भारत में कृषि दर्शन (Krishi Darshan) कार्यक्रम पहली बार कहाँ से प्रसारित हुआ था?", o: ["A) आकाशवाणी दिल्ली", "B) दूरदर्शन दिल्ली (Doordarshan Delhi)", "C) रेडियो सीलोन", "D) मुंबई TV"], a: 1 },
+            { q: "विस्तार शिक्षा (Extension Education) का अंतिम लक्ष्य (Ultimate Goal) क्या है?", o: ["A) ग्रामीण लोगों का सर्वांगीण विकास (All-round development of rural people)", "B) केवल बीज बेचना", "C) गाँव खाली कराना", "D) शहर बसाना"], a: 0 }
+        ];
+
+        const allTests = [test1Data, test2Data, test3Data];
+        const testTitles = ["YouTube Video Test", "2nd Test (Advanced)", "Mega Practice Test"];
+        let currentQuizData = [];
         let currentIdx = 0;
-        let answers = new Array(50).fill(null);
+        let score = 0;
+        let questionLocked = false;
 
-        function startQuiz(l) {
-            currentLang = l;
+        // Audio Engine
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        let audioCtx;
+
+        function playSound(type) {
+            if (!audioCtx) audioCtx = new AudioContext();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            if (type === 'correct') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); 
+                osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.1); 
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.3);
+            } else if (type === 'wrong') {
+                osc.type = 'sawtooth'; 
+                osc.frequency.setValueAtTime(150, audioCtx.currentTime); 
+                osc.frequency.linearRampToValueAtTime(80, audioCtx.currentTime + 0.6); 
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.6);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.6); 
+            }
+        }
+
+        // Starts the specific selected test
+        function startQuiz(testNumber) {
+            currentQuizData = allTests[testNumber - 1];
+            document.getElementById('testTitleIndicator').innerText = testTitles[testNumber - 1];
+            
             document.getElementById('langScreen').style.display = 'none';
             document.getElementById('quizScreen').style.display = 'block';
             showQ();
         }
 
         function showQ() {
-            const q = quizData[currentLang][currentIdx];
-            document.getElementById('questionCount').innerText = currentLang === 'en' ? `Question ${currentIdx + 1} of 50` : `प्रश्न ${currentIdx + 1} / 50`;
-            document.getElementById('questionText').innerText = q.q;
-            document.getElementById('progressBar').style.width = `${((currentIdx + 1)/50)*100}%`;
+            questionLocked = false;
+            document.getElementById('nextBtn').disabled = true;
+            const q = currentQuizData[currentIdx];
+            document.getElementById('questionCount').innerText = `Question ${currentIdx + 1} of 50`;
+            document.getElementById('questionText').innerText = `Q${currentIdx + 1}. ${q.q}`;
+            document.getElementById('progressBar').style.width = `${((currentIdx + 1) / 50) * 100}%`;
 
             const grid = document.getElementById('optionsGrid');
             grid.innerHTML = '';
             q.o.forEach((txt, i) => {
-                const btn = document.createElement('button');
-                btn.className = 'option' + (answers[currentIdx] === i ? ' selected' : '');
-                btn.innerHTML = `<span>${txt}</span> <i class="fa-regular ${answers[currentIdx] === i ? 'fa-circle-check' : 'fa-circle'}"></i>`;
-                btn.onclick = () => { answers[currentIdx] = i; showQ(); };
+                const btn = document.createElement('div');
+                btn.className = 'option';
+                btn.innerHTML = `<span>${txt}</span> <i class="fa-regular fa-circle" id="icon-${i}"></i>`;
+                btn.onclick = () => selectOption(btn, i, q.a);
                 grid.appendChild(btn);
             });
+        }
 
-            document.getElementById('prevBtn').disabled = currentIdx === 0;
-            const nBtn = document.getElementById('nextBtn');
-            if(currentIdx === 49) {
-                nBtn.innerHTML = currentLang === 'en' ? 'Finish Test <i class="fa-solid fa-flag-checkered"></i>' : 'टेस्ट समाप्त करें <i class="fa-solid fa-flag-checkered"></i>';
-                nBtn.style.background = '#1e88e5';
+        function selectOption(selectedBtn, selectedIndex, correctIndex) {
+            if (questionLocked) return;
+            questionLocked = true;
+
+            const allOptions = document.querySelectorAll('.option');
+            allOptions.forEach(opt => opt.classList.add('locked'));
+
+            if (selectedIndex === correctIndex) {
+                selectedBtn.classList.add('correct', 'anim-pop');
+                document.getElementById(`icon-${selectedIndex}`).className = "fa-solid fa-circle-check";
+                playSound('correct');
+                score++;
             } else {
-                nBtn.innerHTML = currentLang === 'en' ? 'Next <i class="fa-solid fa-arrow-right"></i>' : 'आगे बढ़ें <i class="fa-solid fa-arrow-right"></i>';
-                nBtn.style.background = 'var(--primary)';
+                selectedBtn.classList.add('wrong', 'anim-shake');
+                document.getElementById(`icon-${selectedIndex}`).className = "fa-solid fa-circle-xmark";
+                playSound('wrong');
+                allOptions[correctIndex].classList.add('correct', 'anim-pop');
+                document.getElementById(`icon-${correctIndex}`).className = "fa-solid fa-circle-check";
             }
+            document.getElementById('nextBtn').disabled = false;
         }
 
         function nextQuestion() {
-            if(currentIdx < 49) { currentIdx++; showQ(); } else { results(); }
-        }
-
-        function prevQuestion() {
-            if(currentIdx > 0) { currentIdx--; showQ(); }
+            if (currentIdx < 49) { currentIdx++; showQ(); } else { results(); }
         }
 
         function results() {
-            let score = 0;
-            quizData[currentLang].forEach((q, i) => { if(answers[i] === q.a) score++; });
             document.getElementById('quizScreen').style.display = 'none';
             document.getElementById('resultScreen').style.display = 'block';
             document.getElementById('scoreDisplay').innerText = score;
-            
-            const perc = (score/50)*100;
+            const perc = (score / 50) * 100;
             const h = document.getElementById('resultHeading');
             const m = document.getElementById('messageBox');
             
             if(perc >= 80) {
-                h.innerText = currentLang === 'en' ? "👑 MJPRU Extension Topper!" : "👑 एमजेपीआरयू एक्सटेंशन टॉपर!";
-                m.innerText = currentLang === 'en' ? "Sensational! Your core understanding of rural development programmes and communication models is outstanding. Mushahid Raza is proud of your dedication!" : "शानदार परफॉरमेंस! ग्रामीण विकास कार्यक्रमों और कम्युनिकेशन मॉडल्स पर आपकी पकड़ बिल्कुल परफेक्ट है। एमजेपीआरयू यूनिवर्सिटी एग्जाम्स में आप निश्चित ही टॉप करेंगे!";
+                h.innerText = "👑 Ultimate Extension Topper!";
+                m.innerText = "Kya baat hai! Aapne is test mein kamaal kar diya. Aap kal ke exam mein pakka top karne wale hain!";
             } else if(perc >= 50) {
-                h.innerText = currentLang === 'en' ? "✨ Good Academic Score!" : "✨ सराहनीय प्रयास!";
-                m.innerText = currentLang === 'en' ? "Nice attempt! You know your historical extension projects well. Just brush up on the classification of teaching methods to touch 90%+." : "बहुत बढ़िया! यूनिवर्सिटी सिलेबस के हिसाब से आपकी तैयारी काफी अच्छी है। बस एक बार प्री-इंडिपेंडेंस और पोस्ट-इंडिपेंडेंस प्रोजेक्ट्स के इयर्स (Years) को दोबारा रिवाइज कर लें!";
+                h.innerText = "✨ Superb Effort!";
+                m.innerText = "Bahut badiya! Aapke maximum concepts clear hain. Jo questions red huye, unhe ek baar dhyan mein rakhiye, aapka selection tay hai!";
             } else {
-                h.innerText = currentLang === 'en' ? "📚 Keep Revising!" : "📚 निरंतर अभ्यास करें!";
-                m.innerText = currentLang === 'en' ? "Extension Education requires programmatic memory. Re-study the teaching methods on Razaagripoint and try again." : "कृषि प्रसार शिक्षा के सिद्धांतो पर थोड़ा और ध्यान देने की आवश्यकता है। सेमेस्टर डैशबोर्ड से ऐतिहासिक प्रोग्राम्स और कम्युनिकेशन के नोट्स दोबारा पढ़ें और फिर से टेस्ट दें!";
+                h.innerText = "📚 Keep Learning!";
+                m.innerText = "Koi baat nahi! Galtiyon se hi seekhte hain. Ab aapko saare sahi green answers pata chal gaye hain. Inhe yaad rakhiye aur exam mein fod dijiye!";
             }
         }
 
+        function generateCertificate() {
+            const nameInput = document.getElementById('studentName').value.trim();
+            if (!nameInput) {
+                alert("Please enter your name to generate the certificate!");
+                return;
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = 1200;
+            canvas.height = 850;
+            const ctx = canvas.getContext('2d');
+
+            ctx.fillStyle = '#FAFAFA';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.strokeStyle = '#004d40';
+            ctx.lineWidth = 20;
+            ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+
+            ctx.strokeStyle = '#D4AF37';
+            ctx.lineWidth = 6;
+            ctx.strokeRect(48, 48, canvas.width - 96, canvas.height - 96);
+
+            ctx.fillStyle = '#004d40';
+            ctx.fillRect(35, 35, 30, 30);
+            ctx.fillRect(canvas.width - 65, 35, 30, 30);
+            ctx.fillRect(35, canvas.height - 65, 30, 30);
+            ctx.fillRect(canvas.width - 65, canvas.height - 65, 30, 30);
+
+            ctx.save();
+            ctx.globalAlpha = 0.04;
+            ctx.fillStyle = '#004d40';
+            ctx.font = 'bold 130px Arial';
+            ctx.textAlign = 'center';
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(-Math.PI / 6); 
+            ctx.fillText('RAZAAGRIPOINT', 0, 0);
+            ctx.restore(); 
+
+            ctx.fillStyle = '#004d40';
+            ctx.font = 'bold 50px Georgia, serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('CERTIFICATE OF EXCELLENCE', 600, 160);
+            
+            ctx.fillStyle = '#D4AF37';
+            ctx.font = 'bold 22px Arial, sans-serif';
+            ctx.fillText('THIS IS PROUDLY PRESENTED TO', 600, 230);
+
+            ctx.fillStyle = '#b71c1c';
+            ctx.font = 'bold 65px "Times New Roman", Times, serif';
+            ctx.fillText(nameInput.toUpperCase(), 600, 325);
+
+            ctx.strokeStyle = '#D4AF37';
+            ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(300, 355); ctx.lineTo(900, 355); ctx.stroke();
+
+            ctx.fillStyle = '#333333';
+            ctx.font = '22px Arial, sans-serif';
+            ctx.fillText('For demonstrating outstanding academic performance by scoring', 600, 420);
+            
+            ctx.fillStyle = '#004d40';
+            ctx.fillRect(430, 450, 340, 60);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = 'bold 30px Arial';
+            ctx.fillText(`${score} MARKS OUT OF 50`, 600, 492);
+
+            ctx.fillStyle = '#333333';
+            ctx.font = '22px Arial, sans-serif';
+            const currentTestName = document.getElementById('testTitleIndicator').innerText;
+            ctx.fillText(`in the online Mock Examination (${currentTestName}) for Fundamentals of Agricultural Extension Education.`, 600, 560);
+            
+            ctx.fillStyle = '#555555';
+            ctx.font = 'italic 20px Arial, sans-serif';
+            ctx.fillText('Syllabus Based on Mahatma Jyotibha Phoole Rohelkhand University (MJPRU).', 600, 600);
+
+            const dateStr = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+            ctx.strokeStyle = '#333333';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(150, 720); ctx.lineTo(350, 720); ctx.stroke();
+            
+            ctx.fillStyle = '#333333';
+            ctx.font = 'bold 20px Arial';
+            ctx.fillText(dateStr, 250, 705);
+            
+            ctx.font = '18px Arial';
+            ctx.fillText('Date of Completion', 250, 745);
+
+            ctx.beginPath(); ctx.moveTo(850, 720); ctx.lineTo(1050, 720); ctx.stroke();
+            
+            ctx.fillStyle = '#004d40';
+            ctx.font = 'bold 24px cursive, "Brush Script MT", serif'; 
+            ctx.fillText('Mushahid Raza', 950, 705);
+            
+            ctx.fillStyle = '#333333';
+            ctx.font = '18px Arial';
+            ctx.fillText('Admin / Founder', 950, 745);
+
+            ctx.beginPath();
+            ctx.arc(600, 715, 60, 0, Math.PI * 2);
+            ctx.fillStyle = '#D4AF37'; 
+            ctx.fill();
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = '#b71c1c'; 
+            ctx.stroke();
+            
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 15px Arial';
+            ctx.fillText('RAZAAGRIPOINT', 600, 710);
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('VERIFIED', 600, 735);
+
+            const downloadLink = document.createElement('a');
+            downloadLink.download = `${nameInput.replace(/\s+/g, '_')}_Extension_Education_Certificate.png`;
+            downloadLink.href = canvas.toDataURL('image/png');
+            downloadLink.click();
+        }
+
         function restartQuiz() {
-            currentIdx = 0; answers.fill(null);
+            currentIdx = 0; score = 0; currentQuizData = [];
+            document.getElementById('studentName').value = '';
             document.getElementById('resultScreen').style.display = 'none';
+            document.getElementById('quizScreen').style.display = 'none';
             document.getElementById('langScreen').style.display = 'block';
         }
     </script>
