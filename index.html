@@ -233,7 +233,168 @@
     }
     .theme-toggle:hover { transform: scale(1.05); }
 
-    /* ── HERO ── */
+    /* ══════════════════════════════
+       ★ NEW HERO SLIDESHOW CSS ★
+    ══════════════════════════════ */
+    .hero-slideshow {
+      position:relative; width:100%; overflow:hidden;
+      padding-top:56.25%;
+      background:#0f2027;
+    }
+
+    .slide {
+      position:absolute; inset:0;
+      display:flex; align-items:center;
+      opacity:0; transition:opacity .8s ease;
+      pointer-events:none;
+    }
+    .slide.active { opacity:1; pointer-events:all; }
+
+    .slide-1 { background:linear-gradient(120deg,#0f2027 0%,#145c38 55%,#1a7a4a 100%); }
+    .slide-2 { background:linear-gradient(120deg,#1a0a2e 0%,#3d1060 55%,#6b21a8 100%); }
+    .slide-3 { background:linear-gradient(120deg,#0c1a3a 0%,#0d3b6e 55%,#1e5fa8 100%); }
+    .slide-4 { background:linear-gradient(120deg,#1a0f00 0%,#7c3500 55%,#c2410c 100%); }
+    .slide-5 { background:linear-gradient(120deg,#0f1a0a 0%,#1e4d0f 55%,#2d7a18 100%); }
+    .slide-6 { background:linear-gradient(120deg,#1a1a00 0%,#4d4400 55%,#a08000 100%); }
+    .slide-7 { background:linear-gradient(120deg,#0a0f1a 0%,#0d2a4d 55%,#0d5c6e 100%); }
+    .slide-8 { background:linear-gradient(120deg,#1a0a0a 0%,#6e0d1a 55%,#a8213a 100%); }
+
+    .slide::before {
+      content:''; position:absolute;
+      width:420px; height:420px; border-radius:50%;
+      background:rgba(255,255,255,.04);
+      top:-100px; right:-60px; pointer-events:none;
+    }
+    .slide::after {
+      content:''; position:absolute;
+      width:260px; height:260px; border-radius:50%;
+      background:rgba(255,255,255,.03);
+      bottom:-60px; left:35%; pointer-events:none;
+    }
+
+    .slide-inner {
+      position:relative; z-index:2;
+      display:flex; align-items:center; justify-content:space-between;
+      width:100%; max-width:1200px; margin:0 auto;
+      padding:0 80px; gap:40px;
+    }
+
+    .slide-text { flex:1; }
+
+    .slide-tag {
+      display:inline-block;
+      font-family:'Poppins',sans-serif; font-weight:700; font-size:.7rem;
+      letter-spacing:1.5px; text-transform:uppercase;
+      padding:5px 16px; border-radius:20px; margin-bottom:16px;
+      border:1px solid rgba(255,255,255,.3); color:rgba(255,255,255,.85);
+      background:rgba(255,255,255,.1);
+    }
+
+    .slide-text h2 {
+      font-family:'Poppins',sans-serif; font-weight:900;
+      font-size:clamp(1.6rem,3vw,2.8rem);
+      color:white; line-height:1.2; margin-bottom:12px;
+    }
+
+    .slide-text h2 em { font-style:normal; }
+    .slide-1 h2 em { color:#6effa0; }
+    .slide-2 h2 em { color:#c4b5fd; }
+    .slide-3 h2 em { color:#93c5fd; }
+    .slide-4 h2 em { color:#fdba74; }
+    .slide-5 h2 em { color:#a3f0a0; }
+    .slide-6 h2 em { color:#fde68a; }
+    .slide-7 h2 em { color:#67e8f9; }
+    .slide-8 h2 em { color:#fca5a5; }
+
+    .slide-text p {
+      font-size:.92rem; color:rgba(255,255,255,.72);
+      line-height:1.75; margin-bottom:22px; max-width:460px;
+    }
+
+    .slide-cta {
+      display:inline-flex; align-items:center; gap:8px;
+      font-family:'Poppins',sans-serif; font-weight:700; font-size:.88rem;
+      color:white; padding:13px 30px; border-radius:10px;
+      text-decoration:none; transition:all .25s;
+      box-shadow:0 4px 16px rgba(0,0,0,.3);
+    }
+    .slide-1 .slide-cta { background:var(--orange); }
+    .slide-2 .slide-cta { background:#7c3aed; }
+    .slide-3 .slide-cta { background:#1d4ed8; }
+    .slide-4 .slide-cta { background:#c2410c; }
+    .slide-5 .slide-cta { background:#15803d; }
+    .slide-6 .slide-cta { background:#b45309; }
+    .slide-7 .slide-cta { background:#0e7490; }
+    .slide-8 .slide-cta { background:#9f1239; }
+    .slide-cta:hover { filter:brightness(1.15); transform:translateY(-2px); }
+
+    .slide-visual {
+      flex:0 0 260px;
+      display:flex; align-items:center; justify-content:center;
+      position:relative;
+    }
+
+    .slide-icon-wrap {
+      width:200px; height:200px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:6rem;
+      animation:floatIcon 4s ease-in-out infinite;
+      position:relative;
+    }
+    .slide-1 .slide-icon-wrap  { background:rgba(110,255,160,.1); box-shadow:0 0 60px rgba(110,255,160,.2); }
+    .slide-2 .slide-icon-wrap  { background:rgba(196,181,253,.1); box-shadow:0 0 60px rgba(196,181,253,.2); }
+    .slide-3 .slide-icon-wrap  { background:rgba(147,197,253,.1); box-shadow:0 0 60px rgba(147,197,253,.2); }
+    .slide-4 .slide-icon-wrap  { background:rgba(253,186,116,.1); box-shadow:0 0 60px rgba(253,186,116,.2); }
+    .slide-5 .slide-icon-wrap  { background:rgba(163,240,160,.1); box-shadow:0 0 60px rgba(163,240,160,.2); }
+    .slide-6 .slide-icon-wrap  { background:rgba(253,230,138,.1); box-shadow:0 0 60px rgba(253,230,138,.2); }
+    .slide-7 .slide-icon-wrap  { background:rgba(103,232,249,.1); box-shadow:0 0 60px rgba(103,232,249,.2); }
+    .slide-8 .slide-icon-wrap  { background:rgba(252,165,165,.1); box-shadow:0 0 60px rgba(252,165,165,.2); }
+
+    .float-badge {
+      position:absolute; background:white; border-radius:12px;
+      padding:6px 12px; font-size:.72rem; font-weight:700; color:var(--dark);
+      box-shadow:0 4px 16px rgba(0,0,0,.2);
+      white-space:nowrap; animation:floatBadge 3s ease-in-out infinite;
+    }
+    .float-badge.top    { top:-10px;   left:-20px;  animation-delay:0s; }
+    .float-badge.bottom { bottom:-10px; right:-20px; animation-delay:1.5s; }
+
+    @keyframes floatIcon  { 0%,100%{transform:translateY(0)}    50%{transform:translateY(-14px)} }
+    @keyframes floatBadge { 0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-8px) rotate(2deg)} }
+
+    .slide-progress {
+      position:absolute; bottom:0; left:0;
+      height:4px; background:rgba(255,255,255,.2); width:100%; z-index:10;
+    }
+    .slide-progress-bar {
+      height:100%; background:var(--orange);
+      width:0%; transition:width linear;
+    }
+
+    .slide-arrow {
+      position:absolute; top:50%; transform:translateY(-50%);
+      width:46px; height:46px; border-radius:50%;
+      background:rgba(255,255,255,.15); backdrop-filter:blur(6px);
+      border:1px solid rgba(255,255,255,.25);
+      color:white; font-size:1.3rem; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      z-index:10; transition:background .2s; user-select:none;
+    }
+    .slide-arrow:hover { background:rgba(255,255,255,.3); }
+    .slide-arrow.prev { left:20px; }
+    .slide-arrow.next { right:20px; }
+
+    .slide-dots {
+      position:absolute; bottom:16px; left:50%; transform:translateX(-50%);
+      display:flex; gap:7px; z-index:10;
+    }
+    .sdot {
+      width:8px; height:8px; border-radius:4px;
+      background:rgba(255,255,255,.35); cursor:pointer; transition:all .3s;
+    }
+    .sdot.active { width:26px; background:white; }
+
+    /* ── HERO (Original) ── */
     .hero {
       background: linear-gradient(135deg, #0f2027 0%, #145c38 50%, #1a7a4a 100%);
       padding: 80px 60px;
@@ -471,9 +632,7 @@
     }
 
     .sem-card {
-      background: #ffffff; /* Card ke andar ka color white rakha hai taki text clear dikhe */
-      
-      /* YAHAN BORDER THEEK KIYA HAI: Charo taraf clear dark-gray border */
+      background: #ffffff; 
       border: 2px solid #9ca3af !important; 
       border-radius: 20px;
       padding: 32px 24px;
@@ -481,31 +640,24 @@
       display: block;
       transition: all 0.3s ease-in-out; 
       position: relative;
-      
-      /* REAL 3D EFFECT: Ek solid shadow aur ek blur shadow ka mix */
       box-shadow: 
-        0 12px 30px rgba(0, 0, 0, 0.12), /* Badi shadow */
-        0 4px 8px rgba(0, 0, 0, 0.06);   /* Choti shadow jo ubhra hua feel degi */
+        0 12px 30px rgba(0, 0, 0, 0.12), 
+        0 4px 8px rgba(0, 0, 0, 0.06);   
     }
 
-    /* Dark mode ke liye alag border color */
     [data-theme="dark"] .sem-card {
       background: #1e293b;
       border: 2px solid #475569 !important;
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
     }
 
-    /* TOP LINE HATA DI HAI - Taki top border pura dikhe */
     .sem-card::before {
       display: none; 
     }
 
-    /* HOVER PAR 3D POP-OUT EFFECT */
     .sem-card:hover {
-      transform: translateY(-10px); /* Card upar uthega */
-      border-color: var(--orange) !important; /* Charo taraf ka border Orange ho jayega */
-      
-      /* Upar uthne par shadow aur dark aur orange ho jayegi */
+      transform: translateY(-10px); 
+      border-color: var(--orange) !important; 
       box-shadow: 
         0 20px 40px rgba(255, 107, 53, 0.2), 
         0 8px 15px rgba(255, 107, 53, 0.1);
@@ -801,6 +953,14 @@
       /* Notice Ticker ko mobile ke liye adjust kiya */
       .notice-ticker { padding: 10px 12px !important; font-size: 14px !important; }
       .notice-ticker span { font-size: 11px !important; padding: 6px 12px !important; margin-right: 10px !important; }
+
+      /* Slideshow Responsive fix */
+      .hero-slideshow { padding-top: 110%; }
+      .slide-inner { padding: 0 24px; flex-direction: column; text-align: center; padding-top: 40px; padding-bottom: 40px; }
+      .slide-text p { margin: 0 auto 22px; }
+      .slide-visual { display: none; }
+      .slide-arrow.prev { left: 8px; }
+      .slide-arrow.next { right: 8px; }
       
       .hero { flex-direction: column; padding: 60px 24px; min-height: auto; }
       .hero-right { flex: none; width: 100%; }
@@ -815,7 +975,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .notice-scroll, .pulseBadge, .ripple, .click-glow { animation: none; }
+      .notice-scroll, .pulseBadge, .ripple, .click-glow, .floatIcon, .floatBadge { animation: none; }
     }
   </style>
 </head>
@@ -867,6 +1027,162 @@
     </style>
 </div>
 
+<div class="hero-slideshow" id="heroSlideshow">
+
+  <div class="slide slide-1 active">
+    <div class="slide-inner">
+      <div class="slide-text">
+        <div class="slide-tag">🌾 MJPRU · BSc Agriculture (Hons.)</div>
+        <h2>Welcome to<br/><em>Razaagripoint</em> —<br/>India's Agri Study Hub</h2>
+        <p>Free video lectures, PDF notes & live mock tests based on ICAR guidelines — designed for MJPRU students.</p>
+        <a href="#semesters" class="slide-cta">Explore Semesters ➔</a>
+      </div>
+      <div class="slide-visual">
+        <div class="slide-icon-wrap">🌱
+          <div class="float-badge top">🎓 BSc Agri</div>
+          <div class="float-badge bottom">💯 Free</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide slide-2">
+    <div class="slide-inner">
+      <div class="slide-text">
+        <div class="slide-tag">📝 LIVE MOCK TEST</div>
+        <h2>Test Yourself with<br/><em>150 Important</em><br/>Questions — Free!</h2>
+        <p>Agricultural Heritage ka live interactive test abhi do aur apni exam taiyaari jaancho instantly.</p>
+        <a href="sem2mockpage.html" class="slide-cta">Take Test Now 🚀</a>
+      </div>
+      <div class="slide-visual">
+        <div class="slide-icon-wrap">📝
+          <div class="float-badge top">⏱️ Timed</div>
+          <div class="float-badge bottom">✅ Instant Result</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide slide-3">
+    <div class="slide-inner">
+      <div class="slide-text">
+        <div class="slide-tag">📄 FREE PDF NOTES</div>
+        <h2>Download <em>50+ Free</em><br/>Subject-wise PDF<br/>Notes Today</h2>
+        <p>Har subject ke important notes aur previous year papers — bilkul free, koi login nahi chahiye.</p>
+        <a href="semester2.html" class="slide-cta">Download PDFs ➔</a>
+      </div>
+      <div class="slide-visual">
+        <div class="slide-icon-wrap">📚
+          <div class="float-badge top">📑 50+ PDFs</div>
+          <div class="float-badge bottom">🔓 No Login</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide slide-4">
+    <div class="slide-inner">
+      <div class="slide-text">
+        <div class="slide-tag">▶️ VIDEO LECTURES</div>
+        <h2>100+ Video<br/>Lectures on<br/><em>YouTube — Free!</em></h2>
+        <p>Complex agricultural topics ko simple Hindi mein samjhein — seedha YouTube par, kabhi bhi, kahin bhi.</p>
+        <a href="https://youtube.com" target="_blank" class="slide-cta">Watch on YouTube ▶</a>
+      </div>
+      <div class="slide-visual">
+        <div class="slide-icon-wrap">🎥
+          <div class="float-badge top">▶ 100+ Videos</div>
+          <div class="float-badge bottom">🌐 YouTube</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide slide-5">
+    <div class="slide-inner">
+      <div class="slide-text">
+        <div class="slide-tag">🎓 COMPLETE COVERAGE</div>
+        <h2>All <em>6 Semesters</em><br/>Covered —<br/>Sem 1 to Sem 6</h2>
+        <p>Agronomy se Biotechnology tak — BSc Agriculture ke poore 3 saal ka content ek hi jagah par.</p>
+        <a href="#semesters" class="slide-cta">Choose Semester ➔</a>
+      </div>
+      <div class="slide-visual">
+        <div class="slide-icon-wrap">🌾
+          <div class="float-badge top">📖 Sem 1–6</div>
+          <div class="float-badge bottom">🏫 MJPRU</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide slide-6">
+    <div class="slide-inner">
+      <div class="slide-text">
+        <div class="slide-tag">📋 ICAR GUIDELINES</div>
+        <h2>100% Based on<br/><em>ICAR Curriculum</em><br/>& MJPRU Syllabus</h2>
+        <p>Har content strictly ICAR guidelines ke hisaab se banaya gaya hai — exam mein sirf relevant topics.</p>
+        <a href="#semesters" class="slide-cta">Start Learning ➔</a>
+      </div>
+      <div class="slide-visual">
+        <div class="slide-icon-wrap">🏛️
+          <div class="float-badge top">✅ ICAR Based</div>
+          <div class="float-badge bottom">🎯 Exam Ready</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide slide-7">
+    <div class="slide-inner">
+      <div class="slide-text">
+        <div class="slide-tag">📱 COMMUNITY</div>
+        <h2><em>5000+ Students</em><br/>Already in Our<br/>Telegram Group</h2>
+        <p>New PDFs, exam alerts, video updates — sab kuch Telegram par pehle milta hai. Abhi join karo!</p>
+        <a href="https://t.me/razaagripoint" target="_blank" class="slide-cta">📲 Join Telegram</a>
+      </div>
+      <div class="slide-visual">
+        <div class="slide-icon-wrap">🤝
+          <div class="float-badge top">👥 5000+</div>
+          <div class="float-badge bottom">🔔 Instant Alerts</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide slide-8">
+    <div class="slide-inner">
+      <div class="slide-text">
+        <div class="slide-tag">👨‍🏫 ABOUT CREATOR</div>
+        <h2>Created by<br/><em>Mushahid Raza</em><br/>For Agri Students</h2>
+        <p>Ek agriculture student ki mehnat se bana ek platform — taaki koi bhi student resources ki kami se peeche na rahe.</p>
+        <a href="about_admin.html" class="slide-cta">Know More ➔</a>
+      </div>
+      <div class="slide-visual">
+        <div class="slide-icon-wrap">👨‍🌾
+          <div class="float-badge top">❤️ Made with Love</div>
+          <div class="float-badge bottom">🆓 Always Free</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="slide-arrow prev" onclick="changeSlide(-1)">&#8249;</button>
+  <button class="slide-arrow next" onclick="changeSlide(1)">&#8250;</button>
+
+  <div class="slide-dots" id="slideDots">
+    <div class="sdot active" onclick="goToSlide(0)"></div>
+    <div class="sdot" onclick="goToSlide(1)"></div>
+    <div class="sdot" onclick="goToSlide(2)"></div>
+    <div class="sdot" onclick="goToSlide(3)"></div>
+    <div class="sdot" onclick="goToSlide(4)"></div>
+    <div class="sdot" onclick="goToSlide(5)"></div>
+    <div class="sdot" onclick="goToSlide(6)"></div>
+    <div class="sdot" onclick="goToSlide(7)"></div>
+  </div>
+
+  <div class="slide-progress">
+    <div class="slide-progress-bar" id="progressBar"></div>
+  </div>
+</div>
 <div class="hero">
   <div class="hero-left">
     <div class="hero-tag">🌾 India's Agriculture Education Platform</div>
@@ -1157,6 +1473,79 @@
       }
     }
   });
+
+  // 5. SLIDESHOW JAVASCRIPT
+  window.addEventListener('DOMContentLoaded', () => {
+    startProgress();
+  });
+
+  const SLIDE_DURATION = 5000; // 5 seconds timer
+  let currentSlide = 0;
+  let autoTimer;
+  let progressTimer;
+  let pausedAt = 0;
+
+  const slides = document.querySelectorAll('.hero-slideshow .slide');
+  const dots = document.querySelectorAll('.sdot');
+  const progressBar = document.getElementById('progressBar');
+  const totalSlides = slides.length;
+
+  function goToSlide(n) {
+    if(slides.length === 0) return;
+    slides[currentSlide].classList.remove('active');
+    if(dots[currentSlide]) dots[currentSlide].classList.remove('active');
+    currentSlide = (n + totalSlides) % totalSlides;
+    slides[currentSlide].classList.add('active');
+    if(dots[currentSlide]) dots[currentSlide].classList.add('active');
+    resetProgress();
+  }
+
+  function changeSlide(dir) { goToSlide(currentSlide + dir); }
+
+  function startProgress() {
+    if(!progressBar) return;
+    progressBar.style.transition = 'none';
+    progressBar.style.width = '0%';
+    void progressBar.offsetWidth; // Force reflow
+    progressBar.style.transition = `width ${SLIDE_DURATION}ms linear`;
+    progressBar.style.width = '100%';
+
+    clearTimeout(autoTimer);
+    autoTimer = setTimeout(() => changeSlide(1), SLIDE_DURATION);
+  }
+
+  function resetProgress() { startProgress(); }
+
+  const slideshow = document.getElementById('heroSlideshow');
+  if(slideshow) {
+    slideshow.addEventListener('mouseenter', () => {
+      clearTimeout(autoTimer);
+      if(progressBar) {
+        const computed = getComputedStyle(progressBar).width;
+        const parentW = progressBar.parentElement.clientWidth;
+        const pct = (parseFloat(computed) / parentW) * 100;
+        progressBar.style.transition = 'none';
+        progressBar.style.width = pct + '%';
+        pausedAt = pct;
+      }
+    });
+    
+    slideshow.addEventListener('mouseleave', () => {
+      if(progressBar) {
+        const remaining = SLIDE_DURATION * (1 - pausedAt / 100);
+        progressBar.style.transition = `width ${remaining}ms linear`;
+        progressBar.style.width = '100%';
+        autoTimer = setTimeout(() => changeSlide(1), remaining);
+      }
+    });
+
+    let touchStartX = 0;
+    slideshow.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+    slideshow.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1);
+    }, {passive:true});
+  }
 </script>
 
 </body>
