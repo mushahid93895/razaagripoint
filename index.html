@@ -753,9 +753,21 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      nav { padding: 0 20px; }
-      .nav-links, .nav-right .btn-nav-outline { display: none; }
-      .hamburger { display: block; }
+      nav { padding: 0 15px; }
+      
+      /* Mobile me jagah kam hoti hai, isliye extra buttons hide kar diye */
+      .nav-links, .nav-right .btn-nav-outline, .nav-right .btn-nav-fill { display: none; }
+      
+      /* Logo aur Theme button ko thoda chota kiya taki perfectly fit ho jaye */
+      .nav-logo-text { font-size: 1.1rem; }
+      .theme-toggle { padding: 6px 12px; font-size: 0.8rem; }
+      
+      .hamburger { display: block; margin-left: auto; }
+      
+      /* Notice Ticker ko mobile ke liye adjust kiya */
+      .notice-ticker { padding: 10px 12px !important; font-size: 14px !important; }
+      .notice-ticker span { font-size: 11px !important; padding: 6px 12px !important; margin-right: 10px !important; }
+      
       .hero { flex-direction: column; padding: 60px 24px; min-height: auto; }
       .hero-right { flex: none; width: 100%; }
       .features-inner { grid-template-columns: 1fr; }
