@@ -1,4 +1,4 @@
-const CACHE_NAME = "rap-cache-v1";
+const CACHE_NAME = "rap-cache-v2";
 
 const APP_ASSETS = [
   "/razaagripoint/",
@@ -8,8 +8,7 @@ const APP_ASSETS = [
 
 // Install
 self.addEventListener("install", (event) => {
-  self.skipWaiting();
-
+  // Update popup ko kaam karne dene ke liye skipWaiting hata diya gaya hai
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(APP_ASSETS);
@@ -57,10 +56,9 @@ self.addEventListener("fetch", (event) => {
   );
 });
 
-// Listen for update command
+// Listen for update command (Update popup ke button par click karne par ye chalega)
 self.addEventListener("message", (event) => {
   if (event.data === "SKIP_WAITING") {
     self.skipWaiting();
   }
 });
-
