@@ -1549,6 +1549,10 @@
     }, {passive:true});
   }
 </script>
-
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/razaagripoint/service-worker.js');
+}
+</script>
 </body>
 </html>
