@@ -3,310 +3,451 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agricultural Heritage | Razaagripoint</title>
+    <title>Agricultural Heritage | Pro Platform</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* ====== Global Styles ====== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8faff;
-            color: #2d3748;
+            font-family: 'Plus Jakarta Sans', sans-serif; /* Changed to a very modern SaaS font */
+            background-color: #f3f6f9;
+            color: #1e293b;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* ====== Navigation Bar ====== */
+        /* ====== Ultra-Sleek Navbar ====== */
         .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: #ffffff;
             padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
         .back-btn {
-            background: #edf2f7;
-            color: #1a202c;
-            padding: 10px 20px;
-            border-radius: 25px;
+            background: transparent;
+            color: #475569;
+            padding: 8px 15px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.3s ease;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
         }
 
         .back-btn:hover {
-            background: #e2e8f0;
-            transform: translateX(-5px);
+            background: #f8fafc;
+            color: #0f172a;
+            border-color: #94a3b8;
         }
 
         .brand-name {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 800;
-            background: linear-gradient(135deg, #004d40 0%, #00b09b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
+        .brand-name i { color: #10b981; font-size: 24px; }
 
-        /* ====== Hero Section (Introduction & YouTube) ====== */
+        /* ====== Immersive Dark Hero Section ====== */
         .hero-section {
-            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-            padding: 70px 20px;
+            background: #0f172a; /* Deep Slate */
+            background-image: radial-gradient(circle at 80% 20%, #1e293b 0%, transparent 40%),
+                              radial-gradient(circle at 20% 80%, #064e3b 0%, transparent 40%);
+            padding: 90px 20px 140px 20px;
             text-align: center;
             color: white;
             position: relative;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
-            box-shadow: 0 10px 30px rgba(15, 32, 39, 0.2);
         }
 
-        .badge {
-            background: rgba(255,255,255,0.15);
-            padding: 8px 16px;
+        .hero-label {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+            padding: 6px 16px;
             border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 13px;
+            font-weight: 700;
             display: inline-block;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-            backdrop-filter: blur(5px);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
         }
 
         .hero-section h1 {
-            font-size: 38px;
-            margin: 0 0 15px 0;
+            font-size: 46px;
+            margin: 0 0 20px 0;
             font-weight: 800;
             line-height: 1.2;
+            letter-spacing: -1px;
         }
 
         .hero-section p {
-            font-size: 16px;
-            max-width: 700px;
-            margin: 0 auto 35px auto;
-            color: #cbd5e0;
-            line-height: 1.7;
+            font-size: 17px;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            color: #94a3b8;
+            line-height: 1.6;
         }
 
-        /* 🔥 Glowing YouTube Button 🔥 */
-        .youtube-btn {
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-primary {
             background: #ff0000;
             color: white;
-            padding: 16px 40px;
-            border-radius: 50px;
+            padding: 14px 32px;
+            border-radius: 10px;
             text-decoration: none;
-            font-size: 18px;
+            border: 2px solid #ff0101;
+            box-shadow: 0 4px 6px #ff0101;
+            font-size: 16px;
             font-weight: 700;
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
-            transition: all 0.3s ease;
-            animation: pulse-red 2s infinite; /* चमकता हुआ एनीमेशन */
+            gap: 10px;
+            transition: all 0.3s;
         }
+        .btn-primary:hover { background: #cc0000; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255,0,0,0.3); }
 
-        .youtube-btn:hover {
-            transform: scale(1.08);
-            background: #cc0000;
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            border: 2px solid #ff0101;
+            box-shadow: 0 2px 6px #ff0101;
+            font-size: 16px;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
         }
+        .btn-secondary:hover { background: white; color: #0f172a; transform: translateY(-3px); }
 
-        @keyframes pulse-red {
-            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(255, 0, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
-        }
-
-        /* ====== PDF Cards Section ====== */
-        .pdf-container {
-            max-width: 1100px;
-            margin: -30px auto 50px auto; /* ऊपर की तरफ खिसका हुआ */
-            padding: 0 20px;
+        /* ====== Floating Stats Ribbon (New Structure) ====== */
+        .stats-ribbon {
+            background: white;
+            max-width: 900px;
+            margin: -50px auto 40px auto;
+            padding: 25px 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: space-around;
             position: relative;
             z-index: 10;
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 26px;
-            color: #1a202c;
-            font-weight: 800;
-            margin-top: 50px;
-            margin-bottom: 30px;
-        }
+        .stat-box { text-align: center; }
+        .stat-box h4 { font-size: 28px; color: #0f172a; font-weight: 800; margin-bottom: 5px; }
+        .stat-box p { font-size: 14px; color: #64748b; font-weight: 500; }
 
-        .grid-layout {
+        /* ====== Course Modules (Redesigned Cards) ====== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+        .section-header h2 { font-size: 28px; color: #0f172a; font-weight: 800; }
+        .section-header p { color: #64748b; font-size: 15px; margin-top: 8px; }
+
+        .materials-grid {
+            max-width: 1100px;
+            margin: 0 auto 80px auto;
+            padding: 0 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(2, 1fr); /* 2 Big Columns on Desktop */
             gap: 25px;
         }
 
-        /* 3D Card Design */
-        .pdf-card {
+        /* Modern EdTech Card Style */
+        .module-card {
             background: white;
-            border-radius: 20px;
-            padding: 30px 20px;
-            text-align: center;
+            border-radius: 16px;
+            padding: 25px;
+            display: flex;
+            gap: 20px;
             text-decoration: none;
-            color: #2d3748;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* बाउंसी होवर इफ़ेक्ट */
+            color: inherit;
+            border: 2px solid #000000;
+            box-shadow: 0 2px 6px #000000;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            border: 2px solid transparent;
         }
 
-        .pdf-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-            border-color: #00b09b;
+        .module-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: #10b981;
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+            transform-origin: bottom;
         }
 
-        /* Card Icons */
-        .icon-wrapper {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px auto;
+        .module-card:hover {
+            box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+            border-color: #000000;
+            transform: translateY(-6px);
+        }
+
+        .module-card:hover::before { transform: scaleY(1); }
+
+        .module-icon {
+            width: 65px;
+            height: 65px;
+            background: #f1f5f9;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        /* Unique Icon Colors */
+        .ic-1 { color: #ef4444; background: #f8e5e5; }
+        .ic-2 { color: #3b82f6; background: #dbeafe; }
+        .ic-3 { color: #10b981; background: #d1fae5; }
+        .ic-4 { color: #8b5cf6; background: #ede9fe; }
+
+        .module-content { flex-grow: 1; }
+        
+        .module-tag {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: #f1f5f9;
+            color: #64748b;
+            display: inline-block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .tag-hot { background: #fee2e2; color: #ef4444; }
+
+        .module-content h3 { font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 6px; }
+        .module-content p { font-size: 14px; color: #64748b; line-height: 1.5; margin-bottom: 15px; }
+
+        .download-link {
+            font-size: 14px;
+            font-weight: 700;
+            color: #3b82f6;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .module-card:hover .download-link gap { gap: 10px; }
+
+        /* ====== Floating WhatsApp Button ====== */
+        .fab-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 35px;
-            transition: transform 0.3s ease;
+            font-size: 30px;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4);
+            text-decoration: none;
+            z-index: 1000;
+            transition: transform 0.3s;
         }
-
-        .pdf-card:hover .icon-wrapper {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .pdf-card h3 {
-            margin: 0 0 10px 0;
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .pdf-card p {
-            margin: 0;
-            font-size: 14px;
-            color: #718096;
-            line-height: 1.5;
-        }
-
-        .download-btn-text {
-            margin-top: 20px;
-            display: inline-block;
-            font-size: 14px;
-            font-weight: 700;
-            color: #00b09b;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Icon Background Colors */
-        .bg-red { background: #ffe4e6; color: #e53e3e; }
-        .bg-blue { background: #e0f2fe; color: #3182ce; }
-        .bg-green { background: #d1fae5; color: #38a169; }
-        .bg-purple { background: #fee2e2; color: #ef4444; }
+        .fab-whatsapp:hover { transform: scale(1.1) rotate(-10deg); }
 
         /* ====== Footer ====== */
         .footer {
             text-align: center;
             padding: 30px 20px;
             background: #ffffff;
-            color: #718096;
+            color: #64748b;
             font-size: 14px;
-            border-top: 1px solid #edf2f7;
+            border-top: 1px solid #e2e8f0;
         }
 
-        .footer strong { color: #1a202c; }
-
-        /* Mobile Responsiveness */
+        /* 🔥 MOBILE RESPONSIVENESS (App List-View Structure) 🔥 */
         @media (max-width: 768px) {
-            .hero-section h1 { font-size: 28px; }
-            .youtube-btn { padding: 14px 30px; font-size: 16px; }
-            .pdf-container { margin-top: 20px; }
+            .navbar { padding: 12px 20px; }
+            .hero-section { padding: 50px 15px 90px 15px; border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+            .hero-section h1 { font-size: 32px; }
+            .hero-buttons { flex-direction: column; gap: 10px; }
+            .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+
+            /* Stats shrink for mobile */
+            .stats-ribbon {
+                margin: -30px 15px 30px 15px;
+                padding: 15px;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            .stat-box h4 { font-size: 20px; }
+            .stat-box p { font-size: 11px; }
+
+            .section-header h2 { font-size: 22px; }
+
+            /* Completely Changed Mobile Layout: List View instead of bulky cards */
+            .materials-grid { grid-template-columns: 1fr; gap: 15px; padding: 0 15px; }
+            
+            .module-card {
+                padding: 15px;
+                gap: 15px;
+                align-items: center; /* Aligns icon and text horizontally */
+                border-radius: 12px;
+            }
+            .module-icon { width: 50px; height: 50px; font-size: 20px; border-radius: 10px; }
+            .module-tag { display: none; } /* Hide tags on mobile to save space */
+            .module-content h3 { font-size: 15px; margin-bottom: 4px; }
+            .module-content p { font-size: 12px; margin-bottom: 0; /* Removing bottom margin to make it compact */ }
+            
+            /* Hide the "Download PDF" text on mobile, just show an arrow button icon on the far right */
+            .download-link { 
+                position: absolute; 
+                right: 15px; 
+                top: 50%; 
+                transform: translateY(-50%); 
+                width: 35px; height: 35px; 
+                background: #f1f5f9; 
+                border-radius: 50%; 
+                justify-content: center; 
+            }
+            .download-link span { display: none; } /* Hide text */
+            .module-content { padding-right: 40px; /* Space for the right arrow */ }
+            
+            .fab-whatsapp { width: 50px; height: 50px; font-size: 24px; bottom: 20px; right: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. Top Navigation Bar -->
+    <!-- 1. Clean SaaS Navbar -->
     <nav class="navbar">
-        <!-- JavaScript history.back() का उपयोग किया है ताकि स्टूडेंट सीधा पिछले क्विज पेज पर वापस जा सके -->
         <a href="javascript:history.back()" class="back-btn">
             <i class="fa-solid fa-arrow-left"></i> Back
         </a>
-        <div class="brand-name">Razaagripoint</div>
+        <div class="brand-name">
+            <img src="mushahid.jpeg" alt="Icon" style="width: 30px; height: 30px; object-fit: cover; border-radius: 50%; vertical-align: middle; margin-right: -4px;"> Razaagripoint
+        </div>
     </nav>
 
-    <!-- 2. Hero Section (Introduction + YouTube Hype) -->
+    <!-- 2. Dark EdTech Hero Section -->
     <section class="hero-section">
-        <div class="badge">🏆 Top Educational Platform for BSc Ag</div>
+        <div class="hero-label">B.Sc. Agriculture Syllabus</div>
         <h1>Agricultural Heritage</h1>
-        <p>
-            Welcome to Razaagripoint Study Center. यहाँ आपको मिलेगी MJPRU यूनिवर्सिटी के सिलेबस पर आधारित सबसे बेहतरीन और प्रीमियम स्टडी मटेरियल। वीडियो लेक्चर्स और नई अपडेट्स के लिए अभी हमारे चैनल से जुड़ें!
-        </p>
+        <p>Premium study material, university notes, and expected MCQ test series. Everything you need to top your exams in one place.</p>
         
-        <!-- 🔥 धड़कता हुआ (Glowing Pulse) यूट्यूब बटन 🔥 -->
-        <a href="https://www.youtube.com/@Razaagripoint" target="_blank" class="youtube-btn">
-            <i class="fa-brands fa-youtube"></i> Subscribe Now (Free)
-        </a>
+        <div class="hero-buttons">
+            <a href="https://www.youtube.com/@Razaagripoint" target="_blank" class="btn-primary">
+                <i class="fa-brands fa-youtube"></i> Subscribe Channel
+            </a>
+            <a href="#materials" class="btn-secondary">
+                View Materials <i class="fa-solid fa-angle-down"></i>
+            </a>
+        </div>
     </section>
 
-    <!-- 3. Premium PDF Cards Section -->
-    <div class="section-title">📚 Download Your Premium PDFs</div>
-    
-    <div class="pdf-container">
-        <div class="grid-layout">
-            
-            <!-- PDF 1 -->
-            <a href="heritageshortnotes.pdf" target="_blank" class="pdf-card">
-                <div class="icon-wrapper bg-red"><i class="fa-solid fa-bolt"></i></div>
-                <h3>Quick Revision Notes</h3>
-                <p>One-liners & Important facts. Best for last-minute exam preparation.</p>
-                <span class="download-btn-text">View PDF <i class="fa-solid fa-arrow-right"></i></span>
-            </a>
-
-            <!-- PDF 2 -->
-            <a href="heritagemegamcq.pdf" target="_blank" class="pdf-card">
-                <div class="icon-wrapper bg-blue"><i class="fa-solid fa-list-check"></i></div>
-                <h3>150 Mega MCQs</h3>
-                <p>Highly expected questions with detailed concept explanations.</p>
-                <span class="download-btn-text">View PDF <i class="fa-solid fa-arrow-right"></i></span>
-            </a>
-
-            <!-- PDF 3 -->
-            <a href="heritagelngnts.pdf" target="_blank" class="pdf-card">
-                <div class="icon-wrapper bg-green"><i class="fa-solid fa-book-open"></i></div>
-                <h3>Master Guide Book</h3>
-                <p>Complete theoretical notes covering the entire university syllabus.</p>
-                <span class="download-btn-text">View PDF <i class="fa-solid fa-arrow-right"></i></span>
-            </a>
-
-            <!-- PDF 4 -->
-            <a href="heritageyt.pdf" target="_blank" class="pdf-card">
-                <div class="icon-wrapper bg-purple"><i class="fa-brands fa-youtube"></i></div>
-                <h3>YouTube Handout</h3>
-                <p>Top 50 Most Important Questions discussed in our latest video.</p>
-                <span class="download-btn-text">View PDF <i class="fa-solid fa-arrow-right"></i></span>
-            </a>
-
+    <!-- 3. Floating Stats Ribbon (Trust Builders) -->
+    <div class="stats-ribbon">
+        <div class="stat-box">
+            <h4>100%</h4>
+            <p>Syllabus Covered</p>
+        </div>
+        <div class="stat-box">
+            <h4>Free</h4>
+            <p>PDF Downloads</p>
+        </div>
+        <div class="stat-box">
+            <h4>50k+</h4>
+            <p>Students</p>
         </div>
     </div>
 
-    <!-- 4. Simple Footer -->
+    <!-- 4. Course Modules (Redesigned Cards) -->
+    <div id="materials" class="section-header">
+        <h2>Study Resources</h2>
+        <p>Select a module to download your high-quality PDF.</p>
+    </div>
+
+    <div class="materials-grid">
+        
+        <!-- Module 1 -->
+        <a href="heritageshortnotes.pdf" target="_blank" class="module-card">
+            <div class="module-icon ic-1"><i class="fa-solid fa-bolt"></i></div>
+            <div class="module-content">
+                <span class="module-tag tag-hot">🔥 Highly Rated</span>
+                <h3>Quick Revision Notes</h3>
+                <p>One-liners and important facts tailored for last-minute exam preparation.</p>
+                <div class="download-link"><span>Download PDF</span> <i class="fa-solid fa-arrow-right"></i></div>
+            </div>
+        </a>
+
+        <!-- Module 2 -->
+        <a href="heritagemegamcq.pdf" target="_blank" class="module-card">
+            <div class="module-icon ic-2"><i class="fa-solid fa-list-ol"></i></div>
+            <div class="module-content">
+                <span class="module-tag">📝 Practice</span>
+                <h3>150 Mega MCQs Test</h3>
+                <p>The most expected multiple-choice questions with deep concept clarity.</p>
+                <div class="download-link"><span>Download PDF</span> <i class="fa-solid fa-arrow-right"></i></div>
+            </div>
+        </a>
+
+        <!-- Module 3 -->
+        <a href="heritagelngnts.pdf" target="_blank" class="module-card">
+            <div class="module-icon ic-3"><i class="fa-solid fa-book-open"></i></div>
+            <div class="module-content">
+                <span class="module-tag">📚 Theory</span>
+                <h3>Master Guide Book</h3>
+                <p>Complete descriptive theoretical notes covering the full MJPRU syllabus.</p>
+                <div class="download-link"><span>Download PDF</span> <i class="fa-solid fa-arrow-right"></i></div>
+            </div>
+        </a>
+
+        <!-- Module 4 -->
+        <a href="heritageyt.pdf" target="_blank" class="module-card">
+            <div class="module-icon ic-4"><i class="fa-brands fa-youtube"></i></div>
+            <div class="module-content">
+                <span class="module-tag">▶️ Video Class</span>
+                <h3>YouTube Handout</h3>
+                <p>The top 50 most important questions discussed directly in our latest video.</p>
+                <div class="download-link"><span>Download PDF</span> <i class="fa-solid fa-arrow-right"></i></div>
+            </div>
+        </a>
+
+    </div>
+
+    <!-- Floating Help Button -->
+    <a href="https://wa.me/919389519645" target="_blank" class="fab-whatsapp" title="Need Help?">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
     <footer class="footer">
         <p>Copyright © 2026 <strong>Razaagripoint</strong>. All Rights Reserved.</p>
         <p>Developed with ❤️ by <strong>Mushahid Raza</strong></p>
