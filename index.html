@@ -979,9 +979,33 @@
     @media (prefers-reduced-motion: reduce) {
       .notice-scroll, .pulseBadge, .ripple, .click-glow, .floatIcon, .floatBadge { animation: none; }
     }
+    #splash{
+    position:fixed;
+    inset:0;
+    background:#eef8e8;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999999;
+    transition:opacity .4s ease;
+}
+
+#splash.hide{
+    opacity:0;
+    pointer-events:none;
+}
+
+#splash img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
   </style>
 </head>
 <body>
+  <div id="splash">
+    <img src="splash.jpeg" alt="Splash Screen">
+</div>
 
 <nav>
   <a href="index.html" class="nav-logo ripple-element">
@@ -1553,6 +1577,14 @@
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/razaagripoint/service-worker.js');
 }
+</script>
+
+  <script>
+window.addEventListener("load", function () {
+    setTimeout(function () {
+        document.getElementById("splash").classList.add("hide");
+    }, 2000);
+});
 </script>
 </body>
 </html>
