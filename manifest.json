@@ -1,0 +1,15 @@
+{
+  "name": "Raza Agri Point",
+  "short_name": "RAP",
+  "start_url": "/razaagripoint/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2e7d32",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
