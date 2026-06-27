@@ -238,7 +238,7 @@
     .theme-toggle:hover { transform: scale(1.05); }
 
     /* ══════════════════════════════
-       ★ HERO SLIDESHOW CSS ★
+       ★ NEW HERO SLIDESHOW CSS ★
     ══════════════════════════════ */
     .hero-slideshow {
       position:relative; width:100%; overflow:hidden;
@@ -398,7 +398,7 @@
     }
     .sdot.active { width:26px; background:white; }
 
-    /* ── HERO ── */
+    /* ── HERO (Original) ── */
     .hero {
       background: linear-gradient(135deg, #0f2027 0%, #145c38 50%, #1a7a4a 100%);
       padding: 80px 60px;
@@ -627,7 +627,7 @@
 
     .sec-sub { font-size: 0.95rem; color: var(--gray); line-height: 1.7; max-width: 600px; }
 
-    /* ── SEMESTER CARDS ── */
+    /* ── SEMESTER CARDS (FIXED 4-SIDE BORDER + HEAVY 3D) ── */
     .semester-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -646,7 +646,7 @@
       position: relative;
       box-shadow: 
         0 12px 30px rgba(0, 0, 0, 0.12), 
-        0 4px 8px rgba(0, 0, 0, 0.06);
+        0 4px 8px rgba(0, 0, 0, 0.06);   
     }
 
     [data-theme="dark"] .sem-card {
@@ -655,7 +655,9 @@
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
     }
 
-    .sem-card::before { display: none; }
+    .sem-card::before {
+      display: none; 
+    }
 
     .sem-card:hover {
       transform: translateY(-10px); 
@@ -895,7 +897,7 @@
 
     .footer-copy strong { color: #9ca3af; }
 
-    /* ── RIPPLE + GLOW ── */
+    /* ── PREMIUM CLICK EFFECTS (Ripple + Glow) ── */
     a, button, .sem-card, .notice-ticker {
       -webkit-tap-highlight-color: transparent;
     }
@@ -918,12 +920,15 @@
       z-index: 5;
     }
 
-    .sem-card .ripple { background-color: rgba(255, 107, 53, 0.2); }
+    .sem-card .ripple {
+      background-color: rgba(255, 107, 53, 0.2); 
+    }
 
     @keyframes ripple-animation {
       to { transform: scale(4); opacity: 0; }
     }
 
+    /* GLOW ANIMATION */
     @keyframes glow-pulse {
       0%   { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7); }
       50%  { box-shadow: 0 0 25px 10px rgba(255, 107, 53, 0.8); }
@@ -935,70 +940,38 @@
       z-index: 10;
       border-color: var(--orange) !important;
     }
-
-    /* ── INSTALL BUTTON ── */
-    .install-app-btn {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: linear-gradient(135deg, #ff9100 0%, #ff3d00 100%); 
-      color: #ffffff;
-      border: 2px solid #ffffff;
-      padding: 16px 28px;
-      border-radius: 50px;
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      cursor: pointer;
-      z-index: 9999; 
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: 'Poppins', sans-serif;
-      box-shadow: 0 0 15px rgba(255, 61, 0, 0.6), 0 0 30px rgba(255, 145, 0, 0.4);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      animation: neonGlowPulse 2s infinite alternate;
-    }
-
-    .install-icon-hit { font-size: 20px; animation: bounceIconBtn 1s infinite alternate; }
-
-    @keyframes neonGlowPulse {
-      0% { transform: scale(1); box-shadow: 0 0 12px rgba(255, 61, 0, 0.6), 0 0 20px rgba(255, 145, 0, 0.3); }
-      100% { transform: scale(1.05); box-shadow: 0 0 25px rgba(255, 61, 0, 0.9), 0 0 45px rgba(255, 145, 0, 0.6); border-color: #ffca28; }
-    }
-
-    @keyframes bounceIconBtn {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-3px); }
-    }
-
-    .install-app-btn:hover {
-      background: linear-gradient(135deg, #ff3d00 0%, #d50000 100%);
-      transform: translateY(-8px) scale(1.08) !important;
-      box-shadow: 0 0 35px rgba(255, 61, 0, 1), 0 0 60px rgba(255, 145, 0, 0.8);
-    }
     
-    @keyframes pulseButton {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.08); box-shadow: 0 6px 12px rgba(211,47,47,0.7); }
-      100% { transform: scale(1); }
+    /* ── NEW: BOUNCE ICON FOR LOADER ── */
+    @keyframes bounceIcon {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-15px); }
     }
-    
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 0 15px; }
+      
+      /* Mobile me jagah kam hoti hai, isliye extra buttons hide kar diye */
       .nav-links, .nav-right .btn-nav-outline, .nav-right .btn-nav-fill, .nav-right #logoutBtnDesk { display: none; }
+      
+      /* Logo aur Theme button ko thoda chota kiya taki perfectly fit ho jaye */
       .nav-logo-text { font-size: 1.1rem; }
       .theme-toggle { padding: 6px 12px; font-size: 0.8rem; }
+      
       .hamburger { display: block; margin-left: auto; }
+      
+      /* Notice Ticker ko mobile ke liye adjust kiya */
       .notice-ticker { padding: 10px 12px !important; font-size: 14px !important; }
       .notice-ticker span { font-size: 11px !important; padding: 6px 12px !important; margin-right: 10px !important; }
+
+      /* Slideshow Responsive fix */
       .hero-slideshow { padding-top: 110%; }
       .slide-inner { padding: 0 24px; flex-direction: column; text-align: center; padding-top: 40px; padding-bottom: 40px; }
       .slide-text p { margin: 0 auto 22px; }
       .slide-visual { display: none; }
       .slide-arrow.prev { left: 8px; }
       .slide-arrow.next { right: 8px; }
+      
       .hero { flex-direction: column; padding: 60px 24px; min-height: auto; }
       .hero-right { flex: none; width: 100%; }
       .features-inner { grid-template-columns: 1fr; }
@@ -1009,78 +982,131 @@
       .tips-bg { padding: 60px 24px; }
       footer { padding: 36px 24px; flex-direction: column; align-items: flex-start; }
       .footer-copy { text-align: left; }
-      .install-app-btn { bottom: 20px; right: 5%; left: 5%; width: 90%; justify-content: center; font-size: 16px; padding: 15px 0; animation: neonGlowPulseMobile 2s infinite alternate; }
-    }
-
-    @keyframes neonGlowPulseMobile {
-      0% { transform: scale(1); box-shadow: 0 0 12px rgba(255, 61, 0, 0.6); }
-      100% { transform: scale(1.02); box-shadow: 0 0 25px rgba(255, 61, 0, 0.9), 0 0 45px rgba(255, 145, 0, 0.5); }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .notice-scroll, .pulseBadge, .ripple, .click-glow, .floatIcon, .floatBadge { animation: none; }
+      .notice-scroll, .pulseBadge, .ripple, .click-glow, .floatIcon, .floatBadge, .bounceIcon { animation: none; }
+    }
+    
+    /* Premium Neon Glowing Button Design */
+    .install-app-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: linear-gradient(135deg, #ff9100 0%, #ff3d00 100%); 
+        color: #ffffff;
+        border: 2px solid #ffffff;
+        padding: 16px 28px;
+        border-radius: 50px;
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        cursor: pointer;
+        z-index: 9999; 
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: 'Poppins', sans-serif;
+        box-shadow: 0 0 15px rgba(255, 61, 0, 0.6), 0 0 30px rgba(255, 145, 0, 0.4);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        animation: neonGlowPulse 2s infinite alternate;
+    }
+
+    .install-icon-hit {
+        font-size: 20px;
+        animation: bounceIconBtn 1s infinite alternate;
+    }
+
+    @keyframes neonGlowPulse {
+        0% { transform: scale(1); box-shadow: 0 0 12px rgba(255, 61, 0, 0.6), 0 0 20px rgba(255, 145, 0, 0.3); }
+        100% { transform: scale(1.05);  box-shadow: 0 0 25px rgba(255, 61, 0, 0.9), 0 0 45px rgba(255, 145, 0, 0.6); border-color: #ffca28; }
+    }
+
+    @keyframes bounceIconBtn {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-3px); }
+    }
+
+    .install-app-btn:hover {
+        background: linear-gradient(135deg, #ff3d00 0%, #d50000 100%);
+        transform: translateY(-8px) scale(1.08) !important;
+        box-shadow: 0 0 35px rgba(255, 61, 0, 1), 0 0 60px rgba(255, 145, 0, 0.8);
+    }
+    
+    @media (max-width: 768px) {
+        .install-app-btn {
+            bottom: 20px; right: 5%; left: 5%; width: 90%; justify-content: center; font-size: 16px; padding: 15px 0;
+            animation: neonGlowPulseMobile 2s infinite alternate;
+        }
+    }
+
+    @keyframes neonGlowPulseMobile {
+        0% { transform: scale(1); box-shadow: 0 0 12px rgba(255, 61, 0, 0.6); }
+        100% { transform: scale(1.02); box-shadow: 0 0 25px rgba(255, 61, 0, 0.9), 0 0 45px rgba(255, 145, 0, 0.5); }
     }
   </style>
 </head>
 <body>
 
-  <!-- LOADING SCREEN -->
-  <style>
-    #loadingScreen { transition: opacity 0.5s ease; }
-    #loadingScreen.fade-out { opacity: 0; pointer-events: none; }
-  </style>
-  <div id="loadingScreen" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#F7F7F3;z-index:99999;display:flex;justify-content:center;align-items:center;flex-direction:column;">
-    <i class="fa-solid fa-seedling" style="font-size:60px;color:#1a7a4a;margin-bottom:20px;animation:bounceIcon 0.8s infinite alternate;"></i>
-    <h2 style="color:#1a1a2e;font-family:'Poppins',sans-serif;font-size:20px;">Loading...</h2>
+  <div id="loadingScreen" style="position: fixed; top:0; left:0; width: 100%; height: 100%; background: #F7F7F3; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+      <i class="fa-solid fa-seedling" style="font-size: 50px; color: #6A8668; margin-bottom: 20px;"></i>
+      <h2 style="color: #2C332C; font-family: 'Poppins', sans-serif; font-size: 20px;">Loading...</h2>
   </div>
 
-  <!-- MAIN CONTENT - hidden until login confirmed -->
-  <div id="mainContent" style="display:none;">
+  <div id="mainContent" style="display: none;">
 
-    <!-- NAV -->
     <nav>
       <a href="index.html" class="nav-logo ripple-element">
         <img src="icon.jpeg" alt="Razaagripoint" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
         <div class="logo-fallback" style="display:none;">R</div>
         <span class="nav-logo-text">Raza<span>Agripoint</span></span>
       </a>
+
       <ul class="nav-links">
         <li><a href="index.html" class="ripple-element">Home</a></li>
         <li><a href="#semesters" class="ripple-element">Syllabus</a></li>
         <li><a href="#about" class="ripple-element">About</a></li>
       </ul>
+
       <div class="nav-right">
         <button class="theme-toggle ripple-element" onclick="toggleTheme()">🌙 Dark</button>
         <a href="https://t.me/razaagripoint" target="_blank" class="btn-nav-outline ripple-element">Join Telegram</a>
         <a href="#semesters" class="btn-nav-fill ripple-element">Get Started ➔</a>
-        <button id="logoutBtnDesk" class="btn-nav-outline ripple-element" style="border-color:#d32f2f; color:#d32f2f; margin-left:10px;">Logout</button>
+        
+        <button id="logoutBtnDesk" class="btn-nav-outline ripple-element" style="border-color: #d32f2f; color: #d32f2f; margin-left: 10px;">Logout</button>
+        
         <button class="hamburger ripple-element" onclick="toggleMobileMenu()">☰</button>
       </div>
     </nav>
 
-    <!-- MOBILE MENU -->
     <div class="mobile-menu" id="mobileMenu">
       <a href="index.html" onclick="toggleMobileMenu()">Home</a>
       <a href="#semesters" onclick="toggleMobileMenu()">Syllabus</a>
       <a href="#about" onclick="toggleMobileMenu()">About</a>
       <a href="https://t.me/razaagripoint" target="_blank">Join Telegram</a>
-      <a href="#" id="logoutBtnMob" style="color:#d32f2f; font-weight:800;">Logout</a>
+      <a href="#" id="logoutBtnMob" style="color: #d32f2f; font-weight: 800;">Logout</a>
     </div>
 
-    <!-- NOTICE TICKER -->
-    <div class="notice-ticker ripple-element" style="background:linear-gradient(90deg,#ffeb3b,#ffc107); border-bottom:3px solid #f57f17; padding:14px 20px; font-size:18px; cursor:pointer; display:flex; align-items:center; overflow:hidden;" onclick="window.open('cropphysiomock.html','_blank');">
-      <span style="background:#d32f2f; color:white; padding:8px 18px; border-radius:25px; font-size:15px; font-weight:900; margin-right:15px; white-space:nowrap; box-shadow:0 4px 8px rgba(211,47,47,0.5); text-transform:uppercase; animation:pulseButton 1.5s infinite;">
-        🚨 TAKE TEST NOW
-      </span>
-      <marquee behavior="scroll" direction="left" scrollamount="8" onmouseover="this.stop();" onmouseout="this.start();" style="color:#b71c1c; font-weight:800; text-transform:uppercase; letter-spacing:1px; text-shadow:1px 1px 0px rgba(255,255,255,0.6);">
-        🔥 Fundamentals of Crop Physiology and Taxonomy Ke 150 Most Important Questions Ke Live Test Ke Liye Yahan Click Karein ➔&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        🔥 Fundamentals of Crop Physiology and Taxonomy Ke 150 Most Important Questions Ke Live Test Ke Liye Yahan Click Karein ➔&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        🔥 Fundamentals of Crop Physiology and Taxonomy Ke 150 Most Important Questions Ke Live Test Ke Liye Yahan Click Karein ➔
-      </marquee>
+    <div class="notice-ticker ripple-element" style="background: linear-gradient(90deg, #ffeb3b, #ffc107); border-bottom: 3px solid #f57f17; padding: 14px 20px; font-size: 18px; cursor: pointer; display: flex; align-items: center; overflow: hidden;" onclick="window.open('cropphysiomock.html', '_blank');">
+        <span style="background: #d32f2f; color: white; padding: 8px 18px; border-radius: 25px; font-size: 15px; font-weight: 900; margin-right: 15px; white-space: nowrap; box-shadow: 0 4px 8px rgba(211,47,47,0.5); text-transform: uppercase; animation: pulseButton 1.5s infinite;">
+            🚨 TAKE TEST NOW
+        </span>
+        <marquee behavior="scroll" direction="left" scrollamount="8" onmouseover="this.stop();" onmouseout="this.start();" style="color: #b71c1c; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; text-shadow: 1px 1px 0px rgba(255,255,255,0.6);">
+            🔥 Fundamentals of Crop Physiology and Taxonomy Ke 150 Most Important Questions Ke Live Test Ke Liye Yahan Click Karein  ➔&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            🔥 Fundamentals of Crop Physiology and Taxonomy Ke 150 Most Important Questions Ke Live Test Ke Liye Yahan Click Karein ➔&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            🔥 Fundamentals of Crop Physiology and Taxonomy Ke 150 Most Important Questions Ke Live Test Ke Liye Yahan Click Karein  ➔
+        </marquee>
+        <style>
+            @keyframes pulseButton {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.08); box-shadow: 0 6px 12px rgba(211,47,47,0.7); }
+                100% { transform: scale(1); }
+            }
+        </style>
     </div>
 
-    <!-- HERO SLIDESHOW -->
     <div class="hero-slideshow" id="heroSlideshow">
+
       <div class="slide slide-1 active">
         <div class="slide-inner">
           <div class="slide-text">
@@ -1235,8 +1261,7 @@
         <div class="slide-progress-bar" id="progressBar"></div>
       </div>
     </div>
-
-    <!-- HERO STATIC SECTION -->
+    
     <div class="hero">
       <div class="hero-left">
         <div class="hero-tag">🌾 India's Agriculture Education Platform</div>
@@ -1255,6 +1280,7 @@
           <a href="https://t.me/razaagripoint" target="_blank" class="btn-hero-ghost ripple-element">📱 Join Community</a>
         </div>
       </div>
+
       <div class="hero-right">
         <div class="stats-card">
           <h3>🏆 Platform at a Glance</h3>
@@ -1281,7 +1307,6 @@
       </div>
     </div>
 
-    <!-- FEATURES STRIP -->
     <div class="features-strip">
       <div class="features-inner">
         <div class="feat-item">
@@ -1302,13 +1327,12 @@
           <div class="feat-icon-wrap blue">📝</div>
           <div class="feat-text">
             <h3>Live Mock Tests</h3>
-            <p>Chapter-wise interactive quizzes with instant results to test your preparation level.</p>
+            <p>Chapter-wise interactive quizes with instant results to test your preparation level.</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- SEMESTERS SECTION -->
     <div id="semesters" class="section">
       <div class="sec-eyebrow">BSc Agriculture (Hons.)</div>
       <h2 class="sec-title">Choose Your <span>Semester</span></h2>
@@ -1316,6 +1340,7 @@
         Mahatma Jyotibha Phoole Rohilkhand University &amp; All Affiliated Colleges —
         syllabus, notes, and mock tests for every semester.
       </p>
+
       <div class="semester-grid">
         <a href="semester1.html" class="sem-card ripple-element">
           <div class="sem-top">
@@ -1326,6 +1351,7 @@
           <p>Foundations of Agronomy, Soil Science, Plant Biochemistry & more.</p>
           <div class="sem-btn">Explore Syllabus <span>➔</span></div>
         </a>
+
         <a href="semester2.html" class="sem-card ripple-element">
           <div class="sem-top">
             <span class="sem-pill">Semester 2</span>
@@ -1335,6 +1361,7 @@
           <p>Crop Physiology, Soil Fertility, Agricultural Meteorology & more.</p>
           <div class="sem-btn">Explore Syllabus <span>➔</span></div>
         </a>
+
         <a href="semester3.html" class="sem-card ripple-element">
           <div class="sem-top">
             <span class="sem-pill">Semester 3</span>
@@ -1344,15 +1371,17 @@
           <p>Agricultural Entomology, Plant Pathology, Genetics & Weed Management.</p>
           <div class="sem-btn">Explore Syllabus <span>➔</span></div>
         </a>
+
         <a href="semester4.html" class="sem-card ripple-element">
           <div class="sem-top">
             <span class="sem-pill">Semester 4</span>
             <span class="sem-icon">🍎</span>
           </div>
           <h3>4th Semester</h3>
-          <p>Olericulture, Pomology, Plant Breeding & Seed Technology.</p>
+          <p>Olericulture,  Pomology, Plant Breeding & Seed Technology.</p>
           <div class="sem-btn">Explore Syllabus <span>➔</span></div>
         </a>
+
         <a href="semester5.html" class="sem-card ripple-element">
           <div class="sem-top">
             <span class="sem-pill">Semester 5</span>
@@ -1362,6 +1391,7 @@
           <p>Farm Machinery, Irrigation Engineering, Agricultural Economics & Extension.</p>
           <div class="sem-btn">Explore Syllabus <span>➔</span></div>
         </a>
+
         <a href="semester6.html" class="sem-card ripple-element">
           <div class="sem-top">
             <span class="sem-pill">Semester 6</span>
@@ -1374,21 +1404,21 @@
       </div>
     </div>
 
-    <!-- ABOUT + COMMUNITY -->
     <div id="about" class="two-col-section">
       <div class="two-col-inner">
         <div class="about-card-pw">
-          <div class="avatar" style="width:300px; height:300px; overflow:hidden; background:none; border:3px solid var(--orange);">
-            <img src="mushahid.jpeg" alt="Mushahid Raza" style="width:100%; height:100%; object-fit:cover;">
-          </div>
+         <div class="avatar" style="width: 300px; height: 300px; overflow: hidden; background: none; border: 3px solid var(--orange);">
+          <img src="mushahid.jpeg" alt="Mushahid Raza" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
           <h3>About Mushahid Raza</h3>
-          <p><b>Hello!</b> I am <strong>Mushahid Raza</strong>, the creator behind Razaagripoint.</p>
+          <p><b>Hello!</b> I am <strong>Mushahid Raza</strong>, the creator behind Razaagripoint. </p>
           <p>Razaagripoint mere liye sirf ek website nahi, balki ek <em>mission</em> hai. BSc Agriculture ke dauran maine mehsoos kiya ki agri-education mein sahi notes aur asaan lectures ki kitni kami hai. Wahi se shuru hua mera safar — ek laptop aur kai raaton ki mehnat ke baad, yeh platform tayyar hua.</p>
           <p>Par asal kahani Notes ke piche ki hai... kaise ek middleclass parivar ke ladke ne digital platform banane ka sapna dekha? Aur kaise har mushkil ko paar kar ke aaj 5000+ students mujhse jude huye hain?</p>
           <p><strong>Meri poori kahani, meri galtiyon aur safalta ke piche ka raaz janne ke liye niche click karein.</strong></p>
           <p>Created and managed by <strong>Mushahid Raza</strong>, this platform provides everything you need — from Agronomy to Genetics — all strictly based on ICAR guidelines, absolutely free of cost.</p>
-          <a href="about_admin.html" class="btn-about-pw ripple-element">Know More About Mushahid</a>
+          <a href="about_admin.html" class="btn-about-pw ripple-element">Know More About Mushahid </a>
         </div>
+
         <div class="community-card-pw">
           <div class="tg-icon">📱</div>
           <h3>Join Our Telegram Community</h3>
@@ -1400,12 +1430,12 @@
       </div>
     </div>
 
-    <!-- TIPS -->
     <div class="tips-bg">
       <div class="tips-inner">
         <div class="sec-eyebrow">Smart Strategies</div>
         <h2 class="sec-title">Topper's Study Tips</h2>
         <p class="sec-sub">Proven strategies to score higher in your Agriculture exams.</p>
+
         <div class="tips-grid">
           <div class="tip-card-pw">
             <div class="tip-icon">🎯</div>
@@ -1426,38 +1456,35 @@
       </div>
     </div>
 
-    <!-- FOOTER -->
     <footer>
       <div class="footer-copy">
         Designed by <strong>MUSHAHID RAZA</strong> ❤️ for BSc Agriculture Students
       </div>
     </footer>
 
-  </div><!-- /mainContent -->
+    <div id="updatePopup" style="display:none; position:fixed; bottom:20px; left:5%; right:5%; width: 90%; background:#1b5e20; color:#fff; padding:15px; border-radius:10px; text-align:center; z-index:10001; box-shadow:0 5px 15px rgba(0,0,0,0.3); font-family: 'Poppins', sans-serif;">
+        <p style="margin: 0 0 10px 0; font-size: 16px;">New version available! 🎉</p>
+        <button id="updateBtn" style="background:#ffca28; color:#000; border:none; padding:10px 20px; border-radius:50px; cursor:pointer; font-weight:bold; font-size: 15px;">Update Now</button>
+    </div>
 
-  <!-- PWA UPDATE POPUP -->
-  <div id="updatePopup" style="display:none; position:fixed; bottom:20px; left:5%; right:5%; width:90%; background:#1b5e20; color:#fff; padding:15px; border-radius:10px; text-align:center; z-index:10001; box-shadow:0 5px 15px rgba(0,0,0,0.3); font-family:'Poppins',sans-serif;">
-    <p style="margin:0 0 10px 0; font-size:16px;">New version available! 🎉</p>
-    <button id="updateBtn" style="background:#ffca28; color:#000; border:none; padding:10px 20px; border-radius:50px; cursor:pointer; font-weight:bold; font-size:15px;">Update Now</button>
-  </div>
+    <button id="installAppBtn" class="install-app-btn" style="display: none;">
+        <i class="fa-solid fa-cloud-arrow-down install-icon-hit"></i> 
+        <span class="btn-text-glow">DOWNLOAD APP</span>
+    </button>
 
-  <!-- INSTALL APP BUTTON -->
-  <button id="installAppBtn" class="install-app-btn" style="display:none;">
-    <i class="fa-solid fa-cloud-arrow-down install-icon-hit"></i>
-    <span class="btn-text-glow">DOWNLOAD APP</span>
-  </button>
-
-  <!-- GENERAL SCRIPTS -->
+  </div> 
   <script>
     // 1. Mobile Menu Toggle
     function toggleMobileMenu() {
-      document.getElementById('mobileMenu').classList.toggle('active');
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('active');
     }
 
     // 2. Dark Mode Toggle
     function toggleTheme() {
       const body = document.body;
       const btn = document.querySelector('.theme-toggle');
+      
       if (body.getAttribute('data-theme') === 'dark') {
         body.removeAttribute('data-theme');
         btn.innerText = '🌙 Dark';
@@ -1469,110 +1496,129 @@
       }
     }
 
-    // 3. Saved Theme on Load
+    // 3. Check saved theme on load
     window.onload = () => {
-      if (localStorage.getItem('theme') === 'dark') {
+      if(localStorage.getItem('theme') === 'dark') {
         document.body.setAttribute('data-theme', 'dark');
         document.querySelector('.theme-toggle').innerText = '☀️ Light';
       }
     };
 
-    // 4. Ripple + Glow + Delayed Navigation
+    // 4. Ripple & GLOW Generator + Delayed Navigation
     document.addEventListener('click', function(e) {
       const clickableElement = e.target.closest('.ripple-element, .btn-hero-main, .card-cta, .btn-about-pw, .btn-tg, .sem-card, .btn-nav-fill');
       const linkElement = e.target.closest('a');
 
       if (clickableElement) {
-        if (window.getComputedStyle(clickableElement).position === 'static') {
+        if(window.getComputedStyle(clickableElement).position === 'static') {
           clickableElement.style.position = 'relative';
         }
-        if (!clickableElement.classList.contains('notice-ticker')) {
-          clickableElement.style.overflow = 'hidden';
+        
+        if(!clickableElement.classList.contains('notice-ticker')) {
+           clickableElement.style.overflow = 'hidden';
         }
+
         clickableElement.classList.add('click-glow');
+
         const circle = document.createElement('span');
         const diameter = Math.max(clickableElement.clientWidth, clickableElement.clientHeight);
         const radius = diameter / 2;
+
         const rect = clickableElement.getBoundingClientRect();
         circle.style.width = circle.style.height = `${diameter}px`;
         circle.style.left = `${e.clientX - rect.left - radius}px`;
-        circle.style.top  = `${e.clientY - rect.top  - radius}px`;
+        circle.style.top = `${e.clientY - rect.top - radius}px`;
         circle.classList.add('ripple');
+
         const existingRipple = clickableElement.querySelector('.ripple');
-        if (existingRipple) existingRipple.remove();
+        if (existingRipple) {
+          existingRipple.remove();
+        }
         clickableElement.appendChild(circle);
-        setTimeout(() => clickableElement.classList.remove('click-glow'), 400);
+
+        setTimeout(() => {
+          clickableElement.classList.remove('click-glow');
+        }, 400);
       }
 
       if (linkElement && linkElement.href) {
-        const href   = linkElement.getAttribute('href');
+        const href = linkElement.getAttribute('href');
         const target = linkElement.getAttribute('target');
+
         if (href && !href.startsWith('#') && target !== '_blank' && !href.startsWith('javascript')) {
-          e.preventDefault();
-          setTimeout(() => { window.location.href = href; }, 400);
+          e.preventDefault(); 
+          setTimeout(() => {
+            window.location.href = href;
+          }, 400); 
         }
       }
     });
 
-    // 5. Slideshow
+    // 5. SLIDESHOW JAVASCRIPT
+    window.addEventListener('DOMContentLoaded', () => {
+      startProgress();
+    });
+
     const SLIDE_DURATION = 5000;
     let currentSlide = 0;
     let autoTimer;
+    let progressTimer;
     let pausedAt = 0;
 
-    const slides      = document.querySelectorAll('.hero-slideshow .slide');
-    const dots        = document.querySelectorAll('.sdot');
+    const slides = document.querySelectorAll('.hero-slideshow .slide');
+    const dots = document.querySelectorAll('.sdot');
     const progressBar = document.getElementById('progressBar');
     const totalSlides = slides.length;
 
     function goToSlide(n) {
-      if (!slides.length) return;
+      if(slides.length === 0) return;
       slides[currentSlide].classList.remove('active');
-      if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
+      if(dots[currentSlide]) dots[currentSlide].classList.remove('active');
       currentSlide = (n + totalSlides) % totalSlides;
       slides[currentSlide].classList.add('active');
-      if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+      if(dots[currentSlide]) dots[currentSlide].classList.add('active');
       resetProgress();
     }
 
     function changeSlide(dir) { goToSlide(currentSlide + dir); }
 
     function startProgress() {
-      if (!progressBar) return;
+      if(!progressBar) return;
       progressBar.style.transition = 'none';
       progressBar.style.width = '0%';
-      void progressBar.offsetWidth;
+      void progressBar.offsetWidth; 
       progressBar.style.transition = `width ${SLIDE_DURATION}ms linear`;
       progressBar.style.width = '100%';
+
       clearTimeout(autoTimer);
       autoTimer = setTimeout(() => changeSlide(1), SLIDE_DURATION);
     }
 
     function resetProgress() { startProgress(); }
 
-    window.addEventListener('DOMContentLoaded', () => { startProgress(); });
-
     const slideshow = document.getElementById('heroSlideshow');
-    if (slideshow) {
+    if(slideshow) {
       slideshow.addEventListener('mouseenter', () => {
         clearTimeout(autoTimer);
-        if (progressBar) {
+        if(progressBar) {
           const computed = getComputedStyle(progressBar).width;
-          const parentW  = progressBar.parentElement.clientWidth;
+          const parentW = progressBar.parentElement.clientWidth;
           const pct = (parseFloat(computed) / parentW) * 100;
           progressBar.style.transition = 'none';
           progressBar.style.width = pct + '%';
           pausedAt = pct;
         }
       });
+      
       slideshow.addEventListener('mouseleave', () => {
-        if (progressBar) {
+        if(progressBar) {
           const remaining = SLIDE_DURATION * (1 - pausedAt / 100);
           progressBar.style.transition = `width ${remaining}ms linear`;
           progressBar.style.width = '100%';
           autoTimer = setTimeout(() => changeSlide(1), remaining);
         }
       });
+
       let touchStartX = 0;
       slideshow.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
       slideshow.addEventListener('touchend', e => {
@@ -1582,108 +1628,106 @@
     }
   </script>
 
-  <!-- PWA SERVICE WORKER -->
   <script>
+    // App Update Worker
     let newWorker;
     const updatePopup = document.getElementById('updatePopup');
-    const updateBtn   = document.getElementById('updateBtn');
+    const updateBtn = document.getElementById('updateBtn');
 
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/razaagripoint/service-worker.js').then(reg => {
-        reg.addEventListener('updatefound', () => {
-          newWorker = reg.installing;
-          newWorker.addEventListener('statechange', () => {
-            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-              updatePopup.style.display = 'block';
-            }
-          });
+        navigator.serviceWorker.register('/razaagripoint/service-worker.js').then(reg => {
+            reg.addEventListener('updatefound', () => {
+                newWorker = reg.installing;
+                newWorker.addEventListener('statechange', () => {
+                    if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                        updatePopup.style.display = 'block';
+                    }
+                });
+            });
         });
-      });
 
-      updateBtn.addEventListener('click', () => {
-        if (newWorker) newWorker.postMessage('SKIP_WAITING');
-      });
+        updateBtn.addEventListener('click', () => {
+            if (newWorker) {
+                newWorker.postMessage('SKIP_WAITING');
+            }
+        });
 
-      let refreshing;
-      navigator.serviceWorker.addEventListener('controllerchange', () => {
-        if (!refreshing) { window.location.reload(); refreshing = true; }
-      });
+        let refreshing;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (!refreshing) {
+                window.location.reload();
+                refreshing = true;
+            }
+        });
     }
-  </script>
 
-  <!-- PWA INSTALL BUTTON -->
-  <script>
+    // App Install Prompt
     let deferredPrompt;
     const installBtn = document.getElementById('installAppBtn');
 
     window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      installBtn.style.display = 'flex';
+        e.preventDefault();
+        deferredPrompt = e;
+        installBtn.style.display = 'flex';
     });
 
     installBtn.addEventListener('click', async () => {
-      installBtn.style.display = 'none';
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      console.log(`User response: ${outcome}`);
-      deferredPrompt = null;
+        installBtn.style.display = 'none';
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log(`User response: ${outcome}`);
+        deferredPrompt = null;
     });
 
     window.addEventListener('appinstalled', () => {
-      installBtn.style.display = 'none';
-      console.log('Razaagripoint App Installed Successfully!');
+        installBtn.style.display = 'none';
+        console.log('Razaagripoint App Installed Successfully!');
     });
   </script>
 
-
-  <!-- FIREBASE AUTH + LOGOUT -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+      import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyB1KZR4aszinZX3yhHHxO5nv3kglM3Z1vM",
-      authDomain: "razaagripoint9.firebaseapp.com",
-      projectId: "razaagripoint9",
-      storageBucket: "razaagripoint9.firebasestorage.app",
-      messagingSenderId: "90899993212",
-      appId: "1:90899993212:web:5699cd8764648f4f2d6ff9"
-    };
+      const firebaseConfig = {
+          apiKey: "AIzaSyB1KZR4aszinZX3yhHHxO5nv3kglM3Z1vM",
+          authDomain: "razaagripoint9.firebaseapp.com",
+          projectId: "razaagripoint9",
+          storageBucket: "razaagripoint9.firebasestorage.app",
+          messagingSenderId: "90899993212",
+          appId: "1:90899993212:web:5699cd8764648f4f2d6ff9"
+      };
 
-    const app  = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
 
-    function showSite() {
-      const loader = document.getElementById('loadingScreen');
-      const main   = document.getElementById('mainContent');
-      main.style.display = 'block';
-      loader.classList.add('fade-out');
-      setTimeout(() => { loader.style.display = 'none'; }, 500);
-    }
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        showSite();
-      } else {
-        window.location.replace("login.html");
-      }
-    });
-
-    const handleLogout = (e) => {
-      e.preventDefault();
-      signOut(auth).then(() => {
-        window.location.replace("login.html");
-      }).catch((error) => {
-        alert("Logout failed: " + error.message);
+      // Smart Checking Logic (Loader & Content Toggle)
+      onAuthStateChanged(auth, (user) => {
+          if (user) {
+              document.getElementById('loadingScreen').style.display = 'none';
+              document.getElementById('mainContent').style.display = 'block';
+          } else {
+              window.location.replace("login.html");
+          }
       });
-    };
 
-    const logoutBtnDesk = document.getElementById('logoutBtnDesk');
-    const logoutBtnMob  = document.getElementById('logoutBtnMob');
-    if (logoutBtnDesk) logoutBtnDesk.addEventListener('click', handleLogout);
-    if (logoutBtnMob)  logoutBtnMob.addEventListener('click', handleLogout);
+      // Logout Logic
+      const handleLogout = (e) => {
+          e.preventDefault();
+          signOut(auth).then(() => {
+              window.location.replace("login.html");
+          }).catch((error) => {
+              alert("Logout failed: " + error.message);
+          });
+      };
+
+      // Desktop & Mobile Logout buttons
+      const logoutBtnDesk = document.getElementById('logoutBtnDesk');
+      const logoutBtnMob = document.getElementById('logoutBtnMob');
+
+      if(logoutBtnDesk) logoutBtnDesk.addEventListener('click', handleLogout);
+      if(logoutBtnMob) logoutBtnMob.addEventListener('click', handleLogout);
   </script>
-
+  
 </body>
 </html>
