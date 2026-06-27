@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth - Raza Agri Point</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Exact Colors from your Reference Image */
+        :root {
+            --bg-color: #F7F7F3;
+            --input-bg: #E3E7DE;
+            --btn-color: #6A8668;
+            --text-main: #2C332C;
+            --text-muted: #555555;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Mobile Container */
+        .app-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        /* Logo & Header */
+        .logo-icon {
+            font-size: 35px;
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-main);
+            line-height: 1.4;
+            margin-bottom: 35px;
+        }
+
+        /* Input Fields */
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .input-group {
+            position: relative;
+            transition: all 0.4s ease-in-out;
+            overflow: hidden;
+        }
+
+        .input-group.collapsed {
+            max-height: 0;
+            opacity: 0;
+            margin: 0;
+        }
+
+        .input-group.expanded {
+            max-height: 60px;
+            opacity: 1;
+        }
+
+        /* Left side Icons */
+        .icon-left {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 14px;
+            pointer-events: none;
+        }
+
+        /* Right side Eye Icon for Password */
+        .icon-right {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .icon-right:hover {
+            color: var(--btn-color);
+        }
+
+        .input-group input {
+            width: 100%;
+            /* Left padding 45px for icon, Right padding 45px for eye icon */
+            padding: 16px 45px 16px 45px; 
+            background-color: var(--input-bg);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            font-size: 14px;
+            color: var(--text-main);
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-group input::placeholder {
+            color: #7A857A;
+        }
+
+        .input-group input:focus {
+            border-color: var(--btn-color);
+            background-color: #fff;
+        }
+
+        /* Action Button */
+        .action-btn {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--btn-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .action-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #D1D5CD;
+            margin: 0 15px;
+        }
+
+        /* Social Icons */
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .social-login i {
+            font-size: 22px;
+            color: var(--text-main);
+            background: #E3E7DE;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .social-login i:hover {
+            background: #D1D5CD;
+        }
+
+        /* Bottom Toggle */
+        .toggle-text {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .toggle-text span {
+            color: var(--text-main);
+            font-weight: 600;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        #error-msg {
+            color: #D32F2F;
+            font-size: 12px;
+            margin-top: 10px;
+            display: none;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <i class="fa-solid fa-seedling logo-icon"></i>
+        
+        <h2 id="headerText">Your journey starts here<br>Take the first step</h2>
+
+        <form id="authForm" class="form-container">
+            
+            <div class="input-group expanded">
+                <i class="fa-solid fa-envelope icon-left"></i>
+                <input type="email" id="email" placeholder="E-mail" required>
+            </div>
+
+            <div class="input-group expanded" id="usernameField">
+                <i class="fa-solid fa-user icon-left"></i>
+                <input type="text" id="username" placeholder="Username">
+            </div>
+
+            <div class="input-group expanded">
+                <i class="fa-solid fa-lock icon-left"></i>
+                <input type="password" id="password" placeholder="Password" required>
+                <i class="fa-solid fa-eye-slash icon-right toggle-password" data-target="password"></i>
+            </div>
+
+            <div class="input-group expanded" id="confirmPassField">
+                <i class="fa-solid fa-lock icon-left"></i>
+                <input type="password" id="confirmPassword" placeholder="Confirm password">
+                <i class="fa-solid fa-eye-slash icon-right toggle-password" data-target="confirmPassword"></i>
+            </div>
+
+            <p id="error-msg"></p>
+            <button type="submit" class="action-btn" id="submitBtn">Sign up</button>
+        </form>
+
+        <div class="divider">or</div>
+
+        <div class="social-login">
+            <i class="fa-brands fa-facebook-f"></i>
+            <i class="fa-brands fa-apple"></i>
+            <!-- Yahan id="googleLoginBtn" add kiya gaya hai -->
+            <i class="fa-brands fa-google" id="googleLoginBtn"></i> 
+        </div>
+
+        <div class="toggle-text" id="toggleContainer">
+            Already have an account? <span id="toggleBtn">Sign in</span>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        // GoogleAuthProvider aur signInWithPopup import kiye gaye hain
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+        // Yahan aapki ekdam asli aur sahi API keys hain
+        const firebaseConfig = {
+            apiKey: "AIzaSyB1KZR4aszinZX3yhHHxO5nv3kglM3Z1vM",
+            authDomain: "razaagripoint9.firebaseapp.com",
+            projectId: "razaagripoint9",
+            storageBucket: "razaagripoint9.firebasestorage.app",
+            messagingSenderId: "90899993212",
+            appId: "1:90899993212:web:5699cd8764648f4f2d6ff9",
+            measurementId: "G-SLW7RXV518"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        
+        // Google Provider Initialize kiya
+        const googleProvider = new GoogleAuthProvider();
+
+        // UI Variables
+        let isSignUp = true; 
+        
+        const toggleBtn = document.getElementById('toggleBtn');
+        const headerText = document.getElementById('headerText');
+        const submitBtn = document.getElementById('submitBtn');
+        const toggleContainer = document.getElementById('toggleContainer');
+        const usernameField = document.getElementById('usernameField');
+        const confirmPassField = document.getElementById('confirmPassField');
+        const authForm = document.getElementById('authForm');
+        const errorMsg = document.getElementById('error-msg');
+        const googleLoginBtn = document.getElementById('googleLoginBtn');
+
+        // Google Sign-in Logic
+        googleLoginBtn.addEventListener('click', () => {
+            errorMsg.style.display = 'none';
+            signInWithPopup(auth, googleProvider)
+                .then((result) => {
+                    // Google se login successful hone par redirect
+                    window.location.href = "index.html";
+                })
+                .catch((error) => {
+                    // Error aane par message dikhayega
+                    errorMsg.innerText = "Google Login Failed: " + error.message;
+                    errorMsg.style.display = 'block';
+                });
+        });
+
+        // Toggle Password Visibility Logic
+        const togglePasswordIcons = document.querySelectorAll('.toggle-password');
+        togglePasswordIcons.forEach(icon => {
+            icon.addEventListener('click', function () {
+                const targetId = this.getAttribute('data-target');
+                const inputField = document.getElementById(targetId);
+                
+                if (inputField.type === 'password') {
+                    inputField.type = 'text';
+                    this.classList.remove('fa-eye-slash');
+                    this.classList.add('fa-eye');
+                } else {
+                    inputField.type = 'password';
+                    this.classList.remove('fa-eye');
+                    this.classList.add('fa-eye-slash');
+                }
+            });
+        });
+
+        // Animation Toggle Logic
+        toggleBtn.addEventListener('click', () => {
+            isSignUp = !isSignUp;
+            errorMsg.style.display = 'none';
+
+            // Reset password fields type to 'password' when switching modes
+            document.getElementById('password').type = 'password';
+            document.getElementById('confirmPassword').type = 'password';
+            togglePasswordIcons.forEach(icon => {
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            });
+
+            if (isSignUp) {
+                headerText.innerHTML = "Your journey starts here<br>Take the first step";
+                submitBtn.innerText = "Sign up";
+                toggleContainer.innerHTML = 'Already have an account? <span id="toggleBtn">Sign in</span>';
+                
+                usernameField.classList.remove('collapsed');
+                usernameField.classList.add('expanded');
+                confirmPassField.classList.remove('collapsed');
+                confirmPassField.classList.add('expanded');
+                
+                document.getElementById('toggleBtn').addEventListener('click', toggleMode);
+            } else {
+                headerText.innerHTML = "Welcome back<br>Continue your learning";
+                submitBtn.innerText = "Sign in";
+                toggleContainer.innerHTML = 'Don\'t have an account? <span id="toggleBtn">Sign up</span>';
+                
+                usernameField.classList.remove('expanded');
+                usernameField.classList.add('collapsed');
+                confirmPassField.classList.remove('expanded');
+                confirmPassField.classList.add('collapsed');
+
+                document.getElementById('toggleBtn').addEventListener('click', toggleMode);
+            }
+        });
+
+        function toggleMode() {
+            toggleBtn.click();
+        }
+
+        // Form Submit Logic
+        authForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            errorMsg.style.display = 'none';
+            submitBtn.innerText = "Please wait...";
+
+            if (isSignUp) {
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const username = document.getElementById('username').value;
+
+                if (password !== confirmPassword) {
+                    errorMsg.innerText = "Passwords do not match!";
+                    errorMsg.style.display = 'block';
+                    submitBtn.innerText = "Sign up";
+                    return;
+                }
+
+                createUserWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        updateProfile(userCredential.user, { displayName: username }).then(() => {
+                            window.location.href = "index.html";
+                        });
+                    })
+                    .catch((error) => {
+                        errorMsg.innerText = error.message;
+                        errorMsg.style.display = 'block';
+                        submitBtn.innerText = "Sign up";
+                    });
+            } else {
+                signInWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        window.location.href = "index.html";
+                    })
+                    .catch((error) => {
+                        errorMsg.innerText = "Invalid Email or Password.";
+                        errorMsg.style.display = 'block';
+                        submitBtn.innerText = "Sign in";
+                    });
+            }
+        });
+    </script>
+</body>
+  </html>
+
