@@ -400,7 +400,7 @@
 
             sendPasswordResetEmail(auth, emailInput)
                 .then(() => {
-                    alert("Password reset link aapke email par bhej diya gaya hai. Apna inbox check karein!");
+                    alert("✅ Password reset link aapke email par bhej diya gaya hai.\n\n⚠️ DHYAN DEIN: Agar email Inbox mein na dikhe, toh apna 'Spam' ya 'Junk' folder zaroor check karein! <br> Fir bhi na ho Whatsapp Par message karen");
                     forgotPasswordBtn.innerText = "Forgot Password?";
                 })
                 .catch((error) => {
