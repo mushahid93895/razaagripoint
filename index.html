@@ -941,30 +941,16 @@
       border-color: var(--orange) !important;
     }
     
-    /* ── NEW: BOUNCE ICON FOR LOADER ── */
-    @keyframes bounceIcon {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(-15px); }
-    }
-
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 0 15px; }
-      
-      /* Mobile me jagah kam hoti hai, isliye extra buttons hide kar diye */
       .nav-links, .nav-right .btn-nav-outline, .nav-right .btn-nav-fill, .nav-right #logoutBtnDesk { display: none; }
-      
-      /* Logo aur Theme button ko thoda chota kiya taki perfectly fit ho jaye */
       .nav-logo-text { font-size: 1.1rem; }
       .theme-toggle { padding: 6px 12px; font-size: 0.8rem; }
-      
       .hamburger { display: block; margin-left: auto; }
-      
-      /* Notice Ticker ko mobile ke liye adjust kiya */
       .notice-ticker { padding: 10px 12px !important; font-size: 14px !important; }
       .notice-ticker span { font-size: 11px !important; padding: 6px 12px !important; margin-right: 10px !important; }
 
-      /* Slideshow Responsive fix */
       .hero-slideshow { padding-top: 110%; }
       .slide-inner { padding: 0 24px; flex-direction: column; text-align: center; padding-top: 40px; padding-bottom: 40px; }
       .slide-text p { margin: 0 auto 22px; }
@@ -1048,431 +1034,426 @@
 </head>
 <body>
 
-  <div id="loadingScreen" style="position: fixed; top:0; left:0; width: 100%; height: 100%; background: #F7F7F3; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column;">
-      <i class="fa-solid fa-seedling" style="font-size: 50px; color: #6A8668; margin-bottom: 20px;"></i>
-      <h2 style="color: #2C332C; font-family: 'Poppins', sans-serif; font-size: 20px;">Loading...</h2>
+  <nav>
+    <a href="index.html" class="nav-logo ripple-element">
+      <img src="icon.jpeg" alt="Razaagripoint" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+      <div class="logo-fallback" style="display:none;">R</div>
+      <span class="nav-logo-text">Raza<span>Agripoint</span></span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html" class="ripple-element">Home</a></li>
+      <li><a href="#semesters" class="ripple-element">Syllabus</a></li>
+      <li><a href="#about" class="ripple-element">About</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="theme-toggle ripple-element" onclick="toggleTheme()">🌙 Dark</button>
+      <a href="https://t.me/razaagripoint" target="_blank" class="btn-nav-outline ripple-element">Join Telegram</a>
+      <a href="#semesters" class="btn-nav-fill ripple-element">Get Started ➔</a>
+      
+      <!-- Logout Button (Default chupa hua rahega) -->
+      <button id="logoutBtnDesk" class="btn-nav-outline ripple-element" style="border-color: #d32f2f; color: #d32f2f; margin-left: 10px; display: none;">Logout</button>
+      
+      <button class="hamburger ripple-element" onclick="toggleMobileMenu()">☰</button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" onclick="toggleMobileMenu()">Home</a>
+    <a href="#semesters" onclick="toggleMobileMenu()">Syllabus</a>
+    <a href="#about" onclick="toggleMobileMenu()">About</a>
+    <a href="https://t.me/razaagripoint" target="_blank">Join Telegram</a>
+    <a href="#" id="logoutBtnMob" style="color: #d32f2f; font-weight: 800; display: none;">Logout</a>
   </div>
 
-  <div id="mainContent" style="display: none;">
+  <div id="mockTestTicker" class="notice-ticker ripple-element" style="background: linear-gradient(90deg, #ffeb3b, #ffc107); border-bottom: 3px solid #f57f17; padding: 14px 20px; font-size: 18px; cursor: pointer; display: flex; align-items: center; overflow: hidden;">
+      <span style="background: #d32f2f; color: white; padding: 8px 18px; border-radius: 25px; font-size: 15px; font-weight: 900; margin-right: 15px; white-space: nowrap; box-shadow: 0 4px 8px rgba(211,47,47,0.5); text-transform: uppercase; animation: pulseButton 1.5s infinite;">
+          🚨 TAKE TEST NOW
+      </span>
+      <marquee behavior="scroll" direction="left" scrollamount="8" onmouseover="this.stop();" onmouseout="this.start();" style="color: #b71c1c; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; text-shadow: 1px 1px 0px rgba(255,255,255,0.6);">
+          🔥 Fundamentals of Crop Physiology and Taxonomy Ke 150 Most Important Questions Ke Live Test Ke Liye Yahan Click Karein  ➔&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          🔥 Fundamentals of Crop Physiology and Taxonomy Ke 150 Most Important Questions Ke Live Test Ke Liye Yahan Click Karein ➔&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          🔥 Fundamentals of Crop Physiology and Taxonomy Ke 150 Most Important Questions Ke Live Test Ke Liye Yahan Click Karein  ➔
+      </marquee>
+      <style>
+          @keyframes pulseButton {
+              0% { transform: scale(1); }
+              50% { transform: scale(1.08); box-shadow: 0 6px 12px rgba(211,47,47,0.7); }
+              100% { transform: scale(1); }
+          }
+      </style>
+  </div>
 
-    <nav>
-      <a href="index.html" class="nav-logo ripple-element">
-        <img src="icon.jpeg" alt="Razaagripoint" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
-        <div class="logo-fallback" style="display:none;">R</div>
-        <span class="nav-logo-text">Raza<span>Agripoint</span></span>
+  <div class="hero-slideshow" id="heroSlideshow">
+
+    <div class="slide slide-1 active">
+      <div class="slide-inner">
+        <div class="slide-text">
+          <div class="slide-tag">🌾 MJPRU · BSc Agriculture (Hons.)</div>
+          <h2>Welcome to<br/><em>Razaagripoint</em> —<br/>India's Agri Study Hub</h2>
+          <p>Free video lectures, PDF notes & live mock tests based on ICAR guidelines — designed for MJPRU students.</p>
+          <a href="#semesters" class="slide-cta">Explore Semesters ➔</a>
+        </div>
+        <div class="slide-visual">
+          <div class="slide-icon-wrap">🌱
+            <div class="float-badge top">🎓 BSc Agri</div>
+            <div class="float-badge bottom">💯 Free</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide slide-2">
+      <div class="slide-inner">
+        <div class="slide-text">
+          <div class="slide-tag">📝 LIVE MOCK TEST</div>
+          <h2>Test Yourself with<br/><em>150 Important</em><br/>Questions — Free!</h2>
+          <p>B.Sc. Agriculture 2nd semester ke sabhi subjects ka live interactive test abhi do aur apni exam taiyaari jaancho instantly.</p>
+          <a href="semester2.html" class="slide-cta">Take Test Now 🚀</a>
+        </div>
+        <div class="slide-visual">
+          <div class="slide-icon-wrap">📝
+            <div class="float-badge top">⏱️ Timed</div>
+            <div class="float-badge bottom">✅ Instant Result</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide slide-3">
+      <div class="slide-inner">
+        <div class="slide-text">
+          <div class="slide-tag">📄 FREE PDF NOTES</div>
+          <h2>Download <em>50+ Free</em><br/>Subject-wise PDF<br/>Notes Today</h2>
+          <p>Har subject ke important notes aur previous year papers — bilkul free, koi login nahi chahiye.</p>
+          <a href="semester2.html" class="slide-cta">Download PDFs ➔</a>
+        </div>
+        <div class="slide-visual">
+          <div class="slide-icon-wrap">📚
+            <div class="float-badge top">📑 50+ PDFs</div>
+            <div class="float-badge bottom">🔓 No Login</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide slide-4">
+      <div class="slide-inner">
+        <div class="slide-text">
+          <div class="slide-tag">▶️ VIDEO LECTURES</div>
+          <h2>100+ Video<br/>Lectures on<br/><em>YouTube — Free!</em></h2>
+          <p>Complex agricultural topics ko simple Hindi mein samjhein — seedha YouTube par, kabhi bhi, kahin bhi.</p>
+          <a href="https://youtube.com/@razaagripoint?si=-usnMUlNY0BfjmJY" target="_blank" class="slide-cta">Watch on YouTube ▶</a>
+        </div>
+        <div class="slide-visual">
+          <div class="slide-icon-wrap">🎥
+            <div class="float-badge top">▶ 100+ Videos</div>
+            <div class="float-badge bottom">🌐 YouTube</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide slide-5">
+      <div class="slide-inner">
+        <div class="slide-text">
+          <div class="slide-tag">🎓 COMPLETE COVERAGE</div>
+          <h2>All <em>6 Semesters</em><br/>Covered —<br/>Sem 1 to Sem 6</h2>
+          <p>Agronomy se Biotechnology tak — BSc Agriculture ke poore 3 saal ka content ek hi jagah par.</p>
+          <a href="#semesters" class="slide-cta">Choose Semester ➔</a>
+        </div>
+        <div class="slide-visual">
+          <div class="slide-icon-wrap">🌾
+            <div class="float-badge top">📖 Sem 1–6</div>
+            <div class="float-badge bottom">🏫 MJPRU</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide slide-6">
+      <div class="slide-inner">
+        <div class="slide-text">
+          <div class="slide-tag">📋 ICAR GUIDELINES</div>
+          <h2>100% Based on<br/><em>ICAR Curriculum</em><br/>& MJPRU Syllabus</h2>
+          <p>Har content strictly ICAR guidelines ke hisaab se banaya gaya hai — exam mein sirf relevant topics.</p>
+          <a href="#semesters" class="slide-cta">Start Learning ➔</a>
+        </div>
+        <div class="slide-visual">
+          <div class="slide-icon-wrap">🏛️
+            <div class="float-badge top">✅ ICAR Based</div>
+            <div class="float-badge bottom">🎯 Exam Ready</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide slide-7">
+      <div class="slide-inner">
+        <div class="slide-text">
+          <div class="slide-tag">📱 COMMUNITY</div>
+          <h2><em>5000+ Students</em><br/>Already in Our<br/>Telegram Group</h2>
+          <p>New PDFs, exam alerts, video updates — sab kuch Telegram par pehle milta hai. Abhi join karo!</p>
+          <a href="https://t.me/razaagripoint" target="_blank" class="slide-cta">📲 Join Telegram</a>
+        </div>
+        <div class="slide-visual">
+          <div class="slide-icon-wrap">🤝
+            <div class="float-badge top">👥 5000+</div>
+            <div class="float-badge bottom">🔔 Instant Alerts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide slide-8">
+      <div class="slide-inner">
+        <div class="slide-text">
+          <div class="slide-tag">👨‍🏫 ABOUT CREATOR</div>
+          <h2>Created by<br/><em>Mushahid Raza</em><br/>For Agri Students</h2>
+          <p>Ek agriculture student ki mehnat se bana ek platform — taaki koi bhi student resources ki kami se peeche na rahe.</p>
+          <a href="about_admin.html" class="slide-cta">Know More ➔</a>
+        </div>
+        <div class="slide-visual">
+          <div class="slide-icon-wrap">👨‍🌾
+            <div class="float-badge top">❤️ Made with Love</div>
+            <div class="float-badge bottom">🆓 Always Free</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="slide-arrow prev" onclick="changeSlide(-1)">&#8249;</button>
+    <button class="slide-arrow next" onclick="changeSlide(1)">&#8250;</button>
+
+    <div class="slide-dots" id="slideDots">
+      <div class="sdot active" onclick="goToSlide(0)"></div>
+      <div class="sdot" onclick="goToSlide(1)"></div>
+      <div class="sdot" onclick="goToSlide(2)"></div>
+      <div class="sdot" onclick="goToSlide(3)"></div>
+      <div class="sdot" onclick="goToSlide(4)"></div>
+      <div class="sdot" onclick="goToSlide(5)"></div>
+      <div class="sdot" onclick="goToSlide(6)"></div>
+      <div class="sdot" onclick="goToSlide(7)"></div>
+    </div>
+
+    <div class="slide-progress">
+      <div class="slide-progress-bar" id="progressBar"></div>
+    </div>
+  </div>
+  
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">🌾 India's Agriculture Education Platform</div>
+      <h1>Study Smarter,<br/>Score Better in<br/><span class="highlight">BSc Agriculture</span></h1>
+      <p class="hero-sub">
+        Free video lectures, PDF notes, and live mock tests — all based on ICAR guidelines, designed for students of Mahatma Jyotibha Phoole Rohilkhand University.
+      </p>
+      <div class="hero-badges">
+        <div class="hero-badge">🎓 BSc Agriculture (Hons.)</div>
+        <div class="hero-badge">📚 ICAR Based</div>
+        <div class="hero-badge">🏫 MJPRU Syllabus</div>
+        <div class="hero-badge">💯 Absolutely Free</div>
+      </div>
+      <div class="hero-actions">
+        <a href="#semesters" class="btn-hero-main ripple-element">Explore Semesters ➔</a>
+        <a href="https://t.me/razaagripoint" target="_blank" class="btn-hero-ghost ripple-element">📱 Join Community</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="stats-card">
+        <h3>🏆 Platform at a Glance</h3>
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="num">6+</div>
+            <div class="lbl">Semesters</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">100+</div>
+            <div class="lbl">Video Lectures</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">50+</div>
+            <div class="lbl">Free PDFs</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">5K+</div>
+            <div class="lbl">Students</div>
+          </div>
+        </div>
+        <a href="#semesters" class="card-cta ripple-element">Start Studying Now 🚀</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="features-strip">
+    <div class="features-inner">
+      <div class="feat-item">
+        <div class="feat-icon-wrap orange">📑</div>
+        <div class="feat-text">
+          <h3>Complete PDF Notes</h3>
+          <p>Subject-wise optimized PDFs tailored for exam preparation — download and study offline.</p>
+        </div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon-wrap green">▶️</div>
+        <div class="feat-text">
+          <h3>Video Lectures</h3>
+          <p>Understand complex agricultural concepts easily with our dedicated YouTube lectures.</p>
+        </div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon-wrap blue">📝</div>
+        <div class="feat-text">
+          <h3>Live Mock Tests</h3>
+          <p>Chapter-wise interactive quizes with instant results to test your preparation level.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="semesters" class="section">
+    <div class="sec-eyebrow">BSc Agriculture (Hons.)</div>
+    <h2 class="sec-title">Choose Your <span>Semester</span></h2>
+    <p class="sec-sub">
+      Mahatma Jyotibha Phoole Rohilkhand University &amp; All Affiliated Colleges —
+      syllabus, notes, and mock tests for every semester.
+    </p>
+
+    <div class="semester-grid">
+      <a href="semester1.html" class="sem-card ripple-element">
+        <div class="sem-top">
+          <span class="sem-pill">Semester 1</span>
+          <span class="sem-icon">🌱</span>
+        </div>
+        <h3>1st Semester</h3>
+        <p>Foundations of Agronomy, Soil Science, Plant Biochemistry & more.</p>
+        <div class="sem-btn">Explore Syllabus <span>➔</span></div>
       </a>
 
-      <ul class="nav-links">
-        <li><a href="index.html" class="ripple-element">Home</a></li>
-        <li><a href="#semesters" class="ripple-element">Syllabus</a></li>
-        <li><a href="#about" class="ripple-element">About</a></li>
-      </ul>
+      <a href="semester2.html" class="sem-card ripple-element">
+        <div class="sem-top">
+          <span class="sem-pill">Semester 2</span>
+          <span class="sem-icon">🌾</span>
+        </div>
+        <h3>2nd Semester</h3>
+        <p>Crop Physiology, Soil Fertility, Agricultural Meteorology & more.</p>
+        <div class="sem-btn">Explore Syllabus <span>➔</span></div>
+      </a>
 
-      <div class="nav-right">
-        <button class="theme-toggle ripple-element" onclick="toggleTheme()">🌙 Dark</button>
-        <a href="https://t.me/razaagripoint" target="_blank" class="btn-nav-outline ripple-element">Join Telegram</a>
-        <a href="#semesters" class="btn-nav-fill ripple-element">Get Started ➔</a>
-        
-        <button id="logoutBtnDesk" class="btn-nav-outline ripple-element" style="border-color: #d32f2f; color: #d32f2f; margin-left: 10px;">Logout</button>
-        
-        <button class="hamburger ripple-element" onclick="toggleMobileMenu()">☰</button>
-      </div>
-    </nav>
+      <a href="semester3.html" class="sem-card ripple-element">
+        <div class="sem-top">
+          <span class="sem-pill">Semester 3</span>
+          <span class="sem-icon">🐛</span>
+        </div>
+        <h3>3rd Semester</h3>
+        <p>Agricultural Entomology, Plant Pathology, Genetics & Weed Management.</p>
+        <div class="sem-btn">Explore Syllabus <span>➔</span></div>
+      </a>
 
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html" onclick="toggleMobileMenu()">Home</a>
-      <a href="#semesters" onclick="toggleMobileMenu()">Syllabus</a>
-      <a href="#about" onclick="toggleMobileMenu()">About</a>
-      <a href="https://t.me/razaagripoint" target="_blank">Join Telegram</a>
-      <a href="#" id="logoutBtnMob" style="color: #d32f2f; font-weight: 800;">Logout</a>
+      <a href="semester4.html" class="sem-card ripple-element">
+        <div class="sem-top">
+          <span class="sem-pill">Semester 4</span>
+          <span class="sem-icon">🍎</span>
+        </div>
+        <h3>4th Semester</h3>
+        <p>Olericulture,  Pomology, Plant Breeding & Seed Technology.</p>
+        <div class="sem-btn">Explore Syllabus <span>➔</span></div>
+      </a>
+
+      <a href="semester5.html" class="sem-card ripple-element">
+        <div class="sem-top">
+          <span class="sem-pill">Semester 5</span>
+          <span class="sem-icon">🚜</span>
+        </div>
+        <h3>5th Semester</h3>
+        <p>Farm Machinery, Irrigation Engineering, Agricultural Economics & Extension.</p>
+        <div class="sem-btn">Explore Syllabus <span>➔</span></div>
+      </a>
+
+      <a href="semester6.html" class="sem-card ripple-element">
+        <div class="sem-top">
+          <span class="sem-pill">Semester 6</span>
+          <span class="sem-icon">🧬</span>
+        </div>
+        <h3>6th Semester</h3>
+        <p>Biotechnology, Organic Farming, Environmental Science & Rural Development.</p>
+        <div class="sem-btn">Explore Syllabus <span>➔</span></div>
+      </a>
     </div>
+  </div>
 
-    <div class="notice-ticker ripple-element" style="background: linear-gradient(90deg, #ffeb3b, #ffc107); border-bottom: 3px solid #f57f17; padding: 14px 20px; font-size: 18px; cursor: pointer; display: flex; align-items: center; overflow: hidden;" onclick="window.open('cropphysiomock.html', '_blank');">
-        <span style="background: #d32f2f; color: white; padding: 8px 18px; border-radius: 25px; font-size: 15px; font-weight: 900; margin-right: 15px; white-space: nowrap; box-shadow: 0 4px 8px rgba(211,47,47,0.5); text-transform: uppercase; animation: pulseButton 1.5s infinite;">
-            🚨 TAKE TEST NOW
-        </span>
-        <marquee behavior="scroll" direction="left" scrollamount="8" onmouseover="this.stop();" onmouseout="this.start();" style="color: #b71c1c; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; text-shadow: 1px 1px 0px rgba(255,255,255,0.6);">
-            🔥 Fundamentals of Crop Physiology and Taxonomy Ke 150 Most Important Questions Ke Live Test Ke Liye Yahan Click Karein  ➔&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-            🔥 Fundamentals of Crop Physiology and Taxonomy Ke 150 Most Important Questions Ke Live Test Ke Liye Yahan Click Karein ➔&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-            🔥 Fundamentals of Crop Physiology and Taxonomy Ke 150 Most Important Questions Ke Live Test Ke Liye Yahan Click Karein  ➔
-        </marquee>
-        <style>
-            @keyframes pulseButton {
-                0% { transform: scale(1); }
-                50% { transform: scale(1.08); box-shadow: 0 6px 12px rgba(211,47,47,0.7); }
-                100% { transform: scale(1); }
-            }
-        </style>
-    </div>
-
-    <div class="hero-slideshow" id="heroSlideshow">
-
-      <div class="slide slide-1 active">
-        <div class="slide-inner">
-          <div class="slide-text">
-            <div class="slide-tag">🌾 MJPRU · BSc Agriculture (Hons.)</div>
-            <h2>Welcome to<br/><em>Razaagripoint</em> —<br/>India's Agri Study Hub</h2>
-            <p>Free video lectures, PDF notes & live mock tests based on ICAR guidelines — designed for MJPRU students.</p>
-            <a href="#semesters" class="slide-cta">Explore Semesters ➔</a>
-          </div>
-          <div class="slide-visual">
-            <div class="slide-icon-wrap">🌱
-              <div class="float-badge top">🎓 BSc Agri</div>
-              <div class="float-badge bottom">💯 Free</div>
-            </div>
-          </div>
-        </div>
+  <div id="about" class="two-col-section">
+    <div class="two-col-inner">
+      <div class="about-card-pw">
+       <div class="avatar" style="width: 300px; height: 300px; overflow: hidden; background: none; border: 3px solid var(--orange);">
+        <img src="mushahid.jpeg" alt="Mushahid Raza" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+        <h3>About Mushahid Raza</h3>
+        <p><b>Hello!</b> I am <strong>Mushahid Raza</strong>, the creator behind Razaagripoint. </p>
+        <p>Razaagripoint mere liye sirf ek website nahi, balki ek <em>mission</em> hai. BSc Agriculture ke dauran maine mehsoos kiya ki agri-education mein sahi notes aur asaan lectures ki kitni kami hai. Wahi se shuru hua mera safar — ek laptop aur kai raaton ki mehnat ke baad, yeh platform tayyar hua.</p>
+        <p>Par asal kahani Notes ke piche ki hai... kaise ek middleclass parivar ke ladke ne digital platform banane ka sapna dekha? Aur kaise har mushkil ko paar kar ke aaj 5000+ students mujhse jude huye hain?</p>
+        <p><strong>Meri poori kahani, meri galtiyon aur safalta ke piche ka raaz janne ke liye niche click karein.</strong></p>
+        <p>Created and managed by <strong>Mushahid Raza</strong>, this platform provides everything you need — from Agronomy to Genetics — all strictly based on ICAR guidelines, absolutely free of cost.</p>
+        <a href="about_admin.html" class="btn-about-pw ripple-element">Know More About Mushahid </a>
       </div>
 
-      <div class="slide slide-2">
-        <div class="slide-inner">
-          <div class="slide-text">
-            <div class="slide-tag">📝 LIVE MOCK TEST</div>
-            <h2>Test Yourself with<br/><em>150 Important</em><br/>Questions — Free!</h2>
-            <p>B.Sc. Agriculture 2nd semester ke sabhi subjects ka live interactive test abhi do aur apni exam taiyaari jaancho instantly.</p>
-            <a href="semester2.html" class="slide-cta">Take Test Now 🚀</a>
-          </div>
-          <div class="slide-visual">
-            <div class="slide-icon-wrap">📝
-              <div class="float-badge top">⏱️ Timed</div>
-              <div class="float-badge bottom">✅ Instant Result</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="slide slide-3">
-        <div class="slide-inner">
-          <div class="slide-text">
-            <div class="slide-tag">📄 FREE PDF NOTES</div>
-            <h2>Download <em>50+ Free</em><br/>Subject-wise PDF<br/>Notes Today</h2>
-            <p>Har subject ke important notes aur previous year papers — bilkul free, koi login nahi chahiye.</p>
-            <a href="semester2.html" class="slide-cta">Download PDFs ➔</a>
-          </div>
-          <div class="slide-visual">
-            <div class="slide-icon-wrap">📚
-              <div class="float-badge top">📑 50+ PDFs</div>
-              <div class="float-badge bottom">🔓 No Login</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="slide slide-4">
-        <div class="slide-inner">
-          <div class="slide-text">
-            <div class="slide-tag">▶️ VIDEO LECTURES</div>
-            <h2>100+ Video<br/>Lectures on<br/><em>YouTube — Free!</em></h2>
-            <p>Complex agricultural topics ko simple Hindi mein samjhein — seedha YouTube par, kabhi bhi, kahin bhi.</p>
-            <a href="https://youtube.com/@razaagripoint?si=-usnMUlNY0BfjmJY" target="_blank" class="slide-cta">Watch on YouTube ▶</a>
-          </div>
-          <div class="slide-visual">
-            <div class="slide-icon-wrap">🎥
-              <div class="float-badge top">▶ 100+ Videos</div>
-              <div class="float-badge bottom">🌐 YouTube</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="slide slide-5">
-        <div class="slide-inner">
-          <div class="slide-text">
-            <div class="slide-tag">🎓 COMPLETE COVERAGE</div>
-            <h2>All <em>6 Semesters</em><br/>Covered —<br/>Sem 1 to Sem 6</h2>
-            <p>Agronomy se Biotechnology tak — BSc Agriculture ke poore 3 saal ka content ek hi jagah par.</p>
-            <a href="#semesters" class="slide-cta">Choose Semester ➔</a>
-          </div>
-          <div class="slide-visual">
-            <div class="slide-icon-wrap">🌾
-              <div class="float-badge top">📖 Sem 1–6</div>
-              <div class="float-badge bottom">🏫 MJPRU</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="slide slide-6">
-        <div class="slide-inner">
-          <div class="slide-text">
-            <div class="slide-tag">📋 ICAR GUIDELINES</div>
-            <h2>100% Based on<br/><em>ICAR Curriculum</em><br/>& MJPRU Syllabus</h2>
-            <p>Har content strictly ICAR guidelines ke hisaab se banaya gaya hai — exam mein sirf relevant topics.</p>
-            <a href="#semesters" class="slide-cta">Start Learning ➔</a>
-          </div>
-          <div class="slide-visual">
-            <div class="slide-icon-wrap">🏛️
-              <div class="float-badge top">✅ ICAR Based</div>
-              <div class="float-badge bottom">🎯 Exam Ready</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="slide slide-7">
-        <div class="slide-inner">
-          <div class="slide-text">
-            <div class="slide-tag">📱 COMMUNITY</div>
-            <h2><em>5000+ Students</em><br/>Already in Our<br/>Telegram Group</h2>
-            <p>New PDFs, exam alerts, video updates — sab kuch Telegram par pehle milta hai. Abhi join karo!</p>
-            <a href="https://t.me/razaagripoint" target="_blank" class="slide-cta">📲 Join Telegram</a>
-          </div>
-          <div class="slide-visual">
-            <div class="slide-icon-wrap">🤝
-              <div class="float-badge top">👥 5000+</div>
-              <div class="float-badge bottom">🔔 Instant Alerts</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="slide slide-8">
-        <div class="slide-inner">
-          <div class="slide-text">
-            <div class="slide-tag">👨‍🏫 ABOUT CREATOR</div>
-            <h2>Created by<br/><em>Mushahid Raza</em><br/>For Agri Students</h2>
-            <p>Ek agriculture student ki mehnat se bana ek platform — taaki koi bhi student resources ki kami se peeche na rahe.</p>
-            <a href="about_admin.html" class="slide-cta">Know More ➔</a>
-          </div>
-          <div class="slide-visual">
-            <div class="slide-icon-wrap">👨‍🌾
-              <div class="float-badge top">❤️ Made with Love</div>
-              <div class="float-badge bottom">🆓 Always Free</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <button class="slide-arrow prev" onclick="changeSlide(-1)">&#8249;</button>
-      <button class="slide-arrow next" onclick="changeSlide(1)">&#8250;</button>
-
-      <div class="slide-dots" id="slideDots">
-        <div class="sdot active" onclick="goToSlide(0)"></div>
-        <div class="sdot" onclick="goToSlide(1)"></div>
-        <div class="sdot" onclick="goToSlide(2)"></div>
-        <div class="sdot" onclick="goToSlide(3)"></div>
-        <div class="sdot" onclick="goToSlide(4)"></div>
-        <div class="sdot" onclick="goToSlide(5)"></div>
-        <div class="sdot" onclick="goToSlide(6)"></div>
-        <div class="sdot" onclick="goToSlide(7)"></div>
-      </div>
-
-      <div class="slide-progress">
-        <div class="slide-progress-bar" id="progressBar"></div>
-      </div>
-    </div>
-    
-    <div class="hero">
-      <div class="hero-left">
-        <div class="hero-tag">🌾 India's Agriculture Education Platform</div>
-        <h1>Study Smarter,<br/>Score Better in<br/><span class="highlight">BSc Agriculture</span></h1>
-        <p class="hero-sub">
-          Free video lectures, PDF notes, and live mock tests — all based on ICAR guidelines, designed for students of Mahatma Jyotibha Phoole Rohilkhand University.
-        </p>
-        <div class="hero-badges">
-          <div class="hero-badge">🎓 BSc Agriculture (Hons.)</div>
-          <div class="hero-badge">📚 ICAR Based</div>
-          <div class="hero-badge">🏫 MJPRU Syllabus</div>
-          <div class="hero-badge">💯 Absolutely Free</div>
-        </div>
-        <div class="hero-actions">
-          <a href="#semesters" class="btn-hero-main ripple-element">Explore Semesters ➔</a>
-          <a href="https://t.me/razaagripoint" target="_blank" class="btn-hero-ghost ripple-element">📱 Join Community</a>
-        </div>
-      </div>
-
-      <div class="hero-right">
-        <div class="stats-card">
-          <h3>🏆 Platform at a Glance</h3>
-          <div class="stats-row">
-            <div class="stat-box">
-              <div class="num">6+</div>
-              <div class="lbl">Semesters</div>
-            </div>
-            <div class="stat-box">
-              <div class="num">100+</div>
-              <div class="lbl">Video Lectures</div>
-            </div>
-            <div class="stat-box">
-              <div class="num">50+</div>
-              <div class="lbl">Free PDFs</div>
-            </div>
-            <div class="stat-box">
-              <div class="num">5K+</div>
-              <div class="lbl">Students</div>
-            </div>
-          </div>
-          <a href="#semesters" class="card-cta ripple-element">Start Studying Now 🚀</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="features-strip">
-      <div class="features-inner">
-        <div class="feat-item">
-          <div class="feat-icon-wrap orange">📑</div>
-          <div class="feat-text">
-            <h3>Complete PDF Notes</h3>
-            <p>Subject-wise optimized PDFs tailored for exam preparation — download and study offline.</p>
-          </div>
-        </div>
-        <div class="feat-item">
-          <div class="feat-icon-wrap green">▶️</div>
-          <div class="feat-text">
-            <h3>Video Lectures</h3>
-            <p>Understand complex agricultural concepts easily with our dedicated YouTube lectures.</p>
-          </div>
-        </div>
-        <div class="feat-item">
-          <div class="feat-icon-wrap blue">📝</div>
-          <div class="feat-text">
-            <h3>Live Mock Tests</h3>
-            <p>Chapter-wise interactive quizes with instant results to test your preparation level.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="semesters" class="section">
-      <div class="sec-eyebrow">BSc Agriculture (Hons.)</div>
-      <h2 class="sec-title">Choose Your <span>Semester</span></h2>
-      <p class="sec-sub">
-        Mahatma Jyotibha Phoole Rohilkhand University &amp; All Affiliated Colleges —
-        syllabus, notes, and mock tests for every semester.
-      </p>
-
-      <div class="semester-grid">
-        <a href="semester1.html" class="sem-card ripple-element">
-          <div class="sem-top">
-            <span class="sem-pill">Semester 1</span>
-            <span class="sem-icon">🌱</span>
-          </div>
-          <h3>1st Semester</h3>
-          <p>Foundations of Agronomy, Soil Science, Plant Biochemistry & more.</p>
-          <div class="sem-btn">Explore Syllabus <span>➔</span></div>
-        </a>
-
-        <a href="semester2.html" class="sem-card ripple-element">
-          <div class="sem-top">
-            <span class="sem-pill">Semester 2</span>
-            <span class="sem-icon">🌾</span>
-          </div>
-          <h3>2nd Semester</h3>
-          <p>Crop Physiology, Soil Fertility, Agricultural Meteorology & more.</p>
-          <div class="sem-btn">Explore Syllabus <span>➔</span></div>
-        </a>
-
-        <a href="semester3.html" class="sem-card ripple-element">
-          <div class="sem-top">
-            <span class="sem-pill">Semester 3</span>
-            <span class="sem-icon">🐛</span>
-          </div>
-          <h3>3rd Semester</h3>
-          <p>Agricultural Entomology, Plant Pathology, Genetics & Weed Management.</p>
-          <div class="sem-btn">Explore Syllabus <span>➔</span></div>
-        </a>
-
-        <a href="semester4.html" class="sem-card ripple-element">
-          <div class="sem-top">
-            <span class="sem-pill">Semester 4</span>
-            <span class="sem-icon">🍎</span>
-          </div>
-          <h3>4th Semester</h3>
-          <p>Olericulture,  Pomology, Plant Breeding & Seed Technology.</p>
-          <div class="sem-btn">Explore Syllabus <span>➔</span></div>
-        </a>
-
-        <a href="semester5.html" class="sem-card ripple-element">
-          <div class="sem-top">
-            <span class="sem-pill">Semester 5</span>
-            <span class="sem-icon">🚜</span>
-          </div>
-          <h3>5th Semester</h3>
-          <p>Farm Machinery, Irrigation Engineering, Agricultural Economics & Extension.</p>
-          <div class="sem-btn">Explore Syllabus <span>➔</span></div>
-        </a>
-
-        <a href="semester6.html" class="sem-card ripple-element">
-          <div class="sem-top">
-            <span class="sem-pill">Semester 6</span>
-            <span class="sem-icon">🧬</span>
-          </div>
-          <h3>6th Semester</h3>
-          <p>Biotechnology, Organic Farming, Environmental Science & Rural Development.</p>
-          <div class="sem-btn">Explore Syllabus <span>➔</span></div>
+      <div class="community-card-pw">
+        <div class="tg-icon">📱</div>
+        <h3>Join Our Telegram Community</h3>
+        <p>Never miss an update! Get instant notifications about new PDF uploads, exam tips, mock tests, and video lectures — all in one place.</p>
+        <a href="https://t.me/razaagripoint" target="_blank" class="btn-tg ripple-element">
+          <span>📲</span> Join Telegram Group
         </a>
       </div>
     </div>
+  </div>
 
-    <div id="about" class="two-col-section">
-      <div class="two-col-inner">
-        <div class="about-card-pw">
-         <div class="avatar" style="width: 300px; height: 300px; overflow: hidden; background: none; border: 3px solid var(--orange);">
-          <img src="mushahid.jpeg" alt="Mushahid Raza" style="width: 100%; height: 100%; object-fit: cover;">
+  <div class="tips-bg">
+    <div class="tips-inner">
+      <div class="sec-eyebrow">Smart Strategies</div>
+      <h2 class="sec-title">Topper's Study Tips</h2>
+      <p class="sec-sub">Proven strategies to score higher in your Agriculture exams.</p>
+
+      <div class="tips-grid">
+        <div class="tip-card-pw">
+          <div class="tip-icon">🎯</div>
+          <h4>Focus on Fundamentals</h4>
+          <p>Agriculture subjects like Agronomy and Soil Science require a strong grip on basics. Always clear doubts before moving to advanced topics.</p>
         </div>
-          <h3>About Mushahid Raza</h3>
-          <p><b>Hello!</b> I am <strong>Mushahid Raza</strong>, the creator behind Razaagripoint. </p>
-          <p>Razaagripoint mere liye sirf ek website nahi, balki ek <em>mission</em> hai. BSc Agriculture ke dauran maine mehsoos kiya ki agri-education mein sahi notes aur asaan lectures ki kitni kami hai. Wahi se shuru hua mera safar — ek laptop aur kai raaton ki mehnat ke baad, yeh platform tayyar hua.</p>
-          <p>Par asal kahani Notes ke piche ki hai... kaise ek middleclass parivar ke ladke ne digital platform banane ka sapna dekha? Aur kaise har mushkil ko paar kar ke aaj 5000+ students mujhse jude huye hain?</p>
-          <p><strong>Meri poori kahani, meri galtiyon aur safalta ke piche ka raaz janne ke liye niche click karein.</strong></p>
-          <p>Created and managed by <strong>Mushahid Raza</strong>, this platform provides everything you need — from Agronomy to Genetics — all strictly based on ICAR guidelines, absolutely free of cost.</p>
-          <a href="about_admin.html" class="btn-about-pw ripple-element">Know More About Mushahid </a>
+        <div class="tip-card-pw">
+          <div class="tip-icon">📝</div>
+          <h4>Solve Previous Papers</h4>
+          <p>We provide previous year question papers in the PDF sections. Solving them gives a clear idea of exam pattern and frequently asked questions.</p>
         </div>
-
-        <div class="community-card-pw">
-          <div class="tg-icon">📱</div>
-          <h3>Join Our Telegram Community</h3>
-          <p>Never miss an update! Get instant notifications about new PDF uploads, exam tips, mock tests, and video lectures — all in one place.</p>
-          <a href="https://t.me/razaagripoint" target="_blank" class="btn-tg ripple-element">
-            <span>📲</span> Join Telegram Group
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="tips-bg">
-      <div class="tips-inner">
-        <div class="sec-eyebrow">Smart Strategies</div>
-        <h2 class="sec-title">Topper's Study Tips</h2>
-        <p class="sec-sub">Proven strategies to score higher in your Agriculture exams.</p>
-
-        <div class="tips-grid">
-          <div class="tip-card-pw">
-            <div class="tip-icon">🎯</div>
-            <h4>Focus on Fundamentals</h4>
-            <p>Agriculture subjects like Agronomy and Soil Science require a strong grip on basics. Always clear doubts before moving to advanced topics.</p>
-          </div>
-          <div class="tip-card-pw">
-            <div class="tip-icon">📝</div>
-            <h4>Solve Previous Papers</h4>
-            <p>We provide previous year question papers in the PDF sections. Solving them gives a clear idea of exam pattern and frequently asked questions.</p>
-          </div>
-          <div class="tip-card-pw">
-            <div class="tip-icon">⏱️</div>
-            <h4>Use Mock Tests</h4>
-            <p>Don't just read! Use our built-in interactive Mock Tests at the bottom of every semester page to evaluate your preparation level.</p>
-          </div>
+        <div class="tip-card-pw">
+          <div class="tip-icon">⏱️</div>
+          <h4>Use Mock Tests</h4>
+          <p>Don't just read! Use our built-in interactive Mock Tests at the bottom of every semester page to evaluate your preparation level.</p>
         </div>
       </div>
     </div>
+  </div>
 
-    <footer>
-      <div class="footer-copy">
-        Designed by <strong>MUSHAHID RAZA</strong> ❤️ for BSc Agriculture Students
-      </div>
-    </footer>
-
-    <div id="updatePopup" style="display:none; position:fixed; bottom:20px; left:5%; right:5%; width: 90%; background:#1b5e20; color:#fff; padding:15px; border-radius:10px; text-align:center; z-index:10001; box-shadow:0 5px 15px rgba(0,0,0,0.3); font-family: 'Poppins', sans-serif;">
-        <p style="margin: 0 0 10px 0; font-size: 16px;">New version available! 🎉</p>
-        <button id="updateBtn" style="background:#ffca28; color:#000; border:none; padding:10px 20px; border-radius:50px; cursor:pointer; font-weight:bold; font-size: 15px;">Update Now</button>
+  <footer>
+    <div class="footer-copy">
+      Designed by <strong>MUSHAHID RAZA</strong> ❤️ for BSc Agriculture Students
     </div>
+  </footer>
 
-    <button id="installAppBtn" class="install-app-btn" style="display: none;">
-        <i class="fa-solid fa-cloud-arrow-down install-icon-hit"></i> 
-        <span class="btn-text-glow">DOWNLOAD APP</span>
-    </button>
+  <div id="updatePopup" style="display:none; position:fixed; bottom:20px; left:5%; right:5%; width: 90%; background:#1b5e20; color:#fff; padding:15px; border-radius:10px; text-align:center; z-index:10001; box-shadow:0 5px 15px rgba(0,0,0,0.3); font-family: 'Poppins', sans-serif;">
+      <p style="margin: 0 0 10px 0; font-size: 16px;">New version available! 🎉</p>
+      <button id="updateBtn" style="background:#ffca28; color:#000; border:none; padding:10px 20px; border-radius:50px; cursor:pointer; font-weight:bold; font-size: 15px;">Update Now</button>
+  </div>
 
-  </div> 
+  <button id="installAppBtn" class="install-app-btn" style="display: none;">
+      <i class="fa-solid fa-cloud-arrow-down install-icon-hit"></i> 
+      <span class="btn-text-glow">DOWNLOAD APP</span>
+  </button>
+
+
+  <!-- ALL SCRIPTS (UI + Firebase) -->
   <script>
     // 1. Mobile Menu Toggle
     function toggleMobileMenu() {
@@ -1504,7 +1485,7 @@
       }
     };
 
-    // 4. Ripple & GLOW Generator + Delayed Navigation
+    // 4. Ripple & GLOW Generator + SMART LOGIN LOCK
     document.addEventListener('click', function(e) {
       const clickableElement = e.target.closest('.ripple-element, .btn-hero-main, .card-cta, .btn-about-pw, .btn-tg, .sem-card, .btn-nav-fill');
       const linkElement = e.target.closest('a');
@@ -1541,10 +1522,34 @@
         }, 400);
       }
 
+      // --- NEW SMART LOGIN LOCK LOGIC --- //
+
+      // 1. Agar kisi ne Ticker (Mock test) par click kiya
+      const ticker = e.target.closest('#mockTestTicker');
+      if (ticker) {
+          if (!window.isUserLoggedIn) {
+              window.location.href = 'login.html'; // Direct Login Bhejo
+          } else {
+              window.open('cropphysiomock.html', '_blank'); // Login hai toh test do
+          }
+          return;
+      }
+
+      // 2. Agar kisi ne Button ya Link par click kiya
       if (linkElement && linkElement.href) {
         const href = linkElement.getAttribute('href');
         const target = linkElement.getAttribute('target');
 
+        // Check karega ki kya ye koi andar ka page hai (jaise semester1.html)
+        const isProtected = href.includes('.html') && !href.includes('index.html') && !href.includes('login.html');
+
+        if (isProtected && !window.isUserLoggedIn) {
+           e.preventDefault(); // Rok do
+           window.location.href = "login.html"; // Login Page Par Feko
+           return;
+        }
+
+        // Agar protected nahi hai (ya user login hai), toh normal chalne do
         if (href && !href.startsWith('#') && target !== '_blank' && !href.startsWith('javascript')) {
           e.preventDefault(); 
           setTimeout(() => {
@@ -1685,6 +1690,7 @@
     });
   </script>
 
+  <!-- FIREBASE SECURITY SCRIPT (Smart Version) -->
   <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
       import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
@@ -1701,13 +1707,21 @@
       const app = initializeApp(firebaseConfig);
       const auth = getAuth(app);
 
-      // Smart Checking Logic (Loader & Content Toggle)
+      // Global variable status check karne ke liye
+      window.isUserLoggedIn = false;
+
+      // Sirf status check karo, koi parda mat lagao, koi redirect mat karo
       onAuthStateChanged(auth, (user) => {
           if (user) {
-              document.getElementById('loadingScreen').style.display = 'none';
-              document.getElementById('mainContent').style.display = 'block';
+              window.isUserLoggedIn = true;
+              // Agar login hai to Logout button dikhao
+              document.getElementById('logoutBtnDesk').style.display = 'inline-block';
+              document.getElementById('logoutBtnMob').style.display = 'block';
           } else {
-              window.location.replace("login.html");
+              window.isUserLoggedIn = false;
+              // Agar login nahi hai to Logout button chhupa do
+              document.getElementById('logoutBtnDesk').style.display = 'none';
+              document.getElementById('logoutBtnMob').style.display = 'none';
           }
       });
 
@@ -1715,7 +1729,8 @@
       const handleLogout = (e) => {
           e.preventDefault();
           signOut(auth).then(() => {
-              window.location.replace("login.html");
+              // Logout hote hi page refresh kar do
+              window.location.reload();
           }).catch((error) => {
               alert("Logout failed: " + error.message);
           });
