@@ -243,6 +243,11 @@
                 <i class="fa-solid fa-eye-slash icon-right toggle-password" data-target="confirmPassword"></i>
             </div>
 
+            <!-- SMART FORGOT PASSWORD LINK -->
+            <div id="forgotPassContainer" style="display: none; text-align: right; margin-top: -5px; margin-bottom: 5px;">
+                <a href="#" id="forgotPassword" style="color: var(--btn-color); font-size: 12px; text-decoration: none; font-weight: 600;">Forgot Password?</a>
+            </div>
+
             <p id="error-msg"></p>
             <button type="submit" class="action-btn" id="submitBtn">Sign up</button>
         </form>
@@ -252,7 +257,6 @@
         <div class="social-login">
             <i class="fa-brands fa-facebook-f"></i>
             <i class="fa-brands fa-apple"></i>
-            <!-- Yahan id="googleLoginBtn" add kiya gaya hai -->
             <i class="fa-brands fa-google" id="googleLoginBtn"></i> 
         </div>
 
@@ -264,10 +268,9 @@
     <!-- Firebase SDK -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        // GoogleAuthProvider aur signInWithPopup import kiye gaye hain
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        // sendPasswordResetEmail ko import mein joda gaya hai
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
-        // Yahan aapki ekdam asli aur sahi API keys hain
         const firebaseConfig = {
             apiKey: "AIzaSyB1KZR4aszinZX3yhHHxO5nv3kglM3Z1vM",
             authDomain: "razaagripoint9.firebaseapp.com",
@@ -281,7 +284,6 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         
-        // Google Provider Initialize kiya
         const googleProvider = new GoogleAuthProvider();
 
         // UI Variables
@@ -296,17 +298,19 @@
         const authForm = document.getElementById('authForm');
         const errorMsg = document.getElementById('error-msg');
         const googleLoginBtn = document.getElementById('googleLoginBtn');
+        
+        // Forgot password variables
+        const forgotPassContainer = document.getElementById('forgotPassContainer');
+        const forgotPasswordBtn = document.getElementById('forgotPassword');
 
         // Google Sign-in Logic
         googleLoginBtn.addEventListener('click', () => {
             errorMsg.style.display = 'none';
             signInWithPopup(auth, googleProvider)
                 .then((result) => {
-                    // Google se login successful hone par redirect
                     window.location.href = "index.html";
                 })
                 .catch((error) => {
-                    // Error aane par message dikhayega
                     errorMsg.innerText = "Google Login Failed: " + error.message;
                     errorMsg.style.display = 'block';
                 });
@@ -336,7 +340,7 @@
             isSignUp = !isSignUp;
             errorMsg.style.display = 'none';
 
-            // Reset password fields type to 'password' when switching modes
+            // Reset password fields
             document.getElementById('password').type = 'password';
             document.getElementById('confirmPassword').type = 'password';
             togglePasswordIcons.forEach(icon => {
@@ -354,6 +358,9 @@
                 confirmPassField.classList.remove('collapsed');
                 confirmPassField.classList.add('expanded');
                 
+                // Sign Up me Forgot password hide karo
+                forgotPassContainer.style.display = 'none';
+                
                 document.getElementById('toggleBtn').addEventListener('click', toggleMode);
             } else {
                 headerText.innerHTML = "Welcome back<br>Continue your learning";
@@ -365,6 +372,9 @@
                 confirmPassField.classList.remove('expanded');
                 confirmPassField.classList.add('collapsed');
 
+                // Sign In me Forgot password dikhao
+                forgotPassContainer.style.display = 'block';
+
                 document.getElementById('toggleBtn').addEventListener('click', toggleMode);
             }
         });
@@ -372,6 +382,33 @@
         function toggleMode() {
             toggleBtn.click();
         }
+
+        // FORGOT PASSWORD LOGIC 
+        forgotPasswordBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const emailInput = document.getElementById('email').value;
+            
+            errorMsg.style.display = 'none';
+
+            if (!emailInput) {
+                errorMsg.innerText = "Password reset karne ke liye pehle E-mail daalein!";
+                errorMsg.style.display = 'block';
+                return;
+            }
+
+            forgotPasswordBtn.innerText = "Sending...";
+
+            sendPasswordResetEmail(auth, emailInput)
+                .then(() => {
+                    alert("Password reset link aapke email par bhej diya gaya hai. Apna inbox check karein!");
+                    forgotPasswordBtn.innerText = "Forgot Password?";
+                })
+                .catch((error) => {
+                    errorMsg.innerText = "Error: " + error.message;
+                    errorMsg.style.display = 'block';
+                    forgotPasswordBtn.innerText = "Forgot Password?";
+                });
+        });
 
         // Form Submit Logic
         authForm.addEventListener('submit', (e) => {
