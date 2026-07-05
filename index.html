@@ -894,29 +894,6 @@
 
     .tip-card-pw p { font-size: 0.85rem; color: #8090a0; line-height: 1.7; }
 
-    /* ── FOOTER ── */
-    footer {
-      background: #111827;
-      padding: 48px 60px;
-      display: flex; align-items: center;
-      justify-content: space-between; flex-wrap: wrap; gap: 20px;
-    }
-
-    .footer-logo-wrap { display: flex; align-items: center; gap: 12px; }
-
-    .footer-logo-text {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 800; font-size: 1.2rem; color: white;
-    }
-
-    .footer-logo-text span { color: var(--orange); }
-
-    .footer-copy {
-      font-size: 0.82rem; color: #6b7280; line-height: 1.8; text-align: right;
-    }
-
-    .footer-copy strong { color: #9ca3af; }
-
     /* ── PREMIUM CLICK EFFECTS (Ripple + Glow) ── */
     a, button, .sem-card, .notice-ticker {
       -webkit-tap-highlight-color: transparent;
@@ -947,8 +924,7 @@
     @keyframes ripple-animation {
       to { transform: scale(4); opacity: 0; }
     }
-
-    /* GLOW ANIMATION */
+     /* GLOW ANIMATION */
     @keyframes glow-pulse {
       0%   { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7); }
       50%  { box-shadow: 0 0 25px 10px rgba(255, 107, 53, 0.8); }
@@ -989,8 +965,6 @@
       .two-col-section { padding: 60px 24px; }
       .two-col-inner { grid-template-columns: 1fr; }
       .tips-bg { padding: 60px 24px; }
-      footer { padding: 36px 24px; flex-direction: column; align-items: flex-start; }
-      .footer-copy { text-align: left; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1090,14 +1064,8 @@
       <i class="fa-brands fa-whatsapp"></i> WhatsApp Me
     </a>
     
-    <!-- NAYA UPDATE BUTTON -->
     <a href="#" id="menuUpdateBtn" style="color: #ff9100; font-weight: 800;" onclick="forceAppUpdate(event)">
       <i class="fa-solid fa-rotate-right"></i> Update App
-    </a>
-    
-    <!-- LOGIN/LOGOUT (margin-top: auto; isko bilkul niche bhej dega) -->
-    <a href="login.html" id="authBtnMob" style="color: var(--green); font-weight: 800; margin-top: auto; margin-bottom: 20px;">
-      Login / Sign Up
     </a>
   </div>
 
@@ -1375,18 +1343,7 @@
         <p>Crop Physiology, Soil Fertility, Agricultural Meteorology & more.</p>
         <div class="sem-btn">Explore Syllabus <span>➔</span></div>
       </a>
-
-      <a href="semester3.html" class="sem-card ripple-element">
-        <div class="sem-top">
-          <span class="sem-pill">Semester 3</span>
-          <span class="sem-icon">🐛</span>
-        </div>
-        <h3>3rd Semester</h3>
-        <p>Agricultural Entomology, Plant Pathology, Genetics & Weed Management.</p>
-        <div class="sem-btn">Explore Syllabus <span>➔</span></div>
-      </a>
-
-      <a href="semester4.html" class="sem-card ripple-element">
+          <a href="semester4.html" class="sem-card ripple-element">
         <div class="sem-top">
           <span class="sem-pill">Semester 4</span>
           <span class="sem-icon">🍎</span>
@@ -1470,9 +1427,8 @@
     </div>
   </div>
 
- <footer style="display: flex; flex-direction: column; align-items: center; gap: 15px; padding: 40px 20px; background: #111827;">
+  <footer style="display: flex; flex-direction: column; align-items: center; gap: 15px; padding: 40px 20px; background: #111827;">
     
-    <!-- Legal Links for AdSense -->
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; font-family: 'Poppins', sans-serif; font-size: 0.85rem;">
       <a href="privacy.html" style="color: #9ca3af; text-decoration: none;">Privacy Policy</a>
       <a href="terms.html" style="color: #9ca3af; text-decoration: none;">Terms & Conditions</a>
@@ -1481,7 +1437,6 @@
       <a href="about_admin.html" style="color: #9ca3af; text-decoration: none;">About Us</a>
     </div>
 
-    <!-- Copyright -->
     <div class="footer-copy" style="color: #6b7280; font-size: 0.85rem; text-align: center;">
       Designed by <strong style="color: #fff;">MUSHAHID RAZA</strong> ❤️ for BSc Agriculture Students
     </div>
@@ -1491,7 +1446,6 @@
       <i class="fa-solid fa-cloud-arrow-down install-icon-hit"></i> 
       <span class="btn-text-glow">DOWNLOAD APP</span>
   </button>
-
 
   <script>
     // 1. Mobile Menu Toggle (Overlay Logic Added)
@@ -1527,7 +1481,7 @@
       }
     };
 
-    // 4. Ripple & GLOW Generator + SMART LOGIN LOCK
+    // 4. Ripple & GLOW Generator + Navigation
     document.addEventListener('click', function(e) {
       const clickableElement = e.target.closest('.ripple-element, .btn-hero-main, .card-cta, .btn-about-pw, .btn-tg, .sem-card, .btn-nav-fill');
       const linkElement = e.target.closest('a');
@@ -1564,32 +1518,17 @@
         }, 400);
       }
 
-      // --- SMART LOGIN LOCK LOGIC --- //
-
       // Agar kisi ne Ticker (Mock test) par click kiya
       const ticker = e.target.closest('#mockTestTicker');
       if (ticker) {
-          if (!window.isUserLoggedIn) {
-              window.location.href = 'login.html'; 
-          } else {
-              window.open('cropphysiomock.html', '_blank'); 
-          }
+          window.open('cropphysiomock.html', '_blank'); 
           return;
       }
 
-      // Agar kisi ne Button ya Link par click kiya
+      // Normal Link Navigation (Delayed for ripple effect)
       if (linkElement && linkElement.href) {
         const href = linkElement.getAttribute('href');
         const target = linkElement.getAttribute('target');
-
-        // Check karega ki kya ye koi andar ka page hai 
-        const isProtected = href.includes('.html') && !href.includes('index.html') && !href.includes('login.html');
-
-        if (isProtected && !window.isUserLoggedIn) {
-           e.preventDefault(); // Rok do
-           window.location.href = "login.html"; // Login Page Par Bhejo
-           return;
-        }
 
         if (href && !href.startsWith('#') && target !== '_blank' && !href.startsWith('javascript')) {
           e.preventDefault(); 
@@ -1697,66 +1636,6 @@
         installBtn.style.display = 'none';
         console.log('Razaagripoint App Installed Successfully!');
     });
-  </script>
-
-<script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-      import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-
-      const firebaseConfig = {
-          apiKey: "AIzaSyB1KZR4aszinZX3yhHHxO5nv3kglM3Z1vM",
-          authDomain: "razaagripoint9.firebaseapp.com",
-          projectId: "razaagripoint9",
-          storageBucket: "razaagripoint9.firebasestorage.app",
-          messagingSenderId: "90899993212",
-          appId: "1:90899993212:web:5699cd8764648f4f2d6ff9"
-      };
-
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
-
-      // Global variable status check karne ke liye
-      window.isUserLoggedIn = false;
-
-      const authBtnMob = document.getElementById('authBtnMob');
-
-      // Logout Logic
-      const handleLogout = (e) => {
-          e.preventDefault();
-          signOut(auth).then(() => {
-              window.location.reload();
-          }).catch((error) => {
-              alert("Logout failed: " + error.message);
-          });
-      };
-
-      onAuthStateChanged(auth, (user) => {
-          if (user) {
-              window.isUserLoggedIn = true;
-              
-              // Mobile Button Update (Change to Logout)
-              if(authBtnMob) {
-                  authBtnMob.innerText = "Logout";
-                  authBtnMob.style.color = "#d32f2f"; // Lal rang (Red)
-                  authBtnMob.href = "#"; 
-                  authBtnMob.onclick = (e) => { 
-                      toggleMobileMenu(); 
-                      handleLogout(e); 
-                  };
-              }
-
-          } else {
-              window.isUserLoggedIn = false;
-              
-              // Mobile Button Update (Change to Login/Signup)
-              if(authBtnMob) {
-                  authBtnMob.innerText = "Login / Sign Up";
-                  authBtnMob.style.color = "var(--green)"; // Hara rang (Green)
-                  authBtnMob.href = "login.html";
-                  authBtnMob.onclick = toggleMobileMenu;
-              }
-          }
-      });
   </script>
 
   <script>
