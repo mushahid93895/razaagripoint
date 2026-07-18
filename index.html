@@ -1067,6 +1067,10 @@
     <a href="#" id="menuUpdateBtn" style="color: #ff9100; font-weight: 800;" onclick="forceAppUpdate(event)">
       <i class="fa-solid fa-rotate-right"></i> Update App
     </a>
+
+    <a href="#" id="installAppBtn" style="display: none; margin-top: auto; background: linear-gradient(135deg, #ff9100, #ff3d00); color: white; padding: 15px; border-radius: 10px; text-align: center; font-weight: 800; box-shadow: 0 4px 15px rgba(255, 61, 0, 0.4);">
+      <i class="fa-solid fa-cloud-arrow-down"></i> DOWNLOAD APP
+    </a>
   </div>
 
   <div id="mockTestTicker" class="notice-ticker ripple-element" style="background: linear-gradient(90deg, #ffeb3b, #ffc107); border-bottom: 3px solid #f57f17; padding: 14px 20px; font-size: 18px; cursor: pointer; display: flex; align-items: center; overflow: hidden;">
@@ -1453,11 +1457,6 @@
     </div>
   </footer>
 
-  <button id="installAppBtn" class="install-app-btn" style="display: none;">
-      <i class="fa-solid fa-cloud-arrow-down install-icon-hit"></i> 
-      <span class="btn-text-glow">DOWNLOAD APP</span>
-  </button>
-
   <script>
     // 1. Mobile Menu Toggle (Overlay Logic Added)
     function toggleMobileMenu() {
@@ -1677,6 +1676,7 @@
         .catch(err => console.log("Service Worker Failed: ", err));
   }
   </script>
+
   <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="BDnChaYcJDEZEnaO7Tj1A";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
