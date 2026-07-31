@@ -1123,10 +1123,6 @@
       <i class="fa-brands fa-whatsapp"></i> WhatsApp Me
     </a>
     
-    <a href="#" id="menuUpdateBtn" style="color: #ff9100; font-weight: 800;" onclick="forceAppUpdate(event)">
-      <i class="fa-solid fa-rotate-right"></i> Update App
-    </a>
-
     <a href="#" id="installAppBtn" style="display: none; margin-top: auto; background: linear-gradient(135deg, #ff9100, #ff3d00); color: white; padding: 15px; border-radius: 10px; text-align: center; font-weight: 800; box-shadow: 0 4px 15px rgba(255, 61, 0, 0.4);">
       <i class="fa-solid fa-cloud-arrow-down"></i> DOWNLOAD APP
     </a>
@@ -1707,26 +1703,6 @@
     });
   </script>
 
-  <script>
-      function forceAppUpdate(event) {
-          if (event) event.preventDefault();
-          if ('serviceWorker' in navigator) {
-              navigator.serviceWorker.getRegistration().then(registration => {
-                  if (registration) {
-                      registration.update().then(() => {
-                          alert("Updating to latest version...");
-                          window.location.reload(true);
-                      });
-                  } else {
-                      window.location.reload(true);
-                  }
-              });
-          } else {
-              window.location.reload(true);
-          }
-      }
-  </script>
-  
   <script>
   // Service Worker Registration
   if ('serviceWorker' in navigator) {
