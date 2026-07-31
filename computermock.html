@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-    <meta name="google-adsense-account" content="ca-pub-7264065085872170">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Agri-Informatics Mock Test - Premium Edition</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -11,7 +10,6 @@
 
     <style>
         :root {
-            var(--primary): #0f766e;
             --primary: #00b09b;
             --primary-dark: #00838f;
             --accent: #ffb300;
@@ -25,151 +23,149 @@
             --wrong-bg: #fed7d7;
             --wrong-border: #e53e3e;
             --wrong-text: #742a2a;
-            --shadow: 0 20px 40px rgba(0, 131, 143, 0.15);
+            --shadow: 0 10px 25px rgba(0, 131, 143, 0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background: var(--bg-gradient); color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
 
-        /* Background Blobs */
-        .blob { position: fixed; border-radius: 50%; filter: blur(60px); z-index: -1; animation: floatBlob 10s infinite alternate; }
-        .blob-1 { width: 300px; height: 300px; background: rgba(0, 176, 155, 0.3); top: -100px; left: -100px; }
-        .blob-2 { width: 400px; height: 400px; background: rgba(255, 179, 0, 0.2); bottom: -150px; right: -100px; animation-delay: 2s; }
-        @keyframes floatBlob { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(50px, 50px) scale(1.1); } }
-
         /* Navbar */
-        nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-bottom: 1px solid rgba(255,255,255,0.5); }
-        .logo { color: var(--primary-dark); font-size: 24px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .exit-btn { background: #ffebee; color: #d32f2f; text-decoration: none; padding: 8px 20px; border-radius: 20px; font-weight: 600; font-size: 14px; transition: 0.3s; border: 1px solid #ffcdd2; }
-        .exit-btn:hover { background: #d32f2f; color: var(--white); }
+        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-bottom: 1px solid rgba(255,255,255,0.5); position: sticky; top: 0; z-index: 100; }
+        .logo { color: var(--primary-dark); font-size: 20px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .exit-btn { background: #ffebee; color: #d32f2f; text-decoration: none; padding: 6px 16px; border-radius: 20px; font-weight: 600; font-size: 13px; border: 1px solid #ffcdd2; }
 
         /* Layout Container */
-        .container { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px; z-index: 1; }
-        .quiz-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); width: 100%; max-width: 900px; border-radius: 30px; box-shadow: var(--shadow); padding: 50px; position: relative; border: 1px solid rgba(255,255,255,0.8); }
+        .container { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 20px 15px; z-index: 1; flex-direction: column; }
+        .quiz-card { background: rgba(255, 255, 255, 0.98); width: 100%; max-width: 850px; border-radius: 24px; box-shadow: var(--shadow); padding: 30px; position: relative; border: 1px solid rgba(255,255,255,0.8); }
 
         /* --- 1. Multi-Test Welcome Screen --- */
         .lang-screen { text-align: center; }
-        .welcome-badge { background: linear-gradient(90deg, #ff9800, #ffb300); color: #fff; padding: 8px 25px; border-radius: 30px; font-weight: 800; font-size: 14px; display: inline-block; margin-bottom: 15px; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.3); }
-        .lang-screen i.main-icon { font-size: 70px; background: -webkit-linear-gradient(var(--primary-dark), var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; filter: drop-shadow(0 10px 10px rgba(0, 131, 143, 0.2)); animation: bounceIcon 3s ease-in-out infinite; }
-        .lang-screen h1 { font-size: 38px; color: var(--primary-dark); font-weight: 800; margin-bottom: 10px; }
-        .lang-screen p { color: var(--text-gray); margin-bottom: 35px; font-size: 16px; line-height: 1.6; max-width: 650px; margin-left: auto; margin-right: auto; }
-        @keyframes bounceIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        .welcome-badge { background: linear-gradient(90deg, #ff9800, #ffb300); color: #fff; padding: 6px 20px; border-radius: 20px; font-weight: 800; font-size: 12px; display: inline-block; margin-bottom: 10px; }
+        .lang-screen h1 { font-size: 26px; color: var(--primary-dark); font-weight: 800; margin-bottom: 8px; line-height: 1.3; }
+        .lang-screen p { color: var(--text-gray); margin-bottom: 20px; font-size: 14px; line-height: 1.5; }
 
-        /* THE PREMIUM TEST SELECTION CARDS */
-        .test-options-container { display: flex; flex-direction: column; gap: 20px; max-width: 750px; margin: 0 auto; }
+        .test-options-container { display: flex; flex-direction: column; gap: 12px; max-width: 600px; margin: 0 auto; }
         
         .test-selection-card {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: var(--white);
-            border-radius: 20px;
-            padding: 20px 25px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            display: flex; align-items: center; justify-content: space-between;
+            background: var(--white); border-radius: 16px; padding: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 2px solid transparent; transition: all 0.2s;
         }
-        .test-selection-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
         
         .t-card-1 { border-color: #ffb300; background: linear-gradient(to right, #ffffff, #fffdf2); }
         .t-card-2 { border-color: #00b09b; background: linear-gradient(to right, #ffffff, #e0f2f1); }
         .t-card-3 { border-color: #ab47bc; background: linear-gradient(to right, #ffffff, #f3e5f5); }
-        
-        .t-card-1::before { content: 'RECOMMENDED'; position: absolute; top: 12px; right: -35px; background: #ffb300; color: #fff; font-size: 11px; font-weight: 900; padding: 5px 40px; transform: rotate(45deg); letter-spacing: 1px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 
-        .t-icon-box { width: 75px; height: 75px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 32px; color: #fff; flex-shrink: 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .t-icon-box { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; color: #fff; flex-shrink: 0; }
         .t-icon-1 { background: linear-gradient(135deg, #ffb300, #ff8f00); }
         .t-icon-2 { background: linear-gradient(135deg, #00b09b, #00838f); }
         .t-icon-3 { background: linear-gradient(135deg, #ab47bc, #6a1b9a); }
 
-        .t-details { flex-grow: 1; text-align: left; padding: 0 25px; }
-        .t-details h3 { font-size: 22px; color: var(--text-dark); margin-bottom: 5px; font-weight: 800; }
-        .t-details p { font-size: 15px; color: var(--text-gray); font-weight: 500; margin: 0; }
+        .t-details { flex-grow: 1; text-align: left; padding: 0 15px; }
+        .t-details h3 { font-size: 16px; color: var(--text-dark); margin-bottom: 2px; font-weight: 700; }
+        .t-details p { font-size: 12px; color: var(--text-gray); font-weight: 500; margin: 0; }
 
-        .t-start-btn { padding: 14px 30px; border-radius: 15px; font-size: 16px; font-weight: 800; color: #fff; border: none; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.2); white-space: nowrap; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-        .t-start-btn:hover { transform: scale(1.05); }
+        .t-start-btn { padding: 10px 20px; border-radius: 12px; font-size: 14px; font-weight: 700; color: #fff; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
         .t-btn-1 { background: linear-gradient(135deg, #ffb300, #ff8f00); }
         .t-btn-2 { background: linear-gradient(135deg, #00b09b, #00838f); }
         .t-btn-3 { background: linear-gradient(135deg, #ab47bc, #6a1b9a); }
 
-        @media (max-width: 700px) {
-            .test-selection-card { flex-direction: column; text-align: center; gap: 15px; padding: 25px 20px; }
-            .t-details { padding: 0; text-align: center; }
-            .t-card-1::before { display: none; }
-        }
-
         /* --- 2. Quiz Screen --- */
         .quiz-screen { display: none; }
-        .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid #edf2f7; padding-bottom: 15px; }
-        .q-count { font-weight: 800; color: var(--white); background: var(--primary-dark); padding: 6px 20px; border-radius: 20px; font-size: 15px; box-shadow: 0 4px 10px rgba(0, 131, 143, 0.2); }
-        .test-title-indicator { font-weight: 800; color: #ff8f00; font-size: 18px; text-transform: uppercase; background: #fff8e1; padding: 5px 15px; border-radius: 10px; border: 1px solid #ffe082;}
+        .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid #edf2f7; padding-bottom: 10px; }
+        .q-count { font-weight: 700; color: var(--white); background: var(--primary-dark); padding: 5px 15px; border-radius: 15px; font-size: 13px; }
+        .test-title-indicator { font-weight: 700; color: #ff8f00; font-size: 13px; background: #fff8e1; padding: 5px 12px; border-radius: 8px; border: 1px solid #ffe082;}
         
-        .progress-container { width: 100%; background: #e2e8f0; height: 10px; border-radius: 5px; margin-bottom: 30px; overflow: hidden; }
-        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-dark)); width: 0%; transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .progress-container { width: 100%; background: #e2e8f0; height: 8px; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-dark)); width: 0%; transition: width 0.3s; }
 
-        .question-text { font-size: 24px; font-weight: 700; color: var(--text-dark); margin-bottom: 30px; line-height: 1.5; }
-        .options-grid { display: flex; flex-direction: column; gap: 15px; margin-bottom: 35px; }
+        .question-text { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 20px; line-height: 1.4; }
+        .options-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; }
         
-        .option { background: var(--white); border: 2px solid #e2e8f0; border-radius: 16px; padding: 20px 25px; font-size: 17px; font-weight: 600; text-align: left; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: space-between; color: var(--text-gray); box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
-        .option:not(.locked):hover { background: #f7fafc; border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0, 131, 143, 0.1); color: var(--primary-dark); }
-        .option.correct { background: var(--correct-bg) !important; border-color: var(--correct-border) !important; color: var(--correct-text) !important; box-shadow: 0 0 15px rgba(56, 161, 105, 0.4) !important; }
-        .option.wrong { background: var(--wrong-bg) !important; border-color: var(--wrong-border) !important; color: var(--wrong-text) !important; box-shadow: 0 0 15px rgba(229, 62, 62, 0.4) !important; }
+        .option { background: var(--white); border: 2px solid #e2e8f0; border-radius: 12px; padding: 14px 18px; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: space-between; color: var(--text-gray); }
+        .option:not(.locked):hover { background: #e0f2f1; border-color: var(--primary); color: var(--primary-dark); }
+        .option.correct { background: var(--correct-bg) !important; border-color: var(--correct-border) !important; color: var(--correct-text) !important; }
+        .option.wrong { background: var(--wrong-bg) !important; border-color: var(--wrong-border) !important; color: var(--wrong-text) !important; }
+        .option.locked { pointer-events: none; }
         
-        .anim-pop { animation: popGlow 0.5s ease-out forwards; }
-        .anim-shake { animation: shake 0.4s ease-in-out forwards; }
-        @keyframes popGlow { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 50% { transform: translateX(8px); } 75% { transform: translateX(-8px); } }
-
-        .quiz-footer { display: flex; justify-content: flex-end; align-items: center; }
-        .nav-btn { background: var(--primary-dark); color: var(--white); border: none; padding: 15px 40px; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; box-shadow: 0 5px 15px rgba(0, 131, 143, 0.2); }
-        .nav-btn:hover { background: #006064; transform: translateY(-2px); }
-        .nav-btn:disabled { background: #cbd5e0; color: #a0aec0; cursor: not-allowed; transform: none; box-shadow: none; }
+        /* Quiz Footer Buttons */
+        .quiz-footer { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .nav-btn { padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; flex: 1; border: none; transition: 0.2s; min-width: 100px; }
+        
+        .btn-prev { background: #e0f2f1; color: #00838f; }
+        .btn-prev:disabled { opacity: 0.4; cursor: not-allowed; }
+        .btn-skip { background: #fff8e1; color: #f57f17; border: 1px solid #ffe082; }
+        .btn-next { background: var(--primary-dark); color: var(--white); }
 
         /* --- 3. Result Screen --- */
-        .result-screen { display: none; text-align: center; }
-        .result-screen .congrats-icon { font-size: 80px; color: var(--accent); margin-bottom: 20px; animation: bounceIcon 2s infinite; filter: drop-shadow(0 10px 10px rgba(255,179,0,0.3)); }
-        .result-screen h2 { font-size: 40px; font-weight: 800; color: var(--primary-dark); margin-bottom: 15px; }
-        .message-box { font-size: 18px; color: var(--text-gray); max-width: 600px; margin: 0 auto 30px auto; line-height: 1.6; font-weight: 500; }
+        .result-screen { display: none; text-align: center; padding: 20px 0; }
+        .result-screen .congrats-icon { font-size: 60px; color: var(--accent); margin-bottom: 10px; }
+        .result-screen h2 { font-size: 32px; font-weight: 800; color: var(--primary-dark); margin-bottom: 10px; }
+        .message-box { font-size: 15px; color: var(--text-gray); margin-bottom: 25px; font-weight: 500; }
         
-        .score-circle { width: 180px; height: 180px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 30px auto; box-shadow: 0 15px 30px rgba(0, 131, 143, 0.4); border: 5px solid #e0f2f1; }
-        .score-circle h1 { font-size: 56px; font-weight: 800; line-height: 1; margin-bottom: 0; }
-        .score-circle span { font-size: 16px; opacity: 0.9; font-weight: 600; text-transform: uppercase; margin-top: 5px; }
+        .score-circle { width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 25px auto; border: 4px solid #e0f2f1; }
+        .score-circle h1 { font-size: 42px; font-weight: 800; line-height: 1; }
+        .score-circle span { font-size: 13px; font-weight: 600; margin-top: 5px; text-transform: uppercase; }
 
         /* Certificate Box */
-        .cert-container { background: rgba(0, 131, 143, 0.04); border: 2px dashed var(--primary); padding: 30px; border-radius: 20px; margin-bottom: 35px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02); }
-        .cert-container h3 { color: var(--primary-dark); font-size: 20px; margin-bottom: 10px; font-weight: 700; }
-        .cert-input { width: 100%; max-width: 400px; padding: 14px 20px; border: 2px solid #b2dfdb; border-radius: 12px; font-size: 16px; font-weight: 600; text-align: center; margin-bottom: 15px; outline: none; transition: 0.3s; }
-        .cert-input:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(0,176,155,0.2); }
-        .cert-btn { background: linear-gradient(135deg, #ff9800, #ff5722); color: white; border: none; padding: 14px 35px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(255,87,34,0.3); display: inline-flex; align-items: center; gap: 10px; }
-        .cert-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255,87,34,0.4); }
+        .cert-container { background: rgba(0, 131, 143, 0.04); border: 2px dashed var(--primary); padding: 20px; border-radius: 20px; margin-bottom: 25px; }
+        .cert-container h3 { color: var(--primary-dark); font-size: 18px; margin-bottom: 10px; font-weight: 700; }
+        .cert-input { width: 100%; max-width: 350px; padding: 12px 20px; border: 2px solid #b2dfdb; border-radius: 12px; font-size: 15px; font-weight: 600; text-align: center; margin-bottom: 15px; outline: none; }
+        .cert-input:focus { border-color: var(--primary); }
+        .cert-btn { background: linear-gradient(135deg, #ff9800, #ff5722); color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
 
-        .restart-btn { background: #e2e8f0; color: var(--text-dark); border: none; padding: 15px 40px; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; }
-        .restart-btn:hover { background: #cbd5e0; }
+        .restart-btn { background: #e2e8f0; color: var(--text-dark); border: none; padding: 12px 30px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; width: 100%; max-width: 300px; margin-top: 10px; }
 
-        footer { text-align: center; padding: 25px; margin-top: auto; border-top: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.7); backdrop-filter: blur(5px); z-index: 1; }
+        /* --- 4. One Liners (Auto-Hide Feature) --- */
+        #oneLinersSection { width: 100%; max-width: 850px; margin-top: 20px; background: rgba(255, 255, 255, 0.95); border-radius: 20px; padding: 25px; box-shadow: var(--shadow); border: 1px solid #e0f2f1; }
+        .qf-header h2 { font-size: 22px; color: #00838f; font-weight: 800; text-align: center; margin-bottom: 20px; }
+        .qf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+        .qf-item { background: #ffffff; border-left: 4px solid #00b09b; padding: 12px 15px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .border-gold { border-left-color: #ffb300; }
+        .border-blue { border-left-color: #2196f3; }
+        .border-red { border-left-color: #e53935; }
+        .qf-question { font-size: 13px; font-weight: 600; color: #4a5568; max-width: 65%; }
+        .qf-answer { padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 800; text-align: right; border: 1px solid transparent; }
+        .ans-green { background: #e0f2f1; color: #00838f; border-color: #b2dfdb; }
+        .ans-gold { background: #fff8e1; color: #f57f17; border-color: #ffe082; }
+        .ans-blue { background: #e3f2fd; color: #1976d2; border-color: #bbdefb; }
+        .ans-red { background: #ffebee; color: #c62828; border-color: #ffcdd2; }
+
+        /* Mobile Optimization Fixes */
+        @media (max-width: 600px) {
+            .quiz-card { padding: 20px 15px; border-radius: 18px; }
+            .test-selection-card { padding: 12px; }
+            .t-icon-box { width: 40px; height: 40px; font-size: 18px; }
+            .t-details h3 { font-size: 14px; }
+            .t-details p { font-size: 11px; }
+            .t-start-btn { padding: 8px 12px; font-size: 12px; }
+            .quiz-header { flex-direction: column; gap: 10px; align-items: flex-start; }
+            .question-text { font-size: 16px; margin-bottom: 15px; }
+            .option { padding: 12px 15px; font-size: 14px; }
+            .nav-btn { font-size: 13px; padding: 10px; }
+            .qf-item { flex-direction: column; gap: 8px; text-align: center; }
+            .qf-question { max-width: 100%; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-
     <nav>
-        <a href="index.html" class="logo"><i class="fa-solid fa-users"></i> Razaagripoint</a>
-        <a href="index.html" class="exit-btn"><i class="fa-solid fa-xmark"></i> Exit</a>
+        <a href="javascript:history.back()" class="logo">
+            <i class="fa-solid fa-users"></i> Razaagripoint
+        </a>
     </nav>
 
     <div class="container">
+        
+        <!-- MAIN QUIZ BOX -->
         <div class="quiz-card">
             
+            <!-- 1. Language/Selection Screen -->
             <div id="langScreen" class="lang-screen">
                 <div class="welcome-badge">⭐ THE ULTIMATE TEST PORTAL</div>
-                <br>
-                <i class="fa-solid fa-laptop-code main-icon"></i>
                 <h1>Agri-Informatics & Computer Application</h1>
-                <p>Welcome! Yahan aapko Computer Basics, MS Office, aur Agri-Informatics (GIS/GPS) ke <b>150 Unique Questions</b> ke 3 alag-alag premium test milenge. Apni taiyari ke hisaab se test select karen!</p>
+                <p>Welcome! 150 Unique Questions divided into 3 premium tests. Perfect for mobile screens!</p>
                 
                 <div class="test-options-container">
                     <div class="test-selection-card t-card-1">
@@ -178,9 +174,7 @@
                             <h3>YouTube Video Test</h3>
                             <p>50 Computer Fundamentals MCQs</p>
                         </div>
-                        <button class="t-start-btn t-btn-1" onclick="startQuiz(1)">
-                            Start Test <i class="fa-solid fa-play"></i>
-                        </button>
+                        <button class="t-start-btn t-btn-1" onclick="startQuiz(1)">Start <i class="fa-solid fa-play"></i></button>
                     </div>
 
                     <div class="test-selection-card t-card-2">
@@ -189,9 +183,7 @@
                             <h3>2nd Test (Advanced)</h3>
                             <p>50 MS Office & Internet MCQs</p>
                         </div>
-                        <button class="t-start-btn t-btn-2" onclick="startQuiz(2)">
-                            Start Test <i class="fa-solid fa-play"></i>
-                        </button>
+                        <button class="t-start-btn t-btn-2" onclick="startQuiz(2)">Start <i class="fa-solid fa-play"></i></button>
                     </div>
 
                     <div class="test-selection-card t-card-3">
@@ -200,165 +192,137 @@
                             <h3>Mega Practice Test</h3>
                             <p>50 GIS, GPS & Agri-IT MCQs</p>
                         </div>
-                        <button class="t-start-btn t-btn-3" onclick="startQuiz(3)">
-                            Start Test <i class="fa-solid fa-play"></i>
-                        </button>
+                        <button class="t-start-btn t-btn-3" onclick="startQuiz(3)">Start <i class="fa-solid fa-play"></i></button>
                     </div>
                 </div>
             </div>
 
+            <!-- 2. Active Quiz Screen -->
             <div id="quizScreen" class="quiz-screen">
                 <div class="quiz-header">
-                    <span id="questionCount" class="q-count">Question 1 of 50</span>
-                    <span id="testTitleIndicator" class="test-title-indicator">YouTube Video Test</span>
+                    <span id="questionCount" class="q-count">Q 1 / 50</span>
+                    <span id="testTitleIndicator" class="test-title-indicator">Test 1</span>
                 </div>
                 
                 <div class="progress-container">
                     <div id="progressBar" class="progress-bar"></div>
                 </div>
 
-                <div id="questionText" class="question-text">Loading Question...</div>
-                
+                <div id="questionText" class="question-text">Loading...</div>
                 <div id="optionsGrid" class="options-grid"></div>
 
                 <div class="quiz-footer">
-                    <button id="nextBtn" class="nav-btn" onclick="nextQuestion()" disabled>Next Question <i class="fa-solid fa-arrow-right"></i></button>
+                    <button id="prevBtn" class="nav-btn btn-prev" onclick="prevQuestion()"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+                    <button id="skipBtn" class="nav-btn btn-skip" onclick="skipQuestion()">Skip <i class="fa-solid fa-forward-step"></i></button>
+                    <button id="nextBtn" class="nav-btn btn-next" style="display:none;" onclick="nextQuestion()">Next <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
 
+            <!-- 3. Result Screen & Certificate -->
             <div id="resultScreen" class="result-screen">
-                <div id="congratsIcon" class="congrats-icon"><i class="fa-solid fa-trophy"></i></div>
+                <div class="congrats-icon"><i class="fa-solid fa-trophy"></i></div>
                 <h2 id="resultHeading">Great Job!</h2>
                 <div id="messageBox" class="message-box">Results loading...</div>
                 
                 <div class="score-circle">
-                    <h1 id="scoreDisplay">00</h1>
-                    <span>Out of 50</span>
+                    <h1 id="scoreDisplay">0</h1>
+                    <span id="totalDisplay">Out of 0</span>
                 </div>
 
                 <div class="cert-container">
                     <h3>🏆 Download Your Topper Certificate</h3>
-                    <p style="font-size: 14px; color: var(--text-gray); margin-bottom: 15px;">Apna poora naam niche box mein likhein aur ek <b>Professional High-Quality Certificate</b> turant download karen:</p>
+                    <p style="font-size: 13px; color: var(--text-gray); margin-bottom: 12px;">अपना नाम लिखें और अपना <b>High-Quality Certificate</b> तुरंत डाउनलोड करें:</p>
                     <input type="text" id="studentName" class="cert-input" placeholder="Yahan Apna Naam Likhein">
                     <br>
-                    <button class="cert-btn" onclick="generateCertificate()"><i class="fa-solid fa-file-arrow-down"></i> Get My Premium Certificate</button>
+                    <button class="cert-btn" onclick="generateCertificate()"><i class="fa-solid fa-file-arrow-down"></i> Get My Certificate</button>
                 </div>
 
-                <button class="restart-btn" onclick="restartQuiz()"><i class="fa-solid fa-rotate-right"></i> Choose Another Test</button>
+                <button class="restart-btn" onclick="restartQuiz()"><i class="fa-solid fa-house"></i> Back to Main Menu</button>
             </div>
 
         </div>
-    </div>
 
-    <style>
-        .quick-facts-wrapper { max-width: 900px; margin: 40px auto; background: rgba(255, 255, 255, 0.95); border-radius: 20px; padding: 40px; box-shadow: 0 15px 35px rgba(0, 131, 143, 0.1); border: 2px solid #e0f2f1; z-index: 1; position: relative; }
-        .qf-header { text-align: center; margin-bottom: 30px; }
-        .qf-header h2 { font-size: 32px; color: #00838f; font-weight: 800; display: inline-flex; align-items: center; gap: 10px; }
-        .qf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 15px; }
-        .qf-item { background: #ffffff; border-left: 5px solid #00b09b; padding: 15px 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
-        .qf-item:hover { transform: translateX(5px); box-shadow: 0 6px 15px rgba(0,176,155,0.15); }
-        
-        /* Custom Border Colors */
-        .border-gold { border-left-color: #ffb300; }
-        .border-blue { border-left-color: #2196f3; }
-        .border-red { border-left-color: #e53935; }
-
-        .qf-question { font-size: 15px; font-weight: 600; color: #4a5568; max-width: 65%; line-height: 1.4; }
-        
-        .qf-answer { padding: 6px 12px; border-radius: 8px; font-size: 14px; font-weight: 800; text-align: right; border: 1px solid transparent; }
-        .ans-green { background: #e0f2f1; color: #00838f; border-color: #b2dfdb; }
-        .ans-gold { background: #fff8e1; color: #f57f17; border-color: #ffe082; }
-        .ans-blue { background: #e3f2fd; color: #1976d2; border-color: #bbdefb; }
-        .ans-red { background: #ffebee; color: #c62828; border-color: #ffcdd2; }
-        
-        @media (max-width: 600px) { .qf-item { flex-direction: column; text-align: center; gap: 10px; } .qf-question { max-width: 100%; } }
-    </style>
-
-    <!-- यहाँ ID "oneLinersSection" जोड़ा गया है ताकि इसे JavaScript से Hide किया जा सके -->
-    <div class="quick-facts-wrapper" id="oneLinersSection">
-        <div class="qf-header">
-            <h2><i class="fa-solid fa-bolt" style="color: #ffb300;"></i> Exam Booster: Top 15 One-Liners</h2>
-            <p style="color: #718096; font-size: 16px; font-weight: 500;">एग्ज़ाम से 10 मिनट पहले बस इसे पढ़ लेना, सीधे सवाल फसेंगे!</p>
+        <!-- 4. One Liners (Hides when test starts) -->
+        <div id="oneLinersSection">
+            <div class="qf-header">
+                <h2><i class="fa-solid fa-bolt" style="color: #ffb300;"></i> Top 15 One-Liners</h2>
+            </div>
+            <div class="qf-grid">
+                <div class="qf-item"><div class="qf-question">कंप्यूटर का जनक (Father of Computer)</div><div class="qf-answer ans-green">चार्ल्स बैबेज</div></div>
+                <div class="qf-item border-gold"><div class="qf-question">कंप्यूटर का मस्तिष्क (Brain)</div><div class="qf-answer ans-gold">CPU</div></div>
+                <div class="qf-item"><div class="qf-question">1 बाइट (Byte) में कितने बिट होते हैं?</div><div class="qf-answer ans-green">8 Bits</div></div>
+                <div class="qf-item border-blue"><div class="qf-question">अस्थाई (Volatile) मेमोरी कौन सी है?</div><div class="qf-answer ans-blue">RAM</div></div>
+                <div class="qf-item border-red"><div class="qf-question">पहली पीढ़ी के कंप्यूटर का मुख्य पुर्जा</div><div class="qf-answer ans-red">वैक्यूम ट्यूब</div></div>
+                <div class="qf-item border-red"><div class="qf-question">IC (Integrated Circuit) चिप किसकी बनी होती है?</div><div class="qf-answer ans-red">सिलिकॉन</div></div>
+                <div class="qf-item"><div class="qf-question">MS Word फाइल का डिफ़ॉल्ट एक्सटेंशन</div><div class="qf-answer ans-green">.docx</div></div>
+                <div class="qf-item border-gold"><div class="qf-question">टेक्स्ट को Cut करने की शॉर्टकट कुंजी</div><div class="qf-answer ans-gold">Ctrl + X</div></div>
+                <div class="qf-item border-blue"><div class="qf-question">WWW का पूर्ण रूप</div><div class="qf-answer ans-blue">World Wide Web</div></div>
+                <div class="qf-item border-gold"><div class="qf-question">भारत का कृषि सूचना नेटवर्क</div><div class="qf-answer ans-gold">AGRISNET</div></div>
+                <div class="qf-item border-red"><div class="qf-question">ई-चौपाल (e-Choupal) किसने शुरू किया?</div><div class="qf-answer ans-red">ITC लिमिटेड (2000)</div></div>
+                <div class="qf-item"><div class="qf-question">किसान कॉल सेंटर (KCC) टोल फ्री नंबर</div><div class="qf-answer ans-green">1800-180-1551</div></div>
+                <div class="qf-item border-blue"><div class="qf-question">GIS का पूर्ण रूप</div><div class="qf-answer ans-blue">Geographic Information System</div></div>
+                <div class="qf-item border-gold"><div class="qf-question">GPS में उपग्रहों की न्यूनतम संख्या (वैश्विक)</div><div class="qf-answer ans-gold">24</div></div>
+                <div class="qf-item border-red"><div class="qf-question">फसल रोगों की पहचान करने वाला AI ऐप</div><div class="qf-answer ans-red">प्लांटिक्स (Plantix)</div></div>
+            </div>
         </div>
-        <div class="qf-grid">
-            <div class="qf-item"><div class="qf-question">कंप्यूटर का जनक (Father of Computer)</div><div class="qf-answer ans-green">चार्ल्स बैबेज</div></div>
-            <div class="qf-item border-gold"><div class="qf-question">कंप्यूटर का मस्तिष्क (Brain)</div><div class="qf-answer ans-gold">CPU</div></div>
-            <div class="qf-item"><div class="qf-question">1 बाइट (Byte) में कितने बिट होते हैं?</div><div class="qf-answer ans-green">8 Bits</div></div>
-            <div class="qf-item border-blue"><div class="qf-question">अस्थाई (Volatile) मेमोरी कौन सी है?</div><div class="qf-answer ans-blue">RAM</div></div>
-            <div class="qf-item border-red"><div class="qf-question">पहली पीढ़ी के कंप्यूटर का मुख्य पुर्जा</div><div class="qf-answer ans-red">वैक्यूम ट्यूब</div></div>
-            <div class="qf-item border-red"><div class="qf-question">IC (Integrated Circuit) चिप किसकी बनी होती है?</div><div class="qf-answer ans-red">सिलिकॉन</div></div>
-            <div class="qf-item"><div class="qf-question">MS Word फाइल का डिफ़ॉल्ट एक्सटेंशन</div><div class="qf-answer ans-green">.docx</div></div>
-            <div class="qf-item border-gold"><div class="qf-question">टेक्स्ट को Cut करने की शॉर्टकट कुंजी</div><div class="qf-answer ans-gold">Ctrl + X</div></div>
-            <div class="qf-item border-blue"><div class="qf-question">WWW का पूर्ण रूप</div><div class="qf-answer ans-blue">World Wide Web</div></div>
-            <div class="qf-item border-gold"><div class="qf-question">भारत का कृषि सूचना नेटवर्क</div><div class="qf-answer ans-gold">AGRISNET</div></div>
-            <div class="qf-item border-red"><div class="qf-question">ई-चौपाल (e-Choupal) किसने शुरू किया?</div><div class="qf-answer ans-red">ITC लिमिटेड (2000)</div></div>
-            <div class="qf-item"><div class="qf-question">किसान कॉल सेंटर (KCC) टोल फ्री नंबर</div><div class="qf-answer ans-green">1800-180-1551</div></div>
-            <div class="qf-item border-blue"><div class="qf-question">GIS का पूर्ण रूप</div><div class="qf-answer ans-blue">Geographic Information System</div></div>
-            <div class="qf-item border-gold"><div class="qf-question">GPS में उपग्रहों की न्यूनतम संख्या (वैश्विक)</div><div class="qf-answer ans-gold">24</div></div>
-            <div class="qf-item border-red"><div class="qf-question">फसल रोगों की पहचान करने वाला AI ऐप</div><div class="qf-answer ans-red">प्लांटिक्स (Plantix)</div></div>
-        </div>
-    </div>
 
-    <footer>
-        <p style="font-size: 14px; color: #888;">Designed by <b>MUSHAHID RAZA</b> with ❤️ for BSc Agriculture Students</p>
-    </footer>
+    </div>
 
    <script>
-        // TEST 1: Basic Computers & Hardware/Software (50 Questions)
+        // TEST DATA (Hints Removed from Options)
         const test1Data = [
             { q: "कंप्यूटर का जनक (Father of Computer) किसे कहा जाता है?", o: ["एलन ट्यूरिंग", "चार्ल्स बैबेज", "बिल गेट्स", "टिम बर्नर्स ली"], a: 1 },
             { q: "आधुनिक कंप्यूटर विज्ञान का जनक किसे माना जाता है?", o: ["चार्ल्स बैबेज", "एलन ट्यूरिंग", "जॉन वॉन न्यूमैन", "हरमन होलेरिथ"], a: 1 },
-            { q: "पहली पीढ़ी (1st Gen) के कंप्यूटरों में मुख्य पुर्जे के रूप में किसका प्रयोग किया गया था?", o: ["ट्रांजिस्टर", "वैक्यूम ट्यूब", "इंटीग्रेटेड सर्किट (IC)", "माइक्रोप्रोसेसर"], a: 1 },
-            { q: "दूसरी पीढ़ी (2nd Gen) के कंप्यूटरों में किसका प्रयोग किया गया?", o: ["वैक्यूम ट्यूब", "माइक्रोप्रोसेसर", "ट्रांजिस्टर", "IC"], a: 2 },
+            { q: "पहली पीढ़ी (1st Gen) के कंप्यूटरों में मुख्य पुर्जे के रूप में किसका प्रयोग किया गया था?", o: ["ट्रांजिस्टर", "वैक्यूम ट्यूब", "इंटीग्रेटेड सर्किट", "माइक्रोप्रोसेसर"], a: 1 },
+            { q: "दूसरी पीढ़ी (2nd Gen) के कंप्यूटरों में किसका प्रयोग किया गया?", o: ["वैक्यूम ट्यूब", "माइक्रोप्रोसेसर", "ट्रांजिस्टर", "इंटीग्रेटेड सर्किट"], a: 2 },
             { q: "इंटीग्रेटेड सर्किट (IC) चिप का प्रयोग किस पीढ़ी के कंप्यूटरों में शुरू हुआ?", o: ["पहली", "दूसरी", "तीसरी", "चौथी"], a: 2 },
             { q: "IC (Integrated Circuit) चिप मुख्य रूप से किस पदार्थ की बनी होती है?", o: ["सिलिकॉन", "तांबा", "सोना", "चांदी"], a: 0 },
             { q: "माइक्रोप्रोसेसर का आविष्कार किस पीढ़ी (Generation) में हुआ था?", o: ["दूसरी", "तीसरी", "चौथी", "पांचवीं"], a: 2 },
             { q: "आर्टिफिशियल इंटेलिजेंस (AI) किस पीढ़ी के कंप्यूटरों की विशेषता है?", o: ["दूसरी", "तीसरी", "चौथी", "पांचवीं"], a: 3 },
             { q: "विश्व का पहला इलेक्ट्रॉनिक डिजिटल कंप्यूटर कौन सा था?", o: ["ENIAC", "UNIVAC", "EDVAC", "MARK-1"], a: 0 },
-            { q: "CPU का पूर्ण रूप (Full Form) क्या है?", o: ["Central Processing Unit", "Control Processing Unit", "Central Program Unit", "Computer Processing Unit"], a: 0 },
+            { q: "CPU का पूर्ण रूप क्या है?", o: ["Central Processing Unit", "Control Processing Unit", "Central Program Unit", "Computer Processing Unit"], a: 0 },
             { q: "कंप्यूटर का 'मस्तिष्क' (Brain) किसे कहा जाता है?", o: ["Monitor", "Memory", "CPU", "Hard Disk"], a: 2 },
             { q: "ALU का पूर्ण रूप क्या है?", o: ["Arithmetic Logic Unit", "Array Logic Unit", "Application Logic Unit", "Algorithm Logic Unit"], a: 0 },
             { q: "CPU के मुख्य घटक कौन से हैं?", o: ["ALU और CU", "ALU, CU और Registers", "केवल Memory", "केवल CU"], a: 1 },
             { q: "इनमें से कौन सा एक इनपुट (Input) डिवाइस नहीं है?", o: ["कीबोर्ड", "माउस", "स्कैनर", "प्रिंटर"], a: 3 },
             { q: "इनमें से कौन सा एक आउटपुट (Output) डिवाइस है?", o: ["बारकोड रीडर", "मॉनिटर", "लाइट पेन", "जॉयस्टिक"], a: 1 },
-            { q: "कंप्यूटर स्क्रीन पर दिखने वाले पिक्सेल की संख्या क्या कहलाती है?", o: ["रिज़ॉल्यूशन (Resolution)", "पिक्सेल घनत्व", "कलर डेप्थ", "स्क्रीन साइज़"], a: 0 },
+            { q: "कंप्यूटर स्क्रीन पर दिखने वाले पिक्सेल की संख्या क्या कहलाती है?", o: ["रिज़ॉल्यूशन", "पिक्सेल घनत्व", "कलर डेप्थ", "स्क्रीन साइज़"], a: 0 },
             { q: "कम्प्यूटर मेमोरी की सबसे छोटी इकाई क्या है?", o: ["Byte", "Bit", "KB", "MB"], a: 1 },
             { q: "एक बाइट (Byte) में कितने बिट (Bit) होते हैं?", o: ["4", "8", "16", "1024"], a: 1 },
             { q: "1 किलोबाइट (KB) किसके बराबर होता है?", o: ["1000 Bytes", "1024 Bytes", "1000 Bits", "1024 Bits"], a: 1 },
             { q: "1 मेगाबाइट (MB) में कितने KB होते हैं?", o: ["1000", "1024", "1048", "512"], a: 1 },
-            { q: "इनमें से कौन सी अस्थाई (Volatile) मेमोरी है?", o: ["ROM", "RAM", "Hard Disk", "CD"], a: 1 },
+            { q: "इनमें से कौन सी अस्थाई मेमोरी है?", o: ["ROM", "RAM", "Hard Disk", "CD"], a: 1 },
             { q: "RAM का पूर्ण रूप क्या है?", o: ["Read Access Memory", "Random Access Memory", "Ready Application Memory", "Run Access Memory"], a: 1 },
             { q: "ROM का पूर्ण रूप क्या है?", o: ["Read Only Memory", "Random Only Memory", "Run Only Memory", "Read Open Memory"], a: 0 },
             { q: "कंप्यूटर की सबसे तेज़ मेमोरी कौन सी होती है?", o: ["RAM", "Cache (कैश)", "Hard Disk", "SSD"], a: 1 },
-            { q: "कंप्यूटर को स्टार्ट या रीस्टार्ट करने की प्रक्रिया क्या कहलाती है?", o: ["स्टार्टिंग", "बूटिंग (Booting)", "फॉर्मेटिंग", "लोडिंग"], a: 1 },
+            { q: "कंप्यूटर को स्टार्ट या रीस्टार्ट करने की प्रक्रिया क्या कहलाती है?", o: ["स्टार्टिंग", "बूटिंग", "फॉर्मेटिंग", "लोडिंग"], a: 1 },
             { q: "ऑपरेटिंग सिस्टम (OS) किस प्रकार का सॉफ्टवेयर है?", o: ["एप्लीकेशन सॉफ्टवेयर", "सिस्टम सॉफ्टवेयर", "यूटिलिटी सॉफ्टवेयर", "एंटीवायरस"], a: 1 },
             { q: "इनमें से कौन सा एक ऑपरेटिंग सिस्टम नहीं है?", o: ["Windows", "Linux", "MS Word", "MAC OS"], a: 2 },
             { q: "GUI का पूर्ण रूप क्या है?", o: ["General User Interface", "Graphical User Interface", "Global User Interface", "Graphic Unit Interface"], a: 1 },
-            { q: "विंडोज (Windows) ऑपरेटिंग सिस्टम का निर्माण किस कंपनी ने किया है?", o: ["Apple", "Google", "Microsoft", "IBM"], a: 2 },
+            { q: "विंडोज ऑपरेटिंग सिस्टम का निर्माण किस कंपनी ने किया है?", o: ["Apple", "Google", "Microsoft", "IBM"], a: 2 },
             { q: "लिनक्स (Linux) किस प्रकार का सॉफ्टवेयर है?", o: ["ओपन सोर्स", "क्लोज्ड सोर्स", "शेयरवेयर", "एडवेयर"], a: 0 },
             { q: "उच्च स्तरीय भाषा (High Level) को मशीन भाषा में बदलने का काम कौन करता है?", o: ["कम्पाइलर", "ऑपरेटिंग सिस्टम", "वर्ड प्रोसेसर", "यूटिलिटी"], a: 0 },
-            { q: "कंप्यूटर वायरस क्या है?", o: ["एक हार्डवेयर", "एक प्रकार का कंप्यूटर प्रोग्राम (Malware)", "एक कीटाणु", "एक चिप"], a: 1 },
+            { q: "कंप्यूटर वायरस क्या है?", o: ["एक हार्डवेयर", "एक प्रकार का कंप्यूटर प्रोग्राम", "एक कीटाणु", "एक चिप"], a: 1 },
             { q: "हार्ड डिस्क किस प्रकार की मेमोरी है?", o: ["प्राइमरी", "सेकेंडरी", "कैश", "रजिस्टर"], a: 1 },
             { q: "CD-ROM का पूर्ण रूप क्या है?", o: ["Compact Disk Read Only Memory", "Computer Disk Read Only Memory", "Circular Disk Read Only Memory", "Common Disk"], a: 0 },
             { q: "SSD का पूर्ण रूप क्या है?", o: ["Solid System Disk", "Solid State Drive", "Super State Drive", "Super System Disk"], a: 1 },
             { q: "USB का पूर्ण रूप क्या है?", o: ["Universal Serial Bus", "Universal System Bus", "United Serial Bus", "Universal Service Bus"], a: 0 },
             { q: "कंप्यूटर में किसी फ़ाइल को स्थायी रूप से डिलीट करने का शॉर्टकट क्या है?", o: ["Delete", "Shift + Delete", "Ctrl + Delete", "Alt + Delete"], a: 1 },
-            { q: "विंडोज में किसी फ़ोल्डर का नाम बदलने (Rename) की शॉर्टकट कुंजी क्या है?", o: ["F1", "F2", "F3", "F4"], a: 1 },
+            { q: "विंडोज में किसी फ़ोल्डर का नाम बदलने की शॉर्टकट कुंजी क्या है?", o: ["F1", "F2", "F3", "F4"], a: 1 },
             { q: "सिस्टम सॉफ्टवेयर का उदाहरण है:", o: ["MS Office", "Chrome", "Device Driver", "Photoshop"], a: 2 },
             { q: "एंटीवायरस (Antivirus) किस प्रकार का सॉफ्टवेयर है?", o: ["एप्लीकेशन", "यूटिलिटी", "सिस्टम", "फर्मवेयर"], a: 1 },
             { q: "मदरबोर्ड (Motherboard) क्या है?", o: ["एक सॉफ्टवेयर", "कंप्यूटर का मुख्य सर्किट बोर्ड", "एक आउटपुट डिवाइस", "एक वायरस"], a: 1 },
-            { q: "कंप्यूटर की स्पीड किसमें मापी जाती है?", o: ["गीगाहर्ट्ज़ (GHz)", "मेगाबाइट (MB)", "पिक्सेल", "डीपीआई (DPI)"], a: 0 },
-            { q: "प्रोग्रामिंग में त्रुटि (Error) को क्या कहा जाता है?", o: ["बग (Bug)", "वायरस", "स्पैम", "पैच"], a: 0 },
-            { q: "कंप्यूटर की त्रुटि (Error) को ठीक करने की प्रक्रिया क्या कहलाती है?", o: ["डीबगिंग (Debugging)", "फॉर्मेटिंग", "स्कैनिंग", "बूटिंग"], a: 0 },
-            { q: "कंप्यूटर को बंद करने की प्रक्रिया को क्या कहते हैं?", o: ["बूटिंग", "शटडाउन (Shutdown)", "रीस्टार्ट", "लॉग ऑफ"], a: 1 },
+            { q: "कंप्यूटर की स्पीड किसमें मापी जाती है?", o: ["गीगाहर्ट्ज़ (GHz)", "मेगाबाइट (MB)", "पिक्सेल", "डीपीआई"], a: 0 },
+            { q: "प्रोग्रामिंग में त्रुटि (Error) को क्या कहा जाता है?", o: ["बग", "वायरस", "स्पैम", "पैच"], a: 0 },
+            { q: "कंप्यूटर की त्रुटि को ठीक करने की प्रक्रिया क्या कहलाती है?", o: ["डीबगिंग", "फॉर्मेटिंग", "स्कैनिंग", "बूटिंग"], a: 0 },
+            { q: "कंप्यूटर को बंद करने की प्रक्रिया को क्या कहते हैं?", o: ["बूटिंग", "शटडाउन", "रीस्टार्ट", "लॉग ऑफ"], a: 1 },
             { q: "कंप्यूटर की भौतिक संरचना (जिसे छुआ जा सके) क्या कहलाती है?", o: ["सॉफ्टवेयर", "हार्डवेयर", "डेटा", "फ़ाइल"], a: 1 },
             { q: "डिजिटल कैमरा किस प्रकार का डिवाइस है?", o: ["आउटपुट", "इनपुट", "स्टोरेज", "पॉइंटिंग"], a: 1 },
-            { q: "डेटा (Data) का व्यवस्थित रूप क्या कहलाता है?", o: ["इंफॉर्मेशन (Information)", "प्रोग्राम", "सॉफ्टवेयर", "मेमोरी"], a: 0 },
+            { q: "डेटा (Data) का व्यवस्थित रूप क्या कहलाता है?", o: ["इंफॉर्मेशन", "प्रोग्राम", "सॉफ्टवेयर", "मेमोरी"], a: 0 },
             { q: "OMR का पूर्ण रूप क्या है?", o: ["Optical Mark Reader", "Optical Machine Reader", "Original Mark Reader", "Optical Magnetic Reader"], a: 0 },
             { q: "OCR का पूर्ण रूप क्या है?", o: ["Optical Character Recognition", "Optical CPU Recognition", "Original Character Reader", "Optical Code Reader"], a: 0 }
         ];
 
-        // TEST 2: MS Office & Internet Basics (50 Questions)
         const test2Data = [
             { q: "MS Word किस प्रकार का सॉफ्टवेयर है?", o: ["सिस्टम सॉफ्टवेयर", "वर्ड प्रोसेसिंग सॉफ्टवेयर", "स्प्रेडशीट सॉफ्टवेयर", "प्रेजेंटेशन सॉफ्टवेयर"], a: 1 },
             { q: "MS Word में बनाई गई फ़ाइल का डिफ़ॉल्ट नाम क्या होता है?", o: ["Book1", "Document1", "Presentation1", "Sheet1"], a: 1 },
@@ -367,111 +331,113 @@
             { q: "कंप्यूटर में पेस्ट (Paste) करने की शॉर्टकट कुंजी क्या है?", o: ["Ctrl + P", "Ctrl + X", "Ctrl + V", "Ctrl + C"], a: 2 },
             { q: "कट (Cut) करने की शॉर्टकट कुंजी क्या है?", o: ["Ctrl + C", "Ctrl + X", "Ctrl + V", "Ctrl + Y"], a: 1 },
             { q: "अनडू (Undo) करने के लिए किस शॉर्टकट का प्रयोग किया जाता है?", o: ["Ctrl + U", "Ctrl + Z", "Ctrl + Y", "Ctrl + R"], a: 1 },
-            { q: "MS Word में किसी भी टेक्स्ट को बीच में (Center Align) करने की शॉर्टकट कुंजी क्या है?", o: ["Ctrl + C", "Ctrl + M", "Ctrl + E", "Ctrl + J"], a: 2 },
+            { q: "MS Word में किसी भी टेक्स्ट को बीच में अलाइन (Center Align) करने की शॉर्टकट कुंजी क्या है?", o: ["Ctrl + C", "Ctrl + M", "Ctrl + E", "Ctrl + J"], a: 2 },
             { q: "MS Word में प्रिंट (Print) करने का शॉर्टकट क्या है?", o: ["Ctrl + P", "Alt + P", "Shift + P", "Win + P"], a: 0 },
             { q: "मेल मर्ज (Mail Merge) किस सॉफ्टवेयर की प्रमुख विशेषता है?", o: ["MS Excel", "MS Word", "MS PowerPoint", "MS Access"], a: 1 },
             { q: "MS Excel किस प्रकार का सॉफ्टवेयर है?", o: ["स्प्रेडशीट सॉफ्टवेयर", "डेटाबेस सॉफ्टवेयर", "वर्ड प्रोसेसर", "प्रेजेंटेशन"], a: 0 },
-            { q: "MS Excel में पंक्ति (Row) और स्तंभ (Column) के प्रतिच्छेदन को क्या कहते हैं?", o: ["टेबल", "सेल (Cell)", "बॉक्स", "ग्रिड"], a: 1 },
+            { q: "MS Excel में पंक्ति और स्तंभ के प्रतिच्छेदन को क्या कहते हैं?", o: ["टेबल", "सेल", "बॉक्स", "ग्रिड"], a: 1 },
             { q: "MS Excel 2007+ में फ़ाइल का एक्सटेंशन क्या होता है?", o: [".xls", ".xlsx", ".csv", ".exl"], a: 1 },
             { q: "MS Excel में किसी भी फ़ॉर्मूले की शुरुआत किस चिह्न से होती है?", o: ["@", "#", "=", "+"], a: 2 },
             { q: "MS Excel में सभी संख्याओं को जोड़ने के लिए किस फ़ंक्शन का उपयोग होता है?", o: ["ADD()", "TOTAL()", "SUM()", "COUNT()"], a: 2 },
-            { q: "एक्सेल में सेल को एडिट (Edit) करने के लिए किस शॉर्टकट कुंजी का उपयोग होता है?", o: ["F1", "F2", "F3", "F4"], a: 1 },
+            { q: "एक्सेल में सेल को एडिट करने के लिए किस शॉर्टकट कुंजी का उपयोग होता है?", o: ["F1", "F2", "F3", "F4"], a: 1 },
             { q: "एक्सेल में एब्सोल्यूट सेल रेफरेंस बनाने के लिए किस चिह्न का प्रयोग होता है?", o: ["$", "#", "@", "&"], a: 0 },
             { q: "MS PowerPoint किस प्रकार का सॉफ्टवेयर है?", o: ["वर्ड प्रोसेसर", "प्रेजेंटेशन सॉफ्टवेयर", "डेटाबेस", "स्प्रेडशीट"], a: 1 },
-            { q: "MS PowerPoint में स्लाइड शो (Slide Show) शुरू करने की शॉर्टकट कुंजी क्या है?", o: ["F2", "F4", "F5", "F7"], a: 2 },
-            { q: "MS PowerPoint में नई स्लाइड (New Slide) जोड़ने के लिए किस शॉर्टकट का प्रयोग होता है?", o: ["Ctrl + N", "Ctrl + M", "Ctrl + S", "Ctrl + K"], a: 1 },
+            { q: "MS PowerPoint में स्लाइड शो शुरू करने की शॉर्टकट कुंजी क्या है?", o: ["F2", "F4", "F5", "F7"], a: 2 },
+            { q: "MS PowerPoint में नई स्लाइड जोड़ने के लिए किस शॉर्टकट का प्रयोग होता है?", o: ["Ctrl + N", "Ctrl + M", "Ctrl + S", "Ctrl + K"], a: 1 },
             { q: "प्रेजेंटेशन में एक स्लाइड से दूसरी स्लाइड पर जाने पर जो इफ़ेक्ट दिखता है, उसे क्या कहते हैं?", o: ["एनीमेशन", "स्लाइड ट्रांज़िशन", "स्लाइड शो", "स्लाइड लेआउट"], a: 1 },
-            { q: "MS Access किस प्रकार का सॉफ्टवेयर है?", o: ["प्रेजेंटेशन", "DBMS (डेटाबेस मैनेजमेंट सिस्टम)", "स्प्रेडशीट", "यूटिलिटी"], a: 1 },
-            { q: "डेटाबेस में किसी रिकॉर्ड को विशिष्ट (Unique) रूप से पहचानने के लिए किसका उपयोग होता है?", o: ["प्राइमरी की (Primary Key)", "फॉरेन की", "कैंडिडेट की", "रिकॉर्ड की"], a: 0 },
+            { q: "MS Access किस प्रकार का सॉफ्टवेयर है?", o: ["प्रेजेंटेशन", "डेटाबेस मैनेजमेंट सिस्टम", "स्प्रेडशीट", "यूटिलिटी"], a: 1 },
+            { q: "डेटाबेस में किसी रिकॉर्ड को विशिष्ट रूप से पहचानने के लिए किसका उपयोग होता है?", o: ["प्राइमरी की", "फॉरेन की", "कैंडिडेट की", "रिकॉर्ड की"], a: 0 },
             { q: "DBMS का पूर्ण रूप क्या है?", o: ["Database Management System", "Data Business Management System", "Document Management System", "Digital Base Management System"], a: 0 },
             { q: "SQL का पूर्ण रूप क्या है?", o: ["Standard Query Language", "Structured Query Language", "Simple Query Language", "Sequential Query Language"], a: 1 },
-            { q: "इंटरनेट का जनक (Father of Internet) किसे कहा जाता है?", o: ["टिम बर्नर्स ली", "विंट सर्फ (Vint Cerf)", "चार्ल्स बैबेज", "मार्क जुकरबर्ग"], a: 1 },
+            { q: "इंटरनेट का जनक (Father of Internet) किसे कहा जाता है?", o: ["टिम बर्नर्स ली", "विंट सर्फ", "चार्ल्स बैबेज", "मार्क जुकरबर्ग"], a: 1 },
             { q: "WWW का पूर्ण रूप क्या है?", o: ["World Wide Web", "World Web Wide", "Wide World Web", "Web World Wide"], a: 0 },
             { q: "WWW का आविष्कार किसने किया था?", o: ["बिल गेट्स", "टिम बर्नर्स ली", "विंट सर्फ", "रे टॉमलिंसन"], a: 1 },
             { q: "वेबसाइटों को देखने के लिए उपयोग किए जाने वाले सॉफ्टवेयर को क्या कहते हैं?", o: ["वेब ब्राउज़र", "सर्च इंजन", "वेब सर्वर", "ऑपरेटिंग सिस्टम"], a: 0 },
             { q: "इनमें से कौन सा एक वेब ब्राउज़र नहीं है?", o: ["Google Chrome", "Mozilla Firefox", "Google Search", "Safari"], a: 2 },
             { q: "इनमें से कौन सा एक सर्च इंजन है?", o: ["Internet Explorer", "Google", "MS Word", "Windows"], a: 1 },
             { q: "URL का पूर्ण रूप क्या है?", o: ["Uniform Resource Locator", "Universal Resource Locator", "Uniform Route Locator", "Universal Route Locator"], a: 0 },
-            { q: "इंटरनेट पर कंप्यूटर की पहचान किसके द्वारा होती है?", o: ["ईमेल एड्रेस", "IP एड्रेस (IP Address)", "मैक एड्रेस", "URL"], a: 1 },
+            { q: "इंटरनेट पर कंप्यूटर की पहचान किसके द्वारा होती है?", o: ["ईमेल एड्रेस", "IP एड्रेस", "मैक एड्रेस", "URL"], a: 1 },
             { q: "HTTP का पूर्ण रूप क्या है?", o: ["Hyper Text Transfer Protocol", "High Text Transfer Protocol", "Hyper Text Transmission Protocol", "Hyper Transfer Text Protocol"], a: 0 },
             { q: "HTML का पूर्ण रूप क्या है?", o: ["Hyper Text Markup Language", "High Text Markup Language", "Hyper Text Machine Language", "Hyper Transfer Markup Language"], a: 0 },
-            { q: "ईमेल (E-mail) का आविष्कार किसने किया था?", o: ["टिम बर्नर्स ली", "रे टॉमलिंसन (Ray Tomlinson)", "बिल गेट्स", "लैरी पेज"], a: 1 },
+            { q: "ईमेल (E-mail) का आविष्कार किसने किया था?", o: ["टिम बर्नर्स ली", "रे टॉमलिंसन", "बिल गेट्स", "लैरी पेज"], a: 1 },
             { q: "ईमेल पते में यूजरनेम और डोमेन नेम को कौन सा चिह्न अलग करता है?", o: ["#", "&", "@", "$"], a: 2 },
             { q: "ISP का पूर्ण रूप क्या है?", o: ["Internet Service Provider", "Internet System Provider", "Internal Service Provider", "Internet Service Protocol"], a: 0 },
             { q: "Wi-Fi का पूर्ण रूप क्या है?", o: ["Wireless Find", "Wireless Fidelity", "Wired Fidelity", "Wireless Fiber"], a: 1 },
             { q: "LAN का पूर्ण रूप क्या है?", o: ["Local Area Network", "Large Area Network", "Long Area Network", "Local Access Network"], a: 0 },
             { q: "WAN का पूर्ण रूप क्या है?", o: ["Wide Area Network", "World Area Network", "Wireless Area Network", "Web Area Network"], a: 0 },
-            { q: "अवांछित (Unwanted) या जंक ईमेल को क्या कहा जाता है?", o: ["ड्राफ्ट", "स्पैम (Spam)", "ट्रैश", "इनबॉक्स"], a: 1 },
-            { q: "किसी नेटवर्क में कंप्यूटरों को जोड़ने की भौतिक व्यवस्था क्या कहलाती है?", o: ["टोपोलॉजी (Topology)", "राउटर", "हब", "प्रोटोकॉल"], a: 0 },
-            { q: "नियमों का एक सेट जो नेटवर्क में डेटा संचार को नियंत्रित करता है, क्या कहलाता है?", o: ["टोपोलॉजी", "प्रोटोकॉल (Protocol)", "सर्वर", "ओएसआई मॉडल"], a: 1 },
-            { q: "किसी वेबसाइट का पहला पेज क्या कहलाता है?", o: ["वेब पेज", "होम पेज (Home Page)", "मास्टर पेज", "इंडेक्स पेज"], a: 1 },
-            { q: "डेटा को इंटरनेट पर सुरक्षित रूप से भेजने के लिए किस तकनीक का प्रयोग होता है?", o: ["एन्क्रिप्शन (Encryption)", "डिक्रिप्शन", "कंप्रेशन", "मॉडुलेशन"], a: 0 },
+            { q: "अवांछित या जंक ईमेल को क्या कहा जाता है?", o: ["ड्राफ्ट", "स्पैम", "ट्रैश", "इनबॉक्स"], a: 1 },
+            { q: "किसी नेटवर्क में कंप्यूटरों को जोड़ने की भौतिक व्यवस्था क्या कहलाती है?", o: ["टोपोलॉजी", "राउटर", "हब", "प्रोटोकॉल"], a: 0 },
+            { q: "नियमों का एक सेट जो नेटवर्क में डेटा संचार को नियंत्रित करता है, क्या कहलाता है?", o: ["टोपोलॉजी", "प्रोटोकॉल", "सर्वर", "ओएसआई मॉडल"], a: 1 },
+            { q: "किसी वेबसाइट का पहला पेज क्या कहलाता है?", o: ["वेब पेज", "होम पेज", "मास्टर पेज", "इंडेक्स पेज"], a: 1 },
+            { q: "डेटा को इंटरनेट पर सुरक्षित रूप से भेजने के लिए किस तकनीक का प्रयोग होता है?", o: ["एन्क्रिप्शन", "डिक्रिप्शन", "कंप्रेशन", "मॉडुलेशन"], a: 0 },
             { q: "BCC (ईमेल में) का पूर्ण रूप क्या है?", o: ["Blind Carbon Copy", "Blank Carbon Copy", "Blind Copy Carbon", "Basic Carbon Copy"], a: 0 },
             { q: "CC (ईमेल में) का पूर्ण रूप क्या है?", o: ["Carbon Copy", "Common Copy", "Clear Copy", "Custom Copy"], a: 0 },
             { q: "मॉडेम (Modem) का मुख्य कार्य क्या है?", o: ["डेटा स्टोर करना", "एनालॉग को डिजिटल और डिजिटल को एनालॉग में बदलना", "वायरस डिलीट करना", "प्रिंट निकालना"], a: 1 },
             { q: "किसी भी टेक्स्ट को सेव (Save) करने की शॉर्टकट कुंजी क्या है?", o: ["Ctrl + P", "Ctrl + S", "Ctrl + O", "Ctrl + N"], a: 1 }
         ];
 
-        // TEST 3: Agri-informatics, GIS, GPS, Remote Sensing (50 Questions)
         const test3Data = [
-            { q: "कृषि क्षेत्र में सूचना और संचार प्रौद्योगिकी (ICT) के अनुप्रयोग को क्या कहते हैं?", o: ["बायोटेक्नोलॉजी", "एग्री-इन्फॉर्मेटिक्स (Agri-informatics)", "एग्रोनॉमी", "नैनोटेक्नोलॉजी"], a: 1 },
+            { q: "कृषि क्षेत्र में सूचना और संचार प्रौद्योगिकी के अनुप्रयोग को क्या कहते हैं?", o: ["बायोटेक्नोलॉजी", "एग्री-इन्फॉर्मेटिक्स", "एग्रोनॉमी", "नैनोटेक्नोलॉजी"], a: 1 },
             { q: "भारत में कृषि सूचना प्रणाली नेटवर्क का नाम क्या है?", o: ["AGRISNET", "NICNET", "ERNET", "ARPANET"], a: 0 },
-            { q: "ITC लिमिटेड द्वारा किसानों के लिए शुरू की गई ई-चौपाल (e-Choupal) पहल कब शुरू हुई?", o: ["1995", "2000", "2005", "2010"], a: 1 },
-            { q: "किसान कॉल सेंटर (KCC) का टोल-फ्री नंबर क्या है?", o: ["1800-180-1551", "1800-111-1551", "1800-180-1000", "1800-120-1551"], a: 0 },
-            { q: "किसान कॉल सेंटर (KCC) की शुरुआत किस वर्ष हुई थी?", o: ["2000", "2002", "2004", "2008"], a: 2 },
+            { q: "ITC लिमिटेड द्वारा किसानों के लिए शुरू की गई ई-चौपाल पहल कब शुरू हुई?", o: ["1995", "2000", "2005", "2010"], a: 1 },
+            { q: "किसान कॉल सेंटर का टोल-फ्री नंबर क्या है?", o: ["1800-180-1551", "1800-111-1551", "1800-180-1000", "1800-120-1551"], a: 0 },
+            { q: "किसान कॉल सेंटर की शुरुआत किस वर्ष हुई थी?", o: ["2000", "2002", "2004", "2008"], a: 2 },
             { q: "mKisan पोर्टल का मुख्य उद्देश्य क्या है?", o: ["किसानों को बीज बेचना", "किसानों को SMS के माध्यम से कृषि सलाह देना", "कृषि ऋण देना", "ट्रैक्टर की बुकिंग"], a: 1 },
             { q: "DSS का पूर्ण रूप क्या है?", o: ["Data Support System", "Decision Support System", "Digital Support System", "Direct Support System"], a: 1 },
-            { q: "एक्सपर्ट सिस्टम (Expert System) किसका एक हिस्सा है?", o: ["रोबोटिक्स", "आर्टिफिशियल इंटेलिजेंस (AI)", "डेटाबेस", "नेटवर्किंग"], a: 1 },
-            { q: "एक एक्सपर्ट सिस्टम के दो मुख्य घटक (Components) क्या होते हैं?", o: ["नॉलेज बेस और इन्फेरेंस इंजन", "कीबोर्ड और माउस", "रैम और रोम", "हार्डवेयर और नेटवर्क"], a: 0 },
+            { q: "एक्सपर्ट सिस्टम किसका एक हिस्सा है?", o: ["रोबोटिक्स", "आर्टिफिशियल इंटेलिजेंस", "डेटाबेस", "नेटवर्किंग"], a: 1 },
+            { q: "एक एक्सपर्ट सिस्टम के दो मुख्य घटक क्या होते हैं?", o: ["नॉलेज बेस और इन्फेरेंस इंजन", "कीबोर्ड और माउस", "रैम और रोम", "हार्डवेयर और नेटवर्क"], a: 0 },
             { q: "GIS का पूर्ण रूप क्या है?", o: ["Global Information System", "Geographic Information System", "Geological Information System", "Graphic Information System"], a: 1 },
-            { q: "GIS में किस प्रकार के डेटा का उपयोग किया जाता है?", o: ["केवल टेक्स्ट", "स्थानिक (Spatial) डेटा", "ऑडियो", "वीडियो"], a: 1 },
-            { q: "GIS में स्थानिक डेटा को दर्शाने के दो मुख्य प्रारूप (Formats) कौन से हैं?", o: ["वर्ड और एक्सेल", "रास्टर (Raster) और वेक्टर (Vector)", "जेपीईजी और पीडीएफ", "बाइनरी और टेक्स्ट"], a: 1 },
-            { q: "कृषि में GIS का मुख्य उपयोग क्या है?", o: ["मृदा मानचित्रण (Soil Mapping)", "फसल उपज अनुमान", "सटीक खेती (Precision Farming)", "उपरोक्त सभी"], a: 3 },
+            { q: "GIS में किस प्रकार के डेटा का उपयोग किया जाता है?", o: ["केवल टेक्स्ट", "स्थानिक डेटा", "ऑडियो", "वीडियो"], a: 1 },
+            { q: "GIS में स्थानिक डेटा को दर्शाने के दो मुख्य प्रारूप कौन से हैं?", o: ["वर्ड और एक्सेल", "रास्टर और वेक्टर", "जेपीईजी और पीडीएफ", "बाइनरी और टेक्स्ट"], a: 1 },
+            { q: "कृषि में GIS का मुख्य उपयोग क्या है?", o: ["मृदा मानचित्रण", "फसल उपज अनुमान", "सटीक खेती", "उपरोक्त सभी"], a: 3 },
             { q: "QGIS किस प्रकार का सॉफ्टवेयर है?", o: ["वर्ड प्रोसेसर", "ओपन सोर्स GIS सॉफ्टवेयर", "एंटीवायरस", "वेब ब्राउज़र"], a: 1 },
             { q: "GPS का पूर्ण रूप क्या है?", o: ["Global Positioning System", "Geographic Positioning System", "Global Pointing System", "Geological Positioning System"], a: 0 },
-            { q: "GPS प्रणाली मुख्य रूप से किस पर आधारित है?", o: ["केबल नेटवर्क", "उपग्रह (Satellite)", "मोबाइल टावर", "इंटरनेट"], a: 1 },
-            { q: "GPS का विकास किस देश के रक्षा विभाग द्वारा किया गया था?", o: ["रूस", "भारत", "संयुक्त राज्य अमेरिका (USA)", "चीन"], a: 2 },
-            { q: "पूर्ण वैश्विक कवरेज (Global Coverage) के लिए GPS में न्यूनतम कितने उपग्रहों की आवश्यकता होती है?", o: ["12", "18", "24", "36"], a: 2 },
+            { q: "GPS प्रणाली मुख्य रूप से किस पर आधारित है?", o: ["केबल नेटवर्क", "उपग्रह", "मोबाइल टावर", "इंटरनेट"], a: 1 },
+            { q: "GPS का विकास किस देश के रक्षा विभाग द्वारा किया गया था?", o: ["रूस", "भारत", "संयुक्त राज्य अमेरिका", "चीन"], a: 2 },
+            { q: "पूर्ण वैश्विक कवरेज के लिए GPS में न्यूनतम कितने उपग्रहों की आवश्यकता होती है?", o: ["12", "18", "24", "36"], a: 2 },
             { q: "पृथ्वी पर किसी भी स्थान की 3D स्थिति ज्ञात करने के लिए न्यूनतम कितने उपग्रहों की आवश्यकता होती है?", o: ["2", "3", "4", "6"], a: 2 },
-            { q: "कृषि में ट्रैक्टरों के स्वत: संचालन (Auto-steering) के लिए किस तकनीक का प्रयोग किया जाता है?", o: ["GIS", "GPS", "DBMS", "MS Word"], a: 1 },
-            { q: "रिमोट सेंसिंग (Remote Sensing) क्या है?", o: ["वस्तु को छुए बिना उसके बारे में जानकारी प्राप्त करना", "टीवी का रिमोट", "मिट्टी की खुदाई करना", "कंप्यूटर नेटवर्किंग"], a: 0 },
-            { q: "रिमोट सेंसिंग के दो मुख्य प्रकार कौन से हैं?", o: ["रास्टर और वेक्टर", "एक्टिव (Active) और पैसिव (Passive)", "एनालॉग और डिजिटल", "इनपुट और आउटपुट"], a: 1 },
-            { q: "पैसिव (Passive) रिमोट सेंसिंग में ऊर्जा का मुख्य स्रोत क्या होता है?", o: ["राडार", "लेज़र", "सूर्य का प्रकाश (Sunlight)", "बैटरी"], a: 2 },
-            { q: "राडार (RADAR) किस प्रकार की रिमोट सेंसिंग का उदाहरण है?", o: ["पैसिव", "एक्टिव (Active)", "थर्मल", "ऑप्टिकल"], a: 1 },
+            { q: "कृषि में ट्रैक्टरों के स्वत: संचालन के लिए किस तकनीक का प्रयोग किया जाता है?", o: ["GIS", "GPS", "DBMS", "MS Word"], a: 1 },
+            { q: "रिमोट सेंसिंग क्या है?", o: ["वस्तु को छुए बिना उसके बारे में जानकारी प्राप्त करना", "टीवी का रिमोट", "मिट्टी की खुदाई करना", "कंप्यूटर नेटवर्किंग"], a: 0 },
+            { q: "रिमोट सेंसिंग के दो मुख्य प्रकार कौन से हैं?", o: ["रास्टर और वेक्टर", "एक्टिव और पैसिव", "एनालॉग और डिजिटल", "इनपुट और आउटपुट"], a: 1 },
+            { q: "पैसिव रिमोट सेंसिंग में ऊर्जा का मुख्य स्रोत क्या होता है?", o: ["राडार", "लेज़र", "सूर्य का प्रकाश", "बैटरी"], a: 2 },
+            { q: "राडार किस प्रकार की रिमोट सेंसिंग का उदाहरण है?", o: ["पैसिव", "एक्टिव", "थर्मल", "ऑप्टिकल"], a: 1 },
             { q: "कृषि में रिमोट सेंसिंग का उपयोग किस लिए किया जाता है?", o: ["फसल के क्षेत्रफल का अनुमान", "सूखे की निगरानी", "फसल के स्वास्थ्य की निगरानी", "उपरोक्त सभी"], a: 3 },
             { q: "NDVI का पूर्ण रूप क्या है (जो फसल के स्वास्थ्य को मापता है)?", o: ["Normalized Difference Vegetation Index", "National Digital Vegetation Index", "Natural Difference Vegetation Index", "Normal Digital Volume Index"], a: 0 },
-            { q: "सटीक खेती (Precision Agriculture) का मुख्य उद्देश्य क्या है?", o: ["रसायनों का अंधाधुंध प्रयोग", "सही समय, सही जगह पर सही मात्रा में इनपुट का उपयोग", "केवल जैविक खेती करना", "उपज को कम करना"], a: 1 },
+            { q: "सटीक खेती का मुख्य उद्देश्य क्या है?", o: ["रसायनों का अंधाधुंध प्रयोग", "सही समय, सही जगह पर सही मात्रा में इनपुट का उपयोग", "केवल जैविक खेती करना", "उपज को कम करना"], a: 1 },
             { q: "सटीक खेती में मुख्य रूप से किन तकनीकों का उपयोग किया जाता है?", o: ["GPS, GIS और रिमोट सेंसिंग", "केवल इंटरनेट", "केवल ट्रैक्टर", "केवल मोबाइल फोन"], a: 0 },
             { q: "IoT का पूर्ण रूप क्या है?", o: ["Internet of Technology", "Internet of Things", "Information of Things", "Internal Output Things"], a: 1 },
-            { q: "कृषि में IoT का सबसे अच्छा उदाहरण कौन सा है?", o: ["एमएस वर्ड में टाइपिंग", "स्मार्ट सिंचाई (Smart Irrigation) प्रणाली", "यूट्यूब वीडियो देखना", "ऑनलाइन शॉपिंग"], a: 1 },
-            { q: "भारत सरकार द्वारा किसानों को मौसम और फसल की जानकारी देने के लिए लॉन्च किया गया ऐप कौन सा है?", o: ["मेघदूत (Meghdoot)", "व्हाट्सएप", "फेसबुक", "इंस्टाग्राम"], a: 0 },
-            { q: "कृषि ड्रोन (Agriculture Drones) का उपयोग मुख्य रूप से किस काम के लिए किया जा रहा है?", o: ["कीटनाशकों का छिड़काव", "फसल की निगरानी", "दोनों A और B", "जुताई"], a: 2 },
+            { q: "कृषि में IoT का सबसे अच्छा उदाहरण कौन सा है?", o: ["एमएस वर्ड में टाइपिंग", "स्मार्ट सिंचाई प्रणाली", "यूट्यूब वीडियो देखना", "ऑनलाइन शॉपिंग"], a: 1 },
+            { q: "भारत सरकार द्वारा किसानों को मौसम और फसल की जानकारी देने के लिए लॉन्च किया गया ऐप कौन सा है?", o: ["मेघदूत", "व्हाट्सएप", "फेसबुक", "इंस्टाग्राम"], a: 0 },
+            { q: "कृषि ड्रोन का उपयोग मुख्य रूप से किस काम के लिए किया जा रहा है?", o: ["कीटनाशकों का छिड़काव", "फसल की निगरानी", "दोनों A और B", "जुताई"], a: 2 },
             { q: "e-NAM का पूर्ण रूप क्या है?", o: ["Electronic National Agriculture Market", "Electronic Natural Agriculture Market", "English National Agriculture Market", "E-commerce National Agri Market"], a: 0 },
             { q: "e-NAM का मुख्य उद्देश्य क्या है?", o: ["कृषि ऋण देना", "पूरे भारत में कृषि उपज के लिए 'एक राष्ट्र एक बाज़ार' बनाना", "बीज का वितरण", "सिंचाई की सुविधा"], a: 1 },
-            { q: "भूम्यालेख (Bhoomi) प्रोजेक्ट किस राज्य की ई-गवर्नेंस पहल है, जो भूमि रिकॉर्ड के कंप्यूटरीकरण से संबंधित है?", o: ["उत्तर प्रदेश", "कर्नाटक", "पंजाब", "महाराष्ट्र"], a: 1 },
-            { q: "फसल कटाई प्रयोग (CCE) में उपज का सटीक अनुमान लगाने के लिए किस तकनीक का प्रयोग बढ़ रहा है?", o: ["रिमोट सेंसिंग", "MS Access", "एंटीवायरस", "वर्ड प्रोसेसिंग"], a: 0 },
-            { q: "मृदा स्वास्थ्य कार्ड (Soil Health Card) योजना में किसानों को मृदा की जानकारी कैसे दी जाती है?", o: ["ऑनलाइन पोर्टल और प्रिंटेड कार्ड द्वारा", "रेडियो द्वारा", "टीवी द्वारा", "अखबार द्वारा"], a: 0 },
-            { q: "स्मार्टफोन सेंसर जो स्थान (Location) का पता लगाता है, क्या कहलाता है?", o: ["एक्सेलेरोमीटर", "जायरोस्कोप", "GPS रिसीवर", "प्रॉक्सिमिटी सेंसर"], a: 2 },
-            { q: "बिग डेटा एनालिटिक्स (Big Data Analytics) का कृषि में क्या फायदा है?", o: ["जलवायु परिवर्तन की भविष्यवाणी", "बाजार के रुझान को समझना", "उपज का पूर्वानुमान", "उपरोक्त सभी"], a: 3 },
-            { q: "भारत का पहला मौसम उपग्रह (Meteorological Satellite) कौन सा है?", o: ["कल्पना-1 (Kalpana-1)", "आर्यभट्ट", "चंद्रयान", "मंगलयान"], a: 0 },
-            { q: "ISRO (भारतीय अंतरिक्ष अनुसंधान संगठन) का मुख्यालय कहाँ है?", o: ["नई दिल्ली", "श्रीहरिकोटा", "बेंगलुरु", "मुंबई"], a: 2 },
+            { q: "भूम्यालेख प्रोजेक्ट किस राज्य की ई-गवर्नेंस पहल है, जो भूमि रिकॉर्ड के कंप्यूटरीकरण से संबंधित है?", o: ["उत्तर प्रदेश", "कर्नाटक", "पंजाब", "महाराष्ट्र"], a: 1 },
+            { q: "फसल कटाई प्रयोग में उपज का सटीक अनुमान लगाने के लिए किस तकनीक का प्रयोग बढ़ रहा है?", o: ["रिमोट सेंसिंग", "MS Access", "एंटीवायरस", "वर्ड प्रोसेसिंग"], a: 0 },
+            { q: "मृदा स्वास्थ्य कार्ड योजना में किसानों को मृदा की जानकारी कैसे दी जाती है?", o: ["ऑनलाइन पोर्टल और प्रिंटेड कार्ड द्वारा", "रेडियो द्वारा", "टीवी द्वारा", "अखबार द्वारा"], a: 0 },
+            { q: "स्मार्टफोन सेंसर जो स्थान का पता लगाता है, क्या कहलाता है?", o: ["एक्सेलेरोमीटर", "जायरोस्कोप", "GPS रिसीवर", "प्रॉक्सिमिटी सेंसर"], a: 2 },
+            { q: "बिग डेटा एनालिटिक्स का कृषि में क्या फायदा है?", o: ["जलवायु परिवर्तन की भविष्यवाणी", "बाजार के रुझान को समझना", "उपज का पूर्वानुमान", "उपरोक्त सभी"], a: 3 },
+            { q: "भारत का पहला मौसम उपग्रह कौन सा है?", o: ["कल्पना-1", "आर्यभट्ट", "चंद्रयान", "मंगलयान"], a: 0 },
+            { q: "ISRO का मुख्यालय कहाँ है?", o: ["नई दिल्ली", "श्रीहरिकोटा", "बेंगलुरु", "मुंबई"], a: 2 },
             { q: "किसानों को मंडी के भाव बताने के लिए भारत सरकार का पोर्टल कौन सा है?", o: ["Agmarknet", "Flipkart", "IRCTC", "UIDAI"], a: 0 },
-            { q: "VRT (Variable Rate Technology) का उपयोग किसमें किया जाता है?", o: ["पारंपरिक खेती", "सटीक खेती (Precision Farming)", "झूम खेती", "जैविक खेती"], a: 1 },
+            { q: "VRT का उपयोग किसमें किया जाता है?", o: ["पारंपरिक खेती", "सटीक खेती", "झूम खेती", "जैविक खेती"], a: 1 },
             { q: "VRT का मुख्य लाभ क्या है?", o: ["उर्वरकों और बीजों की आवश्यकतानुसार मात्रा का छिड़काव", "पूरे खेत में एक समान उर्वरक डालना", "कीड़ों को मारना", "पानी की खपत बढ़ाना"], a: 0 },
-            { q: "कृषि विस्तार (Agriculture Extension) में सूचना प्रौद्योगिकी (IT) का उपयोग क्या कहलाता है?", o: ["साइबर एक्सटेंशन (Cyber Extension)", "रूरल सोशियोलॉजी", "एग्रोनॉमी", "एनिमल हसबेंडरी"], a: 0 },
-            { q: "प्लांटिक्स (Plantix) क्या है?", o: ["एक खरपतवार", "फसल के रोगों की पहचान करने वाला एआई (AI) आधारित मोबाइल ऐप", "एक प्रकार का ट्रैक्टर", "एक कीटनाशक"], a: 1 },
-            { q: "ब्लॉकचेन (Blockchain) तकनीक का कृषि में क्या संभावित उपयोग है?", o: ["बीज बुवाई में", "कृषि आपूर्ति श्रृंखला (Supply Chain) में पारदर्शिता लाना", "सिंचाई में", "जुताई में"], a: 1 },
-            { q: "GIS डेटा में 'पॉलीगॉन' (Polygon) का उपयोग किसे दर्शाने के लिए किया जाता है?", o: ["एक कुआँ", "एक सड़क", "एक खेत या झील (क्षेत्रफल)", "एक पेड़"], a: 2 },
-            { q: "वेब पोर्टल 'किसान सुविधा' (Kisan Suvidha) किसने लॉन्च किया?", o: ["रिलायंस", "कृषि मंत्रालय (भारत सरकार)", "टाटा", "आईटीसी"], a: 1 },
+            { q: "कृषि विस्तार में सूचना प्रौद्योगिकी का उपयोग क्या कहलाता है?", o: ["साइबर एक्सटेंशन", "रूरल सोशियोलॉजी", "एग्रोनॉमी", "एनिमल हसबेंडरी"], a: 0 },
+            { q: "प्लांटिक्स क्या है?", o: ["एक खरपतवार", "फसल के रोगों की पहचान करने वाला एआई आधारित मोबाइल ऐप", "एक प्रकार का ट्रैक्टर", "एक कीटनाशक"], a: 1 },
+            { q: "ब्लॉकचेन तकनीक का कृषि में क्या संभावित उपयोग है?", o: ["बीज बुवाई में", "कृषि आपूर्ति श्रृंखला में पारदर्शिता लाना", "सिंचाई में", "जुताई में"], a: 1 },
+            { q: "GIS डेटा में 'पॉलीगॉन' का उपयोग किसे दर्शाने के लिए किया जाता है?", o: ["एक कुआँ", "एक सड़क", "एक खेत या झील", "एक पेड़"], a: 2 },
+            { q: "वेब पोर्टल 'किसान सुविधा' किसने लॉन्च किया?", o: ["रिलायंस", "कृषि मंत्रालय (भारत सरकार)", "टाटा", "आईटीसी"], a: 1 },
             { q: "कृषि क्षेत्र में कंप्यूटर के प्रयोग का सबसे बड़ा फायदा क्या है?", o: ["समय और संसाधनों की बचत", "उत्पादन लागत कम होना", "त्वरित निर्णय लेना", "उपरोक्त सभी"], a: 3 }
         ];
 
         const allTests = [test1Data, test2Data, test3Data];
         const testTitles = ["YouTube Video Test", "2nd Test (Advanced)", "Mega Practice Test"];
+        
         let currentQuizData = [];
         let currentIdx = 0;
-        let score = 0;
-        let questionLocked = false;
+        let userAnswers = [];
+
+        let globalAttemptedCount = 0;
+        let globalCorrectCount = 0;
 
         // Audio Engine
         const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -501,107 +467,199 @@
             }
         }
 
+        // SMART SHUFFLING ALGORITHM
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        allTests.forEach(testSet => {
+            testSet.forEach(item => {
+                let correctAnswerText = item.o[item.a];
+                let doNotShuffle = item.o.some(opt => 
+                    opt.includes("उपरोक्त सभी") || 
+                    opt.includes("उपर्युक्त सभी") || 
+                    opt.includes("कोई नहीं") || 
+                    opt.includes("दोनों") || 
+                    opt.includes("A और B") || 
+                    opt.includes("A और C")
+                );
+                
+                if (!doNotShuffle) {
+                    shuffleArray(item.o); 
+                }
+                item.a = item.o.indexOf(correctAnswerText);
+            });
+        });
+
         function startQuiz(testNumber) {
             currentQuizData = allTests[testNumber - 1];
+            userAnswers = new Array(currentQuizData.length).fill(null);
+            currentIdx = 0;
+            
             document.getElementById('testTitleIndicator').innerText = testTitles[testNumber - 1];
             
-            // यहाँ पर Lang Screen और One Liners Section को Hide किया गया है
+            // Hiding components completely just like the reference code
             document.getElementById('langScreen').style.display = 'none';
-            document.getElementById('oneLinersSection').style.display = 'none'; 
+            document.getElementById('oneLinersSection').style.display = 'none';
             document.getElementById('quizScreen').style.display = 'block';
+            
             showQ();
         }
 
         function showQ() {
-            questionLocked = false;
-            document.getElementById('nextBtn').disabled = true;
             const q = currentQuizData[currentIdx];
-            document.getElementById('questionCount').innerText = `Question ${currentIdx + 1} of 50`;
+            document.getElementById('questionCount').innerText = `Q ${currentIdx + 1} / 50`;
             document.getElementById('questionText').innerText = `Q${currentIdx + 1}. ${q.q}`;
             document.getElementById('progressBar').style.width = `${((currentIdx + 1) / 50) * 100}%`;
 
+            document.getElementById('prevBtn').disabled = (currentIdx === 0);
+
             const grid = document.getElementById('optionsGrid');
             grid.innerHTML = '';
+            
             q.o.forEach((txt, i) => {
                 const btn = document.createElement('div');
                 btn.className = 'option';
                 
-                // Text Container
                 const textSpan = document.createElement('span');
-                textSpan.innerText = `A,B,C,D`.split(',')[i] + ") " + txt;
+                textSpan.innerText = `A, B, C, D`.split(',')[i] + ") " + txt;
                 
-                // Icon Container
                 const icon = document.createElement('i');
                 icon.className = "fa-regular fa-circle";
-                icon.id = `icon-${i}`;
                 
                 btn.appendChild(textSpan);
                 btn.appendChild(icon);
                 
-                btn.onclick = () => selectOption(btn, i, q.a);
+                btn.onclick = () => selectOption(i, q.a);
                 grid.appendChild(btn);
             });
+
+            if (userAnswers[currentIdx] !== null) {
+                const selectedIdx = userAnswers[currentIdx];
+                const allOptions = grid.querySelectorAll('.option');
+                
+                allOptions.forEach((opt, i) => {
+                    opt.classList.add('locked');
+                    if (i === q.a) {
+                        opt.classList.add('correct');
+                        opt.querySelector('i').className = "fa-solid fa-circle-check";
+                    } else if (i === selectedIdx && selectedIdx !== q.a) {
+                        opt.classList.add('wrong');
+                        opt.querySelector('i').className = "fa-solid fa-circle-xmark";
+                    }
+                });
+                
+                document.getElementById('skipBtn').style.display = 'none';
+                document.getElementById('nextBtn').style.display = 'flex';
+                
+                if (currentIdx === currentQuizData.length - 1) {
+                    document.getElementById('nextBtn').innerHTML = 'Submit <i class="fa-solid fa-check-double"></i>';
+                }
+            } else {
+                document.getElementById('skipBtn').style.display = 'flex';
+                document.getElementById('nextBtn').style.display = 'none';
+            }
         }
 
-        function selectOption(selectedBtn, selectedIndex, correctIndex) {
-            if (questionLocked) return;
-            questionLocked = true;
+        function selectOption(selectedIndex, correctIndex) {
+            if (userAnswers[currentIdx] !== null) return;
+            
+            userAnswers[currentIdx] = selectedIndex;
 
-            const allOptions = document.querySelectorAll('.option');
-            const q = currentQuizData[currentIdx]; 
-
+            const grid = document.getElementById('optionsGrid');
+            const allOptions = grid.querySelectorAll('.option');
+            
             allOptions.forEach((opt, i) => {
                 opt.classList.add('locked');
-                
-                // Simplified Explanation Logic (No detailed explanations)
-                let explanationText = (i === correctIndex ? "सही उत्तर" : "गलत उत्तर");
-                let expHtml = "";
-
                 if (i === correctIndex) {
-                    expHtml = `<span style="font-size: 13.5px; margin-left: 12px; font-weight: 700; color: #1e402f; background: #c6f6d5; padding: 3px 10px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">✔️ ${explanationText}</span>`;
-                    opt.classList.add('correct', 'anim-pop');
+                    opt.classList.add('correct');
                     opt.querySelector('i').className = "fa-solid fa-circle-check";
                 } else if (i === selectedIndex && selectedIndex !== correctIndex) {
-                    expHtml = `<span style="font-size: 13.5px; margin-left: 12px; font-weight: 700; color: #742a2a; background: #fed7d7; padding: 3px 10px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">❌ ${explanationText}</span>`;
-                    opt.classList.add('wrong', 'anim-shake');
+                    opt.classList.add('wrong');
                     opt.querySelector('i').className = "fa-solid fa-circle-xmark";
-                } else {
-                    expHtml = `<span style="font-size: 13.5px; margin-left: 12px; font-weight: 700; color: #4a5568; background: #edf2f7; padding: 3px 10px; border-radius: 12px;">💡 ${explanationText}</span>`;
                 }
-
-                opt.querySelector('span').innerHTML += expHtml;
             });
-
+            
             if (selectedIndex === correctIndex) {
                 playSound('correct');
-                score++;
             } else {
                 playSound('wrong');
             }
-            document.getElementById('nextBtn').disabled = false;
+
+            document.getElementById('skipBtn').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'flex';
+
+            if (currentIdx === currentQuizData.length - 1) {
+                document.getElementById('nextBtn').innerHTML = 'Submit <i class="fa-solid fa-check-double"></i>';
+            }
         }
 
         function nextQuestion() {
-            if (currentIdx < 49) { currentIdx++; showQ(); } else { results(); }
+            if (currentIdx < currentQuizData.length - 1) {
+                currentIdx++;
+                showQ();
+            } else {
+                results();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIdx > 0) {
+                currentIdx--;
+                showQ();
+            }
+        }
+
+        function skipQuestion() {
+            userAnswers[currentIdx] = null;
+            if (currentIdx < currentQuizData.length - 1) {
+                currentIdx++;
+                showQ();
+            } else {
+                results();
+            }
         }
 
         function results() {
             document.getElementById('quizScreen').style.display = 'none';
             document.getElementById('resultScreen').style.display = 'block';
-            document.getElementById('scoreDisplay').innerText = score;
-            const perc = (score / 50) * 100;
+            
+            globalAttemptedCount = 0;
+            globalCorrectCount = 0;
+            
+            userAnswers.forEach((ans, idx) => {
+                if (ans !== null) {
+                    globalAttemptedCount++;
+                    if (ans === currentQuizData[idx].a) {
+                        globalCorrectCount++;
+                    }
+                }
+            });
+
+            document.getElementById('scoreDisplay').innerText = globalCorrectCount;
+            document.getElementById('totalDisplay').innerText = `Out of ${globalAttemptedCount}`;
+
             const h = document.getElementById('resultHeading');
             const m = document.getElementById('messageBox');
             
-            if(perc >= 80) {
-                h.innerText = "👑 Ultimate IT Topper!";
-                m.innerText = "क्या बात है! आपने इस टेस्ट में कमाल कर दिया। आप कल के एग्जाम में पक्का टॉप करने वाले हैं!";
-            } else if(perc >= 50) {
-                h.innerText = "✨ Superb Effort!";
-                m.innerText = "बहुत बढ़िया! आपके मैक्सिमम कांसेप्ट क्लियर हैं। जो सवाल गलत हुए हैं, उन्हें एक बार ध्यान में रखें, आपका सिलेक्शन तय है!";
+            if(globalAttemptedCount === 0) {
+                h.innerText = "No Questions Attempted";
+                m.innerText = "आपने कोई सवाल हल नहीं किया। कृपया दोबारा टेस्ट दें!";
             } else {
-                h.innerText = "📚 Keep Learning!";
-                m.innerText = "कोई बात नहीं! गलतियों से ही सीखते हैं। अब आपको सारे सही ग्रीन आंसर पता चल गए हैं। इन्हें याद रखिए और एग्जाम में फोड़ दीजिए!";
+                const perc = (globalCorrectCount / globalAttemptedCount) * 100;
+                if(perc >= 80) {
+                    h.innerText = "👑 Ultimate IT Topper!";
+                    m.innerText = "क्या बात है! आपने इस टेस्ट में कमाल कर दिया। आप कल के एग्जाम में पक्का टॉप करने वाले हैं!";
+                } else if(perc >= 50) {
+                    h.innerText = "✨ Good Effort!";
+                    m.innerText = "बहुत बढ़िया! आप पास हैं! जो सवाल गलत हुए उन्हें दोबारा ज़रूर पढ़ें। अपना सर्टिफिकेट डाउनलोड करें।";
+                } else {
+                    h.innerText = "📚 Need More Practice";
+                    m.innerText = "स्कोर कम है। कोई बात नहीं, इस टेस्ट को दोबारा दें और सारे सही जवाब याद कर लें!";
+                }
             }
         }
 
@@ -620,15 +678,14 @@
             ctx.fillStyle = '#FAFAFA';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            ctx.strokeStyle = '#0f766e';
+            ctx.strokeStyle = '#00838f';
             ctx.lineWidth = 20;
             ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
-
             ctx.strokeStyle = '#D4AF37';
             ctx.lineWidth = 6;
             ctx.strokeRect(48, 48, canvas.width - 96, canvas.height - 96);
 
-            ctx.fillStyle = '#0f766e';
+            ctx.fillStyle = '#00838f';
             ctx.fillRect(35, 35, 30, 30);
             ctx.fillRect(canvas.width - 65, 35, 30, 30);
             ctx.fillRect(35, canvas.height - 65, 30, 30);
@@ -636,7 +693,7 @@
 
             ctx.save();
             ctx.globalAlpha = 0.04;
-            ctx.fillStyle = '#0f766e';
+            ctx.fillStyle = '#00838f';
             ctx.font = 'bold 130px Arial';
             ctx.textAlign = 'center';
             ctx.translate(canvas.width / 2, canvas.height / 2);
@@ -644,7 +701,7 @@
             ctx.fillText('RAZAAGRIPOINT', 0, 0);
             ctx.restore(); 
 
-            ctx.fillStyle = '#0f766e';
+            ctx.fillStyle = '#00838f';
             ctx.font = 'bold 50px Georgia, serif';
             ctx.textAlign = 'center';
             ctx.fillText('CERTIFICATE OF EXCELLENCE', 600, 160);
@@ -665,16 +722,16 @@
             ctx.font = '22px Arial, sans-serif';
             ctx.fillText('For demonstrating outstanding academic performance by scoring', 600, 420);
             
-            ctx.fillStyle = '#0f766e';
+            ctx.fillStyle = '#00838f';
             ctx.fillRect(430, 450, 340, 60);
             ctx.fillStyle = '#FFFFFF';
             ctx.font = 'bold 30px Arial';
-            ctx.fillText(`${score} MARKS OUT OF 50`, 600, 492);
+            ctx.fillText(`${globalCorrectCount} MARKS OUT OF ${globalAttemptedCount}`, 600, 492);
 
             ctx.fillStyle = '#333333';
             ctx.font = '22px Arial, sans-serif';
             const currentTestName = document.getElementById('testTitleIndicator').innerText;
-            ctx.fillText(`in the online Mock Examination (${currentTestName}) for Agri-Informatics & Computer App.`, 600, 560);
+            ctx.fillText(`in the online Mock Examination (${currentTestName}) for Agri-Informatics.`, 600, 560);
             
             ctx.fillStyle = '#555555';
             ctx.font = 'italic 20px Arial, sans-serif';
@@ -694,7 +751,7 @@
 
             ctx.beginPath(); ctx.moveTo(850, 720); ctx.lineTo(1050, 720); ctx.stroke();
             
-            ctx.fillStyle = '#0f766e';
+            ctx.fillStyle = '#00838f';
             ctx.font = 'bold 24px cursive, "Brush Script MT", serif'; 
             ctx.fillText('Mushahid Raza', 950, 705);
             
@@ -717,21 +774,23 @@
             ctx.fillText('VERIFIED', 600, 735);
 
             const downloadLink = document.createElement('a');
-            downloadLink.download = `${nameInput.replace(/\s+/g, '_')}_AgriInformatics_Certificate.png`;
+            downloadLink.download = `${nameInput.replace(/\s+/g, '_')}_Agri_Informatics_Certificate.png`;
             downloadLink.href = canvas.toDataURL('image/png');
             downloadLink.click();
         }
 
         function restartQuiz() {
-            currentIdx = 0; score = 0; currentQuizData = [];
             document.getElementById('studentName').value = '';
             document.getElementById('resultScreen').style.display = 'none';
             document.getElementById('quizScreen').style.display = 'none';
-            
-            // यहाँ पर Lang Screen और One Liners Section को वापस Show किया गया है
             document.getElementById('langScreen').style.display = 'block';
             document.getElementById('oneLinersSection').style.display = 'block';
         }
     </script>
+
+    <script>
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="BDnChaYcJDEZEnaO7Tj1A";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+</script>
+
 </body>
 </html>
