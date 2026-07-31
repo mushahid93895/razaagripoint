@@ -1,4 +1,4 @@
-const CACHE_NAME = "rap-cache-v3"; // 🔴 Har baar bada update dene par is number ko badhao (v3 -> v4 -> v5...)
+const CACHE_NAME = "rap-cache"; // Ab is naam ko kabhi badalne ki zarurat nahi
 
 const APP_ASSETS = [
   "/razaagripoint/",
@@ -6,68 +6,36 @@ const APP_ASSETS = [
   "/razaagripoint/manifest.json"
 ];
 
-// Install: naye assets cache karo, aur naya SW turant activate hone ke liye ready rakho
+// Install: shuruaati assets cache karo, naya SW turant activate karo
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_ASSETS))
   );
-  self.skipWaiting(); // naya version turant "waiting" state se nikal kar activate ho jaye
+  self.skipWaiting();
 });
 
-// Activate: purane version ka cache delete karo, turant control le lo
+// Activate: turant control le lo (purana cache delete karne ki zarurat nahi,
+// kyunki fetch me hum hamesha fresh network response se overwrite karte hain)
 self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(
-        keys.map((key) => {
-          if (key !== CACHE_NAME) {
-            return caches.delete(key);
-          }
-        })
-      )
-    )
-  );
   self.clients.claim();
 });
 
-// Fetch:
-// - HTML pages (navigation) => NETWORK FIRST -> hamesha latest content, sirf offline hone par cache se
-// - baaki assets (css/js/images) => CACHE FIRST + background update -> fast load + offline support
+// Fetch: NETWORK FIRST for everything.
+// - Internet available -> hamesha latest file server se aayegi, aur cache
+//   background me automatically update ho jayega (koi version number nahi chahiye).
+// - Internet band -> jo last cached mila wahi dikha denge (offline support).
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
-  const isNavigation =
-    event.request.mode === "navigate" ||
-    (event.request.headers.get("accept") || "").includes("text/html");
-
-  if (isNavigation) {
-    event.respondWith(
-      fetch(event.request)
-        .then((response) => {
+  event.respondWith(
+    fetch(event.request)
+      .then((response) => {
+        if (response && response.status === 200) {
           const clone = response.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-          return response;
-        })
-        .catch(() => caches.match(event.request))
-    );
-    return;
-  }
-
-  event.respondWith(
-    caches.match(event.request).then((cached) => {
-      const networkFetch = fetch(event.request)
-        .then((response) => {
-          if (response && response.status === 200) {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(event.request, clone);
-            });
-          }
-          return response;
-        })
-        .catch(() => cached);
-
-      return cached || networkFetch;
-    })
+        }
+        return response;
+      })
+      .catch(() => caches.match(event.request))
   );
 });
