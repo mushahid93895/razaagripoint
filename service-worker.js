@@ -1,4 +1,4 @@
-const CACHE_NAME = "rap-cache-v2";
+const CACHE_NAME = "rap-cache-v3"; // 🔴 Har baar bada update dene par is number ko badhao (v3 -> v4 -> v5...)
 
 const APP_ASSETS = [
   "/razaagripoint/",
@@ -6,17 +6,15 @@ const APP_ASSETS = [
   "/razaagripoint/manifest.json"
 ];
 
-// Install
+// Install: naye assets cache karo, aur naya SW turant activate hone ke liye ready rakho
 self.addEventListener("install", (event) => {
-  // Update popup ko kaam karne dene ke liye skipWaiting hata diya gaya hai
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(APP_ASSETS);
-    })
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_ASSETS))
   );
+  self.skipWaiting(); // naya version turant "waiting" state se nikal kar activate ho jaye
 });
 
-// Activate
+// Activate: purane version ka cache delete karo, turant control le lo
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
@@ -29,13 +27,31 @@ self.addEventListener("activate", (event) => {
       )
     )
   );
-
   self.clients.claim();
 });
 
-// Fetch
+// Fetch:
+// - HTML pages (navigation) => NETWORK FIRST -> hamesha latest content, sirf offline hone par cache se
+// - baaki assets (css/js/images) => CACHE FIRST + background update -> fast load + offline support
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
+
+  const isNavigation =
+    event.request.mode === "navigate" ||
+    (event.request.headers.get("accept") || "").includes("text/html");
+
+  if (isNavigation) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          return response;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
 
   event.respondWith(
     caches.match(event.request).then((cached) => {
