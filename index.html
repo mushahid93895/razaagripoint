@@ -4,7 +4,8 @@
   <meta name="google-adsense-account" content="ca-pub-7264065085872170">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#2e7d32">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <!-- Viewport adjusted for Auto-Fit on Mobile AND allowed Zoom-In feature -->
+  <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5.0, user-scalable=yes">
   <meta charset="UTF-8"/>
   <meta name="google-site-verification" content="IJ0p-6AzMoQ2JDbDH1NXKhcZfgPMYBLcMZfVrE2l6G4" />
   <title>Razaagripoint Website - BSc Agriculture Study Portal</title>
@@ -195,7 +196,7 @@
 
     /* ── HAMBURGER & MOBILE MENU ── */
     .hamburger {
-      display: none;
+      display: block;
       cursor: pointer;
       font-size: 1.8rem;
       background: none;
@@ -203,10 +204,9 @@
       color: var(--dark);
     }
 
-    /* Menu Overlay: For smooth closing animation when clicking outside */
     .menu-overlay {
       position: fixed;
-      top: 72px; /* Starts just below navbar */
+      top: 72px; 
       left: 0;
       width: 100%;
       height: calc(100vh - 72px);
@@ -224,7 +224,7 @@
     .mobile-menu {
       position: fixed;
       top: 72px; left: -100%;
-      width: 260px; /* Half Screen size */
+      width: 260px; 
       height: calc(100vh - 72px);
       background: var(--white);
       box-shadow: 4px 0 15px rgba(0,0,0,0.1);
@@ -770,11 +770,17 @@
     }
 
     .about-card-pw .avatar {
-      width: 120px; height: 120px;
+      width: 300px; height: 300px;
       border-radius: 1000%;
       background: linear-gradient(135deg, var(--green), var(--orange));
       display: flex; align-items: center; justify-content: center;
       font-size: 4rem; margin-bottom: 20px;
+      overflow: hidden; 
+      border: 3px solid var(--orange);
+    }
+    
+    .about-card-pw .avatar img {
+      width: 100%; height: 100%; object-fit: cover;
     }
 
     .about-card-pw h3 {
@@ -871,6 +877,9 @@
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 16px; padding: 28px 24px;
       transition: background 0.2s, border-color 0.2s;
+      display: flex;         /* Flexbox layout on kiya */
+      flex-wrap: wrap;       /* Elements ko adjust karne ke liye */
+      align-items: center;   /* Icon aur heading ko barabar level me laane ke liye */
     }
 
     .tip-card-pw:hover {
@@ -883,16 +892,23 @@
       border-radius: 12px;
       background: rgba(255,107,53,0.15);
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; margin-bottom: 18px;
+      font-size: 1.4rem; 
+      margin-bottom: 15px;
+      margin-right: 15px; /* Icon ke right side me space diya taaki heading chipke nahi */
     }
 
     .tip-card-pw h4 {
       font-family: 'Poppins', sans-serif;
       font-weight: 700; font-size: 1rem;
-      color: white; margin-bottom: 10px;
+      color: white; 
+      margin-bottom: 15px; 
+      width: calc(100% - 165px); /* Heading ko icon ke barabar set karne ke liye */
     }
 
-    .tip-card-pw p { font-size: 0.85rem; color: #8090a0; line-height: 1.7; }
+    .tip-card-pw p { 
+      font-size: 0.85rem; color: #8090a0; line-height: 1.7; 
+      width: 100%; /* Paragraph ko wapas niche bhejne ke liye 100% width di */
+    }
 
     /* ── PREMIUM CLICK EFFECTS (Ripple + Glow) ── */
     a, button, .sem-card, .notice-ticker {
@@ -937,34 +953,77 @@
       border-color: var(--orange) !important;
     }
     
-    /* ── RESPONSIVE ── */
+    /* ── RESPONSIVE (100% ONLY FOR MOBILE, WINDOWS UNTOUCHED) ── */
     @media (max-width: 900px) {
       nav { padding: 0 15px; }
-      
-      /* Desktop nav items ko hide kiya gaya hai taki space bache */
       .nav-links, .nav-right .btn-nav-outline, .nav-right .btn-nav-fill { display: none; }
-      
       .nav-logo-text { font-size: 1.1rem; }
       .theme-toggle { padding: 6px 12px; font-size: 0.8rem; }
       .hamburger { display: block; margin-left: auto; }
-      .notice-ticker { padding: 10px 12px !important; font-size: 14px !important; }
-      .notice-ticker span { font-size: 11px !important; padding: 6px 12px !important; margin-right: 10px !important; }
+      .notice-ticker { padding: 8px 10px !important; font-size: 12px !important; }
+      .notice-ticker span { font-size: 9px !important; padding: 5px 8px !important; margin-right: 8px !important; }
 
-      .hero-slideshow { padding-top: 110%; }
-      .slide-inner { padding: 0 24px; flex-direction: column; text-align: center; padding-top: 40px; padding-bottom: 40px; }
-      .slide-text p { margin: 0 auto 22px; }
+      .hero-slideshow {padding-top: 70%; }
+      .slide-inner { padding: 0 15px; flex-direction: column; text-align: center; padding-top: 25px; padding-bottom: 25px; }
+      .slide-text h2 { font-size: 1.6rem; }
+      .slide-text p { margin: 0 auto 12px; font-size: 0.8rem; }
       .slide-visual { display: none; }
-      .slide-arrow.prev { left: 8px; }
-      .slide-arrow.next { right: 8px; }
+      .slide-arrow.prev { left: 5px; }
+      .slide-arrow.next { right: 5px; }
       
-      .hero { flex-direction: column; padding: 60px 24px; min-height: auto; }
+      .hero { flex-direction: column; padding: 30px 15px; min-height: auto; }
+      .hero h1 { font-size: 1.7rem; }
       .hero-right { flex: none; width: 100%; }
+      
       .features-inner { grid-template-columns: 1fr; }
-      .feat-item { border-right: none; border-bottom: 1px solid var(--border); }
-      .section { padding: 60px 24px; }
-      .two-col-section { padding: 60px 24px; }
-      .two-col-inner { grid-template-columns: 1fr; }
-      .tips-bg { padding: 60px 24px; }
+      .feat-item { border-right: none; border-bottom: 1px solid var(--border); padding: 15px 10px; }
+      
+      .section, .two-col-section, .tips-bg { padding: 30px 15px; }
+      .two-col-inner { grid-template-columns: 1fr; gap: 20px; }
+
+      /* SEMESTER CARDS 2x3 MOBILE GRID */
+      .semester-grid {
+          grid-template-columns: repeat(2, 1fr) !important;
+          gap: 10px; 
+          margin-top: 25px;
+      }
+      .sem-card { padding: 12px 10px; border-radius: 12px; text-align: center; }
+      .sem-top { flex-direction: column; align-items: center; justify-content: center; margin-bottom: 12px; gap: 8px; }
+      .sem-pill { padding: 4px 8px; font-size: 0.7rem; }
+      .sem-icon { width: 45px; height: 45px; font-size: 1.6rem; }
+      .sem-card h3 { font-size: 1rem; margin-bottom: 6px; }
+      .sem-card p { font-size: 0.75rem; line-height: 1.3; margin-bottom: 12px; }
+      .sem-btn { padding: 6px 10px; font-size: 0.75rem; width: 100%; justify-content: center; }
+
+      /* ABOUT SECTION ADMIN IMAGE FIXED */
+      .about-card-pw { padding: 25px 15px; text-align: left; }
+      .about-card-pw .avatar { 
+          width: 90px !important; 
+          height: 90px !important; 
+          margin: 0 20px 15px 0 !important; 
+          border-width: 2px !important;
+          float: left !important; /* Image ko left me fix karega */
+      }
+      .about-card-pw h3 { 
+          font-size: 2 rem; 
+          text-align: left; 
+          padding-top: 9px; 
+          margin-bottom: 25px;
+          background: linear-gradient(135deg, #ff6b35, #1a7a4a); /* Mast Orange & Green Colourful effect */
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: 900;
+          line-height: 1.2;
+      }
+      .about-card-pw p { 
+          clear: left; /* Ye paragraph ko image ke niche bhej dega */
+          font-size: 0.9rem; 
+          text-align: left; 
+          margin-bottom: 12px; 
+      }
+      .btn-about-pw { width: 100%; justify-content: center; padding: 12px 15px; font-size: 0.95rem; margin-top: 15px; }
+      
+      .tips-grid { grid-template-columns: 1fr; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1393,10 +1452,10 @@
   <div id="about" class="two-col-section">
     <div class="two-col-inner">
       <div class="about-card-pw">
-       <div class="avatar" style="width: 300px; height: 300px; overflow: hidden; background: none; border: 3px solid var(--orange);">
-        <img src="mushahid.jpeg" alt="Mushahid Raza" style="width: 100%; height: 100%; object-fit: cover;">
+       <div class="avatar">
+        <img src="mushahid.jpeg" alt="Mushahid Raza">
       </div>
-        <h3>About Mushahid Raza</h3>
+        <h3>About "Mushahid Raza"</h3>
         <p><b>Hello!</b> I am <strong>Mushahid Raza</strong>, the creator behind Razaagripoint. </p>
         <p>Razaagripoint mere liye sirf ek website nahi, balki ek <em>mission</em> hai. BSc Agriculture ke dauran maine mehsoos kiya ki agri-education mein sahi notes aur asaan lectures ki kitni kami hai. Wahi se shuru hua mera safar — ek laptop aur kai raaton ki mehnat ke baad, yeh platform tayyar hua.</p>
         <p>Par asal kahani Notes ke piche ki hai... kaise ek middleclass parivar ke ladke ne digital platform banane ka sapna dekha? Aur kaise har mushkil ko paar kar ke aaj 5000+ students mujhse jude huye hain?</p>
