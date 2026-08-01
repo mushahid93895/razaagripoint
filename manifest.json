@@ -21,6 +21,8 @@
   "background_color": "#ffffff",
   "theme_color": "#2e7d32",
 
+  "prefer_related_applications": false,
+
   "categories": [
     "education",
     "books",
@@ -72,6 +74,13 @@
     "label": "Study Materials"
   }
 ],
+  {
+  "src": "screenshots/wide-screenshot.png",
+  "sizes": "1366x768",
+  "type": "image/png",
+  "form_factor": "wide",
+  "label": "Desktop View"
+},
   
   "shortcuts": [
     {
