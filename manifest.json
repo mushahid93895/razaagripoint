@@ -72,15 +72,16 @@
     "type": "image/png",
     "form_factor": "narrow",
     "label": "Study Materials"
-  }
-],
-  {
+  },
+     {
   "src": "screenshots/wide-screenshot.png",
   "sizes": "1366x768",
   "type": "image/png",
   "form_factor": "wide",
   "label": "Desktop View"
-},
+}
+],
+ 
   
   "shortcuts": [
     {
