@@ -5,22 +5,28 @@
   "description": "Free Agriculture Learning App for B.Sc. Agriculture Students and Competitive Exam Aspirants.",
   "lang": "en-IN",
   "dir": "ltr",
+
   "start_url": "/razaagripoint/",
   "scope": "/razaagripoint/",
+
   "display": "standalone",
   "display_override": [
     "window-controls-overlay",
     "standalone",
     "minimal-ui"
   ],
+
   "orientation": "portrait",
+
   "background_color": "#ffffff",
   "theme_color": "#2e7d32",
+
   "categories": [
     "education",
     "books",
     "productivity"
   ],
+
   "icons": [
     {
       "src": "icons/logo192x192.png",
@@ -35,28 +41,27 @@
       "purpose": "any maskable"
     }
   ],
+
   "shortcuts": [
     {
       "name": "Notes",
       "short_name": "Notes",
-      "url": "/razaagripoint/notes.html",
+      "url": "/razaagripoint/cropphylngnts.pdf",
       "icons": [
         {
           "src": "icons/logo192x192.png",
-          "sizes": "192x192",
-          "type": "image/png"
+          "sizes": "192x192"
         }
       ]
     },
     {
       "name": "MCQs",
       "short_name": "MCQs",
-      "url": "/razaagripoint/mcq.html",
+      "url": "/razaagripoint/cropphysiomock.html",
       "icons": [
         {
           "src": "icons/logo192x192.png",
-          "sizes": "192x192",
-          "type": "image/png"
+          "sizes": "192x192"
         }
       ]
     }
