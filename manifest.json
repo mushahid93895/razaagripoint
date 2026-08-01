@@ -42,6 +42,37 @@
     }
   ],
 
+  "screenshots": [
+  {
+    "src": "screenshots/screenshot1.png",
+    "sizes": "750x1599",
+    "type": "image/png",
+    "form_factor": "narrow",
+    "label": "Home Screen"
+  },
+  {
+    "src": "screenshots/screenshot2.png",
+    "sizes": "750x1599",
+    "type": "image/png",
+    "form_factor": "narrow",
+    "label": "Study Notes"
+  },
+  {
+    "src": "screenshots/screenshot3.png",
+    "sizes": "750x1599",
+    "type": "image/png",
+    "form_factor": "narrow",
+    "label": "MCQ Practice"
+  },
+  {
+    "src": "screenshots/screenshot4.png",
+    "sizes": "750x1599",
+    "type": "image/png",
+    "form_factor": "narrow",
+    "label": "Study Materials"
+  }
+],
+  
   "shortcuts": [
     {
       "name": "Notes",
