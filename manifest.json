@@ -11,7 +11,6 @@
 
   "display": "standalone",
   "display_override": [
-    "window-controls-overlay",
     "standalone",
     "minimal-ui"
   ],
@@ -39,31 +38,6 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
-    }
-  ],
-
-  "shortcuts": [
-    {
-      "name": "Notes",
-      "short_name": "Notes",
-      "url": "/razaagripoint/notes.html",
-      "icons": [
-        {
-          "src": "icons/icon-192.png",
-          "sizes": "192x192"
-        }
-      ]
-    },
-    {
-      "name": "MCQs",
-      "short_name": "MCQs",
-      "url": "/razaagripoint/mcq.html",
-      "icons": [
-        {
-          "src": "icons/icon-192.png",
-          "sizes": "192x192"
-        }
-      ]
     }
   ]
 }
