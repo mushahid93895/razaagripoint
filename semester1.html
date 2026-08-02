@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5.0, user-scalable=yes">
     <title>1st Semester Complete Syllabus - Razaagripoint</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
@@ -167,10 +167,41 @@ nav {
         footer { background-color: var(--primary-dark); color: #ccc; text-align: center; padding: 40px 20px; font-size: 15px; border-top: 5px solid var(--accent-yellow); }
         footer span { color: var(--accent-yellow); font-weight: bold; }
 
-        /* Responsive */
+        /* Responsive - Only For Mobile */
         @media(max-width: 768px) {
-            .hero h1 { font-size: 36px; }
-            .grid-container { grid-template-columns: 1fr; padding: 0 15px; }
+            .hero { padding: 50px 15px; }
+            .hero h1 { font-size: 28px; }
+            .hero p { font-size: 15px; }
+            
+            /* Subject Cards in 2 Columns */
+            .grid-container { 
+                grid-template-columns: repeat(2, 1fr) !important; 
+                gap: 12px; 
+                padding: 0 10px; 
+            }
+            .subject-card { border-radius: 12px; }
+            .card-img-wrapper { height: 110px; } 
+            .card-content { padding: 12px; text-align: center; display: flex; flex-direction: column; }
+            .card-content h3 { font-size: 14px; margin-bottom: 8px; }
+            .card-content p { font-size: 11px; text-align: center; line-height: 1.4; margin-bottom: 12px; flex-grow: 1; }
+            
+            /* Sabhi Buttons Ek Barabar (Uniform) */
+            .card-actions { gap: 8px; display: flex; flex-direction: column; width: 100%; } 
+            .pdf-section-wrapper { margin-top: 0 !important; width: 100%; display: block; }
+            
+            .btn, .btn-premium-pdf { 
+                font-size: 11px !important; 
+                padding: 8px 5px !important; 
+                flex-direction: column !important; /* Icon upar, text niche taaki 2 column me fit aaye */
+                justify-content: center !important;
+                width: 100% !important; 
+                height: 55px !important; /* Sabki height ekdam barabar */
+                border-radius: 8px !important; 
+                box-sizing: border-box !important;
+                margin: 0 !important; 
+                gap: 4px !important;
+            }
+            .btn i, .btn-premium-pdf i { font-size: 14px !important; margin: 0 !important; }
         }
     </style>
 </head>
@@ -179,7 +210,7 @@ nav {
     <nav>
     <a href="index.html" class="logo">
         <img src="logo.jpeg" alt="Logo" class="logo-image">
-        Razaagripoint
+        <div>Raza<span style="color: #ff6b35;">Agripoint</span></div>
     </a>
     <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Home</a>
 </nav>
@@ -208,8 +239,8 @@ nav {
                     <a href="entomology_vid.html" class="btn btn-vid">
                         <i class="fa-brands fa-youtube"></i> Watch Videos
                     </a>
-                    <a href="entomology_mock.html" class="btn btn-mock">
-                        <i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test
+                    <a href="entomology_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);">
+                        <i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)
                     </a>
                     <div class="pdf-section-wrapper">
                         <a href="entomology_pdf.html" class="btn-premium-pdf" style="text-decoration: none;">
@@ -237,8 +268,8 @@ nav {
                     <a href="genetics_vid.html" class="btn btn-vid">
                         <i class="fa-brands fa-youtube"></i> Watch Videos
                     </a>
-                    <a href="genetics_mock.html" class="btn btn-mock">
-                        <i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test
+                    <a href="genetics_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);">
+                        <i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)
                     </a>
                     <div class="pdf-section-wrapper">
                         <a href="genetics_pdf.html" class="btn-premium-pdf" style="text-decoration: none;">
@@ -266,8 +297,8 @@ nav {
                     <a href="soilscience_vid.html" class="btn btn-vid">
                         <i class="fa-brands fa-youtube"></i> Watch Videos
                     </a>
-                    <a href="soilscience_mock.html" class="btn btn-mock">
-                        <i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test
+                    <a href="soilscience_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);">
+                        <i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)
                     </a>
                     <div class="pdf-section-wrapper">
                         <a href="soilscience_pdf.html" class="btn-premium-pdf" style="text-decoration: none;">
@@ -493,7 +524,7 @@ nav {
          <p style="font-size: 14px; color: #88;">Designed by <b>MUSHAHID RAZA</b> with ❤️ for BSc Agriculture Students</p>
     </footer>
 
-     <script>
+   <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="BDnChaYcJDEZEnaO7Tj1A";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
 

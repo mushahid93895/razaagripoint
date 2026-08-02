@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5.0, user-scalable=yes">
     <title>About Admin - Mushahid Raza</title>
     
     <!-- Modern Google Font: Poppins -->
@@ -35,6 +35,7 @@
         /* --- Navigation --- */
         nav { background-color: var(--white); padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .logo { color: var(--primary-green); font-size: 24px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo-image { width: 40px; height: 40px; border-radius: 25%; object-fit: cover; border: 2px solid var(--text-dark); }
         .back-btn { background: var(--light-green); color: var(--white); text-decoration: none; font-size: 14px; padding: 10px 20px; border-radius: 25px; transition: 0.3s; font-weight: 600; box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); }
         .back-btn:hover { background: var(--primary-green); transform: translateY(-2px); }
 
@@ -125,14 +126,32 @@
 
         footer { background-color: var(--text-dark); color: #ccc; text-align: center; padding: 30px 20px; font-size: 14px; }
         footer span { color: var(--accent-gold); font-weight: bold; }
+
+        /* --- Responsive / Mobile Specific Adjustments --- */
+        @media(max-width: 768px) {
+            nav { padding: 15px 20px; }
+            .hero { padding: 60px 15px 100px 15px; }
+            .hero h1 { font-size: 34px; }
+            .profile-img { width: 140px; height: 140px; }
+            .floating-stats { gap: 15px; margin-top: -50px; padding: 0 15px; flex-direction: column; }
+            .stat-card { min-width: 100%; padding: 20px; }
+            .main-container { gap: 20px; padding: 0 15px; }
+            .about-section, .timeline-section { padding: 25px 20px; }
+            .section-title { font-size: 22px; }
+            .connect-cta { margin: 20px 15px; padding: 30px 20px; }
+            .insta-btn { font-size: 16px; padding: 12px 25px; }
+        }
     </style>
 </head>
 <body>
 
     <!-- Navbar -->
     <nav>
-        <a href="index.html" class="logo"><i class="fa-solid fa-leaf"></i> Razaagripoint</a>
-        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+        <a href="index.html" class="logo">
+            <img src="logo.jpeg" alt="Logo" class="logo-image">
+            <div>Raza<span style="color: #ff6b35;">Agripoint</span></div>
+        </a>
+        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back</a>
     </nav>
 
     <!-- Hero Section -->

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5.0, user-scalable=yes">
     <title>6th Semester Complete Syllabus - Razaagripoint</title>
 
     <!-- Modern Google Font: Poppins -->
@@ -174,10 +174,41 @@ nav {
         footer { background-color: var(--primary-dark); color: #ccc; text-align: center; padding: 40px 20px; font-size: 15px; border-top: 5px solid var(--accent-yellow); }
         footer span { color: var(--accent-yellow); font-weight: bold; }
 
-        /* Responsive */
+        /* Responsive - Only For Mobile */
         @media(max-width: 768px) {
-            .hero h1 { font-size: 36px; }
-            .grid-container { grid-template-columns: 1fr; padding: 0 15px; }
+            .hero { padding: 50px 15px; }
+            .hero h1 { font-size: 28px; }
+            .hero p { font-size: 15px; }
+            
+            /* Subject Cards in 2 Columns */
+            .grid-container { 
+                grid-template-columns: repeat(2, 1fr) !important; 
+                gap: 12px; 
+                padding: 0 10px; 
+            }
+            .subject-card { border-radius: 12px; }
+            .card-img-wrapper { height: 110px; } 
+            .card-content { padding: 12px; text-align: center; display: flex; flex-direction: column; }
+            .card-content h3 { font-size: 14px; margin-bottom: 8px; }
+            .card-content p { font-size: 11px; text-align: center; line-height: 1.4; margin-bottom: 12px; flex-grow: 1; }
+            
+            /* Sabhi Buttons Ek Barabar (Uniform) */
+            .card-actions { gap: 8px; display: flex; flex-direction: column; width: 100%; } 
+            .pdf-section-wrapper { margin-top: 0 !important; width: 100%; display: block; }
+            
+            .btn, .btn-premium-pdf { 
+                font-size: 11px !important; 
+                padding: 8px 5px !important; 
+                flex-direction: column !important; /* Icon upar, text niche taaki 2 column me fit aaye */
+                justify-content: center !important;
+                width: 100% !important; 
+                height: 55px !important; /* Sabki height ekdam barabar */
+                border-radius: 8px !important; 
+                box-sizing: border-box !important;
+                margin: 0 !important; 
+                gap: 4px !important;
+            }
+            .btn i, .btn-premium-pdf i { font-size: 14px !important; margin: 0 !important; }
         }
     </style>
 </head>
@@ -187,7 +218,7 @@ nav {
     <nav>
     <a href="index.html" class="logo">
         <img src="logo.jpeg" alt="Logo" class="logo-image">
-        Razaagripoint
+        <div>Raza<span style="color: #ff6b35;">Agripoint</span></div>
     </a>
     <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Home</a>
 </nav>
@@ -218,7 +249,7 @@ nav {
                 <p>Jungle aur ped-paudhon ka prabandhan. Agroforestry, social forestry aur paryaavaran sanrakshan mein pedon ke mahatva ka asaan bhasha mein adhyayan.</p>
                 <div class="card-actions">
                     <a href="forestry_vid.html" class="btn btn-vid"><i class="fa-brands fa-youtube"></i> Watch Videos</a>
-                    <a href="forestry_mock.html" class="btn btn-mock"><i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test</a>
+                    <a href="forestry_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);"><i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)</a>
                     <div class="pdf-section-wrapper">
                         <a href="forestry_pdf.html" class="btn-premium-pdf"><i class="fa-solid fa-folder-open"></i> Get Free Notes & PDFs</a>
                     </div>
@@ -256,7 +287,7 @@ nav {
                 <p>Kisan ke dost keedo jaise Madhumakkhi (Apiculture), Resham ke keede (Sericulture), aur Lac culture ka prabandhan aur vyaparik mahatva.</p>
                 <div class="card-actions">
                     <a href="beneficial_insects_vid.html" class="btn btn-vid"><i class="fa-brands fa-youtube"></i> Watch Videos</a>
-                    <a href="beneficial_insects_mock.html" class="btn btn-mock"><i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test</a>
+                    <a href="beneficial_insects_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);"><i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)</a>
                     <div class="pdf-section-wrapper">
                         <a href="beneficial_insects_pdf.html" class="btn-premium-pdf"><i class="fa-solid fa-folder-open"></i> Get Free Notes & PDFs</a>
                     </div>
@@ -275,7 +306,7 @@ nav {
                 <p>Rabi fasalon (jaise gehu, chana, sarso) ki behtar aur zyada paidawar wali nai naslein (varieties) taiyar karne ki plant breeding techniques.</p>
                 <div class="card-actions">
                     <a href="cropimprove_rabi_vid.html" class="btn btn-vid"><i class="fa-brands fa-youtube"></i> Watch Videos</a>
-                    <a href="cropimprove_rabi_mock.html" class="btn btn-mock"><i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test</a>
+                    <a href="cropimprove_rabi_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);"><i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)</a>
                     <div class="pdf-section-wrapper">
                         <a href="cropimprove_rabi_pdf.html" class="btn-premium-pdf"><i class="fa-solid fa-folder-open"></i> Get Free Notes & PDFs</a>
                     </div>
@@ -313,7 +344,7 @@ nav {
                 <p>Kharab mitti (jaise ushar, kshariya, amliya mitti) ki pehchan aur unka ilaaj karke unhe kheti ke layak (fertile) banane ke tarike.</p>
                 <div class="card-actions">
                     <a href="problematic_soils_vid.html" class="btn btn-vid"><i class="fa-brands fa-youtube"></i> Watch Videos</a>
-                    <a href="problematic_soils_mock.html" class="btn btn-mock"><i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test</a>
+                    <a href="problematic_soils_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);"><i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)</a>
                     <div class="pdf-section-wrapper">
                         <a href="problematic_soils_pdf.html" class="btn-premium-pdf"><i class="fa-solid fa-folder-open"></i> Get Free Notes & PDFs</a>
                     </div>
@@ -332,7 +363,7 @@ nav {
                 <p>Bina chemical ke jaivik kheti (Organic farming) aur IT sensors, drones, GPS ke istemal se precision farming (smart kheti) ke siddhant.</p>
                 <div class="card-actions">
                     <a href="organic_farming_vid.html" class="btn btn-vid"><i class="fa-brands fa-youtube"></i> Watch Videos</a>
-                    <a href="organic_farming_mock.html" class="btn btn-mock"><i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test</a>
+                    <a href="organic_farming_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);"><i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)</a>
                     <div class="pdf-section-wrapper">
                         <a href="organic_farming_pdf.html" class="btn-premium-pdf"><i class="fa-solid fa-folder-open"></i> Get Free Notes & PDFs</a>
                     </div>
@@ -351,7 +382,7 @@ nav {
                 <p>Phal aur sabziyon ko tutne ke baad lambe samay tak fresh rakhna, aur jam, jelly, achaar banakar unki value aur market price badhana.</p>
                 <div class="card-actions">
                     <a href="postharvest_vid.html" class="btn btn-vid"><i class="fa-brands fa-youtube"></i> Watch Videos</a>
-                    <a href="postharvest_mock.html" class="btn btn-mock"><i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test</a>
+                    <a href="postharvest_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);"><i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)</a>
                     <div class="pdf-section-wrapper">
                         <a href="postharvest_pdf.html" class="btn-premium-pdf"><i class="fa-solid fa-folder-open"></i> Get Free Notes & PDFs</a>
                     </div>
@@ -389,7 +420,7 @@ nav {
                 <p>Naye beej, takneek, aur plant varieties ko patent karwana. Kisano aur scientists ke adhikaron (Farmers' Rights) ki kanooni jankari.</p>
                 <div class="card-actions">
                     <a href="ipr_vid.html" class="btn btn-vid"><i class="fa-brands fa-youtube"></i> Watch Videos</a>
-                    <a href="ipr_mock.html" class="btn btn-mock"><i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test</a>
+                    <a href="ipr_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);"><i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)</a>
                     <div class="pdf-section-wrapper">
                         <a href="ipr_pdf.html" class="btn-premium-pdf"><i class="fa-solid fa-folder-open"></i> Get Free Notes & PDFs</a>
                     </div>
@@ -408,7 +439,7 @@ nav {
                 <p>Agriculture field mein business kaise chalayein. Finance, marketing, supply chain aur agri-business management ke professional siddhant.</p>
                 <div class="card-actions">
                     <a href="agribusiness_vid.html" class="btn btn-vid"><i class="fa-brands fa-youtube"></i> Watch Videos</a>
-                    <a href="agribusiness_mock.html" class="btn btn-mock"><i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test</a>
+                    <a href="agribusiness_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);"><i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)</a>
                     <div class="pdf-section-wrapper">
                         <a href="agribusiness_pdf.html" class="btn-premium-pdf"><i class="fa-solid fa-folder-open"></i> Get Free Notes & PDFs</a>
                     </div>
@@ -427,7 +458,7 @@ nav {
                 <p>Kheti se judi khabaron, articles, aur success stories ko media (News, TV, Digital) ke zariye kisano aur logo tak pahunchane ki kala.</p>
                 <div class="card-actions">
                     <a href="agrijournalism_vid.html" class="btn btn-vid"><i class="fa-brands fa-youtube"></i> Watch Videos</a>
-                    <a href="agrijournalism_mock.html" class="btn btn-mock"><i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test</a>
+                    <a href="agrijournalism_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);"><i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)</a>
                     <div class="pdf-section-wrapper">
                         <a href="agrijournalism_pdf.html" class="btn-premium-pdf"><i class="fa-solid fa-folder-open"></i> Get Free Notes & PDFs</a>
                     </div>
@@ -446,6 +477,5 @@ nav {
     <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="BDnChaYcJDEZEnaO7Tj1A";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
-
 </body>
 </html>

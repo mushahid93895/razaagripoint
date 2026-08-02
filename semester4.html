@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5.0, user-scalable=yes">
     <title>4th Semester Complete Syllabus - Razaagripoint</title>
 
     <!-- Modern Google Font: Poppins -->
@@ -174,10 +174,41 @@ nav {
         footer { background-color: var(--primary-dark); color: #ccc; text-align: center; padding: 40px 20px; font-size: 15px; border-top: 5px solid var(--accent-yellow); }
         footer span { color: var(--accent-yellow); font-weight: bold; }
 
-        /* Responsive */
+        /* Responsive - Only For Mobile */
         @media(max-width: 768px) {
-            .hero h1 { font-size: 36px; }
-            .grid-container { grid-template-columns: 1fr; padding: 0 15px; }
+            .hero { padding: 50px 15px; }
+            .hero h1 { font-size: 28px; }
+            .hero p { font-size: 15px; }
+            
+            /* Subject Cards in 2 Columns */
+            .grid-container { 
+                grid-template-columns: repeat(2, 1fr) !important; 
+                gap: 12px; 
+                padding: 0 10px; 
+            }
+            .subject-card { border-radius: 12px; }
+            .card-img-wrapper { height: 110px; } 
+            .card-content { padding: 12px; text-align: center; display: flex; flex-direction: column; }
+            .card-content h3 { font-size: 14px; margin-bottom: 8px; }
+            .card-content p { font-size: 11px; text-align: center; line-height: 1.4; margin-bottom: 12px; flex-grow: 1; }
+            
+            /* Sabhi Buttons Ek Barabar (Uniform) */
+            .card-actions { gap: 8px; display: flex; flex-direction: column; width: 100%; } 
+            .pdf-section-wrapper { margin-top: 0 !important; width: 100%; display: block; }
+            
+            .btn, .btn-premium-pdf { 
+                font-size: 11px !important; 
+                padding: 8px 5px !important; 
+                flex-direction: column !important; /* Icon upar, text niche taaki 2 column me fit aaye */
+                justify-content: center !important;
+                width: 100% !important; 
+                height: 55px !important; /* Sabki height ekdam barabar */
+                border-radius: 8px !important; 
+                box-sizing: border-box !important;
+                margin: 0 !important; 
+                gap: 4px !important;
+            }
+            .btn i, .btn-premium-pdf i { font-size: 14px !important; margin: 0 !important; }
         }
     </style>
 </head>
@@ -187,7 +218,7 @@ nav {
      <nav>
     <a href="index.html" class="logo">
         <img src="logo.jpeg" alt="Logo" class="logo-image">
-        Razaagripoint
+        <div>Raza<span style="color: #ff6b35;">Agripoint</span></div>
     </a>
     <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Home</a>
 </nav>
@@ -218,7 +249,7 @@ nav {
                 <p>Rabi fasalon (jaise gehu, chana, sarso) ki kheti ki aadhunik takneek, beej dar, aur thand ke mausam mein utpadan badhane ke scientific tarike seekhein.</p>
                 <div class="card-actions">
                     <a href="rabi_vid.html" class="btn btn-vid"><i class="fa-brands fa-youtube"></i> Watch Videos</a>
-                    <a href="rabi_mock.html" class="btn btn-mock"><i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test</a>
+                    <a href="rabi_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);"><i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)</a>
                     <div class="pdf-section-wrapper">
                         <a href="rabi_pdf.html" class="btn-premium-pdf"><i class="fa-solid fa-folder-open"></i> Get Free Notes & PDFs</a>
                     </div>
@@ -237,7 +268,7 @@ nav {
                 <p>Sabziyon aur masalon (Spices) ki commercial kheti. Unki nursery taiyar karna, ropai, bimariyon se bachaav aur paidawar badhane ka poora adhyayan.</p>
                 <div class="card-actions">
                     <a href="vegspices_vid.html" class="btn btn-vid"><i class="fa-brands fa-youtube"></i> Watch Videos</a>
-                    <a href="vegspices_mock.html" class="btn btn-mock"><i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test</a>
+                    <a href="vegspices_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);"><i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)</a>
                     <div class="pdf-section-wrapper">
                         <a href="vegspices_pdf.html" class="btn-premium-pdf"><i class="fa-solid fa-folder-open"></i> Get Free Notes & PDFs</a>
                     </div>
@@ -256,7 +287,7 @@ nav {
                 <p>Kheti mein solar energy, biogas, aur wind energy jaise navinikarniya urja (Renewable energy) sroto ka upyog aur green tech ka mahatva.</p>
                 <div class="card-actions">
                     <a href="energy_vid.html" class="btn btn-vid"><i class="fa-brands fa-youtube"></i> Watch Videos</a>
-                    <a href="energy_mock.html" class="btn btn-mock"><i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test</a>
+                    <a href="energy_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);"><i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)</a>
                     <div class="pdf-section-wrapper">
                         <a href="energy_pdf.html" class="btn-premium-pdf"><i class="fa-solid fa-folder-open"></i> Get Free Notes & PDFs</a>
                     </div>
@@ -294,7 +325,7 @@ nav {
                 <p>Krishi mein Biotechnology ka upyog, tissue culture, genetic engineering, DNA markers, aur GMO (Genetically Modified) fasalon ke baare mein vistar se jankari.</p>
                 <div class="card-actions">
                     <a href="biotech_vid.html" class="btn btn-vid"><i class="fa-brands fa-youtube"></i> Watch Videos</a>
-                    <a href="biotech_mock.html" class="btn btn-mock"><i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test</a>
+                    <a href="biotech_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);"><i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)</a>
                     <div class="pdf-section-wrapper">
                         <a href="biotech_pdf.html" class="btn-premium-pdf"><i class="fa-solid fa-folder-open"></i> Get Free Notes & PDFs</a>
                     </div>
@@ -332,7 +363,7 @@ nav {
                 <p>Gramin samaj (Rural society) ki sanrachna aur kisano ke manovigyan (Psychology) ko samajhkar agriculture extension programs ko safal banana.</p>
                 <div class="card-actions">
                     <a href="sociology_vid.html" class="btn btn-vid"><i class="fa-brands fa-youtube"></i> Watch Videos</a>
-                    <a href="sociology_mock.html" class="btn btn-mock"><i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test</a>
+                    <a href="sociology_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);"><i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)</a>
                     <div class="pdf-section-wrapper">
                         <a href="sociology_pdf.html" class="btn-premium-pdf"><i class="fa-solid fa-folder-open"></i> Get Free Notes & PDFs</a>
                     </div>
@@ -351,7 +382,7 @@ nav {
                 <p>Mitti aur paudhon mein paye jane wale sookshma jeevon (Microbes), bio-fertilizers, aur nitrogen fixation ka kheti mein upyog aur labh.</p>
                 <div class="card-actions">
                     <a href="microbiology_vid.html" class="btn btn-vid"><i class="fa-brands fa-youtube"></i> Watch Videos</a>
-                    <a href="microbiology_mock.html" class="btn btn-mock"><i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test</a>
+                    <a href="microbiology_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);"><i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)</a>
                     <div class="pdf-section-wrapper">
                         <a href="microbiology_pdf.html" class="btn-premium-pdf"><i class="fa-solid fa-folder-open"></i> Get Free Notes & PDFs</a>
                     </div>
@@ -370,7 +401,7 @@ nav {
                 <p>Khadya vigyan (Food Science) ke mool siddhant, poshan (Nutrition), food processing, packaging aur post-harvest se khane ki quality behtar banana.</p>
                 <div class="card-actions">
                     <a href="foodscience_vid.html" class="btn btn-vid"><i class="fa-brands fa-youtube"></i> Watch Videos</a>
-                    <a href="foodscience_mock.html" class="btn btn-mock"><i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test</a>
+                    <a href="foodscience_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);"><i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)</a>
                     <div class="pdf-section-wrapper">
                         <a href="foodscience_pdf.html" class="btn-premium-pdf"><i class="fa-solid fa-folder-open"></i> Get Free Notes & PDFs</a>
                     </div>
@@ -408,7 +439,7 @@ nav {
                 <p>Rabi fasalon aur bagwani (Horticulture) ki pramukh bimariyon ki pehchan aur unko rokne ke asardar chemical aur biological tarike.</p>
                 <div class="card-actions">
                     <a href="diseases2_vid.html" class="btn btn-vid"><i class="fa-brands fa-youtube"></i> Watch Videos</a>
-                    <a href="diseases2_mock.html" class="btn btn-mock"><i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test</a>
+                    <a href="diseases2_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);"><i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)</a>
                     <div class="pdf-section-wrapper">
                         <a href="diseases2_pdf.html" class="btn-premium-pdf"><i class="fa-solid fa-folder-open"></i> Get Free Notes & PDFs</a>
                     </div>
@@ -427,7 +458,7 @@ nav {
                 <p>Fasalon mein kharpatwar (Weeds) ka niyantran. Herbicides ka sahi upyog aur integrated weed management system ki poori jankari.</p>
                 <div class="card-actions">
                     <a href="weed_vid.html" class="btn btn-vid"><i class="fa-brands fa-youtube"></i> Watch Videos</a>
-                    <a href="weed_mock.html" class="btn btn-mock"><i class="fa-solid fa-stopwatch"></i> Practice 50 MCQs Test</a>
+                    <a href="weed_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);"><i class="fa-solid fa-trophy"></i> Mega Test (150 MCQs)</a>
                     <div class="pdf-section-wrapper">
                         <a href="weed_pdf.html" class="btn-premium-pdf"><i class="fa-solid fa-folder-open"></i> Get Free Notes & PDFs</a>
                     </div>
