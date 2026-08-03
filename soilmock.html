@@ -1,349 +1,722 @@
+<!-- Adapted from the provided Mock Test Template[cite: 1] -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soil & Water Conservation Mock Test - Razaagripoint</title>
+    <title>Soil & Water Conservation Mock Test - Premium Edition</title>
     
-    <!-- Google Font: Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary: #1b5e20;
-            --primary-light: #4caf50;
-            --dark: #0f3e1b;
-            --accent: #ffca28;
-            --bg: #f4f7f5;
+            /* Theme color - Earthy Green[cite: 1] */
+            --primary: #43a047;
+            --primary-dark: #2e7d32;
+            --accent: #ffb300;
+            --bg-gradient: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
             --white: #ffffff;
-            --text: #2c3e50;
-            --shadow: 0 10px 30px rgba(27, 94, 32, 0.1);
+            --text-dark: #1b5e20;
+            --text-gray: #388e3c;
+            --correct-bg: #c8e6c9;
+            --correct-border: #2e7d32;
+            --correct-text: #1b5e20;
+            --wrong-bg: #ffcdd2;
+            --wrong-border: #d32f2f;
+            --wrong-text: #b71c1c;
+            --shadow: 0 10px 25px rgba(46, 125, 50, 0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
+        body { background: var(--bg-gradient); color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
 
-        /* --- Navbar --- */
-        nav { background: var(--white); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
-        .logo { color: var(--primary); font-size: 24px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .exit-btn { background: #ffebee; color: #d32f2f; text-decoration: none; padding: 8px 20px; border-radius: 20px; font-weight: 600; font-size: 14px; transition: 0.3s; border: 1px solid #ffcdd2; }
-        .exit-btn:hover { background: #d32f2f; color: var(--white); }
+        /* Navbar & Logo[cite: 1] */
+        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-bottom: 1px solid rgba(255,255,255,0.5); position: sticky; top: 0; z-index: 100; }
+        .logo { color: var(--primary-dark); font-size: 20px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .nav-logo-img { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
 
-        /* --- Main Layout Container --- */
-        .container { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 30px 20px; }
-        .quiz-card { background: var(--white); width: 100%; max-width: 800px; border-radius: 24px; box-shadow: var(--shadow); padding: 40px; position: relative; overflow: hidden; border: 1px solid rgba(0,0,0,0.03); }
+        /* Layout Container[cite: 1] */
+        .container { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 20px 15px; z-index: 1; flex-direction: column; }
+        .quiz-card { background: rgba(255, 255, 255, 0.98); width: 100%; max-width: 850px; border-radius: 24px; box-shadow: var(--shadow); padding: 30px; position: relative; border: 1px solid rgba(255,255,255,0.8); }
 
-        /* --- 1. Language Screen --- */
+        /* --- 1. Welcome Screen[cite: 1] --- */
         .lang-screen { text-align: center; }
-        .lang-screen i.main-icon { font-size: 60px; color: var(--primary-light); margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
-        .lang-screen h1 { font-size: 32px; color: var(--dark); font-weight: 800; margin-bottom: 10px; }
-        .lang-screen p { color: #666; margin-bottom: 40px; font-size: 16px; }
-        .lang-btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 500px; margin: 0 auto; }
-        .lang-btn { background: var(--white); border: 2px solid #e0e0e0; border-radius: 16px; padding: 25px 20px; font-size: 18px; font-weight: 700; color: var(--dark); cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .lang-btn:hover { border-color: var(--primary-light); background: #f0f7f1; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(27,94,32,0.1); }
-        .lang-btn span { font-size: 13px; color: #777; font-weight: 400; }
+        .welcome-badge { background: linear-gradient(90deg, #ff9800, #ffb300); color: #fff; padding: 6px 20px; border-radius: 20px; font-weight: 800; font-size: 12px; display: inline-block; margin-bottom: 10px; }
+        .lang-screen i.main-icon { font-size: 70px; background: -webkit-linear-gradient(var(--primary-dark), var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; filter: drop-shadow(0 10px 10px rgba(46, 125, 50, 0.2)); animation: bounceIcon 3s ease-in-out infinite; }
+        .lang-screen h1 { font-size: 26px; color: var(--primary-dark); font-weight: 800; margin-bottom: 8px; line-height: 1.3; }
+        .lang-screen p { color: var(--text-gray); margin-bottom: 20px; font-size: 14px; line-height: 1.5; }
+        @keyframes bounceIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-        /* --- 2. Quiz Screen --- */
+        .test-options-container { display: flex; flex-direction: column; gap: 12px; max-width: 600px; margin: 0 auto; }
+        
+        .test-selection-card { display: flex; align-items: center; justify-content: space-between; background: var(--white); border-radius: 16px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 2px solid transparent; transition: all 0.2s; }
+        .t-card-1 { border-color: #ffb300; background: linear-gradient(to right, #ffffff, #fffdf2); }
+        .t-card-2 { border-color: #43a047; background: linear-gradient(to right, #ffffff, #e8f5e9); }
+        .t-card-3 { border-color: #ab47bc; background: linear-gradient(to right, #ffffff, #f3e5f5); }
+
+        .t-icon-box { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; color: #fff; flex-shrink: 0; }
+        .t-icon-1 { background: linear-gradient(135deg, #ffb300, #ff8f00); }
+        .t-icon-2 { background: linear-gradient(135deg, #43a047, #2e7d32); }
+        .t-icon-3 { background: linear-gradient(135deg, #ab47bc, #6a1b9a); }
+
+        .t-details { flex-grow: 1; text-align: left; padding: 0 15px; }
+        .t-details h3 { font-size: 16px; color: var(--text-dark); margin-bottom: 2px; font-weight: 700; }
+        .t-details p { font-size: 12px; color: var(--text-gray); font-weight: 500; margin: 0; }
+
+        .t-start-btn { padding: 10px 20px; border-radius: 12px; font-size: 14px; font-weight: 700; color: #fff; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
+        .t-btn-1 { background: linear-gradient(135deg, #ffb300, #ff8f00); }
+        .t-btn-2 { background: linear-gradient(135deg, #43a047, #2e7d32); }
+        .t-btn-3 { background: linear-gradient(135deg, #ab47bc, #6a1b9a); }
+
+        /* --- 2. Quiz Screen[cite: 1] --- */
         .quiz-screen { display: none; }
-        .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid #f0f0f0; padding-bottom: 15px; }
-        .q-count { font-weight: 700; color: var(--primary); background: #e8f5e9; padding: 4px 15px; border-radius: 15px; font-size: 14px; }
+        .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid #c8e6c9; padding-bottom: 10px; }
+        .q-count { font-weight: 700; color: var(--white); background: var(--primary-dark); padding: 5px 15px; border-radius: 15px; font-size: 13px; }
+        .test-title-indicator { font-weight: 700; color: #ff8f00; font-size: 13px; background: #fff8e1; padding: 5px 12px; border-radius: 8px; border: 1px solid #ffe082;}
         
-        /* Progress Bar */
-        .progress-container { width: 100%; background: #eee; height: 8px; border-radius: 4px; margin-bottom: 30px; overflow: hidden; }
-        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary-light), var(--primary)); width: 0%; transition: width 0.3s ease; }
+        .progress-container { width: 100%; background: #c8e6c9; height: 8px; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-dark)); width: 0%; transition: width 0.3s; }
 
-        .question-text { font-size: 22px; font-weight: 700; color: var(--dark); margin-bottom: 25px; line-height: 1.4; }
+        .question-text { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 20px; line-height: 1.4; }
+        .options-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; }
         
-        /* Options Grid */
-        .options-grid { display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px; }
-        .option { background: #f8faf9; border: 2px solid #ebdbe0; border-radius: 14px; padding: 18px 25px; font-size: 16px; font-weight: 500; text-align: left; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: space-between; }
-        .option:hover { background: #f0f4f1; border-color: #cbdcd0; }
-        .option.selected { background: #e8f5e9; border-color: var(--primary-light); color: var(--primary); font-weight: 600; }
-
-        /* Navigation Buttons */
-        .quiz-footer { display: flex; justify-content: space-between; align-items: center; }
-        .nav-btn { background: var(--primary); color: var(--white); border: none; padding: 14px 35px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; }
-        .nav-btn:hover { background: var(--dark); transform: translateY(-2px); }
-        .nav-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
-
-        /* --- 3. Result Screen --- */
-        .result-screen { display: none; text-align: center; }
-        .result-screen .congrats-icon { font-size: 70px; color: var(--accent); margin-bottom: 20px; animation: bounce 2s infinite; }
-        .result-screen h2 { font-size: 36px; font-weight: 800; color: var(--dark); margin-bottom: 15px; }
-        .message-box { font-size: 18px; color: #555; max-width: 600px; margin: 0 auto 30px auto; line-height: 1.6; font-weight: 500; }
+        .option { background: var(--white); border: 2px solid #c8e6c9; border-radius: 12px; padding: 14px 18px; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: space-between; color: var(--text-gray); }
+        .option:not(.locked):hover { background: #e8f5e9; border-color: var(--primary); color: var(--primary-dark); }
+        .option.correct { background: var(--correct-bg) !important; border-color: var(--correct-border) !important; color: var(--correct-text) !important; }
+        .option.wrong { background: var(--wrong-bg) !important; border-color: var(--wrong-border) !important; color: var(--wrong-text) !important; }
+        .option.locked { pointer-events: none; }
         
-        .score-circle { width: 160px; height: 160px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-light), var(--primary)); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 40px auto; box-shadow: 0 10px 25px rgba(27,94,32,0.3); }
-        .score-circle h1 { font-size: 46px; font-weight: 800; line-height: 1; }
-        .score-circle span { font-size: 14px; opacity: 0.8; font-weight: 500; text-transform: uppercase; margin-top: 5px; }
+        .quiz-footer { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .nav-btn { padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; flex: 1; border: none; transition: 0.2s; min-width: 100px; }
+        .btn-prev { background: #e8f5e9; color: var(--text-gray); }
+        .btn-prev:disabled { opacity: 0.4; cursor: not-allowed; }
+        .btn-skip { background: #fff3e0; color: #f57c00; border: 1px solid #ffe0b2; }
+        .btn-next { background: var(--primary-dark); color: var(--white); }
 
-        .restart-btn { background: var(--accent); color: var(--dark); border: none; padding: 15px 40px; border-radius: 30px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(255,202,40,0.4); }
-        .restart-btn:hover { background: #ffb300; transform: scale(1.05); }
+        /* --- 3. Result Screen & Certificate[cite: 1] --- */
+        .result-screen { display: none; text-align: center; padding: 20px 0; }
+        .result-screen .congrats-icon { font-size: 60px; color: var(--accent); margin-bottom: 10px; }
+        .result-screen h2 { font-size: 32px; font-weight: 800; color: var(--primary-dark); margin-bottom: 10px; }
+        .message-box { font-size: 15px; color: var(--text-gray); margin-bottom: 25px; font-weight: 500; }
+        
+        .score-circle { width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 25px auto; border: 4px solid #e8f5e9; }
+        .score-circle h1 { font-size: 42px; font-weight: 800; line-height: 1; margin-bottom: 0; }
+        .score-circle span { font-size: 13px; font-weight: 600; margin-top: 5px; text-transform: uppercase; }
 
-        /* --- Animations --- */
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-20px); } 60% { transform: translateY(-10px); } }
+        .cert-container { background: rgba(46, 125, 50, 0.04); border: 2px dashed var(--primary); padding: 20px; border-radius: 20px; margin-bottom: 25px; }
+        .cert-container h3 { color: var(--primary-dark); font-size: 18px; margin-bottom: 10px; font-weight: 700; }
+        .cert-input { width: 100%; max-width: 350px; padding: 12px 20px; border: 2px solid #c8e6c9; border-radius: 12px; font-size: 15px; font-weight: 600; text-align: center; margin-bottom: 15px; outline: none; }
+        .cert-input:focus { border-color: var(--primary); }
+        .cert-btn { background: linear-gradient(135deg, #ff9800, #ff5722); color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+        .restart-btn { background: #e8f5e9; color: var(--text-dark); border: none; padding: 12px 30px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; width: 100%; max-width: 300px; margin-top: 10px; }
 
-        footer { background: var(--dark); color: #888; text-align: center; padding: 20px; font-size: 14px; margin-top: auto; border-top: 4px solid var(--accent); }
-        footer span { color: var(--accent); font-weight: bold; }
+        /* --- 4. One Liners[cite: 1] --- */
+        #quickFactsSection { width: 100%; max-width: 850px; margin-top: 20px; background: rgba(255, 255, 255, 0.95); border-radius: 20px; padding: 25px; box-shadow: var(--shadow); border: 1px solid #e8f5e9; }
+        .qf-header { text-align: center; margin-bottom: 20px; }
+        .qf-header h2 { font-size: 22px; color: #2e7d32; font-weight: 800; }
+        .qf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+        .qf-item { background: #ffffff; border-left: 4px solid #43a047; padding: 12px 15px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .qf-question { font-size: 13px; font-weight: 600; color: #388e3c; max-width: 65%; }
+        .qf-answer { padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 800; background: #e8f5e9; color: #2e7d32; }
+
+        @media (max-width: 600px) {
+            .quiz-card { padding: 20px 15px; border-radius: 18px; }
+            .test-selection-card { padding: 12px; }
+            .t-icon-box { width: 40px; height: 40px; font-size: 18px; }
+            .t-details h3 { font-size: 14px; }
+            .t-details p { font-size: 11px; }
+            .quiz-header { flex-direction: column; gap: 10px; align-items: flex-start; }
+            .question-text { font-size: 16px; margin-bottom: 15px; }
+            .option { padding: 12px 15px; font-size: 14px; }
+            .qf-item { flex-direction: column; gap: 8px; text-align: center; }
+            .qf-question { max-width: 100%; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Nav -->
     <nav>
-        <a href="index.html" class="logo"><i class="fa-solid fa-wheat-awn"></i> Razaagripoint</a>
-        <a href="semester2.html" class="exit-btn"><i class="fa-solid fa-door-open"></i> Exit Test</a>
+        <a href="javascript:history.back()" class="logo">
+            <img src="mushahid.jpeg" alt="Logo" class="nav-logo-img" onerror="this.src='https://via.placeholder.com/35?text=R'">
+            Razaagripoint
+        </a>
     </nav>
 
-    <!-- Quiz Area -->
     <div class="container">
         <div class="quiz-card">
             
-            <!-- Language Selection Screen -->
             <div id="langScreen" class="lang-screen">
-                <i class="fa-solid fa-graduation-cap main-icon"></i>
-                <h1>Start Your Mock Test</h1>
-                <p>Soil & Water Conservation Engineering • 50 Questions • 50 Marks</p>
+                <div class="welcome-badge">⭐ THE ULTIMATE TEST PORTAL</div>
+                <i class="fa-solid fa-water main-icon"></i>
+                <h1>Soil & Water Conservation</h1>
+                <p>Welcome! यहाँ आपको <b>MJPRU University</b> के 2nd Semester सिलेबस पर आधारित <b>मृदा एवं जल संरक्षण (Soil & Water Conservation)</b> के <b>150 Unique Questions</b> के 3 अलग-अलग प्रीमियम टेस्ट मिलेंगे। अपनी तैयारी के हिसाब से टेस्ट सेलेक्ट करें!</p>
                 
-                <div class="lang-btn-grid">
-                    <button class="lang-btn" onclick="startQuiz('hi')">
-                        हिन्दी टेस्ट
-                        <span>हिंदी माध्यम के छात्रों के लिए</span>
-                    </button>
-                    <button class="lang-btn" onclick="startQuiz('en')">
-                        English Test
-                        <span>For English Medium Students</span>
-                    </button>
+                <div class="test-options-container">
+                    <div class="test-selection-card t-card-1">
+                        <div class="t-icon-box t-icon-1"><i class="fa-solid fa-wind"></i></div>
+                        <div class="t-details">
+                            <h3>Part 1: Erosion Basics</h3>
+                            <p>50 Water & Wind Erosion MCQs</p>
+                        </div>
+                        <button class="t-start-btn t-btn-1" onclick="startQuiz(1)">Start <i class="fa-solid fa-play"></i></button>
+                    </div>
+
+                    <div class="test-selection-card t-card-2">
+                        <div class="t-icon-box t-icon-2"><i class="fa-solid fa-seedling"></i></div>
+                        <div class="t-details">
+                            <h3>Part 2: Conservation</h3>
+                            <p>50 Runoff & Conservation MCQs</p>
+                        </div>
+                        <button class="t-start-btn t-btn-2" onclick="startQuiz(2)">Start <i class="fa-solid fa-play"></i></button>
+                    </div>
+
+                    <div class="test-selection-card t-card-3">
+                        <div class="t-icon-box t-icon-3"><i class="fa-solid fa-mountain-city"></i></div>
+                        <div class="t-details">
+                            <h3>Part 3: Advanced</h3>
+                            <p>50 Gully & Watershed MCQs</p>
+                        </div>
+                        <button class="t-start-btn t-btn-3" onclick="startQuiz(3)">Start <i class="fa-solid fa-play"></i></button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Quiz Main Screen -->
             <div id="quizScreen" class="quiz-screen">
                 <div class="quiz-header">
-                    <span id="questionCount" class="q-count">Question 1 of 50</span>
+                    <span id="questionCount" class="q-count">Q 1 / 50</span>
+                    <span id="testTitleIndicator" class="test-title-indicator">Test 1</span>
                 </div>
-                
                 <div class="progress-container">
                     <div id="progressBar" class="progress-bar"></div>
                 </div>
-
-                <div id="questionText" class="question-text">Loading Question...</div>
-                
-                <div id="optionsGrid" class="options-grid">
-                    <!-- Javascript will load options here -->
-                </div>
-
+                <div id="questionText" class="question-text">Loading...</div>
+                <div id="optionsGrid" class="options-grid"></div>
                 <div class="quiz-footer">
-                    <button id="prevBtn" class="nav-btn" onclick="prevQuestion()" disabled><i class="fa-solid fa-chevron-left"></i> Previous</button>
-                    <button id="nextBtn" class="nav-btn" onclick="nextQuestion()">Next <i class="fa-solid fa-chevron-right"></i></button>
+                    <button id="prevBtn" class="nav-btn btn-prev" onclick="prevQuestion()"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+                    <button id="skipBtn" class="nav-btn btn-skip" onclick="skipQuestion()">Skip <i class="fa-solid fa-forward-step"></i></button>
+                    <button id="nextBtn" class="nav-btn btn-next" style="display:none;" onclick="nextQuestion()">Next <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
 
-            <!-- Result Dashboard Screen -->
             <div id="resultScreen" class="result-screen">
-                <div id="congratsIcon" class="congrats-icon"><i class="fa-solid fa-crown"></i></div>
-                <h2 id="resultHeading">Excellent Work!</h2>
-                <div id="messageBox" class="message-box">Congratulations message goes here...</div>
-                
+                <div class="congrats-icon"><i class="fa-solid fa-trophy"></i></div>
+                <h2 id="resultHeading">Great Job!</h2>
+                <div id="messageBox" class="message-box">Results loading...</div>
                 <div class="score-circle">
-                    <h1 id="scoreDisplay">00</h1>
-                    <span id="totalDisplay">Out of 50</span>
+                    <h1 id="scoreDisplay">0</h1>
+                    <span id="totalDisplay">Out of 0</span>
                 </div>
-
-                <button class="restart-btn" onclick="restartQuiz()"><i class="fa-solid fa-rotate-right"></i> Try Again</button>
+                <div class="cert-container">
+                    <h3>🏆 Download Your Topper Certificate</h3>
+                    <p style="font-size: 13px; color: var(--text-gray); margin-bottom: 12px;">अपना पूरा नाम नीचे बॉक्स में लिखें और एक <b>Professional High-Quality Certificate</b> तुरंत डाउनलोड करें:</p>
+                    <input type="text" id="studentName" class="cert-input" placeholder="यहाँ अपना नाम लिखें">
+                    <br>
+                    <button class="cert-btn" onclick="generateCertificate()"><i class="fa-solid fa-file-arrow-down"></i> Get My Certificate</button>
+                </div>
+                <button class="restart-btn" onclick="restartQuiz()"><i class="fa-solid fa-rotate-right"></i> Choose Another Test</button>
             </div>
+        </div>
 
+        <div id="quickFactsSection" class="quick-facts-wrapper">
+            <div class="qf-header">
+                <h2><i class="fa-solid fa-bolt" style="color: #ffb300;"></i> Exam Booster: Top One-Liners</h2>
+                <p style="color: #718096; font-size: 14px; font-weight: 500;">एग्ज़ाम से 10 मिनट पहले बस इसे पढ़ लेना, सीधे सवाल फसेंगे!</p>
+            </div>
+            <div class="qf-grid">
+                <div class="qf-item"><div class="qf-question">मृदा संरक्षण के जनक (Father of Soil Conservation)</div><div class="qf-answer">एच. एच. बेनेट (H.H. Bennett)</div></div>
+                <div class="qf-item"><div class="qf-question">सार्वभौमिक मृदा हानि समीकरण (USLE)</div><div class="qf-answer">A = RKLSCP</div></div>
+                <div class="qf-item"><div class="qf-question">"किसान की मौत" (Death of farmer) किस अपरदन को कहते हैं?</div><div class="qf-answer">परत अपरदन (Sheet erosion)</div></div>
+                <div class="qf-item"><div class="qf-question">CSWCRTI कहाँ स्थित है?</div><div class="qf-answer">देहरादून (Dehradun)</div></div>
+                <div class="qf-item"><div class="qf-question">CAZRI कहाँ स्थित है?</div><div class="qf-answer">जोधपुर (Jodhpur)</div></div>
+                <div class="qf-item"><div class="qf-question">वायु अपरदन में 50-75% नुकसान किस प्रक्रिया से होता है?</div><div class="qf-answer">उच्छलन (Saltation)</div></div>
+                <div class="qf-item"><div class="qf-question">अवनालिका (Gully) विकास की कितनी अवस्थाएं हैं?</div><div class="qf-answer">4 अवस्थाएं</div></div>
+                <div class="qf-item"><div class="qf-question">भूमि क्षमता वर्गीकरण (Land Capability) में कृषि योग्य वर्ग</div><div class="qf-answer">वर्ग I से IV (Class I to IV)</div></div>
+                <div class="qf-item"><div class="qf-question">जल अपरदन का सही क्रम</div><div class="qf-answer">बौछार -> परत -> क्षुद्र सरिता -> अवनालिका</div></div>
+                <div class="qf-item"><div class="qf-question">बेंच टेरेसिंग (Bench terracing) किस ढलान पर करते हैं?</div><div class="qf-answer">16% से 33% तक</div></div>
+            </div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 <span>Razaagripoint</span> | Designed for Excellence by Mushahid Raza</p>
-    </footer>
+   <script>
+        // TEST DATA FOR SOIL & WATER CONSERVATION[cite: 1]
+        const test1Data = [
+            { q: "जल अपरदन (Water erosion) की किस अवस्था को 'किसान की मौत' (Death of farmer) कहा जाता है?", o: ["बौछार अपरदन (Splash erosion)", "परत अपरदन (Sheet erosion)", "क्षुद्र सरिता अपरदन (Rill erosion)", "अवनालिका अपरदन (Gully erosion)"], a: 1 },
+            { q: "सार्वभौमिक मृदा हानि समीकरण (Universal Soil Loss Equation) में 'R' क्या दर्शाता है?", o: ["मृदा क्षरणशीलता कारक (Soil erodibility factor)", "फसल प्रबंधन कारक (Crop management factor)", "वर्षा अपरदन कारक (Rainfall erosivity factor)", "ढलान की लंबाई कारक (Slope length factor)"], a: 2 },
+            { q: "वायु अपरदन (Wind erosion) की वह प्रक्रिया जिसमें मृदा कण हवा में लटक कर मीलों दूर चले जाते हैं, क्या कहलाती है?", o: ["उच्छलन (Saltation)", "निलंबन (Suspension)", "सतह सर्पण (Surface creep)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 1 },
+            { q: "मृदा संरक्षण (Soil conservation) की सस्य संबंधी (Agronomic) विधियों में शामिल है/हैं:", o: ["समोच्च खेती (Contour farming)", "पलवार बिछाना (Mulching)", "A और B दोनों (Both A and B)", "वेदिका निर्माण (Terracing)"], a: 2 },
+            { q: "बेंच टेरेसिंग (Bench terracing) आमतौर पर किस ढलान (Slope) वाले क्षेत्रों में अपनाई जाती है?", o: ["2% से कम (Less than 2%)", "2% से 10% तक (2% to 10%)", "16% से 33% तक (16% to 33%)", "33% से अधिक (More than 33%)"], a: 2 },
+            { q: "वायुरोधक (Windbreaks) लगाने का मुख्य उद्देश्य क्या है?", o: ["हवा की गति को कम करना (To reduce wind speed)", "मृदा की नमी को बचाना (To conserve soil moisture)", "वायु अपरदन को रोकना (To prevent wind erosion)", "उपर्युक्त सभी (All of the above)"], a: 3 },
+            { q: "मृदा के कणों का आकार जितना बड़ा होगा, उसकी क्षरणशीलता (Erodibility) पर क्या प्रभाव पड़ेगा?", o: ["क्षरणशीलता बढ़ेगी (Erodibility will increase)", "क्षरणशीलता घटेगी (Erodibility will decrease)", "कोई प्रभाव नहीं पड़ेगा (No effect will occur)", "पहले बढ़ेगी फिर घटेगी (First increase then decrease)"], a: 1 },
+            { q: "घासदार जलमार्ग (Grassed waterways) का उपयोग मुख्य रूप से किसे नियंत्रित करने के लिए किया जाता है?", o: ["वायु अपरदन (Wind erosion)", "अवनालिका अपरदन (Gully erosion)", "बौछार अपरदन (Splash erosion)", "A और B दोनों (Both A and B)"], a: 1 },
+            { q: "वायु अपरदन (Wind erosion) में उच्छलन (Saltation) द्वारा कुल मृदा हानि का कितने प्रतिशत नुकसान होता है?", o: ["3-4% (3-4%)", "10-25% (10-25%)", "50-75% (50-75%)", "80-95% (80-95%)"], a: 2 },
+            { q: "वर्षा का वह जल जो मृदा में सोखने के बाद सतह पर बहता है, क्या कहलाता है?", o: ["अंतःस्रवण (Infiltration)", "पारगमन (Percolation)", "अपवाह (Runoff)", "वाष्पीकरण (Evaporation)"], a: 2 },
+            { q: "समोच्च मेड़बंदी (Contour bunding) किन क्षेत्रों के लिए सबसे उपयुक्त मानी जाती है?", o: ["कम वर्षा वाले क्षेत्र (Low rainfall areas)", "अधिक वर्षा वाले क्षेत्र (High rainfall areas)", "अत्यधिक ढलान वाले क्षेत्र (Steep slope areas)", "उपर्युक्त सभी (All of the above)"], a: 0 },
+            { q: "जिंक वेदिका (Zingg terrace) का निर्माण कितनी प्रतिशत ढलान (Slope) पर किया जाता है?", o: ["1-3% (1-3%)", "3-10% (3-10%)", "10-15% (10-15%)", "15-20% (15-20%)"], a: 1 },
+            { q: "पट्टीदार खेती (Strip cropping) का मुख्य उद्देश्य क्या है?", o: ["अपवाह का वेग कम करना (To reduce runoff velocity)", "मृदा अपरदन को रोकना (To prevent soil erosion)", "A और B दोनों (Both A and B)", "मृदा का तापमान बढ़ाना (To increase soil temperature)"], a: 2 },
+            { q: "अवनालिका (Gully) को उसके आकार के आधार पर किन आकृतियों में वर्गीकृत किया जाता है?", o: ["U-आकार (U-shape)", "V-आकार (V-shape)", "A और B दोनों (Both A and B)", "O-आकार (O-shape)"], a: 2 },
+            { q: "प्राकृतिक रूप से और बहुत धीमी गति से होने वाले मृदा अपरदन को क्या कहा जाता है?", o: ["त्वरित अपरदन (Accelerated erosion)", "भूगर्भीय अपरदन (Geological erosion)", "जल अपरदन (Water erosion)", "वायु अपरदन (Wind erosion)"], a: 1 },
+            { q: "मानव गतिविधियों और वनों की कटाई के कारण तेजी से होने वाले अपरदन को क्या कहते हैं?", o: ["त्वरित अपरदन (Accelerated erosion)", "सामान्य अपरदन (Normal erosion)", "भूगर्भीय अपरदन (Geological erosion)", "उपर्युक्त सभी (All of the above)"], a: 0 },
+            { q: "मृदा संरक्षण (Soil conservation) के लिए सबसे अच्छी आवरण फसल (Cover crop) कौन सी मानी जाती है?", o: ["मक्का (Maize)", "बाजरा (Pearl millet)", "लोबिया (Cowpea)", "कपास (Cotton)"], a: 2 },
+            { q: "रक्षक मेखला (Shelterbelt) में पेड़ों की पंक्तियों को किस दिशा में लगाया जाता है?", o: ["हवा की दिशा के समानांतर (Parallel to wind direction)", "हवा की दिशा के लंबवत (Perpendicular to wind direction)", "हवा की दिशा के विकर्ण पर (Diagonal to wind direction)", "किसी भी दिशा में (In any direction)"], a: 1 },
+            { q: "वायु अपरदन (Wind erosion) को रोकने के लिए निम्नलिखित में से कौन सी विधि अपनाई जाती है?", o: ["ठूंठ की पलवार (Stubble mulching)", "पट्टीदार खेती (Strip cropping)", "वायुरोधक (Windbreaks)", "उपर्युक्त सभी (All of the above)"], a: 3 },
+            { q: "पलवार (Mulching) बिछाने का मुख्य लाभ क्या है?", o: ["मृदा नमी का संरक्षण (Conservation of soil moisture)", "खरपतवार नियंत्रण (Weed control)", "मृदा अपरदन में कमी (Reduction in soil erosion)", "उपर्युक्त सभी (All of the above)"], a: 3 },
+            { q: "सार्वभौमिक मृदा हानि समीकरण (Universal Soil Loss Equation - USLE) किसके द्वारा विकसित किया गया था?", o: ["विस्मेयर और स्मिथ (Wischmeier and Smith)", "हडसन (Hudson)", "रामदास (Ramdas)", "ब्लैनी और क्रिडल (Blaney and Criddle)"], a: 0 },
+            { q: "भूमि क्षमता वर्गीकरण (Land Capability Classification) के अनुसार खेती के लिए कौन से वर्ग (Class) उपयुक्त हैं?", o: ["वर्ग I से IV (Class I to IV)", "वर्ग V से VIII (Class V to VIII)", "केवल वर्ग I और II (Only Class I and II)", "उपर्युक्त सभी (All of the above)"], a: 0 },
+            { q: "भूमि क्षमता वर्गीकरण (Land Capability Classification) के मानचित्र पर वर्ग I (Class I) की भूमि को किस रंग से दर्शाया जाता है?", o: ["लाल (Red)", "हरा (Green)", "पीला (Yellow)", "नीला (Blue)"], a: 1 },
+            { q: "चेक डैम (Check dams) का निर्माण मुख्य रूप से किस प्रकार के अपरदन को रोकने के लिए किया जाता है?", o: ["परत अपरदन (Sheet erosion)", "क्षुद्र सरिता अपरदन (Rill erosion)", "अवनालिका अपरदन (Gully erosion)", "बौछार अपरदन (Splash erosion)"], a: 2 },
+            { q: "रेतीली मृदा (Sandy soil) की अंतःस्रवण दर (Infiltration rate) चिकनी मृदा (Clay soil) की तुलना में कैसी होती है?", o: ["बहुत कम (Very low)", "समान (Equal)", "बहुत अधिक (Very high)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 2 },
+            { q: "सतह सर्पण (Surface creep) द्वारा किस आकार के मृदा कणों का स्थानांतरण होता है?", o: ["0.1 मिमी से कम (Less than 0.1 mm)", "0.1 से 0.5 मिमी (0.1 to 0.5 mm)", "0.5 से 2.0 मिमी (0.5 to 2.0 mm)", "2.0 मिमी से अधिक (More than 2.0 mm)"], a: 2 },
+            { q: "ड्रॉप स्पिलवे (Drop spillway) का उपयोग आमतौर पर पानी की कितनी गिरावट (Drop) के लिए किया जाता है?", o: ["3 मीटर तक (Up to 3 meters)", "3 से 5 मीटर तक (3 to 5 meters)", "5 से 10 मीटर तक (5 to 10 meters)", "10 मीटर से अधिक (More than 10 meters)"], a: 0 },
+            { q: "जल संचयन (Water harvesting) का प्राथमिक उद्देश्य क्या है?", o: ["बाढ़ को बढ़ावा देना (To increase flood)", "भूजल स्तर को बढ़ाना (To recharge groundwater)", "सतही अपवाह को बर्बाद करना (To waste surface runoff)", "A और B दोनों (Both A and B)"], a: 1 },
+            { q: "शून्य परिष्करण (Zero tillage) मृदा संरक्षण में कैसे मदद करता है?", o: ["मृदा की संरचना को नष्ट करके (By destroying soil structure)", "फसल के अवशेषों को सतह पर छोड़कर (By leaving crop residues on surface)", "मृदा के क्षरण को बढ़ाकर (By increasing soil erosion)", "उपर्युक्त सभी (All of the above)"], a: 1 },
+            { q: "समोच्च खेती (Contour farming) में जुताई (Tillage) किस दिशा में की जाती है?", o: ["ढलान के ऊपर और नीचे (Up and down the slope)", "ढलान के आर-पार (Across the slope)", "किसी भी दिशा में (In any direction)", "केवल समतल भूमि पर (Only on flat land)"], a: 1 },
+            { q: "श्रेणीकृत मेड़बंदी (Graded bunding) किन क्षेत्रों में की जाती है जहाँ वार्षिक वर्षा होती है?", o: ["600 मिमी से कम (Less than 600 mm)", "600 मिमी से अधिक (More than 600 mm)", "200 मिमी से कम (Less than 200 mm)", "1000 मिमी से अधिक (More than 1000 mm)"], a: 1 },
+            { q: "एक जलग्रहण क्षेत्र (Watershed) की मूल विशेषता क्या है?", o: ["इसका एक सामान्य निकास बिंदु होता है (It has a common outlet point)", "यह हमेशा बहुत बड़ा होता है (It is always very large)", "इसमें केवल पहाड़ होते हैं (It contains only mountains)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 0 },
+            { q: "अपवाह गुणांक (Runoff coefficient) किसके बीच का अनुपात है?", o: ["अपवाह और वर्षा (Runoff and Rainfall)", "वर्षा और अंतःस्रवण (Rainfall and Infiltration)", "वाष्पीकरण और वर्षा (Evaporation and Rainfall)", "अपवाह और वाष्पोत्सर्जन (Runoff and Evapotranspiration)"], a: 0 },
+            { q: "वायु अपरदन के निलंबन (Suspension) चरण में उड़ने वाले मृदा कणों का आकार क्या होता है?", o: ["0.1 मिमी से कम (Less than 0.1 mm)", "0.1 से 0.5 मिमी (0.1 to 0.5 mm)", "0.5 से 1.0 मिमी (0.5 to 1.0 mm)", "1.0 मिमी से अधिक (More than 1.0 mm)"], a: 0 },
+            { q: "चौड़ी शय्या एवं कूँड़ प्रणाली (Broad Bed and Furrow system) मुख्य रूप से किस प्रकार की मृदा में जलभराव रोकने के लिए अपनाई जाती है?", o: ["लाल मृदा (Red soil)", "काली कपास मृदा (Black cotton soil)", "रेतीली मृदा (Sandy soil)", "लेटराइट मृदा (Laterite soil)"], a: 1 },
+            { q: "मृदा अपरदन को रोकने के लिए घासों (Grasses) की खेती का अध्ययन क्या कहलाता है?", o: ["एग्रोनॉमी (Agronomy)", "एग्रोस्टोलॉजी (Agrostology)", "पोमोलॉजी (Pomology)", "ओलेरीकल्चर (Olericulture)"], a: 1 },
+            { q: "वर्षा की बूंदों (Raindrops) के टकराने से मृदा कणों का अलग होना किस ऊर्जा के कारण होता है?", o: ["स्थितिज ऊर्जा (Potential energy)", "गतिज ऊर्जा (Kinetic energy)", "ऊष्मीय ऊर्जा (Thermal energy)", "रासायनिक ऊर्जा (Chemical energy)"], a: 1 },
+            { q: "भूमि उपयोग योजना (Land use planning) का मुख्य आधार क्या माना जाता है?", o: ["किसानों की इच्छा (Desire of farmers)", "भूमि क्षमता वर्गीकरण (Land capability classification)", "बाजार की मांग (Market demand)", "सरकारी अनुदान (Government subsidy)"], a: 1 },
+            { q: "निम्नलिखित में से कौन सी एक अस्थायी अवनालिका नियंत्रण संरचना (Temporary gully control structure) है?", o: ["बुने हुए तार का चेक डैम (Woven wire check dam)", "ब्रशवुड चेक डैम (Brushwood check dam)", "ढीले पत्थरों का चेक डैम (Loose rock check dam)", "उपर्युक्त सभी (All of the above)"], a: 3 },
+            { q: "जलग्रहण क्षेत्र के सबसे दूरस्थ बिंदु से निकास बिंदु तक पानी पहुँचने में लगने वाले समय को क्या कहते हैं?", o: ["आधार समय (Base time)", "सांद्रण का समय (Time of concentration)", "अपवाह समय (Runoff time)", "अंतराल समय (Lag time)"], a: 1 },
+            { q: "वानस्पतिक अवरोधों (Vegetative barriers) के लिए आमतौर पर किस पौधे/घास का उपयोग किया जाता है?", o: ["खस घास (Vetiver grass)", "गेहूं (Wheat)", "धान (Rice)", "गुलाब (Rose)"], a: 0 },
+            { q: "मृदा संरक्षण के जैविक उपायों (Biological measures) में शामिल है/हैं:", o: ["सस्य विज्ञान संबंधी उपाय (Agronomic measures)", "वानिकी उपाय (Forestry measures)", "एग्रोस्टोलॉजिकल उपाय (Agrostological measures)", "उपर्युक्त सभी (All of the above)"], a: 3 },
+            { q: "बौछार अपरदन (Splash erosion) का सबसे अधिक प्रभाव किस प्रकार की भूमि पर पड़ता है?", o: ["घने जंगलों वाली भूमि (Dense forested land)", "घास से ढकी भूमि (Grass covered land)", "नंगी मृदा वाली भूमि (Bare soil land)", "A और B दोनों (Both A and B)"], a: 2 },
+            { q: "'क्षरणशीलता' (Erodibility) किसका विशेष गुण है?", o: ["वर्षा का (Of rainfall)", "मृदा का (Of soil)", "हवा का (Of wind)", "तापमान का (Of temperature)"], a: 1 },
+            { q: "वायु अपरदन (Wind erosion) को प्रभावित करने वाले मुख्य कारक कौन से हैं?", o: ["हवा का वेग (Wind velocity)", "मृदा की नमी (Soil moisture)", "वनस्पति आवरण (Vegetative cover)", "उपर्युक्त सभी (All of the above)"], a: 3 },
+            { q: "किस प्रकार के जल अपरदन को नग्न आँखों से आसानी से पहचाना नहीं जा सकता है?", o: ["अवनालिका अपरदन (Gully erosion)", "क्षुद्र सरिता अपरदन (Rill erosion)", "परत अपरदन (Sheet erosion)", "नदी तट अपरदन (Stream bank erosion)"], a: 2 },
+            { q: "अपवाह कृषि (Runoff farming) का उपयोग मुख्य रूप से किन क्षेत्रों में किया जाता है?", o: ["शुष्क और अर्ध-शुष्क क्षेत्र (Arid and semi-arid regions)", "अत्यधिक वर्षा वाले क्षेत्र (Heavy rainfall regions)", "तटीय क्षेत्र (Coastal regions)", "बर्फ से ढके क्षेत्र (Snow-covered regions)"], a: 0 },
+            { q: "वेदिकाओं (Terraces) के बीच की दूरी (Spacing) मुख्य रूप से किस पर निर्भर करती है?", o: ["भूमि के ढलान पर (On land slope)", "किसान की आय पर (On farmer's income)", "ट्रैक्टर के आकार पर (On tractor size)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 0 },
+            { q: "मृदा हानि सहिष्णुता (Soil loss tolerance) का अर्थ क्या है?", o: ["अधिकतम स्वीकार्य मृदा अपरदन (Maximum acceptable soil erosion)", "मृदा की पानी सोखने की क्षमता (Water absorbing capacity of soil)", "मृदा का कुल वजन (Total weight of soil)", "हवा की अधिकतम गति (Maximum wind speed)"], a: 0 },
+            { q: "यांत्रिक उपाय (Mechanical measures) आमतौर पर किस ढलान (Slope) से अधिक होने पर अपनाए जाते हैं?", o: ["1% (1%)", "2% (2%)", "10% (10%)", "20% (20%)"], a: 1 }
+        ];
 
-    <!-- JavaScript Data and Logic -->
-    <script>
-        // 50 Highly Optimized Questions Data Bank (Hindi & English)
-        const quizData = {
-            en: [
-                { q: "What is the primary objective of soil conservation?", o: ["To increase soil erosion", "To maintain soil fertility and prevent loss", "To convert forest into farms", "To dry out wetlands"], a: 1 },
-                { q: "Which type of water erosion causes uniform removal of a thin layer of soil?", o: ["Rill erosion", "Gully erosion", "Sheet erosion", "Splash erosion"], a: 2 },
-                { q: "The process of soil erosion by wind is most severe in which areas?", o: ["Humid areas", "Arid and semi-arid areas", "Hilly areas", "Forest areas"], a: 1 },
-                { q: "Contour bunding is practiced in areas with a slope of up to:", o: ["6%", "15%", "30%", "50%"], a: 0 },
-                { q: "What is the permissible soil loss rate under normal conditions?", o: ["2.5 t/ha/year", "11.2 t/ha/year", "25 t/ha/year", "50 t/ha/year"], a: 1 },
-                { q: "Splash erosion is caused by:", o: ["Wind velocity", "Impact of raindrops", "Running surface water", "Glacier movement"], a: 1 },
-                { q: "The Universal Soil Loss Equation (USLE) was given by:", o: ["Wischmeier and Smith", "ICAR scientists", "Liebig", "Deans Committee"], a: 0 },
-                { q: "Which vegetative barrier is most widely used for soil conservation in India?", o: ["Napier grass", "Vetiver grass", "Doob grass", "Wheat straw"], a: 1 },
-                { q: "The permanent check dams are built in gullies at which stage?", o: ["Small gully", "Medium gully", "Advanced large gully", "Initial stage"], a: 2 },
-                { q: "Water harvesting term was first coined by:", o: ["Myers", "Geddes", "Khovda", "Swaminathan"], a: 1 },
-                // ... (Truncated questions 11 to 45 for structure, added remaining 5 below to complete core bank pattern)
-                { q: "Which of the following is a mechanical measure of soil conservation?", o: ["Mulching", "Contour Bunding", "Strip Cropping", "Crop Rotation"], a: 1 },
-                { q: "In wind erosion, the movement of soil particles of size 0.1 to 0.5 mm is called:", o: ["Suspension", "Saltation", "Surface creep", "Detachment"], a: 1 },
-                { q: "The ratio of runoff volume to rainfall volume is called:", o: ["Infiltration index", "Runoff coefficient", "Hydrograph", "Peak discharge"], a: 1 },
-                { q: "Bench terracing is recommended for hilly areas having slopes ranging between:", o: ["5-10%", "16-33%", "35-50%", "More than 60%"], a: 1 },
-                { q: "Which instrument is used to measure rainfall depth?", o: ["Anemometer", "Lysimeter", "Rain gauge", "Tensiometer"], a: 2 }
-            ],
-            hi: [
-                { q: "मृदा संरक्षण का प्राथमिक उद्देश्य क्या है?", o: ["मृदा अपरदन को बढ़ाना", "मृदा की उर्वरता बनाए रखना और नुकसान को रोकना", "वनों को खेतों में बदलना", "आर्द्रभूमि को सुखाना"], a: 1 },
-                { q: "जल अपरदन का कौन सा प्रकार मिट्टी की पतली परत को समान रूप से हटा देता है?", o: ["रिल अपरदन", "अवनलिका (Gully) अपरदन", "परत (Sheet) अपरदन", "बौछार (Splash) अपरदन"], a: 2 },
-                { q: "वायु द्वारा मृदा अपरदन की प्रक्रिया किन क्षेत्रों में सबसे तीव्र होती है?", o: ["आर्द्र क्षेत्र", "शुष्क और अर्ध-शुष्क क्षेत्र", "पहाड़ी क्षेत्र", "वन क्षेत्र"], a: 1 },
-                { q: "कंटूर बन्डिंग (Contour bunding) कितने प्रतिशत तक के ढाल वाले क्षेत्रों में की जाती है?", o: ["6%", "15%", "30%", "50%"], a: 0 },
-                { q: "सामान्य परिस्थितियों में स्वीकार्य मृदा हानि दर (Permissible soil loss) क्या है?", o: ["2.5 टन/हेक्टेयर/वर्ष", "11.2 टन/हेक्टेयर/वर्ष", "25 टन/हेक्टेयर/वर्ष", "50 टन/हेक्टेयर/वर्ष"], a: 1 },
-                { q: "बौछार अपरदन (Splash erosion) किसके कारण होता है?", o: ["वायु वेग", "वर्षा की बूंदों का प्रभाव", "बहता हुआ सतही जल", "ग्लेशियर की गति"], a: 1 },
-                { q: "यूनिवर्सल सॉइल लॉस इक्वेशन (USLE) किसके द्वारा दिया गया था?", o: ["विशमीयर और स्मिथ", "आईसीएआर के वैज्ञानिक", "लिबिग", "डीन्स कमेटी"], a: 0 },
-                { q: "भारत में मृदा संरक्षण के लिए किस वानस्पतिक अवरोध (Vegetative barrier) का सर्वाधिक उपयोग किया जाता है?", o: ["नेपियर घास", "खस (Vetiver) घास", "दूब घास", "गेहूं का भूसा"], a: 1 },
-                { q: "अवनलिका (Gullies) के किस चरण में स्थायी चेक डैम बनाए जाते हैं?", o: ["छोटी अवनलिका", "मध्यम अवनलिका", "उन्नत बड़ी अवनलिका", "प्रारंभिक चरण"], a: 2 },
-                { q: "वॉटर हार्वेस्टिंग (Water Harvesting) शब्द सबसे पहले किसने दिया था?", o: ["मायर्स", "गेडेस", "खोवडा", "स्वामीनाथन"], a: 1 },
-                // Expanding arrays sequentially to fill out a comprehensive 50 simulation pattern dynamically
-                { q: "निम्नलिखित में से कौन सा मृदा संरक्षण का यांत्रिक उपाय (Mechanical Measure) है?", o: ["मल्चिंग", "कंटूर बन्डिंग", "स्ट्रिप क्रॉपिंग", "फसल चक्र"], a: 1 },
-                { q: "वायु अपरदन में, 0.1 से 0.5 मिमी आकार के मिट्टी के कणों की गति को क्या कहते हैं?", o: ["सस्पेंशन", "साल्टेशन (Saltation)", "सतही रेंगना", "पृथक्करण"], a: 1 },
-                { q: "अपवाह (Runoff) आयतन और वर्षा आयतन के अनुपात को क्या कहा जाता है?", o: ["अंतःस्यंदन सूचकांक", "अपवाह गुणांक (Runoff coefficient)", "हाइड्रोग्राफ", "शिखर निर्वहन"], a: 1 },
-                { q: "बेंच टे्रेसिंग पहाड़ी क्षेत्रों के लिए कितनी ढलान (Slope) होने पर सुझाई जाती है?", o: ["5-10%", "16-33%", "35-50%", "60% से अधिक"], a: 1 },
-                { q: "वर्षा की गहराई को मापने के लिए किस उपकरण का उपयोग किया जाता है?", o: ["एनीमोमीटर", "लाइसीमीटर", "रेन गेज (Rain gauge)", "टेन्सीओमीटर"], a: 2 }
-            ]
-        };
+        const test2Data = [
+            { q: "वर्षा (Rainfall) मापने वाले यंत्र को क्या कहा जाता है?", o: ["वर्षामापी (Rain gauge)", "पवनमापी (Anemometer)", "आर्द्रतामापी (Hygrometer)", "तापमापी (Thermometer)"], a: 0 },
+            { q: "क्षुद्र सरिता अपरदन (Rill erosion) का बढ़ा हुआ या विकराल रूप कौन सा है?", o: ["बौछार अपरदन (Splash erosion)", "परत अपरदन (Sheet erosion)", "अवनालिका अपरदन (Gully erosion)", "वायु अपरदन (Wind erosion)"], a: 2 },
+            { q: "भारत में मृदा अपरदन का सबसे प्रमुख कारण (Main cause) कौन सा है?", o: ["जल अपरदन (Water erosion)", "वायु अपरदन (Wind erosion)", "हिमनद अपरदन (Glacial erosion)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 0 },
+            { q: "घासदार जलमार्गों (Grassed waterways) का अनुप्रस्थ काट (Cross-section) आमतौर पर कैसा होता है?", o: ["परवलयाकार (Parabolic)", "समलम्बाकार (Trapezoidal)", "त्रिभुजाकार (Triangular)", "उपर्युक्त सभी (All of the above)"], a: 3 },
+            { q: "भूमि क्षमता वर्गीकरण (Land capability classification) में कुल कितने वर्ग (Classes) होते हैं?", o: ["4 (4)", "6 (6)", "8 (8)", "10 (10)"], a: 2 },
+            { q: "हवा की गति (Wind speed) मापने के लिए किस उपकरण का उपयोग किया जाता है?", o: ["वर्षामापी (Rain gauge)", "पवनमापी (Anemometer)", "बैरोमीटर (Barometer)", "टेन्शियोमीटर (Tensiometer)"], a: 1 },
+            { q: "सार्वभौमिक मृदा हानि समीकरण (USLE) में 'P' कारक क्या दर्शाता है?", o: ["वर्षा कारक (Rainfall factor)", "मृदा कारक (Soil factor)", "संरक्षण अभ्यास कारक (Conservation practice factor)", "फसल कारक (Crop factor)"], a: 2 },
+            { q: "भारत में वायु अपरदन (Wind erosion) की समस्या सबसे अधिक किस राज्य में है?", o: ["उत्तर प्रदेश (Uttar Pradesh)", "राजस्थान (Rajasthan)", "केरल (Kerala)", "पश्चिम बंगाल (West Bengal)"], a: 1 },
+            { q: "अपवाह (Runoff) को मापने के लिए किस संरचना का उपयोग किया जाता है?", o: ["वियर (Weir)", "फ्लूम (Flume)", "A और B दोनों (Both A and B)", "टेन्शियोमीटर (Tensiometer)"], a: 2 },
+            { q: "सस्य संबंधी उपाय (Agronomic measures) आमतौर पर कितनी प्रतिशत ढलान (Slope) तक की भूमि पर अपनाए जाते हैं?", o: ["2% से कम (Less than 2%)", "2% से 10% (2% to 10%)", "10% से अधिक (More than 10%)", "20% से अधिक (More than 20%)"], a: 0 },
+            { q: "समोच्च खाइयाँ (Contour trenching) मुख्य रूप से किन क्षेत्रों में बनाई जाती हैं?", o: ["समतल मैदानों में (In flat plains)", "रेगिस्तान में (In deserts)", "पहाड़ी और वन क्षेत्रों में (In hilly and forest areas)", "दलदली क्षेत्रों में (In marshy areas)"], a: 2 },
+            { q: "निम्नलिखित में से कौन सा जल अपरदन (Water erosion) का एक प्रकार है?", o: ["परत अपरदन (Sheet erosion)", "क्षुद्र सरिता अपरदन (Rill erosion)", "अवनालिका अपरदन (Gully erosion)", "उपर्युक्त सभी (All of the above)"], a: 3 },
+            { q: "भूमि क्षमता वर्गीकरण के अनुसार वर्ग V से VIII (Class V to VIII) की भूमि किसके लिए उपयुक्त होती है?", o: ["सघन खेती के लिए (For intensive farming)", "चारागाह और वानिकी के लिए (For pasture and forestry)", "धान की खेती के लिए (For rice cultivation)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 1 },
+            { q: "केंद्रीय मृदा एवं जल संरक्षण अनुसंधान एवं प्रशिक्षण संस्थान (CSWCRTI) कहाँ स्थित है?", o: ["नई दिल्ली (New Delhi)", "हैदराबाद (Hyderabad)", "देहरादून (Dehradun)", "भोपाल (Bhopal)"], a: 2 },
+            { q: "झूम खेती (Shifting cultivation) का मृदा पर क्या प्रभाव पड़ता है?", o: ["मृदा उर्वरता बढ़ती है (Soil fertility increases)", "मृदा अपरदन बढ़ता है (Soil erosion increases)", "A और B दोनों (Both A and B)", "कोई प्रभाव नहीं पड़ता (No effect occurs)"], a: 1 },
+            { q: "वेदिका निर्माण (Terracing) में दो लगातार वेदिकाओं के बीच की लंबवत दूरी को क्या कहते हैं?", o: ["क्षैतिज अंतराल (Horizontal interval)", "लंबवत अंतराल (Vertical interval)", "वेदिका की चौड़ाई (Terrace width)", "वेदिका की लंबाई (Terrace length)"], a: 1 },
+            { q: "रक्षक मेखला (Shelterbelts) हवा की गति को हवा के विपरीत दिशा में पेड़ों की ऊंचाई के कितने गुना दूरी तक कम कर देती है?", o: ["2-5 गुना (2-5 times)", "10-15 गुना (10-15 times)", "20-30 गुना (20-30 times)", "50-60 गुना (50-60 times)"], a: 2 },
+            { q: "मृदा में जल के नीचे की ओर गति करने की प्रक्रिया को क्या कहते हैं?", o: ["अंतःस्रवण (Infiltration)", "पारगमन (Percolation)", "वाष्पीकरण (Evaporation)", "वाष्पोत्सर्जन (Evapotranspiration)"], a: 1 },
+            { q: "दूब घास (Cynodon dactylon) मृदा संरक्षण में क्यों उपयोगी मानी जाती है?", o: ["यह मृदा को बांध कर रखती है (It binds the soil)", "यह अपवाह को कम करती है (It reduces runoff)", "A और B दोनों (Both A and B)", "यह अपरदन को बढ़ाती है (It increases erosion)"], a: 2 },
+            { q: "जल अपरदन की किस अवस्था में मृदा सतह पर उंगलियों जैसी छोटी-छोटी नालियाँ बन जाती हैं?", o: ["परत अपरदन (Sheet erosion)", "क्षुद्र सरिता अपरदन (Rill erosion)", "अवनालिका अपरदन (Gully erosion)", "बौछार अपरदन (Splash erosion)"], a: 1 },
+            { q: "जलग्रहण क्षेत्र (Watershed) का दूसरा नाम क्या है?", o: ["जल निकासी बेसिन (Drainage basin)", "कैचमेंट क्षेत्र (Catchment area)", "A और B दोनों (Both A and B)", "जलभृत (Aquifer)"], a: 2 },
+            { q: "वायु अपरदन समीकरण (Wind Erosion Equation - WEQ) किसके द्वारा विकसित किया गया था?", o: ["विस्मेयर (Wischmeier)", "वुडरफ और सिडोवे (Woodruff and Siddoway)", "रामदास (Ramdas)", "हडसन (Hudson)"], a: 1 },
+            { q: "अपवाह (Runoff) कब उत्पन्न होता है?", o: ["जब वर्षा की दर अंतःस्रवण दर से अधिक हो (When rainfall rate > infiltration rate)", "जब वर्षा की दर अंतःस्रवण दर से कम हो (When rainfall rate < infiltration rate)", "जब वर्षा रुक जाती है (When rainfall stops)", "उपर्युक्त सभी परिस्थितियों में (In all above situations)"], a: 0 },
+            { q: "बेंच टेरेस (Bench terrace) के मुख्य भाग कौन-कौन से हैं?", o: ["राइज़र (Riser)", "लिप (Lip)", "ट्रेड (Tread)", "उपर्युक्त सभी (All of the above)"], a: 3 },
+            { q: "वनरोपण (Afforestation) का क्या अर्थ है?", o: ["वनों की कटाई करना (Cutting down forests)", "नए क्षेत्रों में पेड़ लगाना (Planting trees in new areas)", "पुरानी लकड़ी जलाना (Burning old wood)", "फसलों को पानी देना (Watering the crops)"], a: 1 },
+            { q: "क्षुद्र सरिता अपरदन (Rill erosion) को कैसे समाप्त किया जा सकता है?", o: ["भारी मशीनों द्वारा (By heavy machinery)", "सामान्य जुताई प्रक्रियाओं द्वारा (By normal tillage operations)", "कंक्रीट की दीवार बनाकर (By building concrete wall)", "इसे समाप्त नहीं किया जा सकता (It cannot be removed)"], a: 1 },
+            { q: "शूट स्पिलवे (Chute spillway) का उपयोग आमतौर पर कितनी ऊंचाई की पानी की गिरावट (Drop) के लिए किया जाता है?", o: ["3 मीटर से कम (Less than 3 meters)", "3 मीटर से अधिक (More than 3 meters)", "1 मीटर से कम (Less than 1 meter)", "A और B दोनों (Both A and B)"], a: 1 },
+            { q: "निम्नलिखित में से कौन अपरदन को बढ़ावा देने वाली फसल (Erosion permitting crop) है?", o: ["मक्का (Maize)", "ज्वार (Sorghum)", "कपास (Cotton)", "उपर्युक्त सभी (All of the above)"], a: 3 },
+            { q: "निम्नलिखित में से कौन अपरदन प्रतिरोधी फसल (Erosion resisting crop) का उदाहरण है?", o: ["मूँगफली (Groundnut)", "लोबिया (Cowpea)", "A और B दोनों (Both A and B)", "गन्ना (Sugarcane)"], a: 2 },
+            { q: "जलग्रहण क्षेत्र (Watershed) में दो जल निकासी घाटियों को अलग करने वाली सीमा रेखा क्या कहलाती है?", o: ["रिज लाइन (Ridge line)", "समोच्च रेखा (Contour line)", "आधार रेखा (Base line)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 0 },
+            { q: "समोच्च मेड़बंदी (Contour bunding) किस प्रकार की मृदा के लिए अनुशंसित नहीं की जाती है?", o: ["रेतीली मृदा (Sandy soil)", "लाल मृदा (Red soil)", "काली कपास मृदा (Black cotton soil)", "जलोढ़ मृदा (Alluvial soil)"], a: 2 },
+            { q: "प्राकृतिक वनस्पति आवरण को हटाने (Deforestation) का क्या परिणाम होता है?", o: ["अपवाह में वृद्धि (Increase in runoff)", "मृदा अपरदन में वृद्धि (Increase in soil erosion)", "A और B दोनों (Both A and B)", "भूजल में वृद्धि (Increase in groundwater)"], a: 2 },
+            { q: "वानस्पतिक उपाय (Vegetative measures) अवनालिका (Gully) नियंत्रण में कैसे मदद करते हैं?", o: ["पानी के बहाव को धीमा करके (By slowing water flow)", "मृदा को जड़ों से बांधकर (By binding soil with roots)", "A और B दोनों (Both A and B)", "पानी का आयतन बढ़ाकर (By increasing water volume)"], a: 2 },
+            { q: "'क्षरण' (Erosion) शब्द किस भाषा से लिया गया है?", o: ["लैटिन (Latin)", "ग्रीक (Greek)", "अरबी (Arabic)", "फ्रेंच (French)"], a: 0 },
+            { q: "पट्टीदार खेती (Strip cropping) में फसलों की पट्टियां किस दिशा में उगाई जाती हैं?", o: ["ढलान की दिशा में (Along the slope)", "ढलान के आर-पार (Across the slope)", "किसी भी दिशा में (In any direction)", "ऊर्ध्वाधर दिशा में (In vertical direction)"], a: 1 },
+            { q: "पलवार (Mulch) के रूप में किसका उपयोग किया जा सकता है?", o: ["पुआल (Straw)", "सूखी पत्तियां (Dry leaves)", "प्लास्टिक शीट (Plastic sheet)", "उपर्युक्त सभी (All of the above)"], a: 3 },
+            { q: "मृदा अपरदन की प्रक्रिया में मुख्य रूप से कितने चरण होते हैं?", o: ["एक: केवल अलगाव (One: Only detachment)", "दो: अलगाव और परिवहन (Two: Detachment and transportation)", "तीन: अलगाव, परिवहन और निक्षेपण (Three: Detachment, transportation, and deposition)", "चार: अलगाव, परिवहन, निक्षेपण और संघनन (Four: Detachment, transportation, deposition, and compaction)"], a: 2 },
+            { q: "हवा द्वारा मृदा अपरदन को प्रभावित करने वाला मृदा कारक कौन सा है?", o: ["मृदा की बनावट (Soil texture)", "मृदा की संरचना (Soil structure)", "मृदा की नमी (Soil moisture)", "उपर्युक्त सभी (All of the above)"], a: 3 },
+            { q: "नदी तट अपरदन (Stream bank erosion) मुख्य रूप से किसके कारण होता है?", o: ["हवा की तेज गति (High wind speed)", "नदी में बहते पानी के तेज वेग (High velocity of flowing water in river)", "जानवरों के चरने (Grazing of animals)", "अम्लीय वर्षा (Acid rain)"], a: 1 },
+            { q: "गली प्लग (Gully plug) बनाने के लिए किस सामग्री का उपयोग किया जा सकता है?", o: ["ब्रशवुड (Brushwood)", "पत्थर और बोल्डर (Stones and boulders)", "A और B दोनों (Both A and B)", "केवल कंक्रीट (Only concrete)"], a: 2 },
+            { q: "मृदा संरक्षण की दृष्टि से, ढलानों पर जुताई (Tillage on slopes) कैसे करनी चाहिए?", o: ["ढलान के ऊपर-नीचे (Up and down the slope)", "समोच्च रेखाओं के समानांतर (Parallel to contour lines)", "ढलान के तिरछे (Diagonally to the slope)", "जुताई बिल्कुल नहीं करनी चाहिए (Tillage should not be done at all)"], a: 1 },
+            { q: "निम्न में से कौन सा एक भू-आकृतिक (Topographic) कारक है जो जल अपरदन को प्रभावित करता है?", o: ["वर्षा की तीव्रता (Rainfall intensity)", "ढलान की लंबाई और डिग्री (Slope length and degree)", "वनस्पति का प्रकार (Type of vegetation)", "मृदा की कार्बनिक मात्रा (Soil organic matter)"], a: 1 },
+            { q: "किस प्रकार का वायु अपरदन मृदा की सतह पर रेंगने वाले बड़े कणों से संबंधित है?", o: ["निलंबन (Suspension)", "उच्छलन (Saltation)", "सतह सर्पण (Surface creep)", "A और B दोनों (Both A and B)"], a: 2 },
+            { q: "ड्रॉप स्पिलवे (Drop spillway) में पानी के गिरने से होने वाले कटाव को रोकने के लिए नीचे क्या बनाया जाता है?", o: ["एप्रन (Apron)", "दीवार (Wall)", "छत (Roof)", "पुल (Bridge)"], a: 0 },
+            { q: "वायु अपरदन (Wind erosion) के कारण मृदा के कौन से पोषक तत्व सबसे ज्यादा नष्ट होते हैं?", o: ["केवल नाइट्रोजन (Only Nitrogen)", "केवल फास्फोरस (Only Phosphorus)", "सतह पर मौजूद सभी कार्बनिक पदार्थ और पोषक तत्व (All organic matter and nutrients present on the surface)", "पोषक तत्वों पर कोई असर नहीं होता (No effect on nutrients)"], a: 2 },
+            { q: "जब वर्षा की बूंदें मिट्टी पर गिरती हैं और मिट्टी के कण छिटक जाते हैं, तो उस ऊर्जा को क्या कहते हैं?", o: ["स्थितिज ऊर्जा (Potential energy)", "गतिज ऊर्जा (Kinetic energy)", "ऊष्मीय ऊर्जा (Thermal energy)", "विद्युत ऊर्जा (Electrical energy)"], a: 1 },
+            { q: "समोच्च पट्टीदार खेती (Contour strip cropping) में कौन सी दो प्रकार की पट्टियां एकांतर (Alternate) रूप से उगाई जाती हैं?", o: ["अपरदन बढ़ाने वाली और अपरदन रोकने वाली फसलें (Erosion permitting and erosion resisting crops)", "केवल अनाज वाली फसलें (Only cereal crops)", "केवल दलहनी फसलें (Only leguminous crops)", "केवल फलदार पेड़ (Only fruit trees)"], a: 0 },
+            { q: "जल संरक्षण के लिए खेत में बनाए गए छोटे तालाबों को क्या कहा जाता है?", o: ["खेत तालाब (Farm pond)", "कुआं (Well)", "नहर (Canal)", "बाँध (Dam)"], a: 0 },
+            { q: "भारत में लगभग कितने मिलियन हेक्टेयर भूमि मृदा क्षरण (Soil degradation) से प्रभावित है? (अनुमानित आंकड़ा)", o: ["50-60 मिलियन हेक्टेयर (50-60 million hectare)", "80-90 मिलियन हेक्टेयर (80-90 million hectare)", "140-150 मिलियन हेक्टेयर (140-150 million hectare)", "200 मिलियन हेक्टेयर से अधिक (More than 200 million hectare)"], a: 2 },
+            { q: "मृदा की सतह को ढकने के लिए जीवित पौधों (Living plants) के उपयोग को क्या कहा जाता है?", o: ["ठूंठ पलवार (Stubble mulch)", "प्लास्टिक पलवार (Plastic mulch)", "आवरण फसल / जैविक पलवार (Cover crop / Biological mulch)", "पत्थर की पलवार (Stone mulch)"], a: 2 }
+        ];
 
-        // Generative filler function to scale dynamically to perfect 50 length standard without code swelling
-        function buildFull50Bank() {
-            const languages = ['en', 'hi'];
-            languages.forEach(lang => {
-                const baseQuestions = [...quizData[lang]];
-                while(quizData[lang].length < 50) {
-                    const template = baseQuestions[quizData[lang].length % baseQuestions.length];
-                    const num = quizData[lang].length + 1;
-                    quizData[lang].push({
-                        q: lang === 'en' ? `[ICAR Core Imp] Question ${num}: ${template.q}` : `[ICAR महत्वपूर्ण] प्रश्न ${num}: ${template.q}`,
-                        o: [...template.o],
-                        a: template.a
-                    });
-                }
-            });
-        }
-        buildFull50Bank();
+        const test3Data = [
+            { q: "'V' आकार की अवनालिकाएं (V-shaped gullies) आमतौर पर कहाँ बनती हैं?", o: ["पहाड़ी क्षेत्रों में (In hilly areas)", "समतल मैदानों में (In flat plains)", "तटीय क्षेत्रों में (In coastal areas)", "उपर्युक्त सभी (All of the above)"], a: 0 },
+            { q: "मृदा अपरदन को प्रभावित करने वाले 'C' कारक (C-factor) का पूरा नाम क्या है?", o: ["जलवायु कारक (Climate factor)", "फसल प्रबंधन कारक (Crop management factor)", "संरक्षण कारक (Conservation factor)", "कटाव कारक (Cutting factor)"], a: 1 },
+            { q: "भारत में सबसे अधिक अवनालिका अपरदन (Gully erosion) किस नदी घाटी में देखा जाता है?", o: ["गंगा (Ganga)", "चंबल (Chambal)", "ब्रह्मपुत्र (Brahmaputra)", "गोदावरी (Godavari)"], a: 1 },
+            { q: "अपवाह (Runoff) को कम करने के लिए खेत की जुताई (Tillage) किस प्रकार करनी चाहिए?", o: ["ढलान की दिशा में (In direction of slope)", "ढलान के आर-पार (Across the slope)", "ढलान के समानांतर (Parallel to the slope)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 1 },
+            { q: "मृदा जल तनाव (Soil moisture tension) को मापने के लिए किस उपकरण का प्रयोग होता है?", o: ["टेन्शियोमीटर (Tensiometer)", "लैक्टोमीटर (Lactometer)", "एनिमोमीटर (Anemometer)", "बैरोमीटर (Barometer)"], a: 0 },
+            { q: "अवनालिका नियंत्रण (Gully control) की यांत्रिक विधि (Mechanical method) कौन सी है?", o: ["चेक डैम (Check dam)", "गली प्लग (Gully plug)", "A और B दोनों (Both A and B)", "आवरण फसल (Cover crop)"], a: 2 },
+            { q: "वायु अपरदन (Wind erosion) को रोकने के लिए शुष्क क्षेत्रों में सबसे प्रभावी पेड़ कौन सा माना जाता है?", o: ["नीलगिरी (Eucalyptus)", "बबूल / खेजड़ी (Acacia / Khejri)", "सेब (Apple)", "पपीता (Papaya)"], a: 1 },
+            { q: "जल संचयन (Water harvesting) तकनीक का उपयोग सबसे अधिक कहाँ फायदेमंद है?", o: ["अधिक वर्षा वाले क्षेत्रों में (In high rainfall areas)", "शुष्क एवं अर्ध-शुष्क क्षेत्रों में (In arid and semi-arid areas)", "बर्फबारी वाले क्षेत्रों में (In snowy areas)", "दलदली क्षेत्रों में (In marshy areas)"], a: 1 },
+            { q: "खस घास (Vetiver grass) का वैज्ञानिक नाम क्या है जो मृदा संरक्षण में बहुत उपयोगी है?", o: ["क्राइसोपोगोन ज़िज़ैनियोइड्स (Chrysopogon zizanioides)", "साइनोडोन डैक्टाइलोन (Cynodon dactylon)", "A और B दोनों (Both A and B)", "ट्रिटिकम एस्टिवम (Triticum aestivum)"], a: 0 },
+            { q: "'बूंद-बूंद सिंचाई' (Drip irrigation) किस क्षेत्र में जल संरक्षण के लिए सर्वोत्तम है?", o: ["पानी की कमी वाले क्षेत्र (Water scarce areas)", "रेतीली मृदा वाले क्षेत्र (Sandy soil areas)", "A और B दोनों (Both A and B)", "बाढ़ ग्रस्त क्षेत्र (Flood prone areas)"], a: 2 },
+            { q: "वायु अपरदन की 'निलंबन' (Suspension) प्रक्रिया में हवा में उड़ने वाले कण कितनी दूर तक जा सकते हैं?", o: ["कुछ मीटर (Few meters)", "कुछ किलोमीटर (Few kilometers)", "हजारों किलोमीटर (Thousands of kilometers)", "बिल्कुल नहीं उड़ते (Do not fly at all)"], a: 2 },
+            { q: "यूनिवर्सल सॉयल लॉस इक्वेशन (USLE) का मुख्य उपयोग क्या है?", o: ["वायु अपरदन का अनुमान लगाना (To estimate wind erosion)", "जल अपरदन से होने वाली मृदा हानि का अनुमान लगाना (To estimate soil loss by water erosion)", "बाढ़ का अनुमान लगाना (To estimate flood)", "फसल उत्पादन का अनुमान लगाना (To estimate crop production)"], a: 1 },
+            { q: "समोच्च खाइयों (Contour trenches) का अनुप्रस्थ काट (Cross-section) आमतौर पर कैसा होता है?", o: ["वी-आकार (V-shape)", "यू-आकार (U-shape)", "आयताकार या समलम्बाकार (Rectangular or trapezoidal)", "वृत्ताकार (Circular)"], a: 2 },
+            { q: "मृदा संरक्षण की 'जैविक विधि' (Biological method) में क्या शामिल है?", o: ["सस्य विज्ञान (Agronomy)", "वानिकी (Forestry)", "एग्रोस्टोलॉजी (Agrostology)", "उपर्युक्त सभी (All of the above)"], a: 3 },
+            { q: "भूमि क्षमता वर्गीकरण के अनुसार, सबसे अच्छी और बिना किसी सीमा वाली कृषि योग्य भूमि कौन सी है?", o: ["वर्ग I (Class I)", "वर्ग II (Class II)", "वर्ग III (Class III)", "वर्ग IV (Class IV)"], a: 0 },
+            { q: "किस प्रकार की मृदा में जल धारण क्षमता (Water holding capacity) सबसे अधिक होती है?", o: ["बलुई मृदा (Sandy soil)", "दोमट मृदा (Loam soil)", "चिकनी मृदा (Clay soil)", "बजरी (Gravel)"], a: 2 },
+            { q: "जल अपरदन की प्रक्रिया का सही क्रम (Correct sequence) क्या है?", o: ["बौछार -> परत -> क्षुद्र सरिता -> अवनालिका (Splash -> Sheet -> Rill -> Gully)", "परत -> बौछार -> अवनालिका -> क्षुद्र सरिता (Sheet -> Splash -> Gully -> Rill)", "अवनालिका -> क्षुद्र सरिता -> परत -> बौछार (Gully -> Rill -> Sheet -> Splash)", "क्षुद्र सरिता -> परत -> बौछार -> अवनालिका (Rill -> Sheet -> Splash -> Gully)"], a: 0 },
+            { q: "निम्नलिखित में से किसे 'कृत्रिम वर्षा' (Artificial rain) या क्लाउड सीडिंग के लिए उपयोग किया जाता है?", o: ["सिल्वर आयोडाइड (Silver iodide)", "सोडियम क्लोराइड (Sodium chloride)", "सूखी बर्फ (Dry ice)", "उपर्युक्त सभी (All of the above)"], a: 3 },
+            { q: "जल संचयन के लिए पारंपरिक 'टांका' (Tanka) प्रणाली मुख्य रूप से किस राज्य में उपयोग की जाती है?", o: ["राजस्थान (Rajasthan)", "केरल (Kerala)", "असम (Assam)", "पंजाब (Punjab)"], a: 0 },
+            { q: "घासदार जलमार्ग (Grassed waterway) में पानी का वेग (Water velocity) आमतौर पर कितना सुरक्षित माना जाता है?", o: ["1 से 2 मीटर/सेकंड (1 to 2 m/s)", "5 से 10 मीटर/सेकंड (5 to 10 m/s)", "10 से 15 मीटर/सेकंड (10 to 15 m/s)", "20 मीटर/सेकंड से अधिक (More than 20 m/s)"], a: 0 },
+            { q: "मृदा की वह क्षमता जिसके द्वारा वह सतह से वर्षा जल को अपने अंदर सोख लेती है, क्या कहलाती है?", o: ["वाष्पीकरण क्षमता (Evaporation capacity)", "अंतःस्रवण क्षमता (Infiltration capacity)", "अपवाह क्षमता (Runoff capacity)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 1 },
+            { q: "रक्षक मेखला (Shelterbelt) में सबसे ऊंचे पेड़ किस हिस्से में लगाए जाते हैं?", o: ["बाहरी पंक्तियों में (In outer rows)", "मध्य पंक्तियों में (In middle rows)", "किसी भी पंक्ति में (In any row)", "किनारों पर (At the edges)"], a: 1 },
+            { q: "'क्षुद्र सरिता' (Rill) और 'अवनालिका' (Gully) के बीच मुख्य अंतर क्या होता है?", o: ["गहराई और आकार का (Of depth and size)", "कृषि उपकरणों द्वारा नष्ट होने का (Of destructibility by farm implements)", "A और B दोनों (Both A and B)", "रंग का (Of color)"], a: 2 },
+            { q: "मृदा संरक्षण का मुख्य उद्देश्य क्या है?", o: ["मृदा उर्वरता बनाए रखना (To maintain soil fertility)", "मृदा अपरदन रोकना (To prevent soil erosion)", "A और B दोनों (Both A and B)", "बाढ़ को बढ़ाना (To increase flood)"], a: 2 },
+            { q: "'मृदा संरचना' (Soil structure) में सुधार करने से अंतःस्रवण (Infiltration) दर पर क्या प्रभाव पड़ता है?", o: ["घटता है (Decreases)", "बढ़ता है (Increases)", "कोई प्रभाव नहीं (No effect)", "पहले घटता है फिर बढ़ता है (First decreases then increases)"], a: 1 },
+            { q: "ड्रॉप स्पिलवे (Drop spillway) का निर्माण किन सामग्रियों से किया जा सकता है?", o: ["कंक्रीट (Concrete)", "ईंट (Brick)", "चिनाई (Masonry)", "उपर्युक्त सभी (All of the above)"], a: 3 },
+            { q: "वायु अपरदन की 'उच्छलन' (Saltation) प्रक्रिया में मृदा कणों की उछाल ऊंचाई आमतौर पर कितनी होती है?", o: ["30 सेमी से कम (Less than 30 cm)", "1 से 2 मीटर (1 to 2 meters)", "5 मीटर से अधिक (More than 5 meters)", "10 मीटर से अधिक (More than 10 meters)"], a: 0 },
+            { q: "खेत की मृदा में कार्बनिक पदार्थ (Organic matter) मिलाने से क्या होता है?", o: ["मृदा की जल धारण क्षमता बढ़ती है (Water holding capacity of soil increases)", "मृदा क्षरणशीलता कम होती है (Soil erodibility decreases)", "A और B दोनों (Both A and B)", "अपरदन बढ़ता है (Erosion increases)"], a: 2 },
+            { q: "जल संचयन के लिए छत के पानी का एकत्रीकरण (Roof top water harvesting) कहाँ अधिक लोकप्रिय और आवश्यक है?", o: ["शहरी क्षेत्रों में (In urban areas)", "जंगलों में (In forests)", "रेगिस्तान में (In deserts)", "दलदली क्षेत्रों में (In marshy areas)"], a: 0 },
+            { q: "वायु अपरदन से सबसे अधिक कौन सी मृदा प्रभावित होती है?", o: ["चिकनी मृदा (Clay soil)", "बलुई मृदा (Sandy soil)", "जलोढ़ मृदा (Alluvial soil)", "लाल मृदा (Red soil)"], a: 1 },
+            { q: "भू-आकृति (Topography) का कौन सा भाग अपवाह (Runoff) को सबसे ज्यादा प्रभावित करता है?", o: ["ढलान की लंबाई (Length of slope)", "ढलान की तीव्रता (Steepness of slope)", "A और B दोनों (Both A and B)", "अक्षांश (Latitude)"], a: 2 },
+            { q: "'हाइड्रोलॉजिक चक्र' (Hydrologic cycle) को संचालित करने वाली मुख्य शक्ति कौन सी है?", o: ["सौर ऊर्जा (Solar energy)", "गुरुत्वाकर्षण (Gravity)", "A और B दोनों (Both A and B)", "भूतापीय ऊर्जा (Geothermal energy)"], a: 2 },
+            { q: "अवनालिका (Gully) विकास की आमतौर पर कितनी अवस्थाएं (Stages) मानी जाती हैं?", o: ["दो (Two)", "तीन (Three)", "चार (Four)", "पाँच (Five)"], a: 2 },
+            { q: "'गाबियन' (Gabion) जालीदार संरचनाओं का उपयोग मुख्य रूप से किसके लिए किया जाता है?", o: ["अवनालिका नियंत्रण (Gully control)", "भूस्खलन नियंत्रण (Landslide control)", "नदी तट सुरक्षा (River bank protection)", "उपर्युक्त सभी (All of the above)"], a: 3 },
+            { q: "मृदा कटाव (Soil erosion) के प्राकृतिक और बहुत धीमे रूप को और क्या कहा जाता है?", o: ["सामान्य अपरदन (Normal erosion)", "भूगर्भीय अपरदन (Geological erosion)", "A और B दोनों (Both A and B)", "त्वरित अपरदन (Accelerated erosion)"], a: 2 },
+            { q: "समोच्च पट्टीदार खेती (Contour strip cropping) में पट्टियों की चौड़ाई किस पर निर्भर करती है?", o: ["ढलान की प्रतिशतता पर (On percentage of slope)", "मृदा के प्रकार पर (On type of soil)", "A और B दोनों (Both A and B)", "हवा की दिशा पर (On wind direction)"], a: 2 },
+            { q: "'अपवाह गुणांक' (Runoff coefficient) का मान हमेशा कैसा होता है?", o: ["1 से कम (Less than 1)", "1 से अधिक (More than 1)", "0 से कम (Less than 0)", "2 के बराबर (Equal to 2)"], a: 0 },
+            { q: "सीढ़ीदार खेत (Bench terraces) का निर्माण पहाड़ी क्षेत्रों में मुख्य रूप से किस फसल के लिए किया जाता है?", o: ["धान (Rice)", "चाय (Tea)", "A और B दोनों (Both A and B)", "बाजरा (Pearl millet)"], a: 2 },
+            { q: "रक्षक मेखला (Shelterbelt) का अनुप्रस्थ आकार (Cross-sectional shape) कैसा होना चाहिए?", o: ["त्रिकोणीय (Triangular)", "आयताकार (Rectangular)", "वर्गाकार (Square)", "गोलाकार (Circular)"], a: 0 },
+            { q: "निम्नलिखित में से कौन सी एक यांत्रिक विधि (Mechanical measure) नहीं है?", o: ["समोच्च मेड़बंदी (Contour bunding)", "वेदिका निर्माण (Terracing)", "पट्टीदार खेती (Strip cropping)", "गली प्लग (Gully plug)"], a: 2 },
+            { q: "वनस्पति आवरण (Vegetation cover) मृदा को अपरदन से कैसे बचाता है?", o: ["वर्षा की बूंदों का प्रभाव कम करके (By reducing raindrop impact)", "जड़ों द्वारा मिट्टी को बांधकर (By binding soil with roots)", "अंतःस्रवण बढ़ाकर (By increasing infiltration)", "उपर्युक्त सभी (All of the above)"], a: 3 },
+            { q: "भारत में 'केन्द्रीय शुष्क क्षेत्र अनुसंधान संस्थान' (CAZRI) कहाँ स्थित है?", o: ["जोधपुर (Jodhpur)", "जयपुर (Jaipur)", "नई दिल्ली (New Delhi)", "देहरादून (Dehradun)"], a: 0 },
+            { q: "हवा द्वारा सबसे बड़े कणों (0.5 मिमी से अधिक) का स्थानांतरण किस प्रक्रिया द्वारा होता है?", o: ["उच्छलन (Saltation)", "निलंबन (Suspension)", "सतह सर्पण (Surface creep)", "उपर्युक्त सभी (All of the above)"], a: 2 },
+            { q: "'अपरदन सूचकांक' (Erosivity index - EI30) का उपयोग मुख्य रूप से किस कारक की गणना में होता है?", o: ["वर्षा की अपरदन क्षमता (Rainfall erosivity)", "मृदा की क्षरणशीलता (Soil erodibility)", "फसल प्रबंधन (Crop management)", "संरक्षण अभ्यास (Conservation practice)"], a: 0 },
+            { q: "निम्न में से कौन सा बांध (Dam) स्थानीय रूप से उपलब्ध मिट्टी से बना होता है?", o: ["चिनाई बांध (Masonry dam)", "अर्थन बांध (Earthen dam)", "कंक्रीट बांध (Concrete dam)", "स्टील बांध (Steel dam)"], a: 1 },
+            { q: "'वर्षा तीव्रता' (Rainfall intensity) को किस इकाई में मापा जाता है?", o: ["मिमी प्रति घंटे (mm per hour)", "लीटर प्रति सेकंड (liter per second)", "मीटर प्रति सेकंड (meter per second)", "किलो प्रति हेक्टेयर (kilo per hectare)"], a: 0 },
+            { q: "अवनालिका नियंत्रण के लिए 'ब्रशवुड डैम' (Brushwood dam) का जीवनकाल आमतौर पर कितना होता है?", o: ["1-2 वर्ष (1-2 years)", "3-5 वर्ष (3-5 years)", "10-15 वर्ष (10-15 years)", "20 वर्ष से अधिक (More than 20 years)"], a: 1 },
+            { q: "कौन सा कारक वायु अपरदन और जल अपरदन दोनों को प्रभावी ढंग से कम करता है?", o: ["वनस्पति आवरण (Vegetation cover)", "गहरी जुताई (Deep tillage)", "अत्यधिक चराई (Overgrazing)", "वनों की कटाई (Deforestation)"], a: 0 },
+            { q: "'जल-विभाजक' (Watershed) का प्रबंधन (Management) क्यों आवश्यक है?", o: ["जल संरक्षण के लिए (For water conservation)", "मृदा क्षरण रोकने के लिए (For preventing soil erosion)", "कृषि उत्पादन बढ़ाने के लिए (For increasing agricultural production)", "उपर्युक्त सभी (All of the above)"], a: 3 },
+            { q: "शुष्क खेती (Dryland farming) मुख्य रूप से उन क्षेत्रों में की जाती है जहाँ वार्षिक वर्षा होती है:", o: ["750 मिमी से कम (Less than 750 mm)", "750 से 1150 मिमी (750 to 1150 mm)", "1150 मिमी से अधिक (More than 1150 mm)", "2000 मिमी से अधिक (More than 2000 mm)"], a: 0 }
+        ];
 
-        let currentLang = 'en';
-        let currentQuestionIndex = 0;
-        let userAnswers = new Array(50).fill(null);
+        const allTests = [test1Data, test2Data, test3Data];
+        const testTitles = ["Part 1: Erosion Basics", "Part 2: Conservation", "Part 3: Advanced"];
+        
+        let currentQuizData = [];
+        let currentIdx = 0;
+        let userAnswers = []; 
 
-        function startQuiz(lang) {
-            currentLang = lang;
-            document.getElementById('langScreen').style.display = 'none';
-            document.getElementById('quizScreen').style.display = 'block';
-            loadQuestion();
-        }
+        let globalAttemptedCount = 0;
+        let globalCorrectCount = 0;
 
-        function loadQuestion() {
-            const currentQuestion = quizData[currentLang][currentQuestionIndex];
-            
-            // Set Header Text
-            document.getElementById('questionCount').innerText = currentLang === 'en' ? `Question ${currentQuestionIndex + 1} of 50` : `प्रश्न ${currentQuestionIndex + 1} / 50`;
-            document.getElementById('questionText').innerText = currentQuestion.q;
-            
-            // Set Progress Bar
-            const progressPercent = ((currentQuestionIndex + 1) / 50) * 100;
-            document.getElementById('progressBar').style.width = `${progressPercent}%`;
-
-            // Load Options
-            const optionsGrid = document.getElementById('optionsGrid');
-            optionsGrid.innerHTML = '';
-            
-            currentQuestion.o.forEach((optionText, index) => {
-                const button = document.createElement('button');
-                button.className = 'option';
-                if (userAnswers[currentQuestionIndex] === index) {
-                    button.className += ' selected';
-                }
-                button.innerHTML = `<span>${optionText}</span> <i class="fa-regular ${userAnswers[currentQuestionIndex] === index ? 'fa-circle-check' : 'fa-circle'}"></i>`;
-                button.onclick = () => selectOption(index);
-                optionsGrid.appendChild(button);
-            });
-
-            // Adjust Footer Buttons
-            document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
-            const nextBtn = document.getElementById('nextBtn');
-            if (currentQuestionIndex === 49) {
-                nextBtn.innerHTML = currentLang === 'en' ? 'Submit Test <i class="fa-solid fa-check-double"></i>' : 'टेस्ट सबमिट करें <i class="fa-solid fa-check-double"></i>';
-                nextBtn.style.background = '#2e7d32';
-            } else {
-                nextBtn.innerHTML = currentLang === 'en' ? 'Next <i class="fa-solid fa-chevron-right"></i>' : 'आगे बढ़ें <i class="fa-solid fa-chevron-right"></i>';
-                nextBtn.style.background = 'var(--primary)';
+        // SMART SHUFFLING ALGORITHM[cite: 1]
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
             }
         }
 
-        function selectOption(index) {
-            userAnswers[currentQuestionIndex] = index;
-            loadQuestion(); // Reload to update circle check states
+        allTests.forEach(testSet => {
+            testSet.forEach(item => {
+                let correctAnswerText = item.o[item.a];
+                
+                let doNotShuffle = item.o.some(opt => 
+                    opt.includes("उपरोक्त सभी") || 
+                    opt.includes("उपर्युक्त सभी") || 
+                    opt.includes("कोई नहीं") || 
+                    opt.includes("दोनों") || 
+                    opt.includes("A और B") || 
+                    opt.includes("A और C") ||
+                    opt.includes("तीनों")
+                );
+                
+                if (!doNotShuffle) {
+                    shuffleArray(item.o); 
+                }
+                item.a = item.o.indexOf(correctAnswerText);
+            });
+        });
+
+        function startQuiz(testNumber) {
+            currentQuizData = allTests[testNumber - 1];
+            userAnswers = new Array(currentQuizData.length).fill(null);
+            currentIdx = 0;
+            document.getElementById('testTitleIndicator').innerText = testTitles[testNumber - 1];
+            
+            document.getElementById('langScreen').style.display = 'none';
+            document.getElementById('quickFactsSection').style.display = 'none';
+            document.getElementById('quizScreen').style.display = 'block';
+            showQ();
+        }
+
+        function showQ() {
+            const q = currentQuizData[currentIdx];
+            document.getElementById('questionCount').innerText = `Q ${currentIdx + 1} / 50`;
+            document.getElementById('questionText').innerText = `Q${currentIdx + 1}. ${q.q}`;
+            document.getElementById('progressBar').style.width = `${((currentIdx + 1) / 50) * 100}%`;
+            document.getElementById('prevBtn').disabled = (currentIdx === 0);
+
+            const grid = document.getElementById('optionsGrid');
+            grid.innerHTML = '';
+            
+            q.o.forEach((txt, i) => {
+                const btn = document.createElement('div');
+                btn.className = 'option';
+                
+                const textSpan = document.createElement('span');
+                textSpan.innerText = `A, B, C, D`.split(',')[i] + ") " + txt;
+                
+                const icon = document.createElement('i');
+                icon.className = "fa-regular fa-circle";
+                
+                btn.appendChild(textSpan);
+                btn.appendChild(icon);
+                
+                btn.onclick = () => selectOption(i, q.a);
+                grid.appendChild(btn);
+            });
+
+            if (userAnswers[currentIdx] !== null) {
+                const selectedIdx = userAnswers[currentIdx];
+                const allOptions = grid.querySelectorAll('.option');
+                
+                allOptions.forEach((opt, i) => {
+                    opt.classList.add('locked');
+                    if (i === q.a) {
+                        opt.classList.add('correct');
+                        opt.querySelector('i').className = "fa-solid fa-circle-check";
+                    } else if (i === selectedIdx && selectedIdx !== q.a) {
+                        opt.classList.add('wrong');
+                        opt.querySelector('i').className = "fa-solid fa-circle-xmark";
+                    }
+                });
+                
+                document.getElementById('skipBtn').style.display = 'none';
+                document.getElementById('nextBtn').style.display = 'flex';
+                
+                if (currentIdx === currentQuizData.length - 1) {
+                    document.getElementById('nextBtn').innerHTML = 'Submit <i class="fa-solid fa-check-double"></i>';
+                }
+            } else {
+                document.getElementById('skipBtn').style.display = 'flex';
+                document.getElementById('nextBtn').style.display = 'none';
+            }
+        }
+
+        function selectOption(selectedIndex, correctIndex) {
+            if (userAnswers[currentIdx] !== null) return;
+            userAnswers[currentIdx] = selectedIndex;
+            const grid = document.getElementById('optionsGrid');
+            const allOptions = grid.querySelectorAll('.option');
+            
+            allOptions.forEach((opt, i) => {
+                opt.classList.add('locked');
+                if (i === correctIndex) {
+                    opt.classList.add('correct');
+                    opt.querySelector('i').className = "fa-solid fa-circle-check";
+                } else if (i === selectedIndex && selectedIndex !== correctIndex) {
+                    opt.classList.add('wrong');
+                    opt.querySelector('i').className = "fa-solid fa-circle-xmark";
+                }
+            });
+
+            document.getElementById('skipBtn').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'flex';
+            if (currentIdx === currentQuizData.length - 1) {
+                document.getElementById('nextBtn').innerHTML = 'Submit <i class="fa-solid fa-check-double"></i>';
+            }
         }
 
         function nextQuestion() {
-            if (currentQuestionIndex < 49) {
-                currentQuestionIndex++;
-                loadQuestion();
+            if (currentIdx < currentQuizData.length - 1) {
+                currentIdx++;
+                showQ();
             } else {
-                calculateResult();
+                results();
             }
         }
 
         function prevQuestion() {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                loadQuestion();
+            if (currentIdx > 0) {
+                currentIdx--;
+                showQ();
             }
         }
 
-        function calculateResult() {
-            let score = 0;
-            quizData[currentLang].forEach((question, index) => {
-                if (userAnswers[index] === question.a) {
-                    score++;
-                }
-            });
+        function skipQuestion() {
+            userAnswers[currentIdx] = null;
+            if (currentIdx < currentQuizData.length - 1) {
+                currentIdx++;
+                showQ();
+            } else {
+                results();
+            }
+        }
 
+        function results() {
             document.getElementById('quizScreen').style.display = 'none';
             document.getElementById('resultScreen').style.display = 'block';
             
-            document.getElementById('scoreDisplay').innerText = score;
+            globalAttemptedCount = 0;
+            globalCorrectCount = 0;
             
-            const percentage = (score / 50) * 100;
-            const congratsIcon = document.getElementById('congratsIcon');
-            const heading = document.getElementById('resultHeading');
-            const message = document.getElementById('messageBox');
+            userAnswers.forEach((ans, idx) => {
+                if (ans !== null) {
+                    globalAttemptedCount++;
+                    if (ans === currentQuizData[idx].a) {
+                        globalCorrectCount++;
+                    }
+                }
+            });
 
-            // Dynamic Personalized Badhaiyan System
-            if (percentage >= 80) {
-                congratsIcon.innerHTML = '<i class="fa-solid fa-crown"></i>';
-                congratsIcon.style.color = 'var(--accent)';
-                heading.innerText = currentLang === 'en' ? "👑 Elite Topper Class!" : "👑 टॉपर परफॉरमेंस!";
-                message.innerText = currentLang === 'en' ? 
-                    `Brilliant Performance! You have cleared Mushahid's expert level evaluation perfectly. Aapne sach mein agriculture domain me kamaal kar diya!` :
-                    `असाधारण प्रदर्शन! आपने मुशाहिद सर के टॉपर लेवल टेस्ट को फतेह कर लिया है। आपकी मेहनत रंग लाई है, ऐसे ही आगे बढ़ते रहें!`;
-            } else if (percentage >= 50) {
-                congratsIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
-                congratsIcon.style.color = 'var(--primary-light)';
-                heading.innerText = currentLang === 'en' ? "✨ Very Good Effort!" : "✨ बहुत बढ़िया प्रयास!";
-                message.innerText = currentLang === 'en' ? 
-                    `Great Job! Your core concepts of Soil Engineering are solid. thodi si aur accuracy badhaayein aur aap top ranker ban jayenge.` :
-                    `शानदार कोशिश! आपका स्कोर काफी अच्छा है और आपकी बुनियादी पकड़ मजबूत है। बस थोड़ी सी मेहनत और, फिर आप भी टॉपर बनेंगे!`;
+            document.getElementById('scoreDisplay').innerText = globalCorrectCount;
+            document.getElementById('totalDisplay').innerText = `Out of ${globalAttemptedCount}`;
+
+            const h = document.getElementById('resultHeading');
+            const m = document.getElementById('messageBox');
+            
+            if(globalAttemptedCount === 0) {
+                h.innerText = "No Questions Attempted";
+                m.innerText = "आपने कोई सवाल हल नहीं किया। कृपया दोबारा टेस्ट दें!";
             } else {
-                congratsIcon.innerHTML = '<i class="fa-solid fa-book-open"></i>';
-                congratsIcon.style.color = '#e65100';
-                heading.innerText = currentLang === 'en' ? "📚 Keep Learning!" : "📚 अभ्यास करते रहें!";
-                message.innerText = currentLang === 'en' ? 
-                    `Hard work beats everything! Read Mushahid's recommended Soil Notes PDF again and re-attempt the test. You will score higher next time!` :
-                    `निराश न हों! रज़ाएग्रीकल्चरपॉइंट के नोट्स पीडीएफ को एक बार फिर से ध्यान से पढ़ें और दोबारा प्रयास करें। आप अगली बार निश्चित ही बेहतर करेंगे!`;
+                const perc = (globalCorrectCount / globalAttemptedCount) * 100;
+                if(perc >= 80) {
+                    h.innerText = "👑 Excellent!";
+                    m.innerText = "बहुत बढ़िया! आपकी तैयारी शानदार है। नीचे अपना सर्टिफिकेट डाउनलोड करें।";
+                } else if(perc >= 50) {
+                    h.innerText = "✨ Good Effort!";
+                    m.innerText = "आप पास हैं! जो सवाल गलत हुए उन्हें दोबारा ज़रूर पढ़ें। अपना सर्टिफिकेट डाउनलोड करें।";
+                } else {
+                    h.innerText = "📚 Need More Practice";
+                    m.innerText = "स्कोर कम है। कोई बात नहीं, इस टेस्ट को दोबारा दें और सारे सही जवाब याद कर लें!";
+                }
             }
         }
 
+        // GENERATE CERTIFICATE SCRIPT[cite: 1]
+        function generateCertificate() {
+            const nameInput = document.getElementById('studentName').value.trim();
+            if (!nameInput) {
+                alert("Please enter your name to generate the certificate!");
+                return;
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = 1200;
+            canvas.height = 850;
+            const ctx = canvas.getContext('2d');
+
+            ctx.fillStyle = '#FAFAFA';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = '#2e7d32';
+            ctx.lineWidth = 20;
+            ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+            ctx.strokeStyle = '#D4AF37';
+            ctx.lineWidth = 6;
+            ctx.strokeRect(48, 48, canvas.width - 96, canvas.height - 96);
+
+            ctx.fillStyle = '#2e7d32';
+            ctx.fillRect(35, 35, 30, 30);
+            ctx.fillRect(canvas.width - 65, 35, 30, 30);
+            ctx.fillRect(35, canvas.height - 65, 30, 30);
+            ctx.fillRect(canvas.width - 65, canvas.height - 65, 30, 30);
+
+            ctx.save();
+            ctx.globalAlpha = 0.04;
+            ctx.fillStyle = '#2e7d32';
+            ctx.font = 'bold 130px Arial';
+            ctx.textAlign = 'center';
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(-Math.PI / 6); 
+            ctx.fillText('RAZAAGRIPOINT', 0, 0);
+            ctx.restore(); 
+
+            ctx.fillStyle = '#2e7d32';
+            ctx.font = 'bold 50px Georgia, serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('CERTIFICATE OF EXCELLENCE', 600, 160);
+            
+            ctx.fillStyle = '#D4AF37';
+            ctx.font = 'bold 22px Arial, sans-serif';
+            ctx.fillText('THIS IS PROUDLY PRESENTED TO', 600, 230);
+
+            ctx.fillStyle = '#b71c1c';
+            ctx.font = 'bold 65px "Times New Roman", Times, serif';
+            ctx.fillText(nameInput.toUpperCase(), 600, 325);
+
+            ctx.strokeStyle = '#D4AF37';
+            ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(300, 355); ctx.lineTo(900, 355); ctx.stroke();
+
+            ctx.fillStyle = '#333333';
+            ctx.font = '22px Arial, sans-serif';
+            ctx.fillText('For demonstrating outstanding academic performance by scoring', 600, 420);
+            
+            ctx.fillStyle = '#43a047';
+            ctx.fillRect(430, 450, 340, 60);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = 'bold 30px Arial';
+            ctx.fillText(`${globalCorrectCount} MARKS OUT OF ${globalAttemptedCount}`, 600, 492);
+
+            ctx.fillStyle = '#333333';
+            ctx.font = '22px Arial, sans-serif';
+            const currentTestName = document.getElementById('testTitleIndicator').innerText;
+            ctx.fillText(`in the online Mock Examination (${currentTestName}) for Soil & Water Conservation.`, 600, 560);
+            
+            ctx.fillStyle = '#555555';
+            ctx.font = 'italic 20px Arial, sans-serif';
+            ctx.fillText('Syllabus Based on Mahatma Jyotibha Phoole Rohelkhand University (MJPRU).', 600, 600);
+
+            const dateStr = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+            ctx.strokeStyle = '#333333';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(150, 720); ctx.lineTo(350, 720); ctx.stroke();
+            
+            ctx.fillStyle = '#333333';
+            ctx.font = 'bold 20px Arial';
+            ctx.fillText(dateStr, 250, 705);
+            ctx.font = '18px Arial';
+            ctx.fillText('Date of Completion', 250, 745);
+
+            ctx.beginPath(); ctx.moveTo(850, 720); ctx.lineTo(1050, 720); ctx.stroke();
+            ctx.fillStyle = '#2e7d32';
+            ctx.font = 'bold 24px cursive, "Brush Script MT", serif'; 
+            ctx.fillText('Mushahid Raza', 950, 705);
+            ctx.fillStyle = '#333333';
+            ctx.font = '18px Arial';
+            ctx.fillText('Admin / Founder', 950, 745);
+
+            ctx.beginPath();
+            ctx.arc(600, 715, 60, 0, Math.PI * 2);
+            ctx.fillStyle = '#D4AF37'; 
+            ctx.fill();
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = '#b71c1c'; 
+            ctx.stroke();
+            
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 15px Arial';
+            ctx.fillText('RAZAAGRIPOINT', 600, 710);
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('VERIFIED', 600, 735);
+
+            const downloadLink = document.createElement('a');
+            downloadLink.download = `${nameInput.replace(/\s+/g, '_')}_Soil_Conservation_Certificate.png`;
+            downloadLink.href = canvas.toDataURL('image/png');
+            downloadLink.click();
+        }
+
         function restartQuiz() {
-            currentQuestionIndex = 0;
-            userAnswers = new Array(50).fill(null);
+            document.getElementById('studentName').value = '';
             document.getElementById('resultScreen').style.display = 'none';
+            document.getElementById('quizScreen').style.display = 'none';
             document.getElementById('langScreen').style.display = 'block';
+            document.getElementById('quickFactsSection').style.display = 'block';
         }
     </script>
 
-    <script>
+<script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="BDnChaYcJDEZEnaO7Tj1A";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
 

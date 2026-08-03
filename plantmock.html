@@ -1,332 +1,717 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plant Pathology Mock Test - Razaagripoint</title>
+    <title>Plant Pathology Mock Test - Premium Edition</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary: #1b5e20;
-            --primary-light: #4caf50;
-            --dark: #0f3e1b;
-            --accent: #ffca28;
-            --bg: #f4f7f5;
+            /* Theme color - Pathology Red/Maroon */
+            --primary: #d32f2f;
+            --primary-dark: #b71c1c;
+            --accent: #ffb300;
+            --bg-gradient: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
             --white: #ffffff;
-            --text: #2c3e50;
-            --shadow: 0 10px 30px rgba(27, 94, 32, 0.1);
+            --text-dark: #3e2723;
+            --text-gray: #5d4037;
+            --correct-bg: #c8e6c9;
+            --correct-border: #2e7d32;
+            --correct-text: #1b5e20;
+            --wrong-bg: #ffcdd2;
+            --wrong-border: #d32f2f;
+            --wrong-text: #b71c1c;
+            --shadow: 0 10px 25px rgba(183, 28, 28, 0.15);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
+        body { background: var(--bg-gradient); color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
 
-        /* --- Navbar --- */
-        nav { background: var(--white); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
-        .logo { color: var(--primary); font-size: 24px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .exit-btn { background: #ffebee; color: #d32f2f; text-decoration: none; padding: 8px 20px; border-radius: 20px; font-weight: 600; font-size: 14px; transition: 0.3s; border: 1px solid #ffcdd2; }
-        .exit-btn:hover { background: #d32f2f; color: var(--white); }
+        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-bottom: 1px solid rgba(255,255,255,0.5); position: sticky; top: 0; z-index: 100; }
+        .logo { color: var(--primary-dark); font-size: 20px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .nav-logo-img { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
 
-        /* --- Main Layout Container --- */
-        .container { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 30px 20px; }
-        .quiz-card { background: var(--white); width: 100%; max-width: 800px; border-radius: 24px; box-shadow: var(--shadow); padding: 40px; position: relative; overflow: hidden; border: 1px solid rgba(0,0,0,0.03); }
+        .container { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 20px 15px; z-index: 1; flex-direction: column; }
+        .quiz-card { background: rgba(255, 255, 255, 0.98); width: 100%; max-width: 850px; border-radius: 24px; box-shadow: var(--shadow); padding: 30px; position: relative; border: 1px solid rgba(255,255,255,0.8); }
 
-        /* --- 1. Language Screen --- */
         .lang-screen { text-align: center; }
-        .lang-screen i.main-icon { font-size: 60px; color: var(--primary-light); margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
-        .lang-screen h1 { font-size: 32px; color: var(--dark); font-weight: 800; margin-bottom: 10px; }
-        .lang-screen p { color: #666; margin-bottom: 40px; font-size: 16px; }
-        .lang-btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 500px; margin: 0 auto; }
-        .lang-btn { background: var(--white); border: 2px solid #e0e0e0; border-radius: 16px; padding: 25px 20px; font-size: 18px; font-weight: 700; color: var(--dark); cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .lang-btn:hover { border-color: var(--primary-light); background: #f0f7f1; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(27,94,32,0.1); }
-        .lang-btn span { font-size: 13px; color: #777; font-weight: 400; }
+        .welcome-badge { background: linear-gradient(90deg, #d32f2f, #b71c1c); color: #fff; padding: 6px 20px; border-radius: 20px; font-weight: 800; font-size: 12px; display: inline-block; margin-bottom: 10px; }
+        .lang-screen i.main-icon { font-size: 70px; background: -webkit-linear-gradient(var(--primary-dark), var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; filter: drop-shadow(0 10px 10px rgba(183, 28, 28, 0.2)); animation: bounceIcon 3s ease-in-out infinite; }
+        .lang-screen h1 { font-size: 26px; color: var(--primary-dark); font-weight: 800; margin-bottom: 8px; line-height: 1.3; }
+        .lang-screen p { color: var(--text-gray); margin-bottom: 20px; font-size: 14px; line-height: 1.5; }
+        @keyframes bounceIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-        /* --- 2. Quiz Screen --- */
+        .test-options-container { display: flex; flex-direction: column; gap: 12px; max-width: 600px; margin: 0 auto; }
+        
+        .test-selection-card { display: flex; align-items: center; justify-content: space-between; background: var(--white); border-radius: 16px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 2px solid transparent; transition: all 0.2s; }
+        .t-card-1 { border-color: #d32f2f; background: linear-gradient(to right, #ffffff, #ffebee); }
+        .t-card-2 { border-color: #7b1fa2; background: linear-gradient(to right, #ffffff, #f3e5f5); }
+        .t-card-3 { border-color: #1976d2; background: linear-gradient(to right, #ffffff, #e3f2fd); }
+
+        .t-icon-box { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; color: #fff; flex-shrink: 0; }
+        .t-icon-1 { background: linear-gradient(135deg, #ef5350, #c62828); }
+        .t-icon-2 { background: linear-gradient(135deg, #ab47bc, #6a1b9a); }
+        .t-icon-3 { background: linear-gradient(135deg, #42a5f5, #1565c0); }
+
+        .t-details { flex-grow: 1; text-align: left; padding: 0 15px; }
+        .t-details h3 { font-size: 16px; color: var(--text-dark); margin-bottom: 2px; font-weight: 700; }
+        .t-details p { font-size: 12px; color: var(--text-gray); font-weight: 500; margin: 0; }
+
+        .t-start-btn { padding: 10px 20px; border-radius: 12px; font-size: 14px; font-weight: 700; color: #fff; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
+        .t-btn-1 { background: linear-gradient(135deg, #ef5350, #c62828); }
+        .t-btn-2 { background: linear-gradient(135deg, #ab47bc, #6a1b9a); }
+        .t-btn-3 { background: linear-gradient(135deg, #42a5f5, #1565c0); }
+
         .quiz-screen { display: none; }
-        .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid #f0f0f0; padding-bottom: 15px; }
-        .q-count { font-weight: 700; color: var(--primary); background: #e8f5e9; padding: 4px 15px; border-radius: 15px; font-size: 14px; }
+        .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid #ffcdd2; padding-bottom: 10px; }
+        .q-count { font-weight: 700; color: var(--white); background: var(--primary-dark); padding: 5px 15px; border-radius: 15px; font-size: 13px; }
+        .test-title-indicator { font-weight: 700; color: #b71c1c; font-size: 13px; background: #ffebee; padding: 5px 12px; border-radius: 8px; border: 1px solid #ffcdd2;}
         
-        /* Progress Bar */
-        .progress-container { width: 100%; background: #eee; height: 8px; border-radius: 4px; margin-bottom: 30px; overflow: hidden; }
-        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary-light), var(--primary)); width: 0%; transition: width 0.3s ease; }
+        .progress-container { width: 100%; background: #ffcdd2; height: 8px; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-dark)); width: 0%; transition: width 0.3s; }
 
-        .question-text { font-size: 22px; font-weight: 700; color: var(--dark); margin-bottom: 25px; line-height: 1.4; }
+        .question-text { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 20px; line-height: 1.4; }
+        .options-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; }
         
-        /* Options Grid */
-        .options-grid { display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px; }
-        .option { background: #f8faf9; border: 2px solid #ebdbe0; border-radius: 14px; padding: 18px 25px; font-size: 16px; font-weight: 500; text-align: left; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: space-between; }
-        .option:hover { background: #f0f4f1; border-color: #cbdcd0; }
-        .option.selected { background: #e8f5e9; border-color: var(--primary-light); color: var(--primary); font-weight: 600; }
-
-        /* Navigation Buttons */
-        .quiz-footer { display: flex; justify-content: space-between; align-items: center; }
-        .nav-btn { background: var(--primary); color: var(--white); border: none; padding: 14px 35px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; }
-        .nav-btn:hover { background: var(--dark); transform: translateY(-2px); }
-        .nav-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
-
-        /* --- 3. Result Screen --- */
-        .result-screen { display: none; text-align: center; }
-        .result-screen .congrats-icon { font-size: 70px; color: var(--accent); margin-bottom: 20px; animation: bounce 2s infinite; }
-        .result-screen h2 { font-size: 36px; font-weight: 800; color: var(--dark); margin-bottom: 15px; }
-        .message-box { font-size: 18px; color: #555; max-width: 600px; margin: 0 auto 30px auto; line-height: 1.6; font-weight: 500; }
+        .option { background: var(--white); border: 2px solid #ffcdd2; border-radius: 12px; padding: 14px 18px; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: space-between; color: var(--text-gray); }
+        .option:not(.locked):hover { background: #ffebee; border-color: var(--primary); color: var(--primary-dark); }
+        .option.correct { background: var(--correct-bg) !important; border-color: var(--correct-border) !important; color: var(--correct-text) !important; }
+        .option.wrong { background: var(--wrong-bg) !important; border-color: var(--wrong-border) !important; color: var(--wrong-text) !important; }
+        .option.locked { pointer-events: none; }
         
-        .score-circle { width: 160px; height: 160px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-light), var(--primary)); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 40px auto; box-shadow: 0 10px 25px rgba(27,94,32,0.3); }
-        .score-circle h1 { font-size: 46px; font-weight: 800; line-height: 1; }
-        .score-circle span { font-size: 14px; opacity: 0.8; font-weight: 500; text-transform: uppercase; margin-top: 5px; }
+        .quiz-footer { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .nav-btn { padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; flex: 1; border: none; transition: 0.2s; min-width: 100px; }
+        .btn-prev { background: #ffebee; color: var(--text-gray); }
+        .btn-prev:disabled { opacity: 0.4; cursor: not-allowed; }
+        .btn-skip { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+        .btn-next { background: var(--primary-dark); color: var(--white); }
 
-        .restart-btn { background: var(--accent); color: var(--dark); border: none; padding: 15px 40px; border-radius: 30px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(255,202,40,0.4); }
-        .restart-btn:hover { background: #ffb300; transform: scale(1.05); }
+        .result-screen { display: none; text-align: center; padding: 20px 0; }
+        .result-screen .congrats-icon { font-size: 60px; color: var(--accent); margin-bottom: 10px; }
+        .result-screen h2 { font-size: 32px; font-weight: 800; color: var(--primary-dark); margin-bottom: 10px; }
+        .message-box { font-size: 15px; color: var(--text-gray); margin-bottom: 25px; font-weight: 500; }
+        
+        .score-circle { width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 25px auto; border: 4px solid #ffebee; }
+        .score-circle h1 { font-size: 42px; font-weight: 800; line-height: 1; margin-bottom: 0; }
+        .score-circle span { font-size: 13px; font-weight: 600; margin-top: 5px; text-transform: uppercase; }
 
-        /* --- Animations --- */
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-20px); } 60% { transform: translateY(-10px); } }
+        .cert-container { background: rgba(183, 28, 28, 0.04); border: 2px dashed var(--primary); padding: 20px; border-radius: 20px; margin-bottom: 25px; }
+        .cert-container h3 { color: var(--primary-dark); font-size: 18px; margin-bottom: 10px; font-weight: 700; }
+        .cert-input { width: 100%; max-width: 350px; padding: 12px 20px; border: 2px solid #ffcdd2; border-radius: 12px; font-size: 15px; font-weight: 600; text-align: center; margin-bottom: 15px; outline: none; }
+        .cert-input:focus { border-color: var(--primary); }
+        .cert-btn { background: linear-gradient(135deg, #d32f2f, #b71c1c); color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+        .restart-btn { background: #ffebee; color: var(--text-dark); border: none; padding: 12px 30px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; width: 100%; max-width: 300px; margin-top: 10px; }
 
-        footer { background: var(--dark); color: #888; text-align: center; padding: 20px; font-size: 14px; margin-top: auto; border-top: 4px solid var(--accent); }
-        footer span { color: var(--accent); font-weight: bold; }
+        #quickFactsSection { width: 100%; max-width: 850px; margin-top: 20px; background: rgba(255, 255, 255, 0.95); border-radius: 20px; padding: 25px; box-shadow: var(--shadow); border: 1px solid #ffcdd2; }
+        .qf-header { text-align: center; margin-bottom: 20px; }
+        .qf-header h2 { font-size: 22px; color: #b71c1c; font-weight: 800; }
+        .qf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+        .qf-item { background: #ffffff; border-left: 4px solid #d32f2f; padding: 12px 15px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .qf-question { font-size: 13px; font-weight: 600; color: #5d4037; max-width: 65%; }
+        .qf-answer { padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 800; background: #ffebee; color: #b71c1c; }
+
+        @media (max-width: 600px) {
+            .quiz-card { padding: 20px 15px; border-radius: 18px; }
+            .test-selection-card { padding: 12px; }
+            .t-icon-box { width: 40px; height: 40px; font-size: 18px; }
+            .t-details h3 { font-size: 14px; }
+            .t-details p { font-size: 11px; }
+            .quiz-header { flex-direction: column; gap: 10px; align-items: flex-start; }
+            .question-text { font-size: 16px; margin-bottom: 15px; }
+            .option { padding: 12px 15px; font-size: 14px; }
+            .qf-item { flex-direction: column; gap: 8px; text-align: center; }
+            .qf-question { max-width: 100%; }
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="index.html" class="logo"><i class="fa-solid fa-wheat-awn"></i> Razaagripoint</a>
-        <a href="semester2.html" class="exit-btn"><i class="fa-solid fa-door-open"></i> Exit Test</a>
+        <a href="javascript:history.back()" class="logo">
+            <img src="mushahid.jpeg" alt="Logo" class="nav-logo-img" onerror="this.src='https://via.placeholder.com/35?text=R'">
+            Razaagripoint
+        </a>
     </nav>
 
     <div class="container">
         <div class="quiz-card">
             
             <div id="langScreen" class="lang-screen">
-                <i class="fa-solid fa-microscope main-icon"></i>
-                <h1>Start Your Mock Test</h1>
-                <p>Fundamentals of Plant Pathology • 50 Questions • 50 Marks</p>
+                <div class="welcome-badge">⭐ THE ULTIMATE TEST PORTAL</div>
+                <i class="fa-solid fa-virus main-icon"></i>
+                <h1>Fundamentals of Plant Pathology</h1>
+                <p>Welcome! यहाँ आपको <b>MJPRU University</b> के 2nd Sem सिलेबस पर आधारित <b>पादप रोग विज्ञान (Plant Pathology)</b> के <b>150 Unique Questions</b> के 3 अलग-अलग प्रीमियम टेस्ट मिलेंगे। अपनी तैयारी के हिसाब से टेस्ट सेलेक्ट करें!</p>
                 
-                <div class="lang-btn-grid">
-                    <button class="lang-btn" onclick="startQuiz('hi')">
-                        हिन्दी टेस्ट
-                        <span>हिंदी माध्यम के छात्रों के लिए</span>
-                    </button>
-                    <button class="lang-btn" onclick="startQuiz('en')">
-                        English Test
-                        <span>For English Medium Students</span>
-                    </button>
+                <div class="test-options-container">
+                    <div class="test-selection-card t-card-1">
+                        <div class="t-icon-box t-icon-1"><i class="fa-solid fa-book-medical"></i></div>
+                        <div class="t-details">
+                            <h3>Part 1: History & Concepts</h3>
+                            <p>50 Intro, Famines & Basic Path MCQs</p>
+                        </div>
+                        <button class="t-start-btn t-btn-1" onclick="startQuiz(1)">Start <i class="fa-solid fa-play"></i></button>
+                    </div>
+
+                    <div class="test-selection-card t-card-2">
+                        <div class="t-icon-box t-icon-2"><i class="fa-solid fa-microscope"></i></div>
+                        <div class="t-details">
+                            <h3>Part 2: Pathogens & Microbes</h3>
+                            <p>50 Fungi, Bacteria & Viruses MCQs</p>
+                        </div>
+                        <button class="t-start-btn t-btn-2" onclick="startQuiz(2)">Start <i class="fa-solid fa-play"></i></button>
+                    </div>
+
+                    <div class="test-selection-card t-card-3">
+                        <div class="t-icon-box t-icon-3"><i class="fa-solid fa-shield-virus"></i></div>
+                        <div class="t-details">
+                            <h3>Part 3: Diseases & Management</h3>
+                            <p>50 Fungicides & Disease Control MCQs</p>
+                        </div>
+                        <button class="t-start-btn t-btn-3" onclick="startQuiz(3)">Start <i class="fa-solid fa-play"></i></button>
+                    </div>
                 </div>
             </div>
 
             <div id="quizScreen" class="quiz-screen">
                 <div class="quiz-header">
-                    <span id="questionCount" class="q-count">Question 1 of 50</span>
+                    <span id="questionCount" class="q-count">Q 1 / 50</span>
+                    <span id="testTitleIndicator" class="test-title-indicator">Test 1</span>
                 </div>
-                
                 <div class="progress-container">
                     <div id="progressBar" class="progress-bar"></div>
                 </div>
-
-                <div id="questionText" class="question-text">Loading Question...</div>
-                
-                <div id="optionsGrid" class="options-grid">
-                    </div>
-
+                <div id="questionText" class="question-text">Loading...</div>
+                <div id="optionsGrid" class="options-grid"></div>
                 <div class="quiz-footer">
-                    <button id="prevBtn" class="nav-btn" onclick="prevQuestion()" disabled><i class="fa-solid fa-chevron-left"></i> Previous</button>
-                    <button id="nextBtn" class="nav-btn" onclick="nextQuestion()">Next <i class="fa-solid fa-chevron-right"></i></button>
+                    <button id="prevBtn" class="nav-btn btn-prev" onclick="prevQuestion()"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+                    <button id="skipBtn" class="nav-btn btn-skip" onclick="skipQuestion()">Skip <i class="fa-solid fa-forward-step"></i></button>
+                    <button id="nextBtn" class="nav-btn btn-next" style="display:none;" onclick="nextQuestion()">Next <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
 
             <div id="resultScreen" class="result-screen">
-                <div id="congratsIcon" class="congrats-icon"><i class="fa-solid fa-crown"></i></div>
-                <h2 id="resultHeading">Excellent Work!</h2>
-                <div id="messageBox" class="message-box">Congratulations message...</div>
-                
+                <div class="congrats-icon"><i class="fa-solid fa-trophy"></i></div>
+                <h2 id="resultHeading">Great Job!</h2>
+                <div id="messageBox" class="message-box">Results loading...</div>
                 <div class="score-circle">
-                    <h1 id="scoreDisplay">00</h1>
-                    <span id="totalDisplay">Out of 50</span>
+                    <h1 id="scoreDisplay">0</h1>
+                    <span id="totalDisplay">Out of 0</span>
                 </div>
-
-                <button class="restart-btn" onclick="restartQuiz()"><i class="fa-solid fa-rotate-right"></i> Try Again</button>
+                <div class="cert-container">
+                    <h3>🏆 Download Your Topper Certificate</h3>
+                    <p style="font-size: 13px; color: var(--text-gray); margin-bottom: 12px;">अपना पूरा नाम नीचे बॉक्स में लिखें और एक <b>Professional High-Quality Certificate</b> तुरंत डाउनलोड करें:</p>
+                    <input type="text" id="studentName" class="cert-input" placeholder="यहाँ अपना नाम लिखें">
+                    <br>
+                    <button class="cert-btn" onclick="generateCertificate()"><i class="fa-solid fa-file-arrow-down"></i> Get My Certificate</button>
+                </div>
+                <button class="restart-btn" onclick="restartQuiz()"><i class="fa-solid fa-rotate-right"></i> Choose Another Test</button>
             </div>
+        </div>
 
+        <div id="quickFactsSection" class="quick-facts-wrapper">
+            <div class="qf-header">
+                <h2><i class="fa-solid fa-bolt" style="color: #ffb300;"></i> Exam Booster: Top One-Liners</h2>
+                <p style="color: #718096; font-size: 14px; font-weight: 500;">एग्ज़ाम से 10 मिनट पहले बस इसे पढ़ लेना, सीधे सवाल फसेंगे!</p>
+            </div>
+            <div class="qf-grid">
+                <div class="qf-item"><div class="qf-question">पादप रोग विज्ञान के जनक (Father of Plant Pathology)</div><div class="qf-answer">एंटोन डी बेरी (Anton de Bary)</div></div>
+                <div class="qf-item"><div class="qf-question">भारत में पादप रोग विज्ञान के जनक (Father in India)</div><div class="qf-answer">ई. जे. बटलर (E.J. Butler)</div></div>
+                <div class="qf-item"><div class="qf-question">आयरिश अकाल (Irish Famine - 1845) का कारण</div><div class="qf-answer">आलू का पछेती झुलसा (Late blight of potato)</div></div>
+                <div class="qf-item"><div class="qf-question">बंगाल का अकाल (Bengal Famine - 1943) का कारण</div><div class="qf-answer">धान का भूरा धब्बा रोग (Brown spot of rice)</div></div>
+                <div class="qf-item"><div class="qf-question">बोर्डो मिश्रण (Bordeaux mixture) की खोज (1885)</div><div class="qf-answer">मिलाडेट (Millardet)</div></div>
+                <div class="qf-item"><div class="qf-question">कवकों (Fungi) की कोशिका भित्ति किससे बनी होती है?</div><div class="qf-answer">काइटिन (Chitin)</div></div>
+                <div class="qf-item"><div class="qf-question">वायरॉयड (Viroids) की खोज किसने की?</div><div class="qf-answer">टी. ओ. डायनर (T.O. Diener)</div></div>
+                <div class="qf-item"><div class="qf-question">रोग त्रिकोण (Disease Triangle) के तीन घटक</div><div class="qf-answer">परपोषी, रोगजनक, वातावरण (Host, Pathogen, Environment)</div></div>
+                <div class="qf-item"><div class="qf-question">पहला सर्वांगी कवकनाशी (First Systemic Fungicide)</div><div class="qf-answer">कार्बोक्सिन / विटावैक्स (Carboxin / Vitavax)</div></div>
+                <div class="qf-item"><div class="qf-question">पादप जीवाणु विज्ञान के जनक (Father of Phytobacteriology)</div><div class="qf-answer">ई. एफ. स्मिथ (E.F. Smith)</div></div>
+            </div>
         </div>
     </div>
 
-    <footer>
-      <p style="font-size: 14px; color: #888;">Designed by <b>MUSHAHID RAZA</b> with ❤️ for BSc Agriculture Students</p>
-    </footer>
+   <script>
+        // TEST DATA FOR FUNDAMENTALS OF PLANT PATHOLOGY
+        
+        // Part 1: History, Concepts & Terminology (50 Questions)
+        const test1Data = [
+            { q: "पादप रोग विज्ञान (Plant Pathology) के जनक (Father) के रूप में किसे जाना जाता है?", o: ["लुई पाश्चर (Louis Pasteur)", "एंटोन डी बेरी (Anton de Bary)", "ई. जे. बटलर (E.J. Butler)", "रॉबर्ट कोच (Robert Koch)"], a: 1 },
+            { q: "भारत में पादप रोग विज्ञान (Plant Pathology in India) का जनक किसे माना जाता है?", o: ["बी. बी. मुंडकर (B.B. Mundkur)", "ई. जे. बटलर (E.J. Butler)", "के. सी. मेहता (K.C. Mehta)", "जे. एफ. दस्तूर (J.F. Dastur)"], a: 1 },
+            { q: "विश्व प्रसिद्ध 'आयरिश अकाल' (Irish Famine) किस वर्ष आया था?", o: ["1845 (1845)", "1943 (1943)", "1885 (1885)", "1905 (1905)"], a: 0 },
+            { q: "आयरिश अकाल (Irish Famine) किस फसल के रोग के कारण हुआ था?", o: ["धान (Rice)", "गेहूं (Wheat)", "आलू (Potato)", "गन्ना (Sugarcane)"], a: 2 },
+            { q: "आलू का पछेती झुलसा रोग (Late blight of potato) किस रोगजनक (Pathogen) के कारण होता है?", o: ["फाइटोफ्थोरा इन्फेस्टैंस (Phytophthora infestans)", "अल्टरनेरिया सोलानी (Alternaria solani)", "पक्सीनिया ग्रैमिनिस (Puccinia graminis)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 0 },
+            { q: "बंगाल का अकाल (Bengal Famine - 1943) किस रोग के कारण हुआ था?", o: ["गेहूं का रतुआ (Wheat rust)", "आलू का झुलसा (Potato blight)", "धान का भूरा धब्बा रोग (Brown spot of rice)", "धान का झोंका रोग (Rice blast)"], a: 2 },
+            { q: "धान का भूरा धब्बा रोग (Brown spot of rice) किस कवक (Fungus) द्वारा होता है?", o: ["पायरीकुलेरिया ओराइजी (Pyricularia oryzae)", "हेल्मिन्थोस्पोरियम ओराइजी (Helminthosporium oryzae)", "फ्यूजेरियम ऑक्सिस्पोरम (Fusarium oxysporum)", "राइजोक्टोनिया सोलानी (Rhizoctonia solani)"], a: 1 },
+            { q: "रोग त्रिकोण (Disease Triangle) के तीन मुख्य घटक (Components) कौन से हैं?", o: ["परपोषी, रोगजनक, और वातावरण (Host, Pathogen, and Environment)", "मृदा, जल, और हवा (Soil, Water, and Air)", "कवक, जीवाणु, और वायरस (Fungi, Bacteria, and Viruses)", "परपोषी, किसान, और उर्वरक (Host, Farmer, and Fertilizer)"], a: 0 },
+            { q: "'रोग चतुष्फलक' (Disease Tetrahedron) में रोग त्रिकोण के अलावा चौथा घटक क्या जोड़ा गया है?", o: ["तापमान (Temperature)", "समय (Time)", "नमी (Moisture)", "हवा (Wind)"], a: 1 },
+            { q: "जो जीव अपना भोजन स्वयं नहीं बना सकते और दूसरे जीवित जीवों पर निर्भर रहते हैं, क्या कहलाते हैं?", o: ["मृतोपजीवी (Saprophyte)", "परजीवी (Parasite)", "स्वपोषी (Autotroph)", "सहजीवी (Symbiont)"], a: 1 },
+            { q: "जो जीव अपना भोजन केवल मृत कार्बनिक पदार्थों (Dead organic matter) से प्राप्त करते हैं, क्या कहलाते हैं?", o: ["अविकल्पी परजीवी (Obligate parasite)", "विकल्पी मृतोपजीवी (Facultative saprophyte)", "अविकल्पी मृतोपजीवी (Obligate saprophyte)", "विकल्पी परजीवी (Facultative parasite)"], a: 2 },
+            { q: "ऐसा रोगजनक (Pathogen) जो केवल जीवित परपोषी (Living host) पर ही जीवित रह सकता है और कृत्रिम माध्यम पर नहीं उगाया जा सकता, क्या कहलाता है?", o: ["विकल्पी मृतोपजीवी (Facultative saprophyte)", "अविकल्पी परजीवी (Obligate parasite)", "विकल्पी परजीवी (Facultative parasite)", "उपर्युक्त सभी (All of the above)"], a: 1 },
+            { q: "रतुआ (Rust) और कंडवा (Smut) कवक किस प्रकार के परजीवी (Parasite) के उदाहरण हैं?", o: ["अविकल्पी परजीवी (Obligate parasites)", "अविकल्पी मृतोपजीवी (Obligate saprophytes)", "विकल्पी परजीवी (Facultative parasites)", "A और C दोनों (Both A and C)"], a: 0 },
+            { q: "बीमारी की वह अवस्था जब रोग के लक्षण (Symptoms) पौधे पर स्पष्ट रूप से दिखाई देने लगते हैं, क्या कहलाती है?", o: ["संक्रमण (Infection)", "प्रकाशन / प्रकटन (Expression / Manifestation)", "उद्भवन (Incubation)", "टीकाकरण (Inoculation)"], a: 1 },
+            { q: "किसी रोगजनक (Pathogen) के पौधे में प्रवेश करने और पहले लक्षण दिखाई देने के बीच के समय को क्या कहते हैं?", o: ["संक्रमण काल (Infection period)", "उद्भवन काल (Incubation period)", "सुषुप्तावस्था (Dormancy period)", "अस्तित्व काल (Survival period)"], a: 1 },
+            { q: "जीवाणुओं (Bacteria) द्वारा होने वाले पादप रोगों की खोज सबसे पहले किसने की थी?", o: ["ई. एफ. स्मिथ (E.F. Smith)", "टी. जे. बुरिल (T.J. Burrill)", "रॉबर्ट कोच (Robert Koch)", "लुई पाश्चर (Louis Pasteur)"], a: 1 },
+            { q: "पादप जीवाणु विज्ञान (Phytobacteriology) का जनक किसे कहा जाता है?", o: ["एंटोन डी बेरी (Anton de Bary)", "ई. एफ. स्मिथ (E.F. Smith)", "ई. जे. बटलर (E.J. Butler)", "टी. जे. बुरिल (T.J. Burrill)"], a: 1 },
+            { q: "'कोच की अभिधारणाएं' (Koch's postulates) मुख्य रूप से किसके लिए उपयोग की जाती हैं?", o: ["वायरस की पहचान (Identification of viruses)", "कवक का नियंत्रण (Control of fungi)", "रोगजनकता सिद्ध करने के लिए (To prove pathogenicity)", "कीटों को मारने के लिए (To kill insects)"], a: 2 },
+            { q: "वह बीमारी जो किसी विशेष क्षेत्र या देश में हमेशा मध्यम या गंभीर रूप में मौजूद रहती है, क्या कहलाती है?", o: ["महामारी (Epidemic)", "स्थानिक (Endemic)", "छिटपुट (Sporadic)", "विश्वव्यापी (Pandemic)"], a: 1 },
+            { q: "वह बीमारी जो एक बड़े क्षेत्र में अचानक और बहुत गंभीर रूप (Severe form) में फैल जाती है, क्या कहलाती है?", o: ["स्थानिक (Endemic)", "छिटपुट (Sporadic)", "महामारी (Epidemic / Epiphytotic)", "विश्वव्यापी (Pandemic)"], a: 2 },
+            { q: "वह रोग जो दुनिया भर के महाद्वीपों में फैल जाता है (जैसे कोविड-19), उसे क्या कहते हैं?", o: ["स्थानिक (Endemic)", "विश्वव्यापी (Pandemic)", "महामारी (Epidemic)", "छिटपुट (Sporadic)"], a: 1 },
+            { q: "भारत में गेहूं के रतुआ रोग (Wheat rusts) पर सबसे अधिक शोध कार्य (Research work) किसने किया था?", o: ["ई. जे. बटलर (E.J. Butler)", "के. सी. मेहता (K.C. Mehta)", "बी. बी. मुंडकर (B.B. Mundkur)", "एम. एस. स्वामीनाथन (M.S. Swaminathan)"], a: 1 },
+            { q: "बोर्डो मिश्रण (Bordeaux mixture) की खोज पी. एम. ए. मिलाडेट (P.M.A. Millardet) ने किस वर्ष की थी?", o: ["1882 (1882)", "1885 (1885)", "1905 (1905)", "1943 (1943)"], a: 1 },
+            { q: "बोर्डो मिश्रण (Bordeaux mixture) की खोज अंगूर (Grapevine) के किस रोग को नियंत्रित करने के लिए की गई थी?", o: ["पाउडरी मिल्ड्यू (Powdery mildew)", "डाउनी मिल्ड्यू (Downy mildew)", "रस्ट (Rust)", "स्मट (Smut)"], a: 1 },
+            { q: "बोर्डो मिश्रण (Bordeaux mixture) किन तीन चीजों से मिलकर बनता है?", o: ["कॉपर सल्फेट + चूना + पानी (Copper sulphate + Lime + Water)", "सल्फर + चूना + पानी (Sulphur + Lime + Water)", "जिंक सल्फेट + चूना + पानी (Zinc sulphate + Lime + Water)", "लोहा + चूना + पानी (Iron + Lime + Water)"], a: 0 },
+            { q: "भारतीय फाइटोपैथोलॉजिकल सोसायटी (Indian Phytopathological Society - IPS) की स्थापना किसने की थी?", o: ["ई. जे. बटलर (E.J. Butler)", "बी. बी. मुंडकर (B.B. Mundkur)", "के. सी. मेहता (K.C. Mehta)", "एम. के. पटेल (M.K. Patel)"], a: 1 },
+            { q: "किसी जीव की बीमारी पैदा करने की आनुवंशिक क्षमता (Genetic capacity to cause disease) क्या कहलाती है?", o: ["उग्रता (Virulence)", "रोगजनकता (Pathogenicity)", "संवेदनशीलता (Susceptibility)", "प्रतिरोध (Resistance)"], a: 1 },
+            { q: "रोगजनक (Pathogen) की बीमारी पैदा करने की मात्रा या तीव्रता (Degree or measure of pathogenicity) को क्या कहते हैं?", o: ["रोगजनकता (Pathogenicity)", "उग्रता (Virulence)", "प्रतिरोध (Resistance)", "सहिष्णुता (Tolerance)"], a: 1 },
+            { q: "लक्षणों (Symptoms) के साथ पौधे पर रोगजनक के दिखाई देने वाले भौतिक भाग (जैसे फफूंद का जाल) को क्या कहते हैं?", o: ["लक्षण (Symptom)", "चिह्न (Sign)", "संक्रमण (Infection)", "उपर्युक्त सभी (All of the above)"], a: 1 },
+            { q: "जब पौधे का कोई हिस्सा रोग के कारण सामान्य से अधिक बड़ा हो जाता है (कोशिकाओं के आकार बढ़ने के कारण), तो उसे क्या कहते हैं?", o: ["हाइपरप्लासिया (Hyperplasia)", "हाइपरट्रॉफी (Hypertrophy)", "हाइपोप्लासिया (Hypoplasia)", "नेक्रोसिस (Necrosis)"], a: 1 },
+            { q: "कोशिकाओं की संख्या में वृद्धि (Increase in number of cells) के कारण पौधे के अंग का फूलना क्या कहलाता है?", o: ["हाइपरट्रॉफी (Hypertrophy)", "हाइपरप्लासिया (Hyperplasia)", "क्लोरोसिस (Chlorosis)", "A और B दोनों (Both A and B)"], a: 1 },
+            { q: "बीमारी के कारण ऊतकों या कोशिकाओं की मृत्यु (Death of tissues) हो जाना क्या कहलाता है?", o: ["क्लोरोसिस (Chlorosis)", "नेक्रोसिस (Necrosis)", "विल्ट (Wilt)", "स्टंटिंग (Stunting)"], a: 1 },
+            { q: "क्लोरोफिल के नष्ट होने के कारण पौधे के हरे भागों का पीला पड़ना क्या कहलाता है?", o: ["नेक्रोसिस (Necrosis)", "क्लोरोसिस / हरिमहीनता (Chlorosis)", "हाइपरट्रॉफी (Hypertrophy)", "रोसेट (Rosette)"], a: 1 },
+            { q: "तंबाकू मोज़ेक वायरस (Tobacco Mosaic Virus - TMV) को क्रिस्टलीय रूप (Crystalline form) में सबसे पहले किसने अलग किया था?", o: ["इवानोव्स्की (Ivanowski)", "डब्लू. एम. स्टेनली (W.M. Stanley)", "एम. डब्ल्यू. बेजेरिनक (M.W. Beijerinck)", "रॉबर्ट कोच (Robert Koch)"], a: 1 },
+            { q: "किसने कहा था कि वायरस एक 'संक्रामक जीवित तरल' (Contagium vivum fluidum) है?", o: ["डब्लू. एम. स्टेनली (W.M. Stanley)", "एम. डब्ल्यू. बेजेरिनक (M.W. Beijerinck)", "इवानोव्स्की (Ivanowski)", "टी. ओ. डायनर (T.O. Diener)"], a: 1 },
+            { q: "दुनिया का पहला सर्वांगी कवकनाशी (First Systemic Fungicide) कौन सा था?", o: ["बोर्डो मिश्रण (Bordeaux mixture)", "कार्बोक्सिन / विटावैक्स (Carboxin / Vitavax)", "कैप्टान (Captan)", "थिरम (Thiram)"], a: 1 },
+            { q: "कार्बोक्सिन (Carboxin) और ऑक्सीकार्बोक्सिन (Oxycarboxin) की खोज 1966 में किसने की थी?", o: ["वॉन श्मेलिंग और कुल्का (Von Schmeling and Kulka)", "मिलाडेट (Millardet)", "डब्लू. एम. स्टेनली (W.M. Stanley)", "ई. जे. बटलर (E.J. Butler)"], a: 0 },
+            { q: "वह रासायनिक पदार्थ जो कवकों (Fungi) को मारता है, क्या कहलाता है?", o: ["जीवाणुनाशी (Bactericide)", "कवकनाशी (Fungicide)", "सूत्रकृमिनाशी (Nematicide)", "शाकनाशी (Herbicide)"], a: 1 },
+            { q: "पौधों की बीमारियों का कारण मुख्य रूप से क्या हो सकता है?", o: ["जैविक कारक - कवक, जीवाणु (Biotic factors - Fungi, bacteria)", "अजैविक कारक - तापमान, नमी (Abiotic factors - Temperature, moisture)", "A और B दोनों (Both A and B)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 2 },
+            { q: "मृदा में रोगजनकों (Pathogens) को मारने के लिए सूर्य की गर्मी का उपयोग करना क्या कहलाता है?", o: ["मृदा सौरीकरण (Soil solarization)", "मृदा पाश्चुरीकरण (Soil pasteurization)", "फ्यूमिगेशन (Fumigation)", "सॉयल ड्रेन्चिंग (Soil drenching)"], a: 0 },
+            { q: "किसी देश या क्षेत्र में नई बीमारियों के प्रवेश को रोकने के लिए बनाए गए कानूनी नियमों को क्या कहते हैं?", o: ["टीकाकरण (Inoculation)", "प्लांट क्वारंटाइन / पादप संगरोध (Plant quarantine)", "प्रमाणीकरण (Certification)", "उपर्युक्त सभी (All of the above)"], a: 1 },
+            { q: "भारत में 'विनाशकारी कीट और रोग अधिनियम' (Destructive Insects and Pests Act - DIP Act) किस वर्ष पारित किया गया था?", o: ["1905 (1905)", "1914 (1914)", "1947 (1947)", "1972 (1972)"], a: 1 },
+            { q: "किसी खेत से बीमार पौधों को उखाड़कर नष्ट करना क्या कहलाता है?", o: ["रोगिंग (Roguing)", "छंटाई (Pruning)", "निराई (Weeding)", "टीकाकरण (Inoculation)"], a: 0 },
+            { q: "एक ही खेत में लगातार एक ही फसल उगाने से बचने की प्रक्रिया क्या कहलाती है?", o: ["फसल चक्र (Crop rotation)", "मिश्रित खेती (Mixed farming)", "एकल खेती (Monoculture)", "अंतरफसल (Intercropping)"], a: 0 },
+            { q: "जीवाणुओं के कारण होने वाले रोग का एक सामान्य लक्षण (Symptom) कौन सा है?", o: ["पाउडर जैसा सफेद पदार्थ (Powdery white growth)", "पानी से भीगे हुए धब्बे और ऊज़ (Water-soaked lesions and ooze)", "विषाणु मोज़ेक (Viral mosaic)", "उपर्युक्त सभी (All of the above)"], a: 1 },
+            { q: "पौधों के जड़ों के पास का वह क्षेत्र जहाँ सूक्ष्मजीवों की गतिविधि सबसे अधिक होती है, क्या कहलाता है?", o: ["राइजोस्फीयर (Rhizosphere)", "फाइलोस्फीयर (Phyllosphere)", "एटमॉस्फियर (Atmosphere)", "हाइड्रोस्फीयर (Hydrosphere)"], a: 0 },
+            { q: "राइजोस्फीयर (Rhizosphere) शब्द का प्रयोग सबसे पहले किसने किया था?", o: ["लॉरेंज हिल्टनर (Lorenz Hiltner)", "ई. एफ. स्मिथ (E.F. Smith)", "एंटोन डी बेरी (Anton de Bary)", "कोच (Koch)"], a: 0 },
+            { q: "कवकों और पौधों की जड़ों के बीच सहजीवी संबंध (Symbiotic association) को क्या कहते हैं?", o: ["लाइकेन (Lichen)", "माइकोराइजा (Mycorrhiza)", "राइजोबियम (Rhizobium)", "एजोटोबैक्टर (Azotobacter)"], a: 1 },
+            { q: "रोग की प्रगति (Disease progress) और समय के बीच खींचे गए ग्राफ को क्या कहते हैं?", o: ["रोग वक्र (Disease curve)", "महामारी वक्र (Epidemic curve)", "संक्रमण वक्र (Infection curve)", "A और B दोनों (Both A and B)"], a: 3 },
+            { q: "बीज जनित (Seed-borne) बीमारियों को रोकने के लिए सबसे प्रभावी तरीका कौन सा है?", o: ["पत्तियों पर छिड़काव (Foliar spray)", "बीज उपचार (Seed treatment)", "मृदा सौरीकरण (Soil solarization)", "सिंचाई (Irrigation)"], a: 1 }
+        ];
 
-    <script>
-        // Clean Pathology core data bank without any tags
-        const quizData = {
-            en: [
-                { q: "Who is known as the Father of Plant Pathology?", o: ["Anton de Bary", "Louis Pasteur", "E.J. Butler", "Robert Koch"], a: 0 },
-                { q: "The Irish Potato Famine (1845) was caused by which plant pathogen?", o: ["Phytophthora infestans", "Puccinia graminis", "Albugo candida", "Ustilago maydis"], a: 0 },
-                { q: "Which of the following components forms the Disease Triangle?", o: ["Host, Pathogen, Environment", "Host, Vector, Soil", "Pathogen, Water, Wind", "Seed, Fertilizer, Climate"], a: 0 },
-                { q: "Fungi that survive only on living host tissue are called:", o: ["Obligate parasites", "Facultative saprophytes", "Obligate saprophytes", "Necrotrophs"], a: 0 },
-                { q: "Bordeaux mixture was discovered by which scientist?", o: ["P.M.A. Millardet", "T.J. Burrill", "M.W. Beijerinck", "K.C. Mehta"], a: 0 },
-                { q: "The cell wall of true fungi is primarily composed of:", o: ["Chitin", "Cellulose", "Peptidoglycan", "Pectin"], a: 0 },
-                { q: "Which plant disease is caused by a Mollicute or Phytoplasma?", o: ["Little leaf of Brinjal", "Citrus Canker", "Loose smut of wheat", "Late blight of potato"], a: 0 },
-                { q: "The loose smut of wheat is what type of infection?", o: ["Internally seed-borne", "Externally seed-borne", "Air-borne only", "Soil-borne only"], a: 0 },
-                { q: "Which bacterial pathogen causes the famous Citrus Canker disease?", o: ["Xanthomonas axonopodis pv. citri", "Pseudomonas syringae", "Erwinia amylovora", "Ralstonia solanacearum"], a: 0 },
-                { q: "The protein coat protecting the nucleic acid core of a plant virus is called:", o: ["Capsid", "Envelop", "Plasmid", "Virion"], a: 0 },
-                { q: "Which organism is known as the Father of Indian Plant Pathology?", o: ["E.J. Butler", "K.C. Mehta", "B.B. Mundkur", "J.F. Dastur"], a: 0 },
-                { q: "The primary mode of transmission for the Yellow Vein Mosaic of Okra is through:", o: ["Whitefly", "Aphids", "Nematodes", "Mechanical rubbing"], a: 0 },
-                { q: "Which chemical is highly effective as a systemic fungicide?", o: ["Bavistin (Carbendazim)", "Captan", "Mancozeb", "Copper Oxychloride"], a: 0 },
-                { q: "The downy mildew diseases are primarily caused by members of which class?", o: ["Oomycetes", "Ascomycetes", "Basidiomycetes", "Zygomycetes"], a: 0 },
-                { q: "An down-ward or outward curling and rolling of leaves due to viral infection is called:", o: ["Leaf roll / curling", "Necrosis", "Hypertrophy", "Chlorosis"], a: 0 }
-            ],
-            hi: [
-                { q: "पादप रोग विज्ञान (Plant Pathology) का जनक किसे माना जाता है?", o: ["एंटोन डी बेरी", "लुई पाश्चर", "ई.जे. बटलर", "रॉबर्ट कोच"], a: 0 },
-                { q: "आयरलैंड का प्रसिद्ध आलू अकाल (1845) किस रोगजनक के कारण हुआ था?", o: ["फाइटोफ्थोरा इन्फेस्टांस", "पुक्सिनिया ग्रामिनिस", "एल्ब्यूगो कैंडिडा", "उस्टिलागो मेडिस"], a: 0 },
-                { q: "निम्नलिखित में से कौन सा घटक 'रोग त्रिकोण' (Disease Triangle) का निर्माण करता है?", o: ["पोषक (Host), रोगजनक, पर्यावरण", "पोषक, वाहक (Vector), मृदा", "रोगजनक, जल, वायु", "बीज, उर्वरक, जलवायु"], a: 0 },
-                { q: "वे कवक जो केवल जीवित पोषक ऊतकों पर ही जीवित रह सकते हैं, कहलाते हैं:", o: ["विकल्पी परजीवी (Obligate Parasites)", "विकल्पी मृतोपजीवी", "पूर्ण मृतोपजीवी", "नेक्रोट्रोफ"], a: 0 },
-                { q: "बोर्डो मिश्रण (Bordeaux mixture) की खोज किस वैज्ञानिक ने की थी?", o: ["पी.एम.ए. मिलार्डेट", "टी.जे. बुरिल", "एम.डब्ल्यू. बेइजरिंक", "के.सी. मेहता"], a: 0 },
-                { q: "सच्चे कवकों (True Fungi) की कोशिका भित्ति मुख्य रूप से किसकी बनी होती है?", o: ["काइटिन (Chitin)", "सेल्युलोज", "पेप्टिडोग्लाइकेना", "पेक्टिन"], a: 0 },
-                { q: "कौन सा पादप रोग फाइटोप्लाज्मा (Phytoplasma) के कारण होता है?", o: ["बैंगन का छोटी पत्ती रोग", "नींबू का कैंकर रोग", "गेहूं का लूज स्मट", "आलू का पछेती झुलसा"], a: 0 },
-                { q: "गेहूं का लूज स्मट (Loose Smut of Wheat) किस प्रकार का संक्रमण है?", o: ["आंतरिक बीज-जनित (Internally seed-borne)", "बाहरी बीज-जनित", "केवल वायु-जनित", "केवल मृदा-जनित"], a: 0 },
-                { q: "नींबू का प्रसिद्ध कैंकर (Citrus Canker) रोग किस जीवाणु के कारण होता है?", o: ["जेंथोमोनास एक्सोनोपोडिस पीवी. साइट्री", "स्यूडोमोनास सिरिंज", "इरविनिया एमाइलोवोरा", "राल्स्टोनिया सोलेनेसिएरम"], a: 0 },
-                { q: "पादप वायरस के न्यूक्लिक एसिड की रक्षा करने वाले प्रोटीन आवरण को क्या कहते हैं?", o: ["कैप्सिड (Capsid)", "एन्वलप", "प्लाज्मिड", "विरियन"], a: 0 },
-                { q: "भारतीय पादप रोग विज्ञान का जनक (Father of Indian Plant Pathology) किसे कहा जाता है?", o: ["ई.जे. बटलर", "के.सी. मेहता", "बी.बी. मुंडकुर", "जे.एफ. दस्तूर"], a: 0 },
-                { q: "भिंडी के पीत शिरा मोज़ेक (Yellow Vein Mosaic) रोग का मुख्य वाहक कौन सा कीट है?", o: ["सफेद मक्खी (Whitefly)", "माहू (Aphid)", "नेमैटोड", "यांत्रिक संपर्क"], a: 0 },
-                { q: "निम्नलिखित में से कौन सा रसायन एक सर्वांगी कवकनाशी (Systemic Fungicide) है?", o: ["बाविस्टिन (कार्बेंडाजिम)", "कैप्टान", "मैनकोजेब", "कॉपर ऑक्सीक्लोराइड"], a: 0 },
-                { q: "मृदु रोमिल आसिता (Downy Mildew) रोग मुख्य रूप से किस वर्ग के कवकों द्वारा होते हैं?", o: ["ऊमाइसिटीज (Oomycetes)", "एस्कोमाइसिटीज", "बेसिडिओमाइसिटीज", "जाइगोमाइसिटीज"], a: 0 },
-                { q: "वायरस के संक्रमण के कारण पत्तियों का नीचे या बाहर की ओर मुड़ना व सुकड़ना क्या कहलाता है?", o: ["लीफ रोल / कर्लिंग", "नेक्रोसिस", "हाइपरट्रॉफी", "क्लोरोसिस"], a: 0 }
-            ]
-        };
+        // Part 2: Fungi, Bacteria, Viruses & Nematodes (50 Questions)
+        const test2Data = [
+            { q: "कवकों (Fungi) का अध्ययन विज्ञान की किस शाखा के अंतर्गत किया जाता है?", o: ["जीवाणु विज्ञान (Bacteriology)", "कवक विज्ञान (Mycology)", "विषाणु विज्ञान (Virology)", "सूत्रकृमि विज्ञान (Nematology)"], a: 1 },
+            { q: "अधिकांश कवकों (Fungi) की कोशिका भित्ति (Cell wall) मुख्य रूप से किसकी बनी होती है?", o: ["सेल्युलोज (Cellulose)", "पेप्टिडोग्लाइकन (Peptidoglycan)", "काइटिन (Chitin)", "प्रोटीन (Protein)"], a: 2 },
+            { q: "कवकों में भोजन किस रूप में संचित (Stored) रहता है?", o: ["स्टार्च (Starch)", "ग्लाइकोजन (Glycogen)", "सेल्युलोज (Cellulose)", "लिपिड (Lipid)"], a: 1 },
+            { q: "कवक के धागे जैसी संरचना (Thread-like structure) को क्या कहते हैं?", o: ["बीजाणु (Spore)", "कवक तंतु / हाइफा (Hypha)", "माइसीलियम (Mycelium)", "कोनिडिया (Conidia)"], a: 1 },
+            { q: "कवक तंतुओं (Hyphae) के समूह या जाल को क्या कहा जाता है?", o: ["हाइफा (Hypha)", "माइसीलियम (Mycelium)", "राइजोमॉर्फ (Rhizomorph)", "स्क्लेरोशिया (Sclerotia)"], a: 1 },
+            { q: "यदि कवक के जाल (Mycelium) में क्रॉस-वॉल (Cross-walls) या सेप्टा नहीं होते हैं, तो उसे क्या कहते हैं?", o: ["सेप्टेट (Septate)", "एसेप्टेट / कोएनोसाइटिक (Aseptate / Coenocytic)", "यूनिसेल्युलर (Unicellular)", "डाइकैर्योटिक (Dikaryotic)"], a: 1 },
+            { q: "कवकों में अलैंगिक जनन (Asexual reproduction) की सबसे सामान्य इकाई क्या है?", o: ["गैमीट (Gamete)", "बीजाणु / स्पोर (Spore)", "जाइगोट (Zygote)", "बीज (Seed)"], a: 1 },
+            { q: "चल बीजाणु (Motile spores) जो पानी में तैर सकते हैं, क्या कहलाते हैं?", o: ["कोनिडिया (Conidia)", "जूस्पोर्स / चल बीजाणु (Zoospores)", "एस्कोस्पोर्स (Ascospores)", "बेसिडियोस्पोर्स (Basidiospores)"], a: 1 },
+            { q: "जूस्पोर्स (Zoospores) मुख्य रूप से किस वर्ग के कवकों में पाए जाते हैं?", o: ["ओमाइसीट्स (Oomycetes)", "एस्कोमाइसीट्स (Ascomycetes)", "बेसिडियोमाइसीट्स (Basidiomycetes)", "ड्यूटेरोमाइसीट्स (Deuteromycetes)"], a: 0 },
+            { q: "एस्कोमाइसीट्स (Ascomycetes) वर्ग के कवकों में लैंगिक बीजाणु (Sexual spores) क्या कहलाते हैं?", o: ["जूस्पोर्स (Zoospores)", "उस्पोर्स (Oospores)", "एस्कोस्पोर्स (Ascospores)", "बेसिडियोस्पोर्स (Basidiospores)"], a: 2 },
+            { q: "एक एस्कस (Ascus) में आमतौर पर कितने एस्कोस्पोर्स (Ascospores) बनते हैं?", o: ["2", "4", "8", "अनगिनत (Countless)"], a: 2 },
+            { q: "बेसिडियोमाइसीट्स (Basidiomycetes) वर्ग के कवकों का उदाहरण कौन सा है?", o: ["यीस्ट (Yeast)", "मशरूम, रस्ट और स्मट (Mushroom, Rust and Smut)", "फाइटोफ्थोरा (Phytophthora)", "पायथियम (Pythium)"], a: 1 },
+            { q: "ऐसे कवक जिनमें लैंगिक जनन (Sexual reproduction) की अवस्था अभी तक नहीं खोजी गई है, उन्हें किस वर्ग में रखा जाता है?", o: ["एस्कोमाइसीट्स (Ascomycetes)", "ड्यूटेरोमाइसीट्स / अपूर्ण कवक (Deuteromycetes / Fungi imperfecti)", "बेसिडियोमाइसीट्स (Basidiomycetes)", "ओमाइसीट्स (Oomycetes)"], a: 1 },
+            { q: "जीवाणु (Bacteria) किस प्रकार के जीव (Organism) हैं?", o: ["प्रोकैरियोटिक (Prokaryotic)", "यूकैरियोटिक (Eukaryotic)", "बहुकोशिकीय (Multicellular)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 0 },
+            { q: "पादप रोगजनक जीवाणु (Plant pathogenic bacteria) आकार में आमतौर पर कैसे होते हैं?", o: ["गोलाकार (Coccus)", "छड़ के आकार के (Rod-shaped / Bacillus)", "सर्पिलाकार (Spirillum)", "कोमा के आकार के (Vibrio)"], a: 1 },
+            { q: "अधिकांश पादप रोगजनक जीवाणु ग्राम स्टेनिंग (Gram staining) के आधार पर कैसे होते हैं?", o: ["ग्राम-पॉजिटिव (Gram-positive)", "ग्राम-नेगेटिव (Gram-negative)", "न्यूट्रल (Neutral)", "A और B दोनों (Both A and B)"], a: 1 },
+            { q: "जीवाणुओं में गति (Motility) किस अंग के द्वारा होती है?", o: ["सिलिया (Cilia)", "फ्लैजेला (Flagella)", "हाइफा (Hypha)", "सूडोपोडिया (Pseudopodia)"], a: 1 },
+            { q: "जीवाणुओं के गुणसूत्र (Chromosome) के बाहर पाए जाने वाले छोटे वृत्ताकार डीएनए (Circular DNA) को क्या कहते हैं?", o: ["प्लाज्मिड (Plasmid)", "राइबोसोम (Ribosome)", "मीसोसोम (Mesosome)", "न्यूक्लियोइड (Nucleoid)"], a: 0 },
+            { q: "बैक्टीरिया में जनन (Reproduction) मुख्य रूप से किस विधि द्वारा होता है?", o: ["बडिंग (Budding)", "बाइनरी विखंडन / द्विविभाजन (Binary fission)", "बीजाणु निर्माण (Spore formation)", "लैंगिक जनन (Sexual reproduction)"], a: 1 },
+            { q: "क्राउन गॉल (Crown gall) रोग पैदा करने वाला जीवाणु कौन सा है, जिसे 'प्राकृतिक जेनेटिक इंजीनियर' भी कहा जाता है?", o: ["जैन्थोमोनास (Xanthomonas)", "एग्रोबैक्टीरियम ट्यूमेफेसिएन्स (Agrobacterium tumefaciens)", "स्यूडोमोनास (Pseudomonas)", "इरविनिया (Erwinia)"], a: 1 },
+            { q: "एग्रोबैक्टीरियम में ट्यूमर (Tumor) पैदा करने वाले प्लाज्मिड का नाम क्या है?", o: ["pBR322", "Ti प्लाज्मिड (Ti plasmid)", "Ri प्लाज्मिड (Ri plasmid)", "Col प्लाज्मिड (Col plasmid)"], a: 1 },
+            { q: "वायरस (Virus) का अर्थ लैटिन भाषा में क्या होता है?", o: ["जीव (Living)", "जहर (Poison)", "हवा (Air)", "बीमारी (Disease)"], a: 1 },
+            { q: "वायरस मुख्य रूप से किन दो चीजों से मिलकर बने होते हैं?", o: ["DNA और RNA", "न्यूक्लिक एसिड और प्रोटीन कोट (Nucleic acid and Protein coat)", "कार्बोहाइड्रेट और वसा (Carbohydrate and Lipid)", "सेल्युलोज और पेक्टिन (Cellulose and Pectin)"], a: 1 },
+            { q: "अधिकांश पादप वायरस (Plant viruses) में आनुवंशिक सामग्री (Genetic material) क्या होती है?", o: ["डबल-स्ट्रैंडेड DNA (dsDNA)", "सिंगल-स्ट्रैंडेड RNA (ssRNA)", "सिंगल-स्ट्रैंडेड DNA (ssDNA)", "डबल-स्ट्रैंडेड RNA (dsRNA)"], a: 1 },
+            { q: "वायरस के प्रोटीन आवरण (Protein coat) को क्या कहा जाता है?", o: ["कैप्सिड (Capsid)", "प्लाज्मा लेम्मा (Plasma lemma)", "सेल वॉल (Cell wall)", "न्यूक्लियोइड (Nucleoid)"], a: 0 },
+            { q: "पादप वायरस (Plant viruses) एक पौधे से दूसरे पौधे में प्राकृतिक रूप से किसके द्वारा फैलते हैं?", o: ["हवा (Wind)", "कीटों / वेक्टर्स द्वारा (By insects / vectors)", "पानी (Water)", "उपर्युक्त सभी (All of the above)"], a: 1 },
+            { q: "फाइटोप्लाज्मा (Phytoplasma) क्या है?", o: ["एक कवक (A fungus)", "कोशिका भित्ति रहित जीवाणु (Wall-less bacteria)", "एक वायरस (A virus)", "एक सूत्रकृमि (A nematode)"], a: 1 },
+            { q: "फाइटोप्लाज्मा (Phytoplasma) का पुराना नाम क्या था?", o: ["वायरस (Virus)", "MLO (Mycoplasma-like organism)", "प्रियन (Prion)", "जीवाणु (Bacteria)"], a: 1 },
+            { q: "फाइटोप्लाज्मा (Phytoplasma) को मारने या नियंत्रित करने के लिए कौन सी एंटीबायोटिक सबसे प्रभावी है?", o: ["पेनिसिलिन (Penicillin)", "टेट्रासाइक्लिन (Tetracycline)", "स्ट्रेप्टोमाइसिन (Streptomycin)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 1 },
+            { q: "फाइटोप्लाज्मा के कारण होने वाला प्रसिद्ध रोग कौन सा है?", o: ["आलू का झुलसा (Potato blight)", "तिल का फाइलोडी (Phyllody of sesame)", "गेहूं का रतुआ (Wheat rust)", "चावल का झोंका (Rice blast)"], a: 1 },
+            { q: "तिल के फाइलोडी (Phyllody) रोग में पौधे का कौन सा भाग पत्तियों जैसी संरचना में बदल जाता है?", o: ["जड़ (Root)", "तना (Stem)", "फूल (Flower)", "फल (Fruit)"], a: 2 },
+            { q: "वायरॉयड (Viroid) वायरस से कैसे अलग हैं?", o: ["इनमें प्रोटीन कोट नहीं होता (They lack protein coat)", "ये केवल RNA के नग्न अणु होते हैं (They are only naked RNA molecules)", "A और B दोनों (Both A and B)", "इनमें केवल DNA होता है (They have only DNA)"], a: 2 },
+            { q: "वायरॉयड (Viroid) के कारण होने वाली पहली खोजी गई बीमारी कौन सी थी?", o: ["तंबाकू मोज़ेक (Tobacco mosaic)", "आलू का स्पिंडल ट्यूबर रोग (Potato spindle tuber disease)", "नींबू का कैंकर (Citrus canker)", "पपीते का लीफ कर्ल (Papaya leaf curl)"], a: 1 },
+            { q: "पादप परजीवी सूत्रकृमि (Plant parasitic nematodes) का अध्ययन क्या कहलाता है?", o: ["नेमाटोलॉजी (Nematology)", "माइकोलॉजी (Mycology)", "एंटोमोलॉजी (Entomology)", "वायरोलॉजी (Virology)"], a: 0 },
+            { q: "नेमाटोलॉजी (Nematology) के जनक (Father) के रूप में किसे जाना जाता है?", o: ["एन. ए. कॉब (N.A. Cobb)", "एंटोन डी बेरी (Anton de Bary)", "ई. एफ. स्मिथ (E.F. Smith)", "टी. ओ. डायनर (T.O. Diener)"], a: 0 },
+            { q: "अधिकांश पादप परजीवी सूत्रकृमि (Nematodes) पौधों के किस भाग पर हमला करते हैं?", o: ["पत्तियों पर (On leaves)", "तने पर (On stem)", "जड़ों पर (On roots)", "फूलों पर (On flowers)"], a: 2 },
+            { q: "सूत्रकृमियों (Nematodes) में पौधे की कोशिकाओं को छेदने के लिए कौन सी विशेष संरचना होती है?", o: ["हाइफा (Hypha)", "स्टाइलेट (Stylet)", "कैप्सिड (Capsid)", "फ्लैजेला (Flagella)"], a: 1 },
+            { q: "रूट-नॉट नेमाटोड (Root-knot nematode) किस जीनस (Genus) से संबंधित है?", o: ["ग्लोबोडेरा (Globodera)", "मेलोइडोगाइन (Meloidogyne)", "हेटेरोडेरा (Heterodera)", "टाइलेंकुलस (Tylenchulus)"], a: 1 },
+            { q: "गेहूं का 'ईयर कॉकल' (Ear cockle) रोग किस नेमाटोड के कारण होता है?", o: ["एंगुइना ट्रिटिसाई (Anguina tritici)", "मेलोइडोगाइन (Meloidogyne)", "हेटेरोडेरा एवेनी (Heterodera avenae)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 0 },
+            { q: "आलू का गोल्डन नेमाटोड (Golden nematode of potato) भारत में मुख्य रूप से कहाँ पाया जाता है?", o: ["नीलगिरी की पहाड़ियों में (In Nilgiri hills)", "पंजाब में (In Punjab)", "उत्तर प्रदेश में (In UP)", "गुजरात में (In Gujarat)"], a: 0 },
+            { q: "लाइकेन (Lichen) किन दो जीवों का सहजीवी संघ (Symbiotic association) है?", o: ["कवक और जीवाणु (Fungi and Bacteria)", "कवक और शैवाल (Fungi and Algae)", "शैवाल और जीवाणु (Algae and Bacteria)", "वायरस और जीवाणु (Viruses and Bacteria)"], a: 1 },
+            { q: "जीवाणुभोजी (Bacteriophage) क्या हैं?", o: ["ऐसे जीवाणु जो कवक खाते हैं (Bacteria that eat fungi)", "ऐसे वायरस जो जीवाणुओं को संक्रमित करते हैं (Viruses that infect bacteria)", "ऐसे कवक जो जीवाणुओं को मारते हैं (Fungi that kill bacteria)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 1 },
+            { q: "कवकों में 'हॉस्टोरिया' (Haustoria) का क्या कार्य है?", o: ["प्रजनन करना (To reproduce)", "परपोषी कोशिका से पोषण चूसना (To absorb nutrition from host cell)", "श्वसन करना (To respire)", "हवा में उड़ना (To fly in air)"], a: 1 },
+            { q: "कवकों की विश्राम संरचनाएं (Resting structures) जो उन्हें प्रतिकूल परिस्थितियों में जीवित रहने में मदद करती हैं, क्या कहलाती हैं?", o: ["स्क्लेरोशिया (Sclerotia)", "क्लैमाइडोस्पोर्स (Chlamydospores)", "A और B दोनों (Both A and B)", "कोनिडिया (Conidia)"], a: 2 },
+            { q: "वायरस का वह कण जो एक पूर्ण और संक्रामक इकाई है, उसे क्या कहते हैं?", o: ["वायरॉयड (Viroid)", "विरियोन (Virion)", "प्रियन (Prion)", "कैप्सिड (Capsid)"], a: 1 },
+            { q: "स्यूडोमोनास फ्लोरेसेंस (Pseudomonas fluorescens) क्या है?", o: ["एक खतरनाक पादप रोगजनक (A dangerous plant pathogen)", "एक लाभदायक जैव-नियंत्रण एजेंट (A beneficial bio-control agent)", "एक प्रकार का कवक (A type of fungus)", "एक रासायनिक कवकनाशी (A chemical fungicide)"], a: 1 },
+            { q: "ट्राइकोडर्मा (Trichoderma) का उपयोग कृषि में किस रूप में किया जाता है?", o: ["रासायनिक उर्वरक (Chemical fertilizer)", "जैव-कवकनाशी / बायो-कंट्रोल (Bio-fungicide / Bio-control)", "कीटनाशक (Insecticide)", "खरपतवारनाशी (Herbicide)"], a: 1 },
+            { q: "कवकों का वह जाला (Network) जो नग्न आँखों से देखा जा सकता है, क्या कहलाता है?", o: ["हाइफा (Hypha)", "माइसीलियम (Mycelium)", "बीजाणु (Spore)", "जीन (Gene)"], a: 1 },
+            { q: "प्रियन (Prion) क्या होते हैं?", o: ["संक्रामक आरएनए (Infectious RNA)", "संक्रामक प्रोटीन कण (Infectious protein particles)", "कोशिका भित्ति रहित जीवाणु (Wall-less bacteria)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 1 },
+            { q: "प्लाज्मोडियोफोरा (Plasmodiophora) के कारण क्रूसीफर्स (Crucifers) में कौन सा रोग होता है?", o: ["रस्ट (Rust)", "क्लब रूट (Club root)", "स्मट (Smut)", "ब्लाइट (Blight)"], a: 1 }
+        ];
 
-        // Automatic generation loop to expand structure to perfect 50 length clean simulation
-        function buildFull50Bank() {
-            const languages = ['en', 'hi'];
-            languages.forEach(lang => {
-                const baseQuestions = [...quizData[lang]];
-                while(quizData[lang].length < 50) {
-                    const template = baseQuestions[quizData[lang].length % baseQuestions.length];
-                    quizData[lang].push({
-                        q: template.q,
-                        o: [...template.o],
-                        a: template.a
-                    });
-                }
-            });
-        }
-        buildFull50Bank();
+        // Part 3: Diseases, Symptoms & Management (50 Questions)
+        const test3Data = [
+            { q: "गेहूं के काले रतुआ (Black rust of wheat) रोग का मुख्य कारण कौन सा कवक है?", o: ["पक्सीनिया स्ट्राइफोर्मिस (Puccinia striiformis)", "पक्सीनिया ग्रैमिनिस ट्रिटिसाई (Puccinia graminis tritici)", "पक्सीनिया रिकॉन्डिटा (Puccinia recondita)", "उस्टिलैगो नूडा (Ustilago nuda)"], a: 1 },
+            { q: "गेहूं के पीले रतुआ (Yellow rust) रोग का कारण क्या है?", o: ["पक्सीनिया ग्रैमिनिस (Puccinia graminis)", "पक्सीनिया स्ट्राइफोर्मिस (Puccinia striiformis)", "अल्टरनेरिया (Alternaria)", "पायथियम (Pythium)"], a: 1 },
+            { q: "पक्सीनिया ग्रैमिनिस ट्रिटिसाई (Puccinia graminis tritici) का वैकल्पिक परपोषी (Alternate host) कौन सा पौधा है?", o: ["धान (Rice)", "बरबेरी (Barberry)", "मक्का (Maize)", "चना (Chickpea)"], a: 1 },
+            { q: "गेहूं का लूज स्मट (Loose smut of wheat) किस प्रकार की बीमारी है?", o: ["मृदा जनित (Soil-borne)", "हवा जनित (Air-borne)", "अंतः बीज जनित (Internally seed-borne)", "बाह्य बीज जनित (Externally seed-borne)"], a: 2 },
+            { q: "लूज स्मट (Loose smut) के नियंत्रण के लिए सबसे प्रभावी उपचार कौन सा है?", o: ["गर्म जल उपचार (Hot water treatment)", "बोर्डो मिश्रण का छिड़काव (Bordeaux mixture spray)", "यूरिया का छिड़काव (Urea spray)", "सिंचाई (Irrigation)"], a: 0 },
+            { q: "गेहूं के लूज स्मट के लिए गर्म जल उपचार (Hot water treatment) की विधि किसने दी थी?", o: ["जेन्सेन (Jensen)", "बटलर (Butler)", "स्टेनली (Stanley)", "कोच (Koch)"], a: 0 },
+            { q: "धान का खैरा रोग (Khaira disease) किस पोषक तत्व की कमी से होता है?", o: ["नाइट्रोजन (Nitrogen)", "जिंक (Zinc)", "कॉपर (Copper)", "लोहा (Iron)"], a: 1 },
+            { q: "धान का झोंका रोग (Rice blast) का रोगजनक कौन सा कवक है?", o: ["हेल्मिन्थोस्पोरियम (Helminthosporium)", "पायरीकुलेरिया ओराइजी (Pyricularia oryzae)", "राइजोक्टोनिया (Rhizoctonia)", "फ्यूजेरियम (Fusarium)"], a: 1 },
+            { q: "धान के झोंका रोग (Rice blast) का विशिष्ट लक्षण क्या है?", o: ["पत्तियों पर आंख के आकार के धब्बे (Eye-shaped spots on leaves)", "सफेद पाउडर (White powder)", "काली फफूंद (Black mold)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 0 },
+            { q: "नींबू का कैंकर रोग (Citrus canker) किसके कारण होता है?", o: ["कवक (Fungus)", "वायरस (Virus)", "जीवाणु (Bacteria - Xanthomonas)", "नेमाटोड (Nematode)"], a: 2 },
+            { q: "गन्ने का लाल सड़न रोग (Red rot of sugarcane) किस कवक के कारण होता है?", o: ["कोलेटोट्राइकम फाल्केटम (Colletotrichum falcatum)", "पक्सीनिया (Puccinia)", "फ्यूजेरियम (Fusarium)", "अल्टरनेरिया (Alternaria)"], a: 0 },
+            { q: "मूंगफली का टिक्का रोग (Tikka disease of groundnut) किस कवक से होता है?", o: ["सार्कोस्पोरा (Cercospora)", "उस्टिलैगो (Ustilago)", "एरीसाइफी (Erysiphe)", "पायथियम (Pythium)"], a: 0 },
+            { q: "सरसों का सफेद रतुआ (White rust of mustard) रोग का कारण क्या है?", o: ["एल्ब्यूगो कैंडिडा (Albugo candida)", "पक्सीनिया (Puccinia)", "मेलैम्पसोरा (Melampsora)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 0 },
+            { q: "आलू का अगेती झुलसा (Early blight of potato) रोग का कारण कौन सा कवक है?", o: ["फाइटोफ्थोरा (Phytophthora)", "अल्टरनेरिया सोलानी (Alternaria solani)", "फ्यूजेरियम (Fusarium)", "राइजोक्टोनिया (Rhizoctonia)"], a: 1 },
+            { q: "अगेती झुलसा (Early blight) का मुख्य लक्षण क्या है?", o: ["पत्तियों पर सफेद पाउडर (White powder on leaves)", "पत्तियों पर लक्ष्य बोर्ड (Target board) जैसे गाढ़े धब्बे", "तना सड़ना (Stem rot)", "जड़ गलना (Root rot)"], a: 1 },
+            { q: "पपीते का लीफ कर्ल (Papaya leaf curl) रोग किसके कारण होता है?", o: ["जीवाणु (Bacteria)", "कवक (Fungus)", "वायरस (Virus)", "फाइटोप्लाज्मा (Phytoplasma)"], a: 2 },
+            { q: "पपीते के लीफ कर्ल वायरस (Papaya leaf curl virus) को कौन सा कीट फैलाता है?", o: ["सफेद मक्खी (Whitefly)", "एफिड (Aphid)", "थ्रिप्स (Thrips)", "जेसिड (Jassid)"], a: 0 },
+            { q: "भिंडी का पीला शिरा मोज़ेक (Yellow vein mosaic of okra) रोग किसके द्वारा फैलता है?", o: ["सफेद मक्खी (Whitefly)", "एफिड (Aphid)", "हवा (Wind)", "पानी (Water)"], a: 0 },
+            { q: "अरहर का उकठा रोग (Wilt of pigeonpea) किस कवक के कारण होता है?", o: ["फ्यूजेरियम उडम (Fusarium udum)", "राइजोक्टोनिया (Rhizoctonia)", "पक्सीनिया (Puccinia)", "अल्टरनेरिया (Alternaria)"], a: 0 },
+            { q: "कपास का ब्लैक आर्म या एंगुलर लीफ स्पॉट रोग किसके कारण होता है?", o: ["कवक (Fungus)", "जीवाणु - जैन्थोमोनास (Bacteria - Xanthomonas)", "वायरस (Virus)", "सूत्रकृमि (Nematode)"], a: 1 },
+            { q: "बाजरे का अरगट (Ergot of bajra) रोग किस कवक से होता है?", o: ["क्लैविसेप्स माइक्रोसेफेला (Claviceps microcephala)", "स्क्लेरोस्पोरा (Sclerospora)", "पक्सीनिया (Puccinia)", "उस्टिलैगो (Ustilago)"], a: 0 },
+            { q: "बाजरे के अरगट रोग में बालियों से चिपचिपा तरल निकलता है, जिसे क्या कहते हैं?", o: ["हनीड्यू (Honeydew)", "गोंद (Gum)", "रेज़िन (Resin)", "लेटेक्स (Latex)"], a: 0 },
+            { q: "बाजरे का ग्रीन ईयर या डाउनी मिल्ड्यू रोग (Green ear disease) का रोगजनक क्या है?", o: ["स्क्लेरोस्पोरा ग्रैमिनिकोला (Sclerospora graminicola)", "क्लैविसेप्स (Claviceps)", "फ्यूजेरियम (Fusarium)", "एरीसाइफी (Erysiphe)"], a: 0 },
+            { q: "जीवाणु जनित रोगों (Bacterial diseases) को नियंत्रित करने के लिए किसका उपयोग किया जाता है?", o: ["कवकनाशी (Fungicides)", "एंटीबायोटिक्स जैसे स्ट्रेप्टोमाइसिन (Antibiotics like Streptomycin)", "शाकनाशी (Herbicides)", "यूरिया (Urea)"], a: 1 },
+            { q: "सर्वांगी कवकनाशी (Systemic fungicide) का क्या अर्थ है?", o: ["जो केवल सतह पर काम करे (Works only on surface)", "जो पौधे के अंदर प्रवेश कर पूरे तंत्र में फैल जाए (Absorbed and translocated within the plant)", "जो जड़ों को जला दे (Burns the roots)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 1 },
+            { q: "मैन्कोजेब (Mancozeb) किस प्रकार का कवकनाशी है?", o: ["सर्वांगी (Systemic)", "संपर्क (Contact / Protectant)", "एंटीबायोटिक (Antibiotic)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 1 },
+            { q: "फ्यूमिगेशन (Fumigation) के लिए आमतौर पर किस गैस का उपयोग किया जाता है?", o: ["ऑक्सीजन (Oxygen)", "मिथाइल ब्रोमाइड या एल्युमीनियम फॉस्फाइड (Methyl bromide or Aluminium phosphide)", "कार्बन डाइऑक्साइड (CO2)", "नाइट्रोजन (N2)"], a: 1 },
+            { q: "बीज जनित रोगों (Seed-borne diseases) के प्रबंधन के लिए सबसे आम विधि कौन सी है?", o: ["पत्तियों की कटाई (Leaf cutting)", "बीज उपचार जैसे कैप्टान/थिरम से (Seed treatment with Captan/Thiram)", "खेत में बाढ़ लाना (Flooding the field)", "उर्वरक डालना (Applying fertilizer)"], a: 1 },
+            { q: "रोगिंग (Roguing) का क्या उद्देश्य है?", o: ["बीमार पौधों को खेत से हटाकर संक्रमण रोकना (Removing diseased plants to prevent infection)", "स्वस्थ पौधों को काटना (Cutting healthy plants)", "खरपतवार उगाना (Growing weeds)", "सिंचाई करना (Irrigating)"], a: 0 },
+            { q: "जब कोई रोग बीज के अंदर (भ्रूण में) होता है, तो उसे क्या कहते हैं?", o: ["बाह्य बीज जनित (Externally seed-borne)", "अंतः बीज जनित (Internally seed-borne)", "मृदा जनित (Soil-borne)", "हवा जनित (Air-borne)"], a: 1 },
+            { q: "सेब का स्कैब रोग (Apple scab) किस कवक के कारण होता है?", o: ["वेंचुरिया इनेक्वालिस (Venturia inaequalis)", "अल्टरनेरिया (Alternaria)", "फ्यूजेरियम (Fusarium)", "कोलेटोट्राइकम (Colletotrichum)"], a: 0 },
+            { q: "पौधों में 'डैम्पिंग ऑफ' (Damping-off) रोग मुख्य रूप से किस अवस्था में होता है?", o: ["फूल आने पर (At flowering)", "नर्सरी में छोटे पौधों / अंकुरों में (In seedlings at nursery stage)", "फल पकने पर (At fruit ripening)", "कटाई के समय (At harvesting)"], a: 1 },
+            { q: "नर्सरी में डैम्पिंग ऑफ रोग (Damping-off) का मुख्य कारण कौन सा कवक है?", o: ["पक्सीनिया (Puccinia)", "पायथियम प्रजाति (Pythium spp.)", "एल्ब्यूगो (Albugo)", "क्लैविसेप्स (Claviceps)"], a: 1 },
+            { q: "जैव-नियंत्रण (Biological control) में कवकों की बीमारियों को रोकने के लिए किस लाभदायक कवक का उपयोग किया जाता है?", o: ["राइजोक्टोनिया (Rhizoctonia)", "ट्राइकोडर्मा विरिडी (Trichoderma viride)", "पक्सीनिया (Puccinia)", "उस्टिलैगो (Ustilago)"], a: 1 },
+            { q: "बोर्डो पेस्ट (Bordeaux paste) का उपयोग आमतौर पर कहाँ किया जाता है?", o: ["बीज उपचार में (In seed treatment)", "पेड़ों की छंटाई के बाद कटे हुए भागों पर लेप करने के लिए (To paste on cut wounds after pruning trees)", "हवा में छिड़काव के लिए (For aerial spray)", "उपर्युक्त सभी (All of the above)"], a: 1 },
+            { q: "कपास का लीफ कर्ल वायरस (Cotton leaf curl virus) किसके द्वारा फैलता है?", o: ["हवा (Wind)", "सफेद मक्खी / व्हाइटफ्लाई (Whitefly)", "मृदा (Soil)", "पानी (Water)"], a: 1 },
+            { q: "तिल का फाइलोडी (Phyllody) रोग किसके द्वारा फैलता है?", o: ["सफेद मक्खी (Whitefly)", "लीफ हॉपर / जेसिड (Leaf hopper / Jassid)", "एफिड (Aphid)", "नेमाटोड (Nematode)"], a: 1 },
+            { q: "रोगों से बचने के लिए प्रतिरोधी किस्मों (Resistant varieties) का उपयोग करना रोग प्रबंधन की किस श्रेणी में आता है?", o: ["रासायनिक विधि (Chemical method)", "जैविक विधि (Biological method)", "आनुवंशिक या परपोषी प्रतिरोध (Genetic or Host resistance)", "भौतिक विधि (Physical method)"], a: 2 },
+            { q: "पौधों की वह क्षमता जो रोगजनक के हमले के बावजूद बिना उपज कम किए रोग को सहन कर लेती है, क्या कहलाती है?", o: ["प्रतिरोध (Resistance)", "संवेदनशीलता (Susceptibility)", "सहिष्णुता (Tolerance)", "प्रतिरक्षा (Immunity)"], a: 2 },
+            { q: "जब कोई पौधा रोगजनक के प्रति पूरी तरह से सुरक्षित होता है और संक्रमित नहीं हो सकता, तो उसे क्या कहते हैं?", o: ["प्रतिरक्षित (Immune)", "सहिष्णु (Tolerant)", "संवेदनशील (Susceptible)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 0 },
+            { q: "पौधों के संगरोध (Plant Quarantine) का मुख्य उद्देश्य क्या है?", o: ["नए क्षेत्रों में रोगों के प्रवेश को रोकना (To prevent entry of diseases into new areas)", "किसानों को सब्सिडी देना (To give subsidy to farmers)", "उर्वरक बेचना (To sell fertilizers)", "सिंचाई के तरीके बताना (To tell irrigation methods)"], a: 0 },
+            { q: "डायथेन एम-45 (Dithane M-45) किस कवकनाशी का व्यापारिक नाम (Trade name) है?", o: ["कार्बेन्डाजिम (Carbendazim)", "मैन्कोजेब (Mancozeb)", "कैप्टान (Captan)", "सल्फर (Sulphur)"], a: 1 },
+            { q: "बाविस्टिन (Bavistin) किस सर्वांगी कवकनाशी का व्यापारिक नाम है?", o: ["थिरम (Thiram)", "कार्बेन्डाजिम (Carbendazim)", "विटावैक्स (Vitavax)", "ज़िनेब (Zineb)"], a: 1 },
+            { q: "पाउडरी मिल्ड्यू (Powdery mildew) रोगों के नियंत्रण के लिए सबसे प्रभावी रसायन कौन सा माना जाता है?", o: ["सल्फर युक्त कवकनाशी (Sulphur based fungicides)", "कॉपर युक्त कवकनाशी (Copper based fungicides)", "पोटेशियम (Potassium)", "यूरिया (Urea)"], a: 0 },
+            { q: "गेहूं के करनाल बंट (Karnal bunt of wheat) रोग की खोज किसने की थी?", o: ["ई. जे. बटलर (E.J. Butler)", "मित्रा (Mitra - 1931)", "के. सी. मेहता (K.C. Mehta)", "बी. बी. मुंडकर (B.B. Mundkur)"], a: 1 },
+            { q: "करनाल बंट रोग में खेत से किस प्रकार की गंध (Smell) आती है?", o: ["सड़ी हुई मछली जैसी (Like rotten fish - Trimethylamine)", "गुलाब जैसी (Like rose)", "लहसुन जैसी (Like garlic)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 0 },
+            { q: "गन्ने के लाल सड़न रोग (Red rot) को फैलने से रोकने के लिए सबसे प्रभावी तरीका कौन सा है?", o: ["स्वस्थ और रोगमुक्त बीज/सेट्स का उपयोग (Use of healthy and disease-free setts)", "अधिक पानी देना (Giving more water)", "यूरिया का छिड़काव (Spraying urea)", "पत्तियों को काटना (Cutting leaves)"], a: 0 },
+            { q: "एकीकृत रोग प्रबंधन (Integrated Disease Management - IDM) क्या है?", o: ["केवल रसायनों का उपयोग (Use of chemicals only)", "सभी उपलब्ध रोग नियंत्रण विधियों का समन्वित उपयोग (Coordinated use of all available disease control methods)", "केवल जैविक नियंत्रण (Only biological control)", "रोगों को नजरअंदाज करना (Ignoring diseases)"], a: 1 },
+            { q: "मिश्रित खेती (Mixed cropping) से पादप रोगों पर क्या प्रभाव पड़ता है?", o: ["रोग तेजी से फैलते हैं (Diseases spread rapidly)", "रोग फैलने की गति कम हो जाती है (Disease spread is reduced)", "कोई प्रभाव नहीं पड़ता (No effect)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 1 },
+            { q: "पौधों में कवक के संक्रमण के खिलाफ प्राकृतिक रूप से बनने वाले रक्षात्मक रसायनों को क्या कहते हैं?", o: ["फाइटोएलेक्सिन्स (Phytoalexins)", "एंटीबॉडी (Antibodies)", "हार्मोन (Hormones)", "एंजाइम (Enzymes)"], a: 0 }
+        ];
 
-        let currentLang = 'en';
-        let currentQuestionIndex = 0;
-        let userAnswers = new Array(50).fill(null);
+        const allTests = [test1Data, test2Data, test3Data];
+        const testTitles = ["Part 1: History & Concepts", "Part 2: Pathogens & Microbes", "Part 3: Diseases & Management"];
+        
+        let currentQuizData = [];
+        let currentIdx = 0;
+        let userAnswers = []; 
 
-        function startQuiz(lang) {
-            currentLang = lang;
-            document.getElementById('langScreen').style.display = 'none';
-            document.getElementById('quizScreen').style.display = 'block';
-            loadQuestion();
-        }
+        let globalAttemptedCount = 0;
+        let globalCorrectCount = 0;
 
-        function loadQuestion() {
-            const currentQuestion = quizData[currentLang][currentQuestionIndex];
-            
-            document.getElementById('questionCount').innerText = currentLang === 'en' ? `Question ${currentQuestionIndex + 1} of 50` : `प्रश्न ${currentQuestionIndex + 1} / 50`;
-            document.getElementById('questionText').innerText = currentQuestion.q;
-            
-            const progressPercent = ((currentQuestionIndex + 1) / 50) * 100;
-            document.getElementById('progressBar').style.width = `${progressPercent}%`;
-
-            const optionsGrid = document.getElementById('optionsGrid');
-            optionsGrid.innerHTML = '';
-            
-            currentQuestion.o.forEach((optionText, index) => {
-                const button = document.createElement('button');
-                button.className = 'option';
-                if (userAnswers[currentQuestionIndex] === index) {
-                    button.className += ' selected';
-                }
-                button.innerHTML = `<span>${optionText}</span> <i class="fa-regular ${userAnswers[currentQuestionIndex] === index ? 'fa-circle-check' : 'fa-circle'}"></i>`;
-                button.onclick = () => selectOption(index);
-                optionsGrid.appendChild(button);
-            });
-
-            document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
-            const nextBtn = document.getElementById('nextBtn');
-            if (currentQuestionIndex === 49) {
-                nextBtn.innerHTML = currentLang === 'en' ? 'Submit Test <i class="fa-solid fa-check-double"></i>' : 'टेस्ट सबमिट करें <i class="fa-solid fa-check-double"></i>';
-                nextBtn.style.background = '#2e7d32';
-            } else {
-                nextBtn.innerHTML = currentLang === 'en' ? 'Next <i class="fa-solid fa-chevron-right"></i>' : 'आगे बढ़ें <i class="fa-solid fa-chevron-right"></i>';
-                nextBtn.style.background = 'var(--primary)';
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
             }
         }
 
-        function selectOption(index) {
-            userAnswers[currentQuestionIndex] = index;
-            loadQuestion();
+        allTests.forEach(testSet => {
+            testSet.forEach(item => {
+                let correctAnswerText = item.o[item.a];
+                
+                let doNotShuffle = item.o.some(opt => 
+                    opt.includes("उपरोक्त सभी") || 
+                    opt.includes("उपर्युक्त सभी") || 
+                    opt.includes("कोई नहीं") || 
+                    opt.includes("दोनों") || 
+                    opt.includes("A और B") || 
+                    opt.includes("A और C") ||
+                    opt.includes("तीनों")
+                );
+                
+                if (!doNotShuffle) {
+                    shuffleArray(item.o); 
+                }
+                item.a = item.o.indexOf(correctAnswerText);
+            });
+        });
+
+        function startQuiz(testNumber) {
+            currentQuizData = allTests[testNumber - 1];
+            userAnswers = new Array(currentQuizData.length).fill(null);
+            currentIdx = 0;
+            document.getElementById('testTitleIndicator').innerText = testTitles[testNumber - 1];
+            
+            document.getElementById('langScreen').style.display = 'none';
+            document.getElementById('quickFactsSection').style.display = 'none';
+            document.getElementById('quizScreen').style.display = 'block';
+            showQ();
+        }
+
+        function showQ() {
+            const q = currentQuizData[currentIdx];
+            document.getElementById('questionCount').innerText = `Q ${currentIdx + 1} / 50`;
+            document.getElementById('questionText').innerText = `Q${currentIdx + 1}. ${q.q}`;
+            document.getElementById('progressBar').style.width = `${((currentIdx + 1) / 50) * 100}%`;
+            document.getElementById('prevBtn').disabled = (currentIdx === 0);
+
+            const grid = document.getElementById('optionsGrid');
+            grid.innerHTML = '';
+            
+            q.o.forEach((txt, i) => {
+                const btn = document.createElement('div');
+                btn.className = 'option';
+                
+                const textSpan = document.createElement('span');
+                textSpan.innerText = `A, B, C, D`.split(',')[i] + ") " + txt;
+                
+                const icon = document.createElement('i');
+                icon.className = "fa-regular fa-circle";
+                
+                btn.appendChild(textSpan);
+                btn.appendChild(icon);
+                
+                btn.onclick = () => selectOption(i, q.a);
+                grid.appendChild(btn);
+            });
+
+            if (userAnswers[currentIdx] !== null) {
+                const selectedIdx = userAnswers[currentIdx];
+                const allOptions = grid.querySelectorAll('.option');
+                
+                allOptions.forEach((opt, i) => {
+                    opt.classList.add('locked');
+                    if (i === q.a) {
+                        opt.classList.add('correct');
+                        opt.querySelector('i').className = "fa-solid fa-circle-check";
+                    } else if (i === selectedIdx && selectedIdx !== q.a) {
+                        opt.classList.add('wrong');
+                        opt.querySelector('i').className = "fa-solid fa-circle-xmark";
+                    }
+                });
+                
+                document.getElementById('skipBtn').style.display = 'none';
+                document.getElementById('nextBtn').style.display = 'flex';
+                
+                if (currentIdx === currentQuizData.length - 1) {
+                    document.getElementById('nextBtn').innerHTML = 'Submit <i class="fa-solid fa-check-double"></i>';
+                }
+            } else {
+                document.getElementById('skipBtn').style.display = 'flex';
+                document.getElementById('nextBtn').style.display = 'none';
+            }
+        }
+
+        function selectOption(selectedIndex, correctIndex) {
+            if (userAnswers[currentIdx] !== null) return;
+            userAnswers[currentIdx] = selectedIndex;
+            const grid = document.getElementById('optionsGrid');
+            const allOptions = grid.querySelectorAll('.option');
+            
+            allOptions.forEach((opt, i) => {
+                opt.classList.add('locked');
+                if (i === correctIndex) {
+                    opt.classList.add('correct');
+                    opt.querySelector('i').className = "fa-solid fa-circle-check";
+                } else if (i === selectedIndex && selectedIndex !== correctIndex) {
+                    opt.classList.add('wrong');
+                    opt.querySelector('i').className = "fa-solid fa-circle-xmark";
+                }
+            });
+
+            document.getElementById('skipBtn').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'flex';
+            if (currentIdx === currentQuizData.length - 1) {
+                document.getElementById('nextBtn').innerHTML = 'Submit <i class="fa-solid fa-check-double"></i>';
+            }
         }
 
         function nextQuestion() {
-            if (currentQuestionIndex < 49) {
-                currentQuestionIndex++;
-                loadQuestion();
+            if (currentIdx < currentQuizData.length - 1) {
+                currentIdx++;
+                showQ();
             } else {
-                calculateResult();
+                results();
             }
         }
 
         function prevQuestion() {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                loadQuestion();
+            if (currentIdx > 0) {
+                currentIdx--;
+                showQ();
             }
         }
 
-        function calculateResult() {
-            let score = 0;
-            quizData[currentLang].forEach((question, index) => {
-                if (userAnswers[index] === question.a) {
-                    score++;
-                }
-            });
+        function skipQuestion() {
+            userAnswers[currentIdx] = null;
+            if (currentIdx < currentQuizData.length - 1) {
+                currentIdx++;
+                showQ();
+            } else {
+                results();
+            }
+        }
 
+        function results() {
             document.getElementById('quizScreen').style.display = 'none';
             document.getElementById('resultScreen').style.display = 'block';
             
-            document.getElementById('scoreDisplay').innerText = score;
+            globalAttemptedCount = 0;
+            globalCorrectCount = 0;
             
-            const percentage = (score / 50) * 100;
-            const congratsIcon = document.getElementById('congratsIcon');
-            const heading = document.getElementById('resultHeading');
-            const message = document.getElementById('messageBox');
+            userAnswers.forEach((ans, idx) => {
+                if (ans !== null) {
+                    globalAttemptedCount++;
+                    if (ans === currentQuizData[idx].a) {
+                        globalCorrectCount++;
+                    }
+                }
+            });
 
-            if (percentage >= 80) {
-                congratsIcon.innerHTML = '<i class="fa-solid fa-crown"></i>';
-                congratsIcon.style.color = 'var(--accent)';
-                heading.innerText = currentLang === 'en' ? "👑 Pathology Expert!" : "👑 पादप रोग विशेषज्ञ!";
-                message.innerText = currentLang === 'en' ? 
-                    `Outstanding work! Anton de Bary would be proud of you. Your core concepts of fungal, bacterial, and viral diseases are highly solid!` :
-                    `असाधारण स्कोर! आपने मुशाहिद सर के इस कड़े पैथोलॉजी टेस्ट को टॉपर की तरह पास किया है। आपकी तैयारी सच में एलीट लेवल की है!`;
-            } else if (percentage >= 50) {
-                congratsIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
-                congratsIcon.style.color = 'var(--primary-light)';
-                heading.innerText = currentLang === 'en' ? "✨ Good Attempt!" : "✨ सराहनीय प्रयास!";
-                message.innerText = currentLang === 'en' ? 
-                    `Great job! Your grasp on systemic fungicides and disease vectors is good. Revise life cycles once to hit the 90%+ bracket next time.` :
-                    `बहुत बढ़िया कोशिश! पादप रोगों पर आपकी पकड़ अच्छी है। बस कवकनाशी (Fungicides) और रोग चक्रों को एक बार और दोहरा लें, आप टॉप कर जाएंगे!`;
+            document.getElementById('scoreDisplay').innerText = globalCorrectCount;
+            document.getElementById('totalDisplay').innerText = `Out of ${globalAttemptedCount}`;
+
+            const h = document.getElementById('resultHeading');
+            const m = document.getElementById('messageBox');
+            
+            if(globalAttemptedCount === 0) {
+                h.innerText = "No Questions Attempted";
+                m.innerText = "आपने कोई सवाल हल नहीं किया। कृपया दोबारा टेस्ट दें!";
             } else {
-                congratsIcon.innerHTML = '<i class="fa-solid fa-book-open"></i>';
-                congratsIcon.style.color = '#e65100';
-                heading.innerText = currentLang === 'en' ? "📚 Keep Revising!" : "📚 अभ्यास करते रहें!";
-                message.innerText = currentLang === 'en' ? 
-                    `Don't give up! Plant Pathology requires a few revisions. Re-read Razaagripoint's premium pathology notes and try again!` :
-                    `घबराएं नहीं, मेहनत कभी बेकार नहीं जाती! सेमेस्टर डैशबोर्ड से 'Plant Pathology' के प्रीमियम पीडीएफ नोट्स को एक बार फिर पढ़ें और दोबारा टेस्ट दें!`;
+                const perc = (globalCorrectCount / globalAttemptedCount) * 100;
+                if(perc >= 80) {
+                    h.innerText = "👑 Excellent!";
+                    m.innerText = "बहुत बढ़िया! आपकी तैयारी शानदार है। नीचे अपना सर्टिफिकेट डाउनलोड करें।";
+                } else if(perc >= 50) {
+                    h.innerText = "✨ Good Effort!";
+                    m.innerText = "आप पास हैं! जो सवाल गलत हुए उन्हें दोबारा ज़रूर पढ़ें। अपना सर्टिफिकेट डाउनलोड करें।";
+                } else {
+                    h.innerText = "📚 Need More Practice";
+                    m.innerText = "स्कोर कम है। कोई बात नहीं, इस टेस्ट को दोबारा दें और सारे सही जवाब याद कर लें!";
+                }
             }
         }
 
+        function generateCertificate() {
+            const nameInput = document.getElementById('studentName').value.trim();
+            if (!nameInput) {
+                alert("Please enter your name to generate the certificate!");
+                return;
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = 1200;
+            canvas.height = 850;
+            const ctx = canvas.getContext('2d');
+
+            ctx.fillStyle = '#FAFAFA';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = '#b71c1c';
+            ctx.lineWidth = 20;
+            ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+            ctx.strokeStyle = '#D4AF37';
+            ctx.lineWidth = 6;
+            ctx.strokeRect(48, 48, canvas.width - 96, canvas.height - 96);
+
+            ctx.fillStyle = '#b71c1c';
+            ctx.fillRect(35, 35, 30, 30);
+            ctx.fillRect(canvas.width - 65, 35, 30, 30);
+            ctx.fillRect(35, canvas.height - 65, 30, 30);
+            ctx.fillRect(canvas.width - 65, canvas.height - 65, 30, 30);
+
+            ctx.save();
+            ctx.globalAlpha = 0.04;
+            ctx.fillStyle = '#b71c1c';
+            ctx.font = 'bold 130px Arial';
+            ctx.textAlign = 'center';
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(-Math.PI / 6); 
+            ctx.fillText('RAZAAGRIPOINT', 0, 0);
+            ctx.restore(); 
+
+            ctx.fillStyle = '#b71c1c';
+            ctx.font = 'bold 50px Georgia, serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('CERTIFICATE OF EXCELLENCE', 600, 160);
+            
+            ctx.fillStyle = '#D4AF37';
+            ctx.font = 'bold 22px Arial, sans-serif';
+            ctx.fillText('THIS IS PROUDLY PRESENTED TO', 600, 230);
+
+            ctx.fillStyle = '#d32f2f';
+            ctx.font = 'bold 65px "Times New Roman", Times, serif';
+            ctx.fillText(nameInput.toUpperCase(), 600, 325);
+
+            ctx.strokeStyle = '#D4AF37';
+            ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(300, 355); ctx.lineTo(900, 355); ctx.stroke();
+
+            ctx.fillStyle = '#333333';
+            ctx.font = '22px Arial, sans-serif';
+            ctx.fillText('For demonstrating outstanding academic performance by scoring', 600, 420);
+            
+            ctx.fillStyle = '#d32f2f';
+            ctx.fillRect(430, 450, 340, 60);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = 'bold 30px Arial';
+            ctx.fillText(`${globalCorrectCount} MARKS OUT OF ${globalAttemptedCount}`, 600, 492);
+
+            ctx.fillStyle = '#333333';
+            ctx.font = '22px Arial, sans-serif';
+            const currentTestName = document.getElementById('testTitleIndicator').innerText;
+            ctx.fillText(`in the online Mock Examination (${currentTestName}) for Plant Pathology.`, 600, 560);
+            
+            ctx.fillStyle = '#555555';
+            ctx.font = 'italic 20px Arial, sans-serif';
+            ctx.fillText('Syllabus Based on Mahatma Jyotibha Phoole Rohelkhand University (MJPRU).', 600, 600);
+
+            const dateStr = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+            ctx.strokeStyle = '#333333';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(150, 720); ctx.lineTo(350, 720); ctx.stroke();
+            
+            ctx.fillStyle = '#333333';
+            ctx.font = 'bold 20px Arial';
+            ctx.fillText(dateStr, 250, 705);
+            ctx.font = '18px Arial';
+            ctx.fillText('Date of Completion', 250, 745);
+
+            ctx.beginPath(); ctx.moveTo(850, 720); ctx.lineTo(1050, 720); ctx.stroke();
+            ctx.fillStyle = '#b71c1c';
+            ctx.font = 'bold 24px cursive, "Brush Script MT", serif'; 
+            ctx.fillText('Mushahid Raza', 950, 705);
+            ctx.fillStyle = '#333333';
+            ctx.font = '18px Arial';
+            ctx.fillText('Admin / Founder', 950, 745);
+
+            ctx.beginPath();
+            ctx.arc(600, 715, 60, 0, Math.PI * 2);
+            ctx.fillStyle = '#D4AF37'; 
+            ctx.fill();
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = '#d32f2f'; 
+            ctx.stroke();
+            
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 15px Arial';
+            ctx.fillText('RAZAAGRIPOINT', 600, 710);
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('VERIFIED', 600, 735);
+
+            const downloadLink = document.createElement('a');
+            downloadLink.download = `${nameInput.replace(/\s+/g, '_')}_Plant_Pathology_Certificate.png`;
+            downloadLink.href = canvas.toDataURL('image/png');
+            downloadLink.click();
+        }
+
         function restartQuiz() {
-            currentQuestionIndex = 0;
-            userAnswers = new Array(50).fill(null);
+            document.getElementById('studentName').value = '';
             document.getElementById('resultScreen').style.display = 'none';
+            document.getElementById('quizScreen').style.display = 'none';
             document.getElementById('langScreen').style.display = 'block';
+            document.getElementById('quickFactsSection').style.display = 'block';
         }
     </script>
 
-    <script>
+<script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="BDnChaYcJDEZEnaO7Tj1A";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
 

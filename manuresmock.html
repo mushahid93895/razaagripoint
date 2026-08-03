@@ -1,335 +1,717 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manures & Fertilizers Mock Test - Razaagripoint</title>
+    <title>Manures, Fertilizers & Soil Fertility Mock Test - Premium</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary: #1b5e20;
-            --primary-light: #4caf50;
-            --dark: #0f3e1b;
-            --accent: #ffca28;
-            --bg: #f4f7f5;
+            /* Theme color - Earthy Soil/Amber & Green */
+            --primary: #f57c00;
+            --primary-dark: #e65100;
+            --accent: #43a047;
+            --bg-gradient: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
             --white: #ffffff;
-            --text: #2c3e50;
-            --shadow: 0 10px 30px rgba(27, 94, 32, 0.1);
+            --text-dark: #3e2723;
+            --text-gray: #5d4037;
+            --correct-bg: #c8e6c9;
+            --correct-border: #2e7d32;
+            --correct-text: #1b5e20;
+            --wrong-bg: #ffcdd2;
+            --wrong-border: #d32f2f;
+            --wrong-text: #b71c1c;
+            --shadow: 0 10px 25px rgba(230, 81, 0, 0.15);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
+        body { background: var(--bg-gradient); color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
 
-        /* --- Navbar --- */
-        nav { background: var(--white); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
-        .logo { color: var(--primary); font-size: 24px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .exit-btn { background: #ffebee; color: #d32f2f; text-decoration: none; padding: 8px 20px; border-radius: 20px; font-weight: 600; font-size: 14px; transition: 0.3s; border: 1px solid #ffcdd2; }
-        .exit-btn:hover { background: #d32f2f; color: var(--white); }
+        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-bottom: 1px solid rgba(255,255,255,0.5); position: sticky; top: 0; z-index: 100; }
+        .logo { color: var(--primary-dark); font-size: 20px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .nav-logo-img { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
 
-        /* --- Main Layout Container --- */
-        .container { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 30px 20px; }
-        .quiz-card { background: var(--white); width: 100%; max-width: 800px; border-radius: 24px; box-shadow: var(--shadow); padding: 40px; position: relative; overflow: hidden; border: 1px solid rgba(0,0,0,0.03); }
+        .container { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 20px 15px; z-index: 1; flex-direction: column; }
+        .quiz-card { background: rgba(255, 255, 255, 0.98); width: 100%; max-width: 850px; border-radius: 24px; box-shadow: var(--shadow); padding: 30px; position: relative; border: 1px solid rgba(255,255,255,0.8); }
 
-        /* --- 1. Language Screen --- */
         .lang-screen { text-align: center; }
-        .lang-screen i.main-icon { font-size: 60px; color: var(--primary-light); margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
-        .lang-screen h1 { font-size: 32px; color: var(--dark); font-weight: 800; margin-bottom: 10px; }
-        .lang-screen p { color: #666; margin-bottom: 40px; font-size: 16px; }
-        .lang-btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 500px; margin: 0 auto; }
-        .lang-btn { background: var(--white); border: 2px solid #e0e0e0; border-radius: 16px; padding: 25px 20px; font-size: 18px; font-weight: 700; color: var(--dark); cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .lang-btn:hover { border-color: var(--primary-light); background: #f0f7f1; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(27,94,32,0.1); }
-        .lang-btn span { font-size: 13px; color: #777; font-weight: 400; }
+        .welcome-badge { background: linear-gradient(90deg, #43a047, #2e7d32); color: #fff; padding: 6px 20px; border-radius: 20px; font-weight: 800; font-size: 12px; display: inline-block; margin-bottom: 10px; }
+        .lang-screen i.main-icon { font-size: 70px; background: -webkit-linear-gradient(var(--primary-dark), var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; filter: drop-shadow(0 10px 10px rgba(230, 81, 0, 0.2)); animation: bounceIcon 3s ease-in-out infinite; }
+        .lang-screen h1 { font-size: 26px; color: var(--primary-dark); font-weight: 800; margin-bottom: 8px; line-height: 1.3; }
+        .lang-screen p { color: var(--text-gray); margin-bottom: 20px; font-size: 14px; line-height: 1.5; }
+        @keyframes bounceIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-        /* --- 2. Quiz Screen --- */
+        .test-options-container { display: flex; flex-direction: column; gap: 12px; max-width: 600px; margin: 0 auto; }
+        
+        .test-selection-card { display: flex; align-items: center; justify-content: space-between; background: var(--white); border-radius: 16px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 2px solid transparent; transition: all 0.2s; }
+        .t-card-1 { border-color: #8d6e63; background: linear-gradient(to right, #ffffff, #efebe9); }
+        .t-card-2 { border-color: #ff9800; background: linear-gradient(to right, #ffffff, #fff3e0); }
+        .t-card-3 { border-color: #43a047; background: linear-gradient(to right, #ffffff, #e8f5e9); }
+
+        .t-icon-box { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; color: #fff; flex-shrink: 0; }
+        .t-icon-1 { background: linear-gradient(135deg, #8d6e63, #5d4037); }
+        .t-icon-2 { background: linear-gradient(135deg, #ff9800, #ef6c00); }
+        .t-icon-3 { background: linear-gradient(135deg, #43a047, #2e7d32); }
+
+        .t-details { flex-grow: 1; text-align: left; padding: 0 15px; }
+        .t-details h3 { font-size: 16px; color: var(--text-dark); margin-bottom: 2px; font-weight: 700; }
+        .t-details p { font-size: 12px; color: var(--text-gray); font-weight: 500; margin: 0; }
+
+        .t-start-btn { padding: 10px 20px; border-radius: 12px; font-size: 14px; font-weight: 700; color: #fff; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
+        .t-btn-1 { background: linear-gradient(135deg, #8d6e63, #5d4037); }
+        .t-btn-2 { background: linear-gradient(135deg, #ff9800, #ef6c00); }
+        .t-btn-3 { background: linear-gradient(135deg, #43a047, #2e7d32); }
+
         .quiz-screen { display: none; }
-        .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid #f0f0f0; padding-bottom: 15px; }
-        .q-count { font-weight: 700; color: var(--primary); background: #e8f5e9; padding: 4px 15px; border-radius: 15px; font-size: 14px; }
+        .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid #ffe0b2; padding-bottom: 10px; }
+        .q-count { font-weight: 700; color: var(--white); background: var(--primary-dark); padding: 5px 15px; border-radius: 15px; font-size: 13px; }
+        .test-title-indicator { font-weight: 700; color: #2e7d32; font-size: 13px; background: #e8f5e9; padding: 5px 12px; border-radius: 8px; border: 1px solid #c8e6c9;}
         
-        /* Progress Bar */
-        .progress-container { width: 100%; background: #eee; height: 8px; border-radius: 4px; margin-bottom: 30px; overflow: hidden; }
-        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary-light), var(--primary)); width: 0%; transition: width 0.3s ease; }
+        .progress-container { width: 100%; background: #ffe0b2; height: 8px; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-dark)); width: 0%; transition: width 0.3s; }
 
-        .question-text { font-size: 22px; font-weight: 700; color: var(--dark); margin-bottom: 25px; line-height: 1.4; }
+        .question-text { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 20px; line-height: 1.4; }
+        .options-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; }
         
-        /* Options Grid */
-        .options-grid { display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px; }
-        .option { background: #f8faf9; border: 2px solid #ebdbe0; border-radius: 14px; padding: 18px 25px; font-size: 16px; font-weight: 500; text-align: left; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: space-between; }
-        .option:hover { background: #f0f4f1; border-color: #cbdcd0; }
-        .option.selected { background: #e8f5e9; border-color: var(--primary-light); color: var(--primary); font-weight: 600; }
-
-        /* Navigation Buttons */
-        .quiz-footer { display: flex; justify-content: space-between; align-items: center; }
-        .nav-btn { background: var(--primary); color: var(--white); border: none; padding: 14px 35px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; }
-        .nav-btn:hover { background: var(--dark); transform: translateY(-2px); }
-        .nav-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
-
-        /* --- 3. Result Screen --- */
-        .result-screen { display: none; text-align: center; }
-        .result-screen .congrats-icon { font-size: 70px; color: var(--accent); margin-bottom: 20px; animation: bounce 2s infinite; }
-        .result-screen h2 { font-size: 36px; font-weight: 800; color: var(--dark); margin-bottom: 15px; }
-        .message-box { font-size: 18px; color: #555; max-width: 600px; margin: 0 auto 30px auto; line-height: 1.6; font-weight: 500; }
+        .option { background: var(--white); border: 2px solid #ffe0b2; border-radius: 12px; padding: 14px 18px; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: space-between; color: var(--text-gray); }
+        .option:not(.locked):hover { background: #fff3e0; border-color: var(--primary); color: var(--primary-dark); }
+        .option.correct { background: var(--correct-bg) !important; border-color: var(--correct-border) !important; color: var(--correct-text) !important; }
+        .option.wrong { background: var(--wrong-bg) !important; border-color: var(--wrong-border) !important; color: var(--wrong-text) !important; }
+        .option.locked { pointer-events: none; }
         
-        .score-circle { width: 160px; height: 160px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-light), var(--primary)); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 40px auto; box-shadow: 0 10px 25px rgba(27,94,32,0.3); }
-        .score-circle h1 { font-size: 46px; font-weight: 800; line-height: 1; }
-        .score-circle span { font-size: 14px; opacity: 0.8; font-weight: 500; text-transform: uppercase; margin-top: 5px; }
+        .quiz-footer { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .nav-btn { padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; flex: 1; border: none; transition: 0.2s; min-width: 100px; }
+        .btn-prev { background: #efebe9; color: var(--text-gray); }
+        .btn-prev:disabled { opacity: 0.4; cursor: not-allowed; }
+        .btn-skip { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+        .btn-next { background: var(--primary-dark); color: var(--white); }
 
-        .restart-btn { background: var(--accent); color: var(--dark); border: none; padding: 15px 40px; border-radius: 30px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(255,202,40,0.4); }
-        .restart-btn:hover { background: #ffb300; transform: scale(1.05); }
+        .result-screen { display: none; text-align: center; padding: 20px 0; }
+        .result-screen .congrats-icon { font-size: 60px; color: var(--accent); margin-bottom: 10px; }
+        .result-screen h2 { font-size: 32px; font-weight: 800; color: var(--primary-dark); margin-bottom: 10px; }
+        .message-box { font-size: 15px; color: var(--text-gray); margin-bottom: 25px; font-weight: 500; }
+        
+        .score-circle { width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 25px auto; border: 4px solid #fff3e0; }
+        .score-circle h1 { font-size: 42px; font-weight: 800; line-height: 1; margin-bottom: 0; }
+        .score-circle span { font-size: 13px; font-weight: 600; margin-top: 5px; text-transform: uppercase; }
 
-        /* --- Animations --- */
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-20px); } 60% { transform: translateY(-10px); } }
+        .cert-container { background: rgba(230, 81, 0, 0.04); border: 2px dashed var(--primary); padding: 20px; border-radius: 20px; margin-bottom: 25px; }
+        .cert-container h3 { color: var(--primary-dark); font-size: 18px; margin-bottom: 10px; font-weight: 700; }
+        .cert-input { width: 100%; max-width: 350px; padding: 12px 20px; border: 2px solid #ffe0b2; border-radius: 12px; font-size: 15px; font-weight: 600; text-align: center; margin-bottom: 15px; outline: none; }
+        .cert-input:focus { border-color: var(--primary); }
+        .cert-btn { background: linear-gradient(135deg, #43a047, #2e7d32); color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+        .restart-btn { background: #efebe9; color: var(--text-dark); border: none; padding: 12px 30px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; width: 100%; max-width: 300px; margin-top: 10px; }
 
-        footer { background: var(--dark); color: #888; text-align: center; padding: 20px; font-size: 14px; margin-top: auto; border-top: 4px solid var(--accent); }
-        footer span { color: var(--accent); font-weight: bold; }
+        #quickFactsSection { width: 100%; max-width: 850px; margin-top: 20px; background: rgba(255, 255, 255, 0.95); border-radius: 20px; padding: 25px; box-shadow: var(--shadow); border: 1px solid #ffe0b2; }
+        .qf-header { text-align: center; margin-bottom: 20px; }
+        .qf-header h2 { font-size: 22px; color: #e65100; font-weight: 800; }
+        .qf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+        .qf-item { background: #ffffff; border-left: 4px solid #f57c00; padding: 12px 15px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .qf-question { font-size: 13px; font-weight: 600; color: #5d4037; max-width: 65%; }
+        .qf-answer { padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 800; background: #fff3e0; color: #e65100; }
+
+        @media (max-width: 600px) {
+            .quiz-card { padding: 20px 15px; border-radius: 18px; }
+            .test-selection-card { padding: 12px; }
+            .t-icon-box { width: 40px; height: 40px; font-size: 18px; }
+            .t-details h3 { font-size: 14px; }
+            .t-details p { font-size: 11px; }
+            .quiz-header { flex-direction: column; gap: 10px; align-items: flex-start; }
+            .question-text { font-size: 16px; margin-bottom: 15px; }
+            .option { padding: 12px 15px; font-size: 14px; }
+            .qf-item { flex-direction: column; gap: 8px; text-align: center; }
+            .qf-question { max-width: 100%; }
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="index.html" class="logo"><i class="fa-solid fa-wheat-awn"></i> Razaagripoint</a>
-        <a href="semester2.html" class="exit-btn"><i class="fa-solid fa-door-open"></i> Exit Test</a>
+        <a href="javascript:history.back()" class="logo">
+            <img src="mushahid.jpeg" alt="Logo" class="nav-logo-img" onerror="this.src='https://via.placeholder.com/35?text=R'">
+            Razaagripoint
+        </a>
     </nav>
 
     <div class="container">
         <div class="quiz-card">
             
             <div id="langScreen" class="lang-screen">
-                <i class="fa-solid fa-flask-vial main-icon"></i>
-                <h1>Start Your Mock Test</h1>
-                <p>Manures, Fertilizers & Soil Fertility Management • 50 Questions • 50 Marks</p>
+                <div class="welcome-badge">⭐ THE ULTIMATE TEST PORTAL</div>
+                <i class="fa-solid fa-seedling main-icon"></i>
+                <h1>Manures, Fertilizers & Soil Fertility</h1>
+                <p>Welcome! यहाँ आपको <b>MJPRU University</b> के सिलेबस पर आधारित <b>खाद, उर्वरक एवं मृदा उर्वरता प्रबंधन</b> के <b>150 Unique Questions</b> के 3 अलग-अलग प्रीमियम टेस्ट मिलेंगे। अपनी तैयारी के हिसाब से टेस्ट सेलेक्ट करें!</p>
                 
-                <div class="lang-btn-grid">
-                    <button class="lang-btn" onclick="startQuiz('hi')">
-                        हिन्दी टेस्ट
-                        <span>हिंदी माध्यम के छात्रों के लिए</span>
-                    </button>
-                    <button class="lang-btn" onclick="startQuiz('en')">
-                        English Test
-                        <span>For English Medium Students</span>
-                    </button>
+                <div class="test-options-container">
+                    <div class="test-selection-card t-card-1">
+                        <div class="t-icon-box t-icon-1"><i class="fa-solid fa-leaf"></i></div>
+                        <div class="t-details">
+                            <h3>Part 1: Manures & Biofertilizers</h3>
+                            <p>50 FYM, Compost & Green Manure MCQs</p>
+                        </div>
+                        <button class="t-start-btn t-btn-1" onclick="startQuiz(1)">Start <i class="fa-solid fa-play"></i></button>
+                    </div>
+
+                    <div class="test-selection-card t-card-2">
+                        <div class="t-icon-box t-icon-2"><i class="fa-solid fa-flask"></i></div>
+                        <div class="t-details">
+                            <h3>Part 2: Fertilizers & Chemicals</h3>
+                            <p>50 Urea, DAP, SSP & Properties MCQs</p>
+                        </div>
+                        <button class="t-start-btn t-btn-2" onclick="startQuiz(2)">Start <i class="fa-solid fa-play"></i></button>
+                    </div>
+
+                    <div class="test-selection-card t-card-3">
+                        <div class="t-icon-box t-icon-3"><i class="fa-solid fa-microscope"></i></div>
+                        <div class="t-details">
+                            <h3>Part 3: Soil Fertility & Nutrients</h3>
+                            <p>50 Essential Nutrients & Deficiency MCQs</p>
+                        </div>
+                        <button class="t-start-btn t-btn-3" onclick="startQuiz(3)">Start <i class="fa-solid fa-play"></i></button>
+                    </div>
                 </div>
             </div>
 
             <div id="quizScreen" class="quiz-screen">
                 <div class="quiz-header">
-                    <span id="questionCount" class="q-count">Question 1 of 50</span>
+                    <span id="questionCount" class="q-count">Q 1 / 50</span>
+                    <span id="testTitleIndicator" class="test-title-indicator">Test 1</span>
                 </div>
-                
                 <div class="progress-container">
                     <div id="progressBar" class="progress-bar"></div>
                 </div>
-
-                <div id="questionText" class="question-text">Loading Question...</div>
-                
-                <div id="optionsGrid" class="options-grid">
-                    </div>
-
+                <div id="questionText" class="question-text">Loading...</div>
+                <div id="optionsGrid" class="options-grid"></div>
                 <div class="quiz-footer">
-                    <button id="prevBtn" class="nav-btn" onclick="prevQuestion()" disabled><i class="fa-solid fa-chevron-left"></i> Previous</button>
-                    <button id="nextBtn" class="nav-btn" onclick="nextQuestion()">Next <i class="fa-solid fa-chevron-right"></i></button>
+                    <button id="prevBtn" class="nav-btn btn-prev" onclick="prevQuestion()"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+                    <button id="skipBtn" class="nav-btn btn-skip" onclick="skipQuestion()">Skip <i class="fa-solid fa-forward-step"></i></button>
+                    <button id="nextBtn" class="nav-btn btn-next" style="display:none;" onclick="nextQuestion()">Next <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
 
             <div id="resultScreen" class="result-screen">
-                <div id="congratsIcon" class="congrats-icon"><i class="fa-solid fa-crown"></i></div>
-                <h2 id="resultHeading">Excellent Work!</h2>
-                <div id="messageBox" class="message-box">Congratulations message...</div>
-                
+                <div class="congrats-icon"><i class="fa-solid fa-trophy"></i></div>
+                <h2 id="resultHeading">Great Job!</h2>
+                <div id="messageBox" class="message-box">Results loading...</div>
                 <div class="score-circle">
-                    <h1 id="scoreDisplay">00</h1>
-                    <span id="totalDisplay">Out of 50</span>
+                    <h1 id="scoreDisplay">0</h1>
+                    <span id="totalDisplay">Out of 0</span>
                 </div>
-
-                <button class="restart-btn" onclick="restartQuiz()"><i class="fa-solid fa-rotate-right"></i> Try Again</button>
+                <div class="cert-container">
+                    <h3>🏆 Download Your Topper Certificate</h3>
+                    <p style="font-size: 13px; color: var(--text-gray); margin-bottom: 12px;">अपना पूरा नाम नीचे बॉक्स में लिखें और एक <b>Professional High-Quality Certificate</b> तुरंत डाउनलोड करें:</p>
+                    <input type="text" id="studentName" class="cert-input" placeholder="यहाँ अपना नाम लिखें">
+                    <br>
+                    <button class="cert-btn" onclick="generateCertificate()"><i class="fa-solid fa-file-arrow-down"></i> Get My Certificate</button>
+                </div>
+                <button class="restart-btn" onclick="restartQuiz()"><i class="fa-solid fa-rotate-right"></i> Choose Another Test</button>
             </div>
+        </div>
 
+        <div id="quickFactsSection" class="quick-facts-wrapper">
+            <div class="qf-header">
+                <h2><i class="fa-solid fa-bolt" style="color: #f57c00;"></i> Exam Booster: Top One-Liners</h2>
+                <p style="color: #718096; font-size: 14px; font-weight: 500;">एग्ज़ाम से 10 मिनट पहले बस इसे पढ़ लेना, सीधे सवाल फसेंगे!</p>
+            </div>
+            <div class="qf-grid">
+                <div class="qf-item"><div class="qf-question">FYM (गोबर की खाद) में NPK प्रतिशत</div><div class="qf-answer">0.5% N, 0.2% P, 0.5% K</div></div>
+                <div class="qf-item"><div class="qf-question">यूरिया (Urea) में नाइट्रोजन का प्रतिशत</div><div class="qf-answer">46% (एमाइड रूप में)</div></div>
+                <div class="qf-item"><div class="qf-question">DAP (Diammonium Phosphate) में N और P</div><div class="qf-answer">18% N, 46% P2O5</div></div>
+                <div class="qf-item"><div class="qf-question">SSP (Single Super Phosphate) में सल्फर %</div><div class="qf-answer">12% सल्फर</div></div>
+                <div class="qf-item"><div class="qf-question">पौधों के लिए अनिवार्य पोषक तत्वों की संख्या</div><div class="qf-answer">17 (आर्नोन और स्टाउट)</div></div>
+                <div class="qf-item"><div class="qf-question">धान का खैरा रोग (Khaira disease) किस कमी से?</div><div class="qf-answer">जिंक (Zinc) की कमी</div></div>
+                <div class="qf-item"><div class="qf-question">फूलगोभी का व्हिपटेल रोग (Whiptail)</div><div class="qf-answer">मोलिब्डेनम (Mo) की कमी</div></div>
+                <div class="qf-item"><div class="qf-question">CAN (Calcium Ammonium Nitrate) का अन्य नाम</div><div class="qf-answer">किसान खाद (Kisan Khad)</div></div>
+                <div class="qf-item"><div class="qf-question">वर्मीकम्पोस्ट (केंचुआ खाद) में नाइट्रोजन %</div><div class="qf-answer">1.5 - 2.5% N</div></div>
+                <div class="qf-item"><div class="qf-question">हरी खाद (Green Manure) की सर्वोत्तम फसल</div><div class="qf-answer">सनई (Sunhemp)</div></div>
+            </div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 <span>Razaagripoint</span> | Designed for Excellence by Mushahid Raza</p>
-    </footer>
+   <script>
+        // TEST DATA FOR MANURES, FERTILIZERS & SOIL FERTILITY
+        
+        // Part 1: Manures & Biofertilizers (50 Questions)
+        const test1Data = [
+            { q: "मृदा में कार्बनिक पदार्थ (Organic matter) का मुख्य स्रोत क्या है?", o: ["रासायनिक उर्वरक (Chemical fertilizers)", "पौधों और जीवों के अवशेष (Plant and animal residues)", "चट्टानें (Rocks)", "हवा (Air)"], a: 1 },
+            { q: "गोबर की खाद (FYM - Farm Yard Manure) में नाइट्रोजन (N), फास्फोरस (P2O5) और पोटाश (K2O) का प्रतिशत क्रमशः कितना होता है?", o: ["0.5, 0.25, 0.5", "1.0, 0.5, 1.0", "1.5, 1.0, 1.5", "0.2, 0.1, 0.2"], a: 0 },
+            { q: "गोबर की खाद (FYM) तैयार करने की सबसे अच्छी और प्रचलित विधि कौन सी है?", o: ["खुली विधि (Open method)", "खाई विधि (Trench method)", "ढेर विधि (Heap method)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 1 },
+            { q: "केंचुए (Earthworms) द्वारा तैयार की गई खाद को क्या कहा जाता है?", o: ["हरी खाद (Green manure)", "वर्मीकम्पोस्ट (Vermicompost)", "नाडेप कम्पोस्ट (NADEP compost)", "फार्म कम्पोस्ट (Farm compost)"], a: 1 },
+            { q: "वर्मीकम्पोस्ट में नाइट्रोजन (N) का प्रतिशत लगभग कितना होता है?", o: ["0.5 - 1.0%", "1.5 - 2.5%", "4.0 - 5.0%", "10% से अधिक (More than 10%)"], a: 1 },
+            { q: "भारत में हरी खाद (Green Manure) के लिए सबसे अधिक उपयोग की जाने वाली फसल कौन सी है?", o: ["गेहूं (Wheat)", "ढैंचा और सनई (Dhaincha and Sunhemp)", "धान (Rice)", "मक्का (Maize)"], a: 1 },
+            { q: "ढैंचा (Sesbania) का उपयोग हरी खाद के रूप में किस प्रकार की मृदा सुधार के लिए विशेष रूप से किया जाता है?", o: ["क्षारीय मृदा (Alkaline soil)", "अम्लीय मृदा (Acidic soil)", "लवणीय मृदा (Saline soil)", "लाल मृदा (Red soil)"], a: 0 },
+            { q: "कम्पोस्ट (Compost) बनाने की 'इंदौर विधि' (Indore method) किसने विकसित की थी?", o: ["अल्बर्ट हावर्ड (Albert Howard)", "सी. एन. आचार्य (C.N. Acharya)", "नारायण देवराव पंढरीपांडे (N.D. Pandharipande)", "लीबिग (Liebig)"], a: 0 },
+            { q: "कम्पोस्ट बनाने की 'बैंगलोर विधि' (Bangalore method) किसने विकसित की थी?", o: ["अल्बर्ट हावर्ड (Albert Howard)", "सी. एन. आचार्य (C.N. Acharya)", "नारायण देवराव पंढरीपांडे (N.D. Pandharipande)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 1 },
+            { q: "'नाडेप' (NADEP) कम्पोस्ट विधि किसने विकसित की थी?", o: ["अल्बर्ट हावर्ड (Albert Howard)", "सी. एन. आचार्य (C.N. Acharya)", "नारायण देवराव पंढरीपांडे (N.D. Pandharipande)", "जे. वी. डेल (J.V. Dell)"], a: 2 },
+            { q: "निम्नलिखित में से कौन सी एक सांद्रित जैविक खाद (Concentrated organic manure) है?", o: ["गोबर की खाद (FYM)", "कम्पोस्ट (Compost)", "मूंगफली की खली (Groundnut cake)", "हरी खाद (Green manure)"], a: 2 },
+            { q: "मूंगफली की खली (Groundnut cake) में नाइट्रोजन का प्रतिशत लगभग कितना होता है?", o: ["2-3%", "7.0-7.3%", "1-2%", "10-12%"], a: 1 },
+            { q: "रक्त का चूरा (Blood meal) में नाइट्रोजन लगभग कितने प्रतिशत होता है?", o: ["1-2%", "4-5%", "10-12%", "20-25%"], a: 2 },
+            { q: "हड्डी का चूरा (Bone meal) किस पोषक तत्व का अच्छा स्रोत है?", o: ["नाइट्रोजन (Nitrogen)", "फास्फोरस (Phosphorus)", "पोटाश (Potash)", "सल्फर (Sulfur)"], a: 1 },
+            { q: "कार्बन:नाइट्रोजन अनुपात (C:N ratio) का मृदा में आदर्श मान क्या माना जाता है?", o: ["10:1 से 12:1", "20:1 से 30:1", "40:1 से 50:1", "100:1"], a: 0 },
+            { q: "मृदा में C:N अनुपात (C:N ratio) बढ़ने पर नाइट्रोजन की उपलब्धता पर क्या प्रभाव पड़ता है?", o: ["बढ़ जाती है (Increases)", "कम हो जाती है (Decreases)", "कोई प्रभाव नहीं (No effect)", "पहले बढ़ती है फिर घटती है (First increases then decreases)"], a: 1 },
+            { q: "सामान्य गोबर की खाद (FYM) का C:N अनुपात लगभग कितना होता है?", o: ["10:1", "20:1 से 30:1", "50:1", "100:1"], a: 1 },
+            { q: "जीवाणु खाद (Biofertilizer) 'राइजोबियम' (Rhizobium) का उपयोग मुख्य रूप से किन फसलों में किया जाता है?", o: ["अनाज वाली फसलें (Cereal crops)", "दलहनी फसलें (Leguminous crops)", "तिलहनी फसलें (Oilseed crops)", "रेशेदार फसलें (Fibre crops)"], a: 1 },
+            { q: "सोयाबीन में बीज उपचार के लिए राइजोबियम की कौन सी प्रजाति (Species) उपयोग की जाती है?", o: ["Rhizobium leguminosarum", "Rhizobium japonicum", "Rhizobium meliloti", "Rhizobium phaseoli"], a: 1 },
+            { q: "स्वतंत्र रूप से नाइट्रोजन स्थिरीकरण (Free-living nitrogen fixation) करने वाला जीवाणु कौन सा है?", o: ["राइजोबियम (Rhizobium)", "एजोटोबैक्टर (Azotobacter)", "एजोस्पिरिलम (Azospirillum)", "A और B दोनों (Both A and B)"], a: 1 },
+            { q: "धान के खेत में नाइट्रोजन स्थिरीकरण के लिए कौन सा जैव उर्वरक सबसे उपयुक्त है?", o: ["नील हरित शैवाल (BGA / Blue Green Algae)", "राइजोबियम (Rhizobium)", "एजोटोबैक्टर (Azotobacter)", "VAM"], a: 0 },
+            { q: "अजोला (Azolla) क्या है जिसका उपयोग धान के खेतों में खाद के रूप में होता है?", o: ["एक प्रकार का जीवाणु (A type of bacteria)", "एक पानी की फर्न (A water fern)", "एक कवक (A fungus)", "एक वायरस (A virus)"], a: 1 },
+            { q: "अजोला की पत्तियों में कौन सा नाइट्रोजन स्थिरीकरण करने वाला सूक्ष्मजीव पाया जाता है?", o: ["राइजोबियम (Rhizobium)", "एनाबीना अजोली (Anabaena azollae)", "एजोटोबैक्टर (Azotobacter)", "नाइट्रोसोमोनास (Nitrosomonas)"], a: 1 },
+            { q: "एजोस्पिरिलम (Azospirillum) का उपयोग मुख्य रूप से किन फसलों में किया जाता है?", o: ["दलहनी फसलें (Legumes)", "ज्वार, बाजरा, मक्का (Sorghum, Pearl millet, Maize)", "आलू (Potato)", "कपास (Cotton)"], a: 1 },
+            { q: "फास्फोरस घोलक जीवाणु (PSB - Phosphorus Solubilizing Bacteria) का उदाहरण कौन सा है?", o: ["स्यूडोमोनास (Pseudomonas)", "बैसिलस (Bacillus)", "A और B दोनों (Both A and B)", "राइजोबियम (Rhizobium)"], a: 2 },
+            { q: "VAM (Vesicular Arbuscular Mycorrhiza) पौधों की जड़ों में किस तत्व के अवशोषण को बढ़ाता है?", o: ["नाइट्रोजन (Nitrogen)", "फास्फोरस (Phosphorus)", "पोटाश (Potash)", "कैल्शियम (Calcium)"], a: 1 },
+            { q: "बायोगैस (Biogas) का मुख्य घटक (Main component) कौन सी गैस है?", o: ["ऑक्सीजन (Oxygen)", "मीथेन (Methane)", "कार्बन डाइऑक्साइड (Carbon dioxide)", "हाइड्रोजन (Hydrogen)"], a: 1 },
+            { q: "बायोगैस प्लांट से निकलने वाली स्लरी (Slurry) खाद के रूप में कैसी होती है?", o: ["बहुत खराब (Very poor)", "FYM से बेहतर (Better than FYM)", "केवल पानी जैसी (Like only water)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 1 },
+            { q: "मृदा में ह्यूमस (Humus) का रंग कैसा होता है?", o: ["सफेद (White)", "गहरा भूरा या काला (Dark brown or black)", "लाल (Red)", "पीला (Yellow)"], a: 1 },
+            { q: "ह्यूमस (Humus) में कार्बन की मात्रा लगभग कितनी होती है?", o: ["10-20%", "30-40%", "50-60%", "80-90%"], a: 2 },
+            { q: "हरी खाद की फसल को फूल आने की अवस्था (Flowering stage) में मिट्टी में क्यों मिलाया जाता है?", o: ["क्योंकि इस समय C:N अनुपात कम होता है और यह जल्दी सड़ती है (Because C:N ratio is low and it decomposes fast)", "क्योंकि यह बहुत सख्त हो जाती है (Because it becomes very hard)", "क्योंकि बीज बन जाते हैं (Because seeds are formed)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 0 },
+            { q: "बर्मीकम्पोस्ट बनाने के लिए सबसे उपयुक्त केंचुए की प्रजाति कौन सी है?", o: ["Eisenia fetida", "Pheretima posthuma", "Lumbricus terrestris", "उपर्युक्त सभी (All of the above)"], a: 0 },
+            { q: "कम्पोस्टिंग (Composting) एक कैसी प्रक्रिया है?", o: ["केवल अवायवीय (Only anaerobic)", "वायवीय और जैविक (Aerobic and biological)", "रासायनिक (Chemical)", "भौतिक (Physical)"], a: 1 },
+            { q: "निम्नलिखित में से कौन सा एक अखाद्य खली (Non-edible oil cake) का उदाहरण है?", o: ["मूंगफली की खली (Groundnut cake)", "सरसों की खली (Mustard cake)", "नीम की खली (Neem cake)", "तिल की खली (Sesame cake)"], a: 2 },
+            { q: "नीम की खली (Neem cake) का उपयोग यूरिया के साथ क्यों किया जाता है?", o: ["यूरिया को सफेद करने के लिए (To whiten urea)", "नाइट्रिफिकेशन की प्रक्रिया को धीमा करने के लिए (To slow down nitrification process)", "यूरिया का वजन बढ़ाने के लिए (To increase weight of urea)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 1 },
+            { q: "शहरी कचरे (Urban waste) से तैयार की गई खाद को क्या कहते हैं?", o: ["नाडेप (NADEP)", "टाउन कम्पोस्ट (Town compost)", "वर्मीकम्पोस्ट (Vermicompost)", "हरी खाद (Green manure)"], a: 1 },
+            { q: "नाइट्रिफिकेशन (Nitrification) प्रक्रिया में अमोनिया को नाइट्राइट (NO2) में कौन सा जीवाणु बदलता है?", o: ["नाइट्रोसोमोनास (Nitrosomonas)", "नाइट्रोबैक्टर (Nitrobacter)", "एजोटोबैक्टर (Azotobacter)", "राइजोबियम (Rhizobium)"], a: 0 },
+            { q: "नाइट्राइट (NO2) को नाइट्रेट (NO3) में कौन सा जीवाणु बदलता है?", o: ["नाइट्रोसोमोनास (Nitrosomonas)", "नाइट्रोबैक्टर (Nitrobacter)", "स्यूडोमोनास (Pseudomonas)", "क्लोस्ट्रीडियम (Clostridium)"], a: 1 },
+            { q: "विनाइट्रीकरण (Denitrification) से मृदा में नाइट्रोजन का क्या होता है?", o: ["लाभ होता है (Gain)", "नुकसान होता है (Loss)", "स्थिरीकरण होता है (Fixation)", "कोई प्रभाव नहीं (No effect)"], a: 1 },
+            { q: "मृदा में कार्बनिक पदार्थ (Organic matter) मिलाने से मृदा की जल धारण क्षमता (Water holding capacity) पर क्या प्रभाव पड़ता है?", o: ["कम हो जाती है (Decreases)", "बढ़ जाती है (Increases)", "कोई प्रभाव नहीं (No effect)", "शून्य हो जाती है (Becomes zero)"], a: 1 },
+            { q: "सूअरों के मल-मूत्र (Pig manure) को क्या कहा जाता है?", o: ["गुआनो (Guano)", "पिगरी खाद (Piggery manure)", "पोल्ट्री खाद (Poultry manure)", "A और B दोनों (Both A and B)"], a: 1 },
+            { q: "पक्षियों (समुद्री पक्षियों) की बीट से प्राप्त खाद को क्या कहते हैं?", o: ["गुआनो (Guano)", "पिगरी (Piggery)", "कम्पोस्ट (Compost)", "स्लज (Sludge)"], a: 0 },
+            { q: "बायोगैस उत्पादन में कौन से जीवाणु मुख्य भूमिका निभाते हैं?", o: ["मीथेनोजेन्स (Methanogens)", "नाइट्रिफाइंग बैक्टीरिया (Nitrifying bacteria)", "राइजोबियम (Rhizobium)", "लैक्टिक बैक्टीरिया (Lactic bacteria)"], a: 0 },
+            { q: "कार्बनिक खादों के उपयोग से मृदा की संरचना (Soil structure) में क्या परिवर्तन होता है?", o: ["खराब होती है (Deteriorates)", "सुधार होता है (Improves)", "कोई परिवर्तन नहीं (No change)", "मिट्टी रेतीली हो जाती है (Soil becomes sandy)"], a: 1 },
+            { q: "केंचुआ (Earthworm) किसान का मित्र क्यों कहलाता है?", o: ["यह मिट्टी को भुरभुरा बनाता है (It makes soil porous)", "यह कार्बनिक पदार्थों को तोड़ता है (It breaks down organic matter)", "A और B दोनों (Both A and B)", "यह फसल को खाता है (It eats crops)"], a: 2 },
+            { q: "प्रेसमड (Pressmud) किस उद्योग का सह-उत्पाद (By-product) है जिसका उपयोग खाद के रूप में होता है?", o: ["कपड़ा उद्योग (Textile industry)", "चीनी उद्योग (Sugar industry)", "लोहा उद्योग (Iron industry)", "कागज उद्योग (Paper industry)"], a: 1 },
+            { q: "मछली की खाद (Fish meal) में नाइट्रोजन का प्रतिशत लगभग कितना होता है?", o: ["1-2%", "4-10%", "20-25%", "30-40%"], a: 1 },
+            { q: "मृदा में सूक्ष्मजीवों (Microorganisms) की गतिविधि किस तापमान पर सर्वाधिक होती है?", o: ["0-10°C", "25-35°C", "50-60°C", "80-100°C"], a: 1 },
+            { q: "सीवेज और स्लज (Sewage and sludge) का उपयोग खाद के रूप में किया जा सकता है, लेकिन इसमें किसका खतरा रहता है?", o: ["भारी धातुओं का (Heavy metals)", "सोने का (Gold)", "हीरे का (Diamond)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 0 },
+            { q: "निम्नलिखित में से कौन सा एक तरल जैव उर्वरक (Liquid biofertilizer) का लाभ है?", o: ["लंबी शेल्फ लाइफ (Longer shelf life)", "कम लागत (Lower cost)", "उच्च उत्तरजीविता (Higher survival rate)", "उपर्युक्त सभी (All of the above)"], a: 3 }
+        ];
 
-    <script>
-        // Clean Core Data Bank without any prefixes
-        const quizData = {
-            en: [
-                { q: "Which of the following is a concentrated organic manure?", o: ["Farm Yard Manure (FYM)", "Compost", "Groundnut cake", "Green manure"], a: 2 },
-                { q: "What is the average Nitrogen content in Urea?", o: ["26%", "46%", "60%", "18%"], a: 1 },
-                { q: "Which element is essential for root development and early maturity of crops?", o: ["Nitrogen", "Potassium", "Phosphorus", "Zinc"], a: 2 },
-                { q: "Muriate of Potash (MOP) contains how much percentage of K2O?", o: ["46%", "50%", "60%", "12%"], a: 2 },
-                { q: "Which bio-fertilizer is most suitable for symbiotic nitrogen fixation in legumes?", o: ["Azotobacter", "Rhizobium", "Azospirillum", "Blue Green Algae"], a: 1 },
-                { q: "The C:N ratio of well-decomposed FYM is generally around:", o: ["10:1 to 12:1", "20:1 to 30:1", "100:1", "5:1"], a: 0 },
-                { q: "Which fertilizer is chemically known as Calcium Ammonium Nitrate (CAN)?", o: ["Kisan Khad", "Urea", "Ammonium Sulphate", "Single Super Phosphate"], a: 0 },
-                { q: "Biuret content in urea should not exceed what percentage for soil application?", o: ["1.5%", "5.0%", "0.5%", "3.0%"], a: 0 },
-                { q: "Single Super Phosphate (SSP) contains how much percentage of Phosphorus (P2O5)?", o: ["12%", "16%", "20%", "46%"], a: 1 },
-                { q: "Which nutrient deficiency causes 'hidden hunger' without showing immediate visual symptoms?", o: ["Nitrogen", "Potassium", "Sulphur", "Iron"], a: 1 },
-                { q: "Which of the following is an example of a complex fertilizer?", o: ["Urea", "DAP (Diammonium Phosphate)", "MOP", "SSP"], a: 1 },
-                { q: "The capacity of soil to provide essential nutrients in proper amounts is called:", o: ["Soil productivity", "Soil fertility", "Soil texture", "Soil structure"], a: 1 },
-                { q: "Which instrument is commonly used to measure soil pH?", o: ["Spectrophotometer", "pH meter", "Centrifuge", "Colorimeter"], a: 1 },
-                { q: "Vertebrates or bacteria that fix nitrogen in non-symbiotic ways are called:", o: ["Rhizobium", "Azotobacter", "VAM", "Frankia"], a: 1 },
-                { q: "Deficiency of which nutrient causes internal necrosis in Aonla or black tip of Mango?", o: ["Boron", "Copper", "Manganese", "Zinc"], a: 0 }
-            ],
-            hi: [
-                { q: "निम्नलिखित में से कौन सी सघन जैविक खाद (Concentrated Organic Manure) का उदाहरण है?", o: ["गोबर की खाद (FYM)", "कम्पोस्ट", "मूंगफली की खली", "हरी खाद"], a: 2 },
-                { q: "यूरिया में नाइट्रोजन की औसत मात्रा कितनी प्रतिशत होती है?", o: ["26%", "46%", "60%", "18%"], a: 1 },
-                { q: "फसलों की जड़ों के विकास और जल्दी पकने के लिए कौन सा तत्व आवश्यक है?", o: ["नाइट्रोजन", "पोटेशियम", "फास्फोरस", "जिंक"], a: 2 },
-                { q: "म्यूरेट ऑफ पोटाश (MOP) में कितने प्रतिशत K2O (पोटाश) होता है?", o: ["46%", "50%", "60%", "12%"], a: 2 },
-                { q: "दलहनी फसलों में सहजीवी नाइट्रोजन स्थिरीकरण के लिए कौन सा जैव उर्वरक सबसे उपयुक्त है?", o: ["एज़ोटोबैक्टर", "राइजोबियम", "एज़ोस्पिरिलम", "नील हरित शैवाल"], a: 1 },
-                { q: "अच्छी तरह से सड़ी हुई गोबर की खाद (FYM) का C:N अनुपात सामान्यतः कितना होता है?", o: ["10:1 से 12:1", "20:1 से 30:1", "100:1", "5:1"], a: 0 },
-                { q: "किस उर्वरक को रासायनिक रूप से 'कैल्शियम अमोनियम नाइट्रेट' (CAN) या किसान खाद कहा जाता है?", o: ["किसान खाद", "यूरिया", "अमोनियम सल्फेट", "सिंगल सुपर फास्फेट"], a: 0 },
-                { q: "मृदा प्रयोग के लिए यूरिया में बाययूरेट (Biuret) की मात्रा कितने प्रतिशत से अधिक नहीं होनी चाहिए?", o: ["1.5%", "5.0%", "0.5%", "3.0%"], a: 0 },
-                { q: "सिंगल सुपर फास्फेट (SSP) में कितने प्रतिशत फास्फोरस (P2O5) पाया जाता है?", o: ["12%", "16%", "20%", "46%"], a: 1 },
-                { q: "किस पोषक तत्व की कमी के कारण पौधों में बिना लक्षण दिखाए उत्पादकता घट जाती है, जिसे 'छिपी हुई भूख' (Hidden Hunger) कहते हैं?", o: ["नाइट्रोजन", "पोटेशियम", "सल्फर", "लोहा"], a: 1 },
-                { q: "निम्नलिखित में से कौन सा एक जटिल उर्वरक (Complex Fertilizer) का उदाहरण है?", o: ["यूरिया", "डीएपी (डाईअमोनियम फास्फेट)", "एमओपी", "एसएसपी"], a: 1 },
-                { q: "पौधों को उचित मात्रा और अनुपात में आवश्यक पोषक तत्व प्रदान करने की मिट्टी की क्षमता को क्या कहते हैं?", o: ["मृदा उत्पादकता", "मृदा उर्वरता (Soil Fertility)", "मृदा बनावट", "मृदा संरचना"], a: 1 },
-                { q: "मृदा पीएच (Soil pH) मापने के लिए आमतौर पर किस उपकरण का उपयोग किया जाता है?", o: ["स्पेक्ट्रोफोटोमीटर", "पीएच मीटर (pH meter)", "अपकेंद्रित्र", "कलरमीटर"], a: 1 },
-                { q: "असहजीवी (Non-symbiotic) रूप से नाइट्रोजन स्थिरीकरण करने वाले जीवाणु का उदाहरण है:", o: ["राइजोबियम", "एज़ोटोबैक्टर", "वीएएम (VAM)", "फ्रैंकिया"], a: 1 },
-                { q: "किस पोषक तत्व की कमी से आंवले में आंतरिक नेक्रोसिस या आम का ब्लैक टिप रोग होता है?", o: ["बोरॉन", "कॉपर", "मैंगनीज", "जिंक"], a: 0 }
-            ]
-        };
+        // Part 2: Fertilizers & Chemicals (50 Questions)
+        const test2Data = [
+            { q: "यूरिया (Urea) में नाइट्रोजन का प्रतिशत कितना होता है?", o: ["20%", "25%", "46%", "60%"], a: 2 },
+            { q: "यूरिया में नाइट्रोजन किस रूप में पाया जाता है?", o: ["नाइट्रेट (Nitrate)", "अमोनिकल (Ammoniacal)", "एमाइड (Amide)", "नाइट्राइट (Nitrite)"], a: 2 },
+            { q: "भारत में सबसे अधिक उत्पादित और उपभोग किया जाने वाला नाइट्रोजन युक्त उर्वरक कौन सा है?", o: ["अमोनियम सल्फेट (Ammonium sulphate)", "कैन (CAN)", "यूरिया (Urea)", "सोडियम नाइट्रेट (Sodium nitrate)"], a: 2 },
+            { q: "यूरिया बनाते समय तापमान अधिक होने पर कौन सा विषैला तत्व बन जाता है?", o: ["बायूरेट (Biuret)", "सायनेट (Cyanate)", "सल्फेट (Sulphate)", "क्लोराइड (Chloride)"], a: 0 },
+            { q: "पर्णीय छिड़काव (Foliar spray) के लिए यूरिया में बायूरेट (Biuret) की अधिकतम सीमा कितनी होनी चाहिए?", o: ["0.5% से कम", "1.5% से अधिक", "2.5% से अधिक", "5.0%"], a: 0 },
+            { q: "कैन (CAN - Calcium Ammonium Nitrate) का दूसरा नाम क्या है?", o: ["किसान खाद (Kisan Khad)", "सुपर खाद (Super Khad)", "हरा खाद (Green Khad)", "रॉक फॉस्फेट (Rock Phosphate)"], a: 0 },
+            { q: "CAN (Kisan Khad) में नाइट्रोजन का प्रतिशत कितना होता है?", o: ["15%", "25%", "46%", "60%"], a: 1 },
+            { q: "अमोनियम सल्फेट (Ammonium sulphate) में नाइट्रोजन और सल्फर का प्रतिशत क्रमशः कितना होता है?", o: ["20.6% N, 24% S", "46% N, 0% S", "18% N, 46% S", "25% N, 10% S"], a: 0 },
+            { q: "धान, चाय और गन्ने की फसल के लिए सबसे उपयुक्त नाइट्रोजन युक्त उर्वरक कौन सा माना जाता है?", o: ["सोडियम नाइट्रेट (Sodium nitrate)", "अमोनियम सल्फेट (Ammonium sulphate)", "कैल्शियम नाइट्रेट (Calcium nitrate)", "पोटेशियम नाइट्रेट (Potassium nitrate)"], a: 1 },
+            { q: "सिंगल सुपर फास्फेट (SSP) में P2O5 (फास्फोरस) का प्रतिशत कितना होता है?", o: ["16%", "32%", "46%", "60%"], a: 0 },
+            { q: "SSP (Single Super Phosphate) में फास्फोरस के अलावा और कौन से तत्व पाए जाते हैं?", o: ["सल्फर (Sulfur)", "कैल्शियम (Calcium)", "A और B दोनों (Both A and B)", "नाइट्रोजन (Nitrogen)"], a: 2 },
+            { q: "SSP में सल्फर (S) का प्रतिशत लगभग कितना होता है?", o: ["2%", "6%", "12%", "24%"], a: 2 },
+            { q: "डबल सुपर फास्फेट (DSP) में P2O5 का प्रतिशत कितना होता है?", o: ["16%", "32%", "46%", "60%"], a: 1 },
+            { q: "ट्रिपल सुपर फास्फेट (TSP) में P2O5 का प्रतिशत कितना होता है?", o: ["16-20%", "32-35%", "46-48%", "60-65%"], a: 2 },
+            { q: "डीएपी (DAP - Diammonium Phosphate) में नाइट्रोजन (N) और फास्फोरस (P2O5) का प्रतिशत क्रमशः कितना होता है?", o: ["46% N, 18% P", "18% N, 46% P", "20% N, 20% P", "10% N, 26% P"], a: 1 },
+            { q: "पोटेशियम (Potash) उर्वरक का सबसे आम रूप कौन सा है जिसे भारत में आयात किया जाता है?", o: ["पोटेशियम सल्फेट (SOP)", "म्यूरिएट ऑफ पोटाश (MOP)", "पोटेशियम नाइट्रेट (Potassium nitrate)", "उपर्युक्त सभी (All of the above)"], a: 1 },
+            { q: "म्यूरिएट ऑफ पोटाश (MOP) का रासायनिक नाम और सूत्र क्या है?", o: ["पोटेशियम सल्फेट (K2SO4)", "पोटेशियम क्लोराइड (KCl)", "पोटेशियम नाइट्रेट (KNO3)", "पोटेशियम कार्बोनेट (K2CO3)"], a: 1 },
+            { q: "MOP (Muriate of Potash) में K2O का प्रतिशत कितना होता है?", o: ["20%", "40%", "60%", "80%"], a: 2 },
+            { q: "पोटेशियम सल्फेट (SOP) में K2O और सल्फर (S) का प्रतिशत कितना होता है?", o: ["60% K2O, 0% S", "50% K2O, 17.5% S", "40% K2O, 10% S", "20% K2O, 24% S"], a: 1 },
+            { q: "आलू, तंबाकू और गन्ने जैसी फसलों में MOP (KCl) का प्रयोग क्यों नहीं करना चाहिए?", o: ["क्योंकि क्लोराइड (Cl) इनकी गुणवत्ता खराब करता है", "क्योंकि यह बहुत महंगा है", "क्योंकि इसमें नाइट्रोजन नहीं है", "उपर्युक्त में से कोई नहीं"], a: 0 },
+            { q: "वे उर्वरक जिनमें प्राथमिक पोषक तत्वों (N, P, K) में से कोई दो या तीनों तत्व पाए जाते हैं, क्या कहलाते हैं?", o: ["सरल उर्वरक (Straight fertilizers)", "जटिल उर्वरक (Complex fertilizers)", "सूक्ष्म उर्वरक (Micro fertilizers)", "अपूर्ण उर्वरक (Incomplete fertilizers)"], a: 1 },
+            { q: "मिश्रित उर्वरक (Mixed fertilizers) कैसे तैयार किए जाते हैं?", o: ["रासायनिक प्रतिक्रिया द्वारा (By chemical reaction)", "दो या दो से अधिक उर्वरकों को भौतिक रूप से मिलाकर (By physically mixing two or more fertilizers)", "खेत में बीजों के साथ मिलाकर (By mixing with seeds in field)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 1 },
+            { q: "उर्वरक ग्रेड (Fertilizer Grade) 12-32-16 में 32 क्या दर्शाता है?", o: ["नाइट्रोजन का प्रतिशत (% Nitrogen)", "फास्फोरस का प्रतिशत (% Phosphorus/P2O5)", "पोटाश का प्रतिशत (% Potash/K2O)", "सल्फर का प्रतिशत (% Sulfur)"], a: 1 },
+            { q: "नाइट्रोजन युक्त उर्वरक मृदा में कैसा प्रभाव छोड़ते हैं?", o: ["क्षारीय (Alkaline)", "अम्लीय (Acidic)", "उदासीन (Neutral)", "लवणीय (Saline)"], a: 1 },
+            { q: "तुल्यांकी अम्लता (Equivalent Acidity) के आधार पर सबसे अधिक अम्लीय उर्वरक कौन सा है?", o: ["यूरिया (Urea)", "अमोनियम सल्फेट (Ammonium sulphate)", "निर्जल अमोनिया (Anhydrous ammonia)", "कैन (CAN)"], a: 2 },
+            { q: "निर्जल अमोनिया (Anhydrous ammonia) में नाइट्रोजन का प्रतिशत कितना होता है?", o: ["46%", "60%", "82.2%", "100%"], a: 2 },
+            { q: "यूरिया की तुल्यांकी अम्लता (Equivalent Acidity) कितनी होती है?", o: ["80", "93", "110", "148"], a: 0 },
+            { q: "तुल्यांकी क्षारीयता (Equivalent Basicity) किस उर्वरक में पाई जाती है?", o: ["यूरिया (Urea)", "सोडियम नाइट्रेट (Sodium nitrate)", "अमोनियम सल्फेट (Ammonium sulphate)", "DAP"], a: 1 },
+            { q: "उर्वरक प्रयोग की 'छिटकवां विधि' (Broadcasting) का क्या अर्थ है?", o: ["पौधे की जड़ में उर्वरक देना", "उर्वरक को पूरे खेत की सतह पर समान रूप से बिखेरना", "सिंचाई के पानी के साथ उर्वरक देना", "पत्तियों पर छिड़काव करना"], a: 1 },
+            { q: "टॉप ड्रेसिंग (Top dressing) किसे कहते हैं?", o: ["बुवाई से पहले उर्वरक देना", "खड़ी फसल में उर्वरक का प्रयोग करना", "बीज उपचार करना", "कटाई के बाद उर्वरक देना"], a: 1 },
+            { q: "फर्टिगेशन (Fertigation) क्या है?", o: ["हवा में उर्वरक उड़ाना", "सिंचाई जल के साथ उर्वरक देना", "मिट्टी में हल चलाना", "केंचुए पालना"], a: 1 },
+            { q: "नाइट्रोजन युक्त उर्वरकों का उपयोग आमतौर पर कितने भागों में (Splits) किया जाता है?", o: ["पूरा एक बार में बुवाई के समय", "दो या तीन बार में (बुवाई और खड़ी फसल में)", "केवल कटाई के समय", "उपर्युक्त में से कोई नहीं"], a: 1 },
+            { q: "फास्फोरस युक्त उर्वरकों (जैसे DAP, SSP) का प्रयोग खेत में कब करना चाहिए?", o: ["केवल खड़ी फसल में (Only in standing crop)", "पूरी मात्रा बुवाई के समय (Full dose at the time of sowing)", "कटाई से पहले (Before harvesting)", "किसी भी समय (At any time)"], a: 1 },
+            { q: "फास्फोरस उर्वरकों को हमेशा जड़ क्षेत्र (Root zone) के पास (Placement) क्यों देना चाहिए?", o: ["क्योंकि यह मृदा में गतिशील है", "क्योंकि यह मृदा में गतिहीन (Immobile) है", "ताकि हवा में न उड़े", "ताकि कीड़े न खाएं"], a: 1 },
+            { q: "रॉक फॉस्फेट (Rock Phosphate) का उपयोग सीधे खेत में किस प्रकार की मिट्टी में किया जाता है?", o: ["क्षारीय मृदा (Alkaline soil)", "अम्लीय मृदा (Acidic soil)", "उदासीन मृदा (Neutral soil)", "रेतीली मृदा (Sandy soil)"], a: 1 },
+            { q: "नीम लेपित यूरिया (Neem Coated Urea) का मुख्य लाभ क्या है?", o: ["नाइट्रोजन का धीमा निष्कासन (Slow release of nitrogen)", "उर्वरक क्षमता में वृद्धि (Increase in fertilizer efficiency)", "A और B दोनों (Both A and B)", "यह तुरंत घुल जाता है (It dissolves instantly)"], a: 2 },
+            { q: "जिंक सल्फेट (Zinc sulphate) में जिंक का प्रतिशत कितना होता है (हेप्टाहाइड्रेट रूप में)?", o: ["12%", "21%", "33%", "45%"], a: 1 },
+            { q: "बोरेक्स (Borax) में बोरॉन (B) का प्रतिशत कितना होता है?", o: ["10.5%", "20%", "40%", "50%"], a: 0 },
+            { q: "अमोनियम क्लोराइड (Ammonium chloride) में नाइट्रोजन प्रतिशत कितना होता है?", o: ["15%", "25%", "35%", "46%"], a: 1 },
+            { q: "हाइग्रोस्कोपिसिटी (Hygroscopicity - नमी सोखने का गुण) सबसे अधिक किस उर्वरक में होता है?", o: ["यूरिया (Urea)", "अमोनियम नाइट्रेट (Ammonium nitrate)", "SSP", "DAP"], a: 1 },
+            { q: "कैन (CAN) उर्वरक को 'विस्फोटक' होने से बचाने के लिए अमोनियम नाइट्रेट के साथ क्या मिलाया जाता है?", o: ["सल्फर (Sulfur)", "चूना पत्थर (Limestone / Calcium Carbonate)", "जिप्सम (Gypsum)", "यूरिया (Urea)"], a: 1 },
+            { q: "भारत में कौन सा उर्वरक पूरी तरह से विदेशों से आयात (Import) किया जाता है?", o: ["नाइट्रोजन उर्वरक (Nitrogenous fertilizers)", "फास्फोरस उर्वरक (Phosphatic fertilizers)", "पोटाश उर्वरक (Potassic fertilizers)", "उपर्युक्त सभी (All of the above)"], a: 2 },
+            { q: "उर्वरक नियंत्रण आदेश (Fertilizer Control Order - FCO) किस वर्ष पारित किया गया था?", o: ["1955", "1965", "1975", "1985"], a: 0 },
+            { q: "उर्वरक उपयोग दक्षता (Fertilizer Use Efficiency) सबसे कम किस पोषक तत्व की होती है?", o: ["नाइट्रोजन (Nitrogen)", "फास्फोरस (Phosphorus)", "पोटाश (Potash)", "कैल्शियम (Calcium)"], a: 1 },
+            { q: "मृदा परीक्षण (Soil testing) के अनुसार उर्वरकों का प्रयोग करना क्या कहलाता है?", o: ["अंधाधुंध उपयोग (Blind use)", "संतुलित उर्वरक उपयोग (Balanced fertilizer use)", "जैविक खेती (Organic farming)", "जीरो टिलेज (Zero tillage)"], a: 1 },
+            { q: "फॉस्फोरस के विलेयता (Solubility) के आधार पर SSP और DAP किस श्रेणी में आते हैं?", o: ["जल में घुलनशील (Water soluble)", "साइट्रेट में घुलनशील (Citrate soluble)", "अघुलनशील (Insoluble)", "A और B दोनों (Both A and B)"], a: 0 },
+            { q: "बेसिक स्लैग (Basic slag) किस उद्योग का उपोत्पाद (By-product) है जो फास्फोरस का स्रोत है?", o: ["चीनी उद्योग (Sugar industry)", "इस्पात/स्टील उद्योग (Steel industry)", "चमड़ा उद्योग (Leather industry)", "कागज उद्योग (Paper industry)"], a: 1 },
+            { q: "मृदा में यूरिया के अपघटन (Decomposition) के लिए कौन सा एंजाइम आवश्यक है?", o: ["यूरिकेस (Uricase)", "यूरिएज (Urease)", "नाइट्रोजिनेस (Nitrogenase)", "एमाइलेज (Amylase)"], a: 1 },
+            { q: "100 किलो नाइट्रोजन (N) की आवश्यकता पूरी करने के लिए लगभग कितने किलो यूरिया की आवश्यकता होगी?", o: ["100 किलो", "150 किलो", "217 किलो", "460 किलो"], a: 2 },
+            { q: "तरल उर्वरक (Liquid fertilizers) का उपयोग सबसे अधिक किस सिंचाई विधि के साथ उपयुक्त है?", o: ["बाढ़ सिंचाई (Flood irrigation)", "ड्रिप सिंचाई (Drip irrigation)", "क्यारी सिंचाई (Check basin irrigation)", "थाला सिंचाई (Ring basin irrigation)"], a: 1 }
+        ];
 
-        // Generates remaining questions safely up to 50 without inserting duplicate headers or tags
-        function buildFull50Bank() {
-            const languages = ['en', 'hi'];
-            languages.forEach(lang => {
-                const baseQuestions = [...quizData[lang]];
-                while(quizData[lang].length < 50) {
-                    const template = baseQuestions[quizData[lang].length % baseQuestions.length];
-                    quizData[lang].push({
-                        q: template.q, // Pure text question cloned seamlessly
-                        o: [...template.o],
-                        a: template.a
-                    });
-                }
-            });
-        }
-        buildFull50Bank();
+        // Part 3: Soil Fertility & Nutrients (50 Questions)
+        const test3Data = [
+            { q: "मृदा की वह अंतर्निहित क्षमता जो पौधों को पर्याप्त मात्रा और उचित अनुपात में पोषक तत्व प्रदान करती है, क्या कहलाती है?", o: ["मृदा उत्पादकता (Soil Productivity)", "मृदा उर्वरता (Soil Fertility)", "मृदा संरचना (Soil Structure)", "मृदा गठन (Soil Texture)"], a: 1 },
+            { q: "मृदा उत्पादकता (Soil Productivity) को किसमें मापा जाता है?", o: ["पीएच में (In pH)", "किलो या क्विंटल प्रति हेक्टेयर (kg or q/ha yield)", "प्रतिशत में (In percentage)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 1 },
+            { q: "क्या एक उर्वर मृदा (Fertile soil) हमेशा उत्पादक (Productive) होती है?", o: ["हाँ, हमेशा (Yes, always)", "नहीं, यह जलवायु, जलभराव आदि पर भी निर्भर करता है (No, it also depends on climate, waterlogging etc.)", "केवल सर्दियों में (Only in winter)", "उपर्युक्त में से कोई नहीं (None of the above)"], a: 1 },
+            { q: "पौधों के लिए 'अनिवार्य पोषक तत्वों' (Essential Nutrients) की अवधारणा किसने प्रस्तुत की थी?", o: ["जे. बी. लीबिग (J.B. Liebig)", "आर्नोन और स्टाउट (Arnon and Stout)", "निकोल्स (Nichols)", "डी. जे. हॉगलैंड (D.J. Hoagland)"], a: 1 },
+            { q: "आर्नोन और स्टाउट (1939) के अनुसार पौधों के लिए कितने पोषक तत्व अनिवार्य हैं?", o: ["10", "16", "17", "20"], a: 1 },
+            { q: "17वां नवीनतम अनिवार्य पोषक तत्व कौन सा खोजा गया था (ब्राउन द्वारा)?", o: ["जिंक (Zinc)", "कोबाल्ट (Cobalt)", "निकल (Nickel)", "क्लोरीन (Chlorine)"], a: 2 },
+            { q: "पौधों के लिए संरचनात्मक पोषक तत्व (Structural Nutrients) कौन से हैं जो हवा और पानी से प्राप्त होते हैं?", o: ["N, P, K", "C, H, O", "Ca, Mg, S", "Fe, Mn, Zn"], a: 1 },
+            { q: "प्राथमिक पोषक तत्व (Primary Nutrients) किन्हें कहा जाता है?", o: ["Ca, Mg, S", "Fe, Mn, Zn, Cu", "N, P, K", "C, H, O"], a: 2 },
+            { q: "द्वितीयक पोषक तत्व (Secondary Nutrients) किन्हें कहा जाता है?", o: ["N, P, K", "Fe, Cu, Zn", "Ca, Mg, S", "B, Mo, Cl"], a: 2 },
+            { q: "सूक्ष्म पोषक तत्वों (Micronutrients) की आवश्यकता पौधों को कितनी मात्रा में होती है?", o: ["1000 ppm से अधिक", "100 ppm से अधिक", "50 ppm से कम (आमतौर पर)", "बिल्कुल नहीं"], a: 2 },
+            { q: "पोषक तत्वों की कमी के लक्षण (Deficiency symptoms) सबसे पहले पुरानी / निचली पत्तियों पर किसके कारण दिखाई देते हैं?", o: ["कैल्शियम (Ca)", "नाइट्रोजन (N)", "आयरन (Fe)", "सल्फर (S)"], a: 1 },
+            { q: "नयी पत्तियों पर कमी के लक्षण सबसे पहले किस तत्व की कमी से दिखाई देते हैं?", o: ["N, P, K", "Ca, B", "Fe, S, Mn", "Mo, Zn"], a: 2 },
+            { q: "पौधे के शीर्ष (Terminal bud) पर किस तत्व की कमी के लक्षण सबसे पहले प्रकट होते हैं?", o: ["नाइट्रोजन (Nitrogen)", "फास्फोरस (Phosphorus)", "कैल्शियम और बोरॉन (Ca and B)", "पोटाश (Potash)"], a: 2 },
+            { q: "क्लोरोफिल (Chlorophyll) के निर्माण के लिए कौन सा तत्व मुख्य घटक (Central atom) है?", o: ["लोहा (Iron)", "मैग्नीशियम (Magnesium)", "जस्ता (Zinc)", "तांबा (Copper)"], a: 1 },
+            { q: "धान का 'खैरा रोग' (Khaira disease) किस तत्व की कमी से होता है?", o: ["लोहा (Iron)", "जिंक (Zinc)", "कॉपर (Copper)", "मैंगनीज (Manganese)"], a: 1 },
+            { q: "खैरा रोग की खोज पंतनगर में किसने की थी?", o: ["डॉ. वाई. एल. नेने (Dr. Y.L. Nene)", "डॉ. एम. एस. स्वामीनाथन (Dr. M.S. Swaminathan)", "डॉ. नॉर्मन बोरलॉग (Dr. Norman Borlaug)", "डॉ. वी. कुरियन (Dr. V. Kurien)"], a: 0 },
+            { q: "फूलगोभी में 'व्हिपटेल' (Whiptail) रोग किस तत्व की कमी से होता है?", o: ["बोरॉन (Boron)", "मोलिब्डेनम (Molybdenum)", "जिंक (Zinc)", "कॉपर (Copper)"], a: 1 },
+            { q: "सेब में 'आंतरिक कॉर्क' (Internal Cork) और फलों का फटना किस तत्व की कमी से होता है?", o: ["लोहा (Iron)", "बोरॉन (Boron)", "मैंगनीज (Manganese)", "नाइट्रोजन (Nitrogen)"], a: 1 },
+            { q: "मृदा में नाइट्रेट (NO3-) का निक्षालन (Leaching) आसानी से क्यों हो जाता है?", o: ["क्योंकि यह भारी होता है", "क्योंकि यह धनावेशित (+) होता है", "क्योंकि यह ऋणावेशित (-) होता है और मृदा कण भी ऋणावेशित होते हैं", "क्योंकि यह हवा में उड़ जाता है"], a: 2 },
+            { q: "पौधे फास्फोरस को मुख्य रूप से किस रूप में ग्रहण करते हैं?", o: ["PO4---", "H2PO4- और HPO4--", "P2O5", "P+"], a: 1 },
+            { q: "अम्लीय मृदाओं (Acidic soils) में फास्फोरस का स्थिरीकरण (Fixation) किन तत्वों द्वारा होता है?", o: ["कैल्शियम (Ca)", "आयरन (Fe) और एल्युमीनियम (Al)", "सोडियम (Na)", "पोटेशियम (K)"], a: 1 },
+            { q: "क्षारीय मृदाओं (Alkaline soils) में फास्फोरस का स्थिरीकरण किसके द्वारा होता है?", o: ["आयरन (Fe)", "एल्युमीनियम (Al)", "कैल्शियम (Ca)", "मैग्नीशियम (Mg)"], a: 2 },
+            { q: "पौधों में जड़ों के विकास (Root development) और ऊर्जा हस्तांतरण (ATP) के लिए कौन सा तत्व आवश्यक है?", o: ["नाइट्रोजन (Nitrogen)", "फास्फोरस (Phosphorus)", "पोटाश (Potash)", "सल्फर (Sulfur)"], a: 1 },
+            { q: "रंध्रों (Stomata) के खुलने और बंद होने को कौन सा तत्व नियंत्रित करता है?", o: ["पोटेशियम (Potassium)", "कैल्शियम (Calcium)", "नाइट्रोजन (Nitrogen)", "फास्फोरस (Phosphorus)"], a: 0 },
+            { q: "फसलों में सूखा सहन करने की क्षमता (Drought tolerance) और रोग प्रतिरोधक क्षमता कौन बढ़ाता है?", o: ["नाइट्रोजन (Nitrogen)", "पोटेशियम (Potassium)", "सल्फर (Sulfur)", "कैल्शियम (Calcium)"], a: 1 },
+            { q: "पौधों द्वारा आवश्यकता से अधिक पोटाश का अवशोषण, जिससे उपज में कोई वृद्धि नहीं होती, क्या कहलाता है?", o: ["विषैलापन (Toxicity)", "लक्जरी खपत (Luxury consumption)", "न्यूनता (Deficiency)", "स्थिरीकरण (Fixation)"], a: 1 },
+            { q: "सरसों (Mustard) और प्याज (Onion) में तीखापन (Pungency) और तेल की मात्रा बढ़ाने के लिए कौन सा तत्व आवश्यक है?", o: ["सल्फर (Sulfur)", "लोहा (Iron)", "जिंक (Zinc)", "बोरॉन (Boron)"], a: 0 },
+            { q: "दलहनी फसलों (Legumes) में जड़ ग्रंथियों (Root nodules) के निर्माण के लिए कौन सा तत्व महत्वपूर्ण है?", o: ["फास्फोरस (P) और मोलिब्डेनम (Mo)", "केवल नाइट्रोजन (N)", "सोडियम (Na)", "क्लोरीन (Cl)"], a: 0 },
+            { q: "लीबिग का 'न्यूनतम का नियम' (Law of Minimum) क्या कहता है?", o: ["पौधे की वृद्धि सबसे कम उपलब्ध पोषक तत्व द्वारा सीमित होती है (Plant growth is limited by the nutrient in shortest supply)", "पौधे की वृद्धि सबसे अधिक उपलब्ध तत्व पर निर्भर है", "पौधों को कम पोषक तत्वों की आवश्यकता होती है", "उपर्युक्त में से कोई नहीं"], a: 0 },
+            { q: "मृदा का pH मान 7.0 होने पर यह कैसी होती है?", o: ["अम्लीय (Acidic)", "क्षारीय (Alkaline)", "उदासीन (Neutral)", "लवणीय (Saline)"], a: 2 },
+            { q: "अधिकांश फसलों के लिए आदर्श मृदा pH सीमा (Ideal soil pH range) क्या होती है?", o: ["4.0 - 5.0", "6.5 - 7.5", "8.0 - 9.0", "9.5 - 10.5"], a: 1 },
+            { q: "अम्लीय मृदा (Acidic soil) को सुधारने के लिए किसका उपयोग किया जाता है?", o: ["जिप्सम (Gypsum)", "चूना (Lime / CaCO3)", "यूरिया (Urea)", "पाइराइट (Pyrite)"], a: 1 },
+            { q: "क्षारीय मृदा (Alkaline soil) को सुधारने के लिए मुख्य रूप से किसका उपयोग किया जाता है?", o: ["चूना (Lime)", "जिप्सम (Gypsum / CaSO4.2H2O)", "रॉक फॉस्फेट (Rock Phosphate)", "यूरिया (Urea)"], a: 1 },
+            { q: "मृदा pH 6.5 से 7.5 के बीच होने पर किस तत्व की उपलब्धता सर्वाधिक होती है?", o: ["आयरन (Fe)", "एल्युमीनियम (Al)", "फास्फोरस (Phosphorus)", "जिंक (Zn)"], a: 2 },
+            { q: "पोषक तत्व सूचकांक (Nutrient Index) की अवधारणा किसने दी थी?", o: ["पार्कर (Parker)", "लीबिग (Liebig)", "आर्नोन (Arnon)", "ब्रेडफील्ड (Bradfield)"], a: 0 },
+            { q: "मृदा परीक्षण (Soil testing) में नाइट्रोजन (N) का निर्धारण आमतौर पर किस विधि द्वारा किया जाता है?", o: ["ओल्सेन विधि (Olsen's method)", "क्षारीय परमैंगनेट विधि (Alkaline Permanganate method)", "फ्लेम फोटोमीटर (Flame photometer)", "ब्रे विधि (Bray's method)"], a: 1 },
+            { q: "मृदा में उपलब्ध फास्फोरस (P) के परीक्षण के लिए उदासीन/क्षारीय मृदाओं में कौन सी विधि अपनाई जाती है?", o: ["ब्रे विधि (Bray's method)", "ओल्सेन विधि (Olsen's method)", "केलडाल विधि (Kjeldahl method)", "उपर्युक्त सभी (All of the above)"], a: 1 },
+            { q: "मृदा में पोटाश (K) का निर्धारण किस उपकरण की सहायता से किया जाता है?", o: ["स्पेक्ट्रोफोटोमीटर (Spectrophotometer)", "फ्लेम फोटोमीटर (Flame photometer)", "pH मीटर (pH meter)", "EC मीटर (EC meter)"], a: 1 },
+            { q: "DRIS (Diagnosis and Recommendation Integrated System) का उपयोग किसके लिए किया जाता है?", o: ["कीट नियंत्रण (Pest control)", "पौधों में पोषक तत्वों के संतुलन का विश्लेषण (Nutrient balance analysis in plants)", "सिंचाई शेड्यूलिंग (Irrigation scheduling)", "खरपतवार नियंत्रण (Weed control)"], a: 1 },
+            { q: "टमाटर का 'ब्लॉसम एंड रॉट' (Blossom End Rot) रोग किस तत्व की कमी से होता है?", o: ["नाइट्रोजन (Nitrogen)", "कैल्शियम (Calcium)", "पोटेशियम (Potassium)", "बोरॉन (Boron)"], a: 1 },
+            { q: "मूंगफली में 'पॉपिंग' (Popping - दाने न बनना) किस तत्व की कमी का परिणाम है?", o: ["जिंक (Zinc)", "कैल्शियम (Calcium)", "सल्फर (Sulfur)", "आयरन (Iron)"], a: 1 },
+            { q: "पत्तियों का वी-आकार (V-shape) में पीला पड़ना (Chlorosis) किस तत्व की कमी का विशिष्ट लक्षण है?", o: ["पोटाश (Potash)", "नाइट्रोजन (Nitrogen)", "फास्फोरस (Phosphorus)", "आयरन (Iron)"], a: 1 },
+            { q: "पत्तियों के किनारों (Margins) का झुलसना (Scorching or Burning) किस तत्व की कमी को दर्शाता है?", o: ["नाइट्रोजन (Nitrogen)", "कैल्शियम (Calcium)", "पोटेशियम (Potassium)", "जिंक (Zinc)"], a: 2 },
+            { q: "नींबू वर्गीय फलों (Citrus) में 'डाईबैक' (Dieback) रोग किस तत्व की कमी से होता है?", o: ["कॉपर / तांबा (Copper)", "जिंक (Zinc)", "लोहा (Iron)", "मैंगनीज (Manganese)"], a: 0 },
+            { q: "मृदा में सूक्ष्म पोषक तत्वों (Micronutrients) का निष्कर्षण (Extraction) परीक्षण के लिए किस रसायन द्वारा किया जाता है?", o: ["DTPA", "KCl", "NaHCO3", "H2SO4"], a: 0 },
+            { q: "एकीकृत पोषक तत्व प्रबंधन (Integrated Nutrient Management - INM) का मुख्य उद्देश्य क्या है?", o: ["केवल रासायनिक उर्वरकों का उपयोग (Use of only chemical fertilizers)", "केवल जैविक खाद का उपयोग (Use of only organic manure)", "रासायनिक, जैविक और जैव उर्वरकों का संतुलित उपयोग (Balanced use of chemical, organic and biofertilizers)", "उर्वरकों का उपयोग पूरी तरह बंद करना (Complete stop of fertilizers)"], a: 2 },
+            { q: "पौधों के लिए 'लाभदायक तत्व' (Beneficial elements) कौन से माने जाते हैं?", o: ["N, P, K", "Na, Si, V, Co", "Fe, Mn, Zn, Cu", "C, H, O"], a: 1 },
+            { q: "धान की फसल के लिए कौन सा लाभदायक तत्व (Beneficial element) तने को मजबूती प्रदान करता है और रोग प्रतिरोधक क्षमता बढ़ाता है?", o: ["सोडियम (Sodium)", "सिलिकॉन (Silicon)", "कोबाल्ट (Cobalt)", "वैनेडियम (Vanadium)"], a: 1 },
+            { q: "पौधों की पत्तियों में अंतःशिरा हरिमहीनता (Interveinal chlorosis) सबसे पहले नयी पत्तियों पर किस तत्व की कमी से होती है?", o: ["मैग्नीशियम (Mg)", "लोहा (Fe)", "नाइट्रोजन (N)", "पोटाश (K)"], a: 1 },
+            { q: "मृदा उर्वरता मूल्यांकन (Soil Fertility Evaluation) के लिए सबसे विश्वसनीय विधि कौन सी मानी जाती है?", o: ["लक्षण देखकर (Visual diagnosis)", "पौधों का विश्लेषण (Plant analysis)", "मृदा परीक्षण (Soil testing)", "उपर्युक्त सभी का संयोजन (Combination of all above)"], a: 3 }
+        ];
 
-        let currentLang = 'en';
-        let currentQuestionIndex = 0;
-        let userAnswers = new Array(50).fill(null);
+        const allTests = [test1Data, test2Data, test3Data];
+        const testTitles = ["Part 1: Manures & Biofertilizers", "Part 2: Fertilizers & Chemicals", "Part 3: Soil Fertility & Nutrients"];
+        
+        let currentQuizData = [];
+        let currentIdx = 0;
+        let userAnswers = []; 
 
-        function startQuiz(lang) {
-            currentLang = lang;
-            document.getElementById('langScreen').style.display = 'none';
-            document.getElementById('quizScreen').style.display = 'block';
-            loadQuestion();
-        }
+        let globalAttemptedCount = 0;
+        let globalCorrectCount = 0;
 
-        function loadQuestion() {
-            const currentQuestion = quizData[currentLang][currentQuestionIndex];
-            
-            // Standard dynamic counter text
-            document.getElementById('questionCount').innerText = currentLang === 'en' ? `Question ${currentQuestionIndex + 1} of 50` : `प्रश्न ${currentQuestionIndex + 1} / 50`;
-            
-            // Display clean pure question text
-            document.getElementById('questionText').innerText = currentQuestion.q;
-            
-            const progressPercent = ((currentQuestionIndex + 1) / 50) * 100;
-            document.getElementById('progressBar').style.width = `${progressPercent}%`;
-
-            const optionsGrid = document.getElementById('optionsGrid');
-            optionsGrid.innerHTML = '';
-            
-            currentQuestion.o.forEach((optionText, index) => {
-                const button = document.createElement('button');
-                button.className = 'option';
-                if (userAnswers[currentQuestionIndex] === index) {
-                    button.className += ' selected';
-                }
-                button.innerHTML = `<span>${optionText}</span> <i class="fa-regular ${userAnswers[currentQuestionIndex] === index ? 'fa-circle-check' : 'fa-circle'}"></i>`;
-                button.onclick = () => selectOption(index);
-                optionsGrid.appendChild(button);
-            });
-
-            document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
-            const nextBtn = document.getElementById('nextBtn');
-            if (currentQuestionIndex === 49) {
-                nextBtn.innerHTML = currentLang === 'en' ? 'Submit Test <i class="fa-solid fa-check-double"></i>' : 'टेस्ट सबमिट करें <i class="fa-solid fa-check-double"></i>';
-                nextBtn.style.background = '#2e7d32';
-            } else {
-                nextBtn.innerHTML = currentLang === 'en' ? 'Next <i class="fa-solid fa-chevron-right"></i>' : 'आगे बढ़ें <i class="fa-solid fa-chevron-right"></i>';
-                nextBtn.style.background = 'var(--primary)';
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
             }
         }
 
-        function selectOption(index) {
-            userAnswers[currentQuestionIndex] = index;
-            loadQuestion();
+        allTests.forEach(testSet => {
+            testSet.forEach(item => {
+                let correctAnswerText = item.o[item.a];
+                
+                let doNotShuffle = item.o.some(opt => 
+                    opt.includes("उपरोक्त सभी") || 
+                    opt.includes("उपर्युक्त सभी") || 
+                    opt.includes("कोई नहीं") || 
+                    opt.includes("दोनों") || 
+                    opt.includes("A और B") || 
+                    opt.includes("A और C") ||
+                    opt.includes("तीनों")
+                );
+                
+                if (!doNotShuffle) {
+                    shuffleArray(item.o); 
+                }
+                item.a = item.o.indexOf(correctAnswerText);
+            });
+        });
+
+        function startQuiz(testNumber) {
+            currentQuizData = allTests[testNumber - 1];
+            userAnswers = new Array(currentQuizData.length).fill(null);
+            currentIdx = 0;
+            document.getElementById('testTitleIndicator').innerText = testTitles[testNumber - 1];
+            
+            document.getElementById('langScreen').style.display = 'none';
+            document.getElementById('quickFactsSection').style.display = 'none';
+            document.getElementById('quizScreen').style.display = 'block';
+            showQ();
+        }
+
+        function showQ() {
+            const q = currentQuizData[currentIdx];
+            document.getElementById('questionCount').innerText = `Q ${currentIdx + 1} / 50`;
+            document.getElementById('questionText').innerText = `Q${currentIdx + 1}. ${q.q}`;
+            document.getElementById('progressBar').style.width = `${((currentIdx + 1) / 50) * 100}%`;
+            document.getElementById('prevBtn').disabled = (currentIdx === 0);
+
+            const grid = document.getElementById('optionsGrid');
+            grid.innerHTML = '';
+            
+            q.o.forEach((txt, i) => {
+                const btn = document.createElement('div');
+                btn.className = 'option';
+                
+                const textSpan = document.createElement('span');
+                textSpan.innerText = `A, B, C, D`.split(',')[i] + ") " + txt;
+                
+                const icon = document.createElement('i');
+                icon.className = "fa-regular fa-circle";
+                
+                btn.appendChild(textSpan);
+                btn.appendChild(icon);
+                
+                btn.onclick = () => selectOption(i, q.a);
+                grid.appendChild(btn);
+            });
+
+            if (userAnswers[currentIdx] !== null) {
+                const selectedIdx = userAnswers[currentIdx];
+                const allOptions = grid.querySelectorAll('.option');
+                
+                allOptions.forEach((opt, i) => {
+                    opt.classList.add('locked');
+                    if (i === q.a) {
+                        opt.classList.add('correct');
+                        opt.querySelector('i').className = "fa-solid fa-circle-check";
+                    } else if (i === selectedIdx && selectedIdx !== q.a) {
+                        opt.classList.add('wrong');
+                        opt.querySelector('i').className = "fa-solid fa-circle-xmark";
+                    }
+                });
+                
+                document.getElementById('skipBtn').style.display = 'none';
+                document.getElementById('nextBtn').style.display = 'flex';
+                
+                if (currentIdx === currentQuizData.length - 1) {
+                    document.getElementById('nextBtn').innerHTML = 'Submit <i class="fa-solid fa-check-double"></i>';
+                }
+            } else {
+                document.getElementById('skipBtn').style.display = 'flex';
+                document.getElementById('nextBtn').style.display = 'none';
+            }
+        }
+
+        function selectOption(selectedIndex, correctIndex) {
+            if (userAnswers[currentIdx] !== null) return;
+            userAnswers[currentIdx] = selectedIndex;
+            const grid = document.getElementById('optionsGrid');
+            const allOptions = grid.querySelectorAll('.option');
+            
+            allOptions.forEach((opt, i) => {
+                opt.classList.add('locked');
+                if (i === correctIndex) {
+                    opt.classList.add('correct');
+                    opt.querySelector('i').className = "fa-solid fa-circle-check";
+                } else if (i === selectedIndex && selectedIndex !== correctIndex) {
+                    opt.classList.add('wrong');
+                    opt.querySelector('i').className = "fa-solid fa-circle-xmark";
+                }
+            });
+
+            document.getElementById('skipBtn').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'flex';
+            if (currentIdx === currentQuizData.length - 1) {
+                document.getElementById('nextBtn').innerHTML = 'Submit <i class="fa-solid fa-check-double"></i>';
+            }
         }
 
         function nextQuestion() {
-            if (currentQuestionIndex < 49) {
-                currentQuestionIndex++;
-                loadQuestion();
+            if (currentIdx < currentQuizData.length - 1) {
+                currentIdx++;
+                showQ();
             } else {
-                calculateResult();
+                results();
             }
         }
 
         function prevQuestion() {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                loadQuestion();
+            if (currentIdx > 0) {
+                currentIdx--;
+                showQ();
             }
         }
 
-        function calculateResult() {
-            let score = 0;
-            quizData[currentLang].forEach((question, index) => {
-                if (userAnswers[index] === question.a) {
-                    score++;
-                }
-            });
+        function skipQuestion() {
+            userAnswers[currentIdx] = null;
+            if (currentIdx < currentQuizData.length - 1) {
+                currentIdx++;
+                showQ();
+            } else {
+                results();
+            }
+        }
 
+        function results() {
             document.getElementById('quizScreen').style.display = 'none';
             document.getElementById('resultScreen').style.display = 'block';
             
-            document.getElementById('scoreDisplay').innerText = score;
+            globalAttemptedCount = 0;
+            globalCorrectCount = 0;
             
-            const percentage = (score / 50) * 100;
-            const congratsIcon = document.getElementById('congratsIcon');
-            const heading = document.getElementById('resultHeading');
-            const message = document.getElementById('messageBox');
+            userAnswers.forEach((ans, idx) => {
+                if (ans !== null) {
+                    globalAttemptedCount++;
+                    if (ans === currentQuizData[idx].a) {
+                        globalCorrectCount++;
+                    }
+                }
+            });
 
-            if (percentage >= 80) {
-                congratsIcon.innerHTML = '<i class="fa-solid fa-crown"></i>';
-                congratsIcon.style.color = 'var(--accent)';
-                heading.innerText = currentLang === 'en' ? "👑 Elite Topper Class!" : "👑 टॉपर परफॉरमेंस!";
-                message.innerText = currentLang === 'en' ? 
-                    `Outstanding work! Your core agronomy skills are superior. Clear proof of a top-tier score on Razaagripoint!` :
-                    `अविश्वसनीय स्कोर! आपने मुशाहिद सर के इस कड़े टेस्ट को टॉपर की तरह पास किया है। रज़ाएग्रीकल्चरपॉइंट को आप पर गर्व है!`;
-            } else if (percentage >= 50) {
-                congratsIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
-                congratsIcon.style.color = 'var(--primary-light)';
-                heading.innerText = currentLang === 'en' ? "✨ Good Job!" : "✨ सराहनीय प्रयास!";
-                message.innerText = currentLang === 'en' ? 
-                    `Well done! You have a firm grasp on core concepts. Revise the remaining charts to hit the 100% bracket next time.` :
-                    `बहुत बढ़िया! आपकी बुनियादी पकड़ काफी मजबूत है। बस थोड़ी सी मेहनत और करें, ताकि अगली बार आप 90%+ ला सकें!`;
+            document.getElementById('scoreDisplay').innerText = globalCorrectCount;
+            document.getElementById('totalDisplay').innerText = `Out of ${globalAttemptedCount}`;
+
+            const h = document.getElementById('resultHeading');
+            const m = document.getElementById('messageBox');
+            
+            if(globalAttemptedCount === 0) {
+                h.innerText = "No Questions Attempted";
+                m.innerText = "आपने कोई सवाल हल नहीं किया। कृपया दोबारा टेस्ट दें!";
             } else {
-                congratsIcon.innerHTML = '<i class="fa-solid fa-book-open"></i>';
-                congratsIcon.style.color = '#e65100';
-                heading.innerText = currentLang === 'en' ? "📚 Keep Practicing!" : "📚 दोबारा प्रयास करें!";
-                message.innerText = currentLang === 'en' ? 
-                    `Don't worry! Agriculture experts grow through practice. Re-read the premium notes on the semester dashboard and try again!` :
-                    `घबराएं नहीं, गलतियों से ही इंसान सीखता है! सेमेस्टर डैशबोर्ड पर जाकर प्रीमियम नोट्स को एक बार फिर पढ़ें और दोबारा टेस्ट दें!`;
+                const perc = (globalCorrectCount / globalAttemptedCount) * 100;
+                if(perc >= 80) {
+                    h.innerText = "👑 Excellent!";
+                    m.innerText = "बहुत बढ़िया! आपकी तैयारी शानदार है। नीचे अपना सर्टिफिकेट डाउनलोड करें।";
+                } else if(perc >= 50) {
+                    h.innerText = "✨ Good Effort!";
+                    m.innerText = "आप पास हैं! जो सवाल गलत हुए उन्हें दोबारा ज़रूर पढ़ें। अपना सर्टिफिकेट डाउनलोड करें।";
+                } else {
+                    h.innerText = "📚 Need More Practice";
+                    m.innerText = "स्कोर कम है। कोई बात नहीं, इस टेस्ट को दोबारा दें और सारे सही जवाब याद कर लें!";
+                }
             }
         }
 
+        function generateCertificate() {
+            const nameInput = document.getElementById('studentName').value.trim();
+            if (!nameInput) {
+                alert("Please enter your name to generate the certificate!");
+                return;
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = 1200;
+            canvas.height = 850;
+            const ctx = canvas.getContext('2d');
+
+            ctx.fillStyle = '#FAFAFA';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = '#e65100';
+            ctx.lineWidth = 20;
+            ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+            ctx.strokeStyle = '#D4AF37';
+            ctx.lineWidth = 6;
+            ctx.strokeRect(48, 48, canvas.width - 96, canvas.height - 96);
+
+            ctx.fillStyle = '#e65100';
+            ctx.fillRect(35, 35, 30, 30);
+            ctx.fillRect(canvas.width - 65, 35, 30, 30);
+            ctx.fillRect(35, canvas.height - 65, 30, 30);
+            ctx.fillRect(canvas.width - 65, canvas.height - 65, 30, 30);
+
+            ctx.save();
+            ctx.globalAlpha = 0.04;
+            ctx.fillStyle = '#e65100';
+            ctx.font = 'bold 130px Arial';
+            ctx.textAlign = 'center';
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(-Math.PI / 6); 
+            ctx.fillText('RAZAAGRIPOINT', 0, 0);
+            ctx.restore(); 
+
+            ctx.fillStyle = '#e65100';
+            ctx.font = 'bold 50px Georgia, serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('CERTIFICATE OF EXCELLENCE', 600, 160);
+            
+            ctx.fillStyle = '#D4AF37';
+            ctx.font = 'bold 22px Arial, sans-serif';
+            ctx.fillText('THIS IS PROUDLY PRESENTED TO', 600, 230);
+
+            ctx.fillStyle = '#b71c1c';
+            ctx.font = 'bold 65px "Times New Roman", Times, serif';
+            ctx.fillText(nameInput.toUpperCase(), 600, 325);
+
+            ctx.strokeStyle = '#D4AF37';
+            ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(300, 355); ctx.lineTo(900, 355); ctx.stroke();
+
+            ctx.fillStyle = '#333333';
+            ctx.font = '22px Arial, sans-serif';
+            ctx.fillText('For demonstrating outstanding academic performance by scoring', 600, 420);
+            
+            ctx.fillStyle = '#f57c00';
+            ctx.fillRect(430, 450, 340, 60);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = 'bold 30px Arial';
+            ctx.fillText(`${globalCorrectCount} MARKS OUT OF ${globalAttemptedCount}`, 600, 492);
+
+            ctx.fillStyle = '#333333';
+            ctx.font = '22px Arial, sans-serif';
+            const currentTestName = document.getElementById('testTitleIndicator').innerText;
+            ctx.fillText(`in the online Mock Examination (${currentTestName}) for Manures, Fertilizers & Soil Fertility.`, 600, 560);
+            
+            ctx.fillStyle = '#555555';
+            ctx.font = 'italic 20px Arial, sans-serif';
+            ctx.fillText('Syllabus Based on Mahatma Jyotibha Phoole Rohelkhand University (MJPRU).', 600, 600);
+
+            const dateStr = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+            ctx.strokeStyle = '#333333';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(150, 720); ctx.lineTo(350, 720); ctx.stroke();
+            
+            ctx.fillStyle = '#333333';
+            ctx.font = 'bold 20px Arial';
+            ctx.fillText(dateStr, 250, 705);
+            ctx.font = '18px Arial';
+            ctx.fillText('Date of Completion', 250, 745);
+
+            ctx.beginPath(); ctx.moveTo(850, 720); ctx.lineTo(1050, 720); ctx.stroke();
+            ctx.fillStyle = '#e65100';
+            ctx.font = 'bold 24px cursive, "Brush Script MT", serif'; 
+            ctx.fillText('Mushahid Raza', 950, 705);
+            ctx.fillStyle = '#333333';
+            ctx.font = '18px Arial';
+            ctx.fillText('Admin / Founder', 950, 745);
+
+            ctx.beginPath();
+            ctx.arc(600, 715, 60, 0, Math.PI * 2);
+            ctx.fillStyle = '#D4AF37'; 
+            ctx.fill();
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = '#b71c1c'; 
+            ctx.stroke();
+            
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 15px Arial';
+            ctx.fillText('RAZAAGRIPOINT', 600, 710);
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('VERIFIED', 600, 735);
+
+            const downloadLink = document.createElement('a');
+            downloadLink.download = `${nameInput.replace(/\s+/g, '_')}_Soil_Fertility_Certificate.png`;
+            downloadLink.href = canvas.toDataURL('image/png');
+            downloadLink.click();
+        }
+
         function restartQuiz() {
-            currentQuestionIndex = 0;
-            userAnswers = new Array(50).fill(null);
+            document.getElementById('studentName').value = '';
             document.getElementById('resultScreen').style.display = 'none';
+            document.getElementById('quizScreen').style.display = 'none';
             document.getElementById('langScreen').style.display = 'block';
+            document.getElementById('quickFactsSection').style.display = 'block';
         }
     </script>
 
-    <script>
+<script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="BDnChaYcJDEZEnaO7Tj1A";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
 
