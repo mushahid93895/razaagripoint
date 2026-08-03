@@ -108,15 +108,15 @@ nav {
         .section-header h2::after { content: ''; position: absolute; width: 60%; height: 4px; background: var(--accent-yellow); bottom: -10px; left: 20%; border-radius: 2px; }
 
         /* --- Grid Container --- */
-        .grid-container {
-            max-width: 1300px;
-            margin: 0 auto 80px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-
+       .grid-container {
+    max-width: 1450px; /* ग्रिड को फैलने के लिए पूरी जगह देगा */
+    margin: 0 auto 80px auto;
+    padding: 0 20px;
+    display: grid;
+    /* नीचे वाली लाइन को बदल दिया है - अब जबरदस्ती 3 कॉलम ही रहेंगे और उनकी चौड़ाई बराबर बढ़ेगी */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 25px; /* गैप को 40px से घटाकर 25px किया ताकि कार्ड्स को साइड में फैलने की जगह मिले */
+}
         /* --- Subject Card Design --- */
         .subject-card {
             background: var(--white);
@@ -206,6 +206,17 @@ nav {
     </style>
 </head>
 <body>
+    <script>
+  atOptions = {
+    'key' : '70113143cf70d3b8e1dcf19d3e32463f',
+    'format' : 'iframe',
+    'height' : 60,
+    'width' : 468,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/70113143cf70d3b8e1dcf19d3e32463f/invoke.js"></script>
+
 
     <nav>
     <a href="index.html" class="logo">
@@ -229,14 +240,14 @@ nav {
 
         <div class="subject-card">
             <div class="card-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1509967733342-437077d8e41a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZW50b21vbG9neXxlbnwwfHwwfHx8MA%3D%3D" alt="Entomology" class="card-img">
+                <img src="https://res.cloudinary.com/ir80fs0p/image/upload/v1785716804/file_0000000009c0821190c5742b86fec1b7_skkm8c.png" alt="Entomology" class="card-img">
                 <div class="card-overlay"></div>
             </div>
             <div class="card-content">
-                <h3>Paper-1: Fundamentals of Entomology</h3>
+                <h3>01: Fundamentals of Entomology</h3>
                 <p>Keet vigyan (Entomology) ke basic siddhant. Fasalon ko nuksan pahunchane wale keedo ki pehchan (identification) aur unke niyantran (control) ke behtar tarike seekhein.</p>
                 <div class="card-actions">
-                    <a href="entomology_vid.html" class="btn btn-vid">
+                    <a href="https://www.effectivecpmnetwork.com/gfwq0vg794?key=8c17e470d1175561d4c52ac31e1c6cc4" target="_blank" class="btn btn-vid">
                         <i class="fa-brands fa-youtube"></i> Watch Videos
                     </a>
                     <a href="entomology_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);">
@@ -258,14 +269,14 @@ nav {
 
         <div class="subject-card">
             <div class="card-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1628595351029-c2bf17511435?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Genetics" class="card-img">
+                <img src="https://res.cloudinary.com/ir80fs0p/image/upload/v1785716811/file_00000000b9d48208ae5f959425a7002c_qzcump.png" alt="Genetics" class="card-img">
                 <div class="card-overlay"></div>
             </div>
             <div class="card-content">
-                <h3>Paper-2: Fundamentals of Genetics</h3>
+                <h3>02: Fundamentals of Genetics</h3>
                 <p>Anuvanshiki (Genetics) ke mool siddhant jaise cell division, Mendel ke niyam (laws) aur paudhon mein genetic variation ka asaan bhasha mein adhyayan karein.</p>
                 <div class="card-actions">
-                    <a href="genetics_vid.html" class="btn btn-vid">
+                    <a href="https://www.effectivecpmnetwork.com/gfwq0vg794?key=8c17e470d1175561d4c52ac31e1c6cc4" target="_blank" class="btn btn-vid">
                         <i class="fa-brands fa-youtube"></i> Watch Videos
                     </a>
                     <a href="genetics_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);">
@@ -287,14 +298,14 @@ nav {
 
         <div class="subject-card">
             <div class="card-img-wrapper">
-                <img src="https://sprl.me/4i09NKV" alt="Soil Science" class="card-img">
+                <img src="https://res.cloudinary.com/ir80fs0p/image/upload/v1785716787/file_000000004c308211a828cf6a7df7c933_p1kmo4.png" alt="Soil Science" class="card-img">
                 <div class="card-overlay"></div>
             </div>
             <div class="card-content">
-                <h3>Paper-3: Fundamentals of Soil Science</h3>
+                <h3>03: Fundamentals of Soil Science</h3>
                 <p>Mitti ki sanrachna (Soil structure), uske gun (properties), aur kheti ke liye mitti ki upyogita ka poora gyan haasil karein. Fasal utpadan mein mitti ka mahatva.</p>
                 <div class="card-actions">
-                    <a href="soilscience_vid.html" class="btn btn-vid">
+                    <a href="https://www.effectivecpmnetwork.com/gfwq0vg794?key=8c17e470d1175561d4c52ac31e1c6cc4" target="_blank" class="btn btn-vid">
                         <i class="fa-brands fa-youtube"></i> Watch Videos
                     </a>
                     <a href="soilscience_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);">
@@ -316,14 +327,14 @@ nav {
 
         <div class="subject-card">
             <div class="card-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1561484930-974554019ade?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Agro-meteorology" class="card-img">
+                <img src="https://res.cloudinary.com/ir80fs0p/image/upload/v1785717025/file_000000002d908208af7de227ee9a2919_ou648p.png" alt="Agro-meteorology" class="card-img">
                 <div class="card-overlay"></div>
             </div>
             <div class="card-content">
-                <h3>Paper-4: Introductory Agro-meteorology & Climate Change</h3>
+                <h3>04: Introductory Agro-meteorology & Climate Change</h3>
                 <p>Mausam vigyan (Meteorology) aur jalvayu parivartan (Climate Change) ka fasalon par padne wala asar aur weather forecasting ke baare mein jaanein.</p>
                 <div class="card-actions">
-                    <a href="meteorology_vid.html" target="_blank" class="btn btn-vid">
+                    <a href="https://www.effectivecpmnetwork.com/gfwq0vg794?key=8c17e470d1175561d4c52ac31e1c6cc4" target="_blank" class="btn btn-vid">
                         <i class="fa-brands fa-youtube"></i> Watch Videos
                     </a>
                     <a href="meteorology_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);">
@@ -345,14 +356,14 @@ nav {
 
         <div class="subject-card">
             <div class="card-img-wrapper">
-                <img src="https://sprl.me/BukwTzK" alt="Communication Skills" class="card-img">
+                <img src="https://res.cloudinary.com/ir80fs0p/image/upload/v1785717247/file_000000004ac882118a80539576ce2b69_xql1fk.png" alt="Communication Skills" class="card-img">
                 <div class="card-overlay"></div>
             </div>
             <div class="card-content">
-                <h3>Paper-5: Comprehension & Communication Skills</h3>
+                <h3>05: Comprehension & Communication Skills</h3>
                 <p>Agriculture field mein professional communication, listening, speaking aur writing skills ko behtar banane ki techniques. Job aur interview ke liye zaroori skills.</p>
                 <div class="card-actions">
-                    <a href="communication_vid.html" target="_blank" class="btn btn-vid">
+                    <a href="https://www.effectivecpmnetwork.com/gfwq0vg794?key=8c17e470d1175561d4c52ac31e1c6cc4" target="_blank" class="btn btn-vid">
                         <i class="fa-brands fa-youtube"></i> Watch Videos
                     </a>
                     <a href="communication_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);">
@@ -374,14 +385,14 @@ nav {
 
         <div class="subject-card">
             <div class="card-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Agronomy" class="card-img">
+                <img src="https://res.cloudinary.com/ir80fs0p/image/upload/v1785716544/file_00000000e4508211b7344f9e4edfd76b_ufqztk.png" alt="Agronomy" class="card-img">
                 <div class="card-overlay"></div>
             </div>
             <div class="card-content">
-                <h3>Paper-6: Fundamentals of Agronomy</h3>
+                <h3>06: Fundamentals of Agronomy</h3>
                 <p>Fasal utpadan (Crop production) aur khet prabandhan (Farm management) ke mool siddhant. Beej bone se lekar katai tak ki aadhunik takneek.</p>
                 <div class="card-actions">
-                    <a href="agronomy_vid.html" target="_blank" class="btn btn-vid">
+                    <a href="https://www.effectivecpmnetwork.com/gfwq0vg794?key=8c17e470d1175561d4c52ac31e1c6cc4" target="_blank" class="btn btn-vid">
                         <i class="fa-brands fa-youtube"></i> Watch Videos
                     </a>
                     <a href="agronomy_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);">
@@ -403,14 +414,14 @@ nav {
 
         <div class="subject-card">
             <div class="card-img-wrapper">
-                <img src="https://sprl.me/HBg4puL" alt="Animal Husbandry" class="card-img">
+                <img src="https://res.cloudinary.com/ir80fs0p/image/upload/v1785716804/file_00000000d13c8211a1c8c9c881a9deea_yuudtd.png" alt="Animal Husbandry" class="card-img">
                 <div class="card-overlay"></div>
             </div>
             <div class="card-content">
-                <h3>Paper-7: Introductory Animal Husbandry</h3>
+                <h3>07: Introductory Animal Husbandry</h3>
                 <p>Pashupalan (Animal Husbandry) ki basic jaankari. Dairy animals, poultry aur unke aahar (nutrition) aur unki naslon (breeds) ka poora adhyayan.</p>
                 <div class="card-actions">
-                    <a href="animalhusbandry_vid.html" target="_blank" class="btn btn-vid">
+                    <a href="https://www.effectivecpmnetwork.com/gfwq0vg794?key=8c17e470d1175561d4c52ac31e1c6cc4" target="_blank" class="btn btn-vid">
                         <i class="fa-brands fa-youtube"></i> Watch Videos
                     </a>
                     <a href="animalhusbandry_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);">
@@ -432,14 +443,14 @@ nav {
 
         <div class="subject-card">
             <div class="card-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Agricultural Economics" class="card-img">
+                <img src="https://res.cloudinary.com/ir80fs0p/image/upload/v1785717244/file_000000009cbc8211a5d8765b6fe461f6_oublfz.png" alt="Agricultural Economics" class="card-img">
                 <div class="card-overlay"></div>
             </div>
             <div class="card-content">
-                <h3>Paper-8: Fundamentals of Agricultural Economics</h3>
+                <h3>08: Fundamentals of Agricultural Economics</h3>
                 <p>Krishi arthashastra (Agricultural Economics) ke siddhant, demand-supply, market structure aur kheti mein laagat-munafa (cost-profit) ka vishleshan.</p>
                 <div class="card-actions">
-                    <a href="economics_vid.html" target="_blank" class="btn btn-vid">
+                    <a href="https://www.effectivecpmnetwork.com/gfwq0vg794?key=8c17e470d1175561d4c52ac31e1c6cc4" target="_blank" class="btn btn-vid">
                         <i class="fa-brands fa-youtube"></i> Watch Videos
                     </a>
                     <a href="economics_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);">
@@ -461,14 +472,14 @@ nav {
 
         <div class="subject-card">
             <div class="card-img-wrapper">
-                <img src="https://sprl.me/DEVN3MM" alt="Farm Machinery" class="card-img">
+                <img src="https://res.cloudinary.com/ir80fs0p/image/upload/v1785716789/file_0000000029548211ac094374705d78e9_atyvxu.png" alt="Farm Machinery" class="card-img">
                 <div class="card-overlay"></div>
             </div>
             <div class="card-content">
-                <h3>Paper-9: Farm Machinery and Power</h3>
+                <h3>09: Farm Machinery and Power</h3>
                 <p>Kheti mein istemal hone wale aadhunik yantra (Machinery), tractors, engines aur agricultural power sources ki technical details aur inka working process.</p>
                 <div class="card-actions">
-                    <a href="machinery_vid.html" target="_blank" class="btn btn-vid">
+                    <a href="https://www.effectivecpmnetwork.com/gfwq0vg794?key=8c17e470d1175561d4c52ac31e1c6cc4" target="_blank" class="btn btn-vid">
                         <i class="fa-brands fa-youtube"></i> Watch Videos
                     </a>
                     <a href="machinery_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);">
@@ -490,14 +501,14 @@ nav {
 
         <div class="subject-card">
             <div class="card-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Human Values and Ethics" class="card-img">
+                <img src="https://res.cloudinary.com/ir80fs0p/image/upload/v1785717255/file_0000000011d08211a3a6aa2683caa3a7_iipwrk.png" alt="Human Values and Ethics" class="card-img">
                 <div class="card-overlay"></div>
             </div>
             <div class="card-content">
-                <h3>Paper-10: Human Values & Ethics</h3>
+                <h3>010: Human Values & Ethics</h3>
                 <p>Jeevan mein naitikta (Ethics), human values, vision, goals aur professional life mein aacharan (conduct) ki samajh. Ek behtar insaan banne ka margdarshan.</p>
                 <div class="card-actions">
-                    <a href="ethics_vid.html" target="_blank" class="btn btn-vid">
+                    <a href="https://www.effectivecpmnetwork.com/gfwq0vg794?key=8c17e470d1175561d4c52ac31e1c6cc4" target="_blank" class="btn btn-vid">
                         <i class="fa-brands fa-youtube"></i> Watch Videos
                     </a>
                     <a href="ethics_mock.html" class="btn btn-mock" style="background: linear-gradient(135deg, #ffb300, #ff8f00); color: #fff; font-weight: 800; border: none; box-shadow: 0 4px 10px rgba(255, 179, 0, 0.4);">
@@ -519,10 +530,19 @@ nav {
 
     </div>
 
+    <script async="async" data-cfasync="false" src="https://pl30655434.effectivecpmnetwork.com/5781c9fddd708afe589cff98982e915b/invoke.js"></script>
+<div id="container-5781c9fddd708afe589cff98982e915b"></div>
+
+
     <footer>
         <p>&copy; 2026 <span>Razaagripoint</span> | Elevating Agriculture Education</p>
          <p style="font-size: 14px; color: #88;">Designed by <b>MUSHAHID RAZA</b> with ❤️ for BSc Agriculture Students</p>
     </footer>
+
+    <script src="https://pl30655433.effectivecpmnetwork.com/3c/5a/02/3c5a02242f559eb7bfa2e3e28441ba35.js"></script>
+    <script src="https://pl30655435.effectivecpmnetwork.com/49/91/07/4991079760ea8e6af2eeac71cd2c12bf.js"></script>
+
+
 
    <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="BDnChaYcJDEZEnaO7Tj1A";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
